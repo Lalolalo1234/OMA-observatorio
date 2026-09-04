@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OMA - Observatorio Minero Argentino, impulsado por OLAMI">
+    <title>OMA - Observatorio Minero Argentino</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .badge-relacion {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        /* Navegación */
+        nav {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .nav-menu button {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            background: none;
+            color: #333;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-menu button:hover {
+            background: #f0f0f0;
+            color: #1e3c72;
+        }
+
+        .nav-menu button.active {
+            color: #2a5298;
+            border-bottom-color: #2a5298;
+            background: #f8f9fa;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            min-height: calc(100vh - 300px);
+        }
+
+        /* Contenido de pestañas */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content h1 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 1rem;
+        }
+
+        .tab-content h2 {
+            color: #2a5298;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .tab-content p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .subsection {
+            background: white;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2a5298;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .subsection h3 {
+            color: #1e3c72;
+            margin-bottom: 0.8rem;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tabla comparativa */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin: 1.5rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        table th {
+            background: #1e3c72;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Pilares / cards */
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .pillar-card {
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border-top: 4px solid #2a5298;
+        }
+
+        .pillar-card .pillar-number {
+            background: #1e3c72;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            font-weight: bold;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .pillar-card .pillar-body {
+            padding: 1.2rem;
+        }
+
+        .pillar-card h4 {
+            color: #1e3c72;
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        /* Flujo Measure/Anticipate/Guide */
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .flow-step {
+            background: white;
+            border-radius: 6px;
+            padding: 1.2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .flow-step .flow-tag {
+            display: inline-block;
+            background: #2a5298;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 3px;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Checklist de fases */
+        .phase {
+            background: white;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-left: 4px solid #2a5298;
+        }
+
+        .phase h3 {
+            color: #1e3c72;
+            margin-bottom: 0.3rem;
+        }
+
+        .phase .phase-meta {
+            color: #777;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li {
+            padding-left: 1.8rem;
+            position: relative;
+            margin-bottom: 0.7rem;
+        }
+
+        .checklist li::before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            color: #2a5298;
+            font-size: 1.1rem;
+        }
+
+        .value-list {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .value-list li {
+            padding-left: 1.8rem;
+            position: relative;
+            margin-bottom: 0.7rem;
+        }
+
+        .value-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2a9d5c;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Nodos provinciales */
+        .node-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .node-card {
+            background: white;
+            border-radius: 6px;
+            padding: 1.2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border-top: 3px solid #2a5298;
+        }
+
+        .node-card.existing {
+            border-top-color: #2a9d5c;
+        }
+
+        .node-card .node-status {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            background: #e3f2fd;
+            color: #1e3c72;
+            margin-top: 0.5rem;
+        }
+
+        .node-card.existing .node-status {
+            background: #e6f7ec;
+            color: #217a45;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin: 0.5rem 0;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: #a0d4ff;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                font-size: 0.85rem;
+            }
+
+            .nav-menu li {
+                min-width: 100px;
+            }
+
+            .nav-menu button {
+                padding: 0.8rem 0.5rem;
+            }
+
+            .tab-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        .alert {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .quote-block {
+            background: #eef4ff;
+            border-left: 4px solid #1e3c72;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            font-style: italic;
+            color: #1e3c72;
+        }
+
+        .button-group {
+            margin: 2rem 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #1e3c72;
+        }
+
+        .btn-secondary {
+            background: #666;
+        }
+
+        .btn-secondary:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">🇦🇷 OMA · Observatorio Minero Argentino</div>
+            <div class="tagline">Una iniciativa de OLAMI — midiendo demanda global, anticipando oferta argentina, guiando decisión estratégica</div>
+            <div class="badge-relacion">Evolución del modelo CeProMin, con foco exclusivo en Argentina</div>
+        </div>
+    </header>
+
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><button class="nav-btn active" data-tab="inicio">Inicio</button></li>
+                <li><button class="nav-btn" data-tab="demanda">Demanda Global</button></li>
+                <li><button class="nav-btn" data-tab="oferta">Oferta &amp; Competitividad</button></li>
+                <li><button class="nav-btn" data-tab="capital-humano">Capital Humano</button></li>
+                <li><button class="nav-btn" data-tab="indicadores">Indicadores</button></li>
+                <li><button class="nav-btn" data-tab="gobernanza">Gobernanza</button></li>
+                <li><button class="nav-btn" data-tab="hoja-de-ruta">Hoja de Ruta</button></li>
+                <li><button class="nav-btn" data-tab="acerca">Acerca de OMA</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        <!-- Inicio -->
+        <div id="inicio" class="tab-content active">
+            <h1>El Observatorio Minero Argentino</h1>
+            <p>El OMA (Observatorio Minero Argentino) es el sistema de monitoreo, análisis y prospectiva que recopila, procesa y comunica información clave sobre la minería argentina, con el fin de ordenar la información, anticipar macrotendencias, reducir incertidumbres, mejorar la política pública y profesionalizar la toma de decisiones en el sector.</p>
+
+            <h2>Sus funciones</h2>
+            <ul>
+                <li>Recolectar información actualizada relevante del sector minero argentino.</li>
+                <li>Procesarla técnicamente con rigor metodológico.</li>
+                <li>Transformar esos datos en inteligencia útil para decisiones estratégicas.</li>
+                <li>Comunicarla de forma periódica, confiable y trazable.</li>
+                <li>Generar alertas tempranas sobre escenarios futuros (anticipar tendencias).</li>
+            </ul>
+
+            <div class="quote-block">
+                "Ser el centro de referencia para monitorear el progreso de la minería en Argentina, informar y traducir la demanda global de minerales críticos en decisiones estratégicas de inversión, política y capacidades; estimar demanda a 2030-2050, anticipar cuellos de botella de la oferta argentina, y guiar la ejecución coordinada de Nación, provincias, universidades y sector privado, para aprovechar al máximo las oportunidades de crecimiento futuro."
+            </div>
+
+            <h2>El ciclo estratégico: Measure → Anticipate → Guide</h2>
+            <div class="flow-grid">
+                <div class="flow-step">
+                    <span class="flow-tag">MEASURE</span>
+                    <p>Estimar la demanda global 2030/2040/2050 de Cu, Li, REE, grafito, W, Be y otros minerales críticos, desglosada por mercado final, basada en el análisis de macrotendencias de las respectivas industrias finales y sus elasticidades de precios relativos (sustituciones), en el marco de un nuevo escenario geopolítico complejo.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-tag">ANTICIPATE</span>
+                    <p>Proyectar la oferta argentina (capacidad de producción, proyectos en pipeline, tiempos de desarrollo, limitantes de infraestructura y regulación) en función de la demanda futura, e identificar los "strategic gaps": la brecha entre lo que el mundo demanda y lo que Argentina puede producir competitivamente.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-tag">GUIDE</span>
+                    <p>Traducir esas señales de mercado en decisiones de política (regulación, incentivos, RIGI), inversión (qué proyectos priorizar) y ejecución (coordinación Nación-provincias, desarrollo de capacidades e infraestructura).</p>
+                </div>
+            </div>
+
+            <h2>Tres clusters de demanda</h2>
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-number">ELECTRIFICATION</div>
+                    <div class="pillar-body">
+                        <h4>Transición Energética</h4>
+                        <p>Cu, Li, Ni, Co, tierras raras y grafito para baterías y renovables. Driver: neutralidad de carbono 2050 (UE, China, EE.UU.). Argentina es actor clave por el litio del NOA y el cobre de San Juan y Catamarca.</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">TECHNOLOGY &amp; DEFENSE</div>
+                    <div class="pillar-body">
+                        <h4>Semiconductores, IA y Defensa</h4>
+                        <p>Tierras raras, Ga, Ge, InP, Ta para chips avanzados. Drivers: hegemonía tecnológica (EE.UU. vs. China); autonomía estratégica de Europa e India. Argentina cuenta con potencial de tierras raras aún poco explorado.</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">FUSION ENERGY</div>
+                    <div class="pillar-body">
+                        <h4>Energía de Fusión</h4>
+                        <p>Tierras raras pesadas (itrio), W, Be, Li-6 para reactores de fusión. Driver: viabilidad comercial de la fusión (2030s-2040s). Monitoreo de proyectos avanzados como Misión Génesis de EE.UU. (superconductores, IA aplicada a plasma), relevante para el litio-6 argentino.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('demanda')">Ver Demanda Global</button>
+                <button class="btn btn-secondary" onclick="navigateTo('gobernanza')">Ver Gobernanza</button>
+            </div>
+        </div>
+
+        <!-- Demanda Global (Measure) -->
+        <div id="demanda" class="tab-content">
+            <h1>Demanda Global de Minerales Críticos 2030-2050</h1>
+            <p><strong>Pilar 1</strong> del OMA: informe anual con proyecciones de Cu, Li, Ni, Co, REE, W, Be, Ga, Ge, InP y Ta, bajo escenarios base/high/low, con análisis de elasticidad de precio e impacto de sustitución tecnológica — el marco de referencia contra el cual se mide la oferta argentina.</p>
+
+            <div class="subsection">
+                <h3>Electrification — Transición Energética</h3>
+                <p>Cobre, litio, níquel, cobalto y tierras raras para baterías y energías renovables. El driver de fondo es el compromiso de neutralidad de carbono a 2050 asumido por la UE, China y EE.UU., que sostiene una curva de demanda estructuralmente creciente para estos minerales durante las próximas tres décadas. Argentina participa de lleno en litio (triángulo del litio) y cobre (San Juan, Catamarca).</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Technology &amp; Defense — Semiconductores, IA y Defensa</h3>
+                <p>Galio, germanio, fosfuro de indio y tantalio para chips avanzados. El driver es geopolítico: la disputa por la hegemonía tecnológica entre EE.UU. y China convierte a estos insumos en material estratégico, con alta sensibilidad a restricciones de exportación y políticas de "friend-shoring".</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Fusion Energy — Innovación Energética</h3>
+                <p>Itrio, tungsteno, berilio y litio-6 para reactores de fusión nuclear. El driver es la viabilidad comercial de la fusión en el horizonte 2030s-2040s. El Observatorio da seguimiento a iniciativas como Misión Génesis, TokaMind y TokaMark, que aplican inteligencia artificial al control de plasma, como indicador temprano de aceleración de esta demanda.</p>
+            </div>
+
+            <h2>El "Measure Gap" que el OMA cierra</h2>
+            <p>Hoy existen múltiples fuentes de proyección de demanda (IEA, S&amp;P, Wood Mackenzie, CRU, Fastmarkets, SMM, USGS, entre otras) que no siempre coinciden entre sí. El Observatorio centraliza y armoniza estas fuentes —sumando datos directos de empresas mineras que operan en Argentina— para producir una proyección de referencia única, aplicada a la realidad del país.</p>
+
+            <div class="subsection">
+                <h3>Fuentes de datos</h3>
+                <p>IEA · S&amp;P Global · Wood Mackenzie · CRU · Fastmarkets · SMM · USGS · Adamas Intelligence · Secretaría de Minería de la Nación · reportes directos de empresas mineras que operan en Argentina.</p>
+            </div>
+        </div>
+
+        <!-- Oferta y Competitividad (Anticipate) -->
+        <div id="oferta" class="tab-content">
+            <h1>Oferta y Competitividad Minera Argentina</h1>
+            <p><strong>Pilar 2</strong> del OMA: seguimiento del costo de producción argentino frente al mercado global, velocidad de scale-up de proyectos, estabilidad regulatoria (incluido el RIGI), capacidades técnicas e índice ESG, con benchmark contra Australia, Canadá, Indonesia, Chile y Perú.</p>
+
+            <div class="subsection">
+                <h3>El "Anticipate Gap"</h3>
+                <p>Hoy no existe un observatorio unificado que confronte la oferta argentina —dispersa entre provincias con jurisdicción propia sobre sus recursos— con la demanda global proyectada. Cada provincia minera lleva su propio registro, sin una lectura agregada a nivel nacional que permita identificar dónde el país es competitivo y dónde le falta capacidad de producción frente a lo que el mundo va a necesitar.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Mapa de Oportunidad</h3>
+                <p>El Observatorio producirá un mapeo explícito de oportunidades estratégicas: qué minerales críticos muestran riesgo de escasez de oferta a nivel global hacia 2030-2050, y en qué provincias y condiciones Argentina tiene ventaja competitiva real para cerrar esa brecha (litio en el NOA, cobre en San Juan y Catamarca, oro y plata en Santa Cruz, potasio en Mendoza y Neuquén).</p>
+            </div>
+
+            <h2>Benchmark internacional</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>País / Bloque</th>
+                        <th>Rol en el benchmark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Australia</td><td>Referencia de estabilidad regulatoria y velocidad de scale-up de proyectos.</td></tr>
+                    <tr><td>Canadá</td><td>Referencia de marco de inversión y capacidades técnicas.</td></tr>
+                    <tr><td>Indonesia</td><td>Referencia de política de valor agregado y control de recursos estratégicos.</td></tr>
+                    <tr><td>Chile</td><td>Referencia regional directa en cobre y litio — mayor desarrollo institucional del sector.</td></tr>
+                    <tr><td>Perú</td><td>Referencia regional directa en cobre — trayectoria de atracción de inversión minera.</td></tr>
+                </tbody>
+            </table>
+
+            <div class="alert">
+                <strong>Nota:</strong> El contenido detallado por provincia (reservas, costos unitarios, CAPEX, índice ESG, entre otros) se construirá a partir de datos oficiales de la Secretaría de Minería de la Nación, los organismos mineros provinciales y las encuestas y entrevistas del ciclo bienal de investigación del Observatorio (ver pestaña Gobernanza).
+            </div>
+        </div>
+
+        <!-- Capital Humano y Política (Guide) -->
+        <div id="capital-humano" class="tab-content">
+            <h1>Capital Humano &amp; Política Minera</h1>
+            <p><strong>Pilar 3</strong> del OMA: stock de profesionales mineros en Argentina y por especialidad, brecha de talento, sueldos comparados, oferta de formación disponible y política regulatoria necesaria para retener talento y atraer inversión.</p>
+
+            <div class="subsection">
+                <h3>Stock de talento</h3>
+                <p>Capital humano minero argentino (ingenieros, geólogos) y su distribución por especialidad y provincia, como base para identificar dónde el país tiene déficit de capacidades técnicas frente a la escala de inversión proyectada (litio, cobre, oro/plata).</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Empleabilidad y brecha de competencias</h3>
+                <p>Empleabilidad en el sector minero argentino, brecha de competencias respecto de lo que demandan los nuevos proyectos, y comparación de sueldos frente a Chile y Perú.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Formación y vocación</h3>
+                <p>Capacidad instalada de formación en carreras mineras en universidades argentinas (UNSJ, UNCa, UNJu, UNSa, entre otras), programas especializados emergentes, evolución de matrículas en ingeniería de minas, y atracción de talento femenino e inclusión como eje explícito de seguimiento.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>El "Guide Gap"</h3>
+                <p>Nación y provincias suelen reaccionar a precios históricos en lugar de anticipar. Falta una visión prospectiva que vincule la decisión regulatoria y de formación de talento con las tendencias de demanda proyectadas a 2030-2050. Ese es el vacío que este pilar busca cerrar.</p>
+            </div>
+        </div>
+
+        <!-- Indicadores -->
+        <div id="indicadores" class="tab-content">
+            <h1>Marco de Indicadores Estructurado</h1>
+            <p>El Observatorio de Ingeniería de España define 8 categorías de indicadores para su sector. El OMA adapta este marco a la minería crítica argentina, mapeando cada categoría al gap estratégico de CeProMin que resuelve.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Categoría (OIE)</th>
+                        <th>Adaptación OMA</th>
+                        <th>Cierra el gap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Stock</td>
+                        <td>Producción actual por mineral y provincia. Capacidad instalada.</td>
+                        <td>Measure</td>
+                    </tr>
+                    <tr>
+                        <td>Demográfico</td>
+                        <td>Capital humano minero argentino (ingenieros, geólogos). Distribución por especialidad y provincia.</td>
+                        <td>Guide (talento)</td>
+                    </tr>
+                    <tr>
+                        <td>Laboral</td>
+                        <td>Empleabilidad en sector minero. Brecha de competencias. Sueldos comparados con Chile y Perú.</td>
+                        <td>Guide (talento)</td>
+                    </tr>
+                    <tr>
+                        <td>Compensación</td>
+                        <td>Costos operacionales unitarios (USD/ton Cu, USD/ton Li). CAPEX por proyecto nuevo.</td>
+                        <td>Anticipate</td>
+                    </tr>
+                    <tr>
+                        <td>Formación</td>
+                        <td>Capacidad de formación en carreras mineras. Programas especializados emergentes.</td>
+                        <td>Guide</td>
+                    </tr>
+                    <tr>
+                        <td>Empresarial</td>
+                        <td>Perfil de operadores (grandes vs. junior). Inversión en I+D. Capacidad de innovación (downstream, carbonato vs. hidróxido de litio, cátodos).</td>
+                        <td>Anticipate</td>
+                    </tr>
+                    <tr>
+                        <td>Prospectivo</td>
+                        <td>Proyecciones de demanda global (2030/2040/2050) por cluster y mineral, y su traducción a pipeline de proyectos argentinos.</td>
+                        <td>Measure</td>
+                    </tr>
+                    <tr>
+                        <td>Vocacional</td>
+                        <td>Evolución de matrículas en ingeniería de minas en universidades argentinas. Atracción de talento femenino e inclusión.</td>
+                        <td>Guide</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Gobernanza -->
+        <div id="gobernanza" class="tab-content">
+            <h1>Gobernanza y Estructura Operacional</h1>
+
+            <h2>Gobernanza multi-actor</h2>
+            <p>El Observatorio de Ingeniería Español integra en su Consejo Rector a gobiernos, academia, colegios profesionales y empresas — una arquitectura que rompe silos y crea un lenguaje compartido entre actores que normalmente no dialogan. El OMA aplica esta misma lógica a la minería argentina, donde la jurisdicción de los recursos es provincial y la coordinación federal es clave.</p>
+
+            <div class="subsection">
+                <h3>Consejo Rector</h3>
+                <p>Secretaría de Minería de la Nación + COFEMIN (Consejo Federal de Minería) + organismos mineros provinciales (San Juan, Catamarca, Jujuy, Salta, Neuquén, La Rioja, Santa Cruz, Mendoza, Río Negro) + CAEM (Cámara Argentina de Empresarios Mineros) + grandes empresas (Barrick, McEwen, Ganfeng, Livent/Arcadium, Fortuna Silver, Pan American Silver) + universidades nacionales + OLAMI, con CEPAL como observador.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Comité Ejecutivo</h3>
+                <p>Dirección + equipo de Datos + equipo de Análisis de Política.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Consejo Asesor</h3>
+                <p>Empresas, cámaras provinciales y ONGs de sostenibilidad.</p>
+            </div>
+
+            <h2>Metodología dual: datos + narrativa</h2>
+            <p>El OIE combina encuestas masivas (más de 40.000 respondentes) para obtener números duros, con entrevistas cualitativas a tomadores de decisión para capturar contexto y tendencias. El OMA adapta este método: encuestas a empresas mineras que operan en Argentina sobre costos, CAPEX y timeline de proyectos, más entrevistas a CEOs, funcionarios nacionales y provinciales, y académicos. El resultado son proyecciones de demanda y oferta respaldadas simultáneamente por evidencia cuantitativa y cualitativa.</p>
+
+            <h2>Nodos provinciales</h2>
+            <div class="node-grid">
+                <div class="node-card existing">
+                    <strong>San Juan</strong>
+                    <p>Cobre (Josemaría, Filo del Sol) y oro/plata (Veladero, Gualcamayo).</p>
+                    <span class="node-status">Base existente: CeProMin</span>
+                </div>
+                <div class="node-card">
+                    <strong>Catamarca</strong>
+                    <p>Litio (Fénix, Sal de Vida) y cobre (Bajo la Alumbrera, MARA).</p>
+                    <span class="node-status">Por constituir</span>
+                </div>
+                <div class="node-card">
+                    <strong>Jujuy</strong>
+                    <p>Litio (Salar de Olaroz, Cauchari).</p>
+                    <span class="node-status">Por constituir</span>
+                </div>
+                <div class="node-card">
+                    <strong>Salta</strong>
+                    <p>Litio (Salar del Hombre Muerto, Rincón) y minería polimetálica.</p>
+                    <span class="node-status">Por constituir</span>
+                </div>
+                <div class="node-card">
+                    <strong>Santa Cruz</strong>
+                    <p>Oro y plata (Cerro Vanguardia, Cerro Negro, Manantial Espejo).</p>
+                    <span class="node-status">Por constituir</span>
+                </div>
+                <div class="node-card">
+                    <strong>Neuquén / Mendoza / Río Negro / La Rioja</strong>
+                    <p>Potasio, litio y proyectos polimetálicos en desarrollo.</p>
+                    <span class="node-status">Por constituir</span>
+                </div>
+            </div>
+            <p>El Hub central del OMA se propone en Buenos Aires, con nodos técnicos en las provincias mineras.</p>
+
+            <h2>Ciclo de producción de informes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Frecuencia</th>
+                        <th>Contenido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Anual (actualización ligera)</td>
+                        <td>Precios actuales, producción anual, cambios regulatorios (incluido RIGI), novedades de proyectos en desarrollo.</td>
+                    </tr>
+                    <tr>
+                        <td>Bienal (informe completo)</td>
+                        <td>Encuesta a empresas mineras que operan en Argentina + entrevistas a funcionarios y académicos. Proyecciones de demanda 2030/2040/2050. Análisis de capital humano. Riesgos socioambientales y macro-fiscales.</td>
+                    </tr>
+                    <tr>
+                        <td>Ad-hoc (crisis)</td>
+                        <td>Briefings rápidos ante cambios geopolíticos, tecnológicos, cambiarios o de precios que redefinen escenarios.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Hoja de Ruta -->
+        <div id="hoja-de-ruta" class="tab-content">
+            <h1>Hoja de Ruta de Implementación</h1>
+            <p>El mapa de implementación del OMA se organiza en tres fases a lo largo de 12 a 24 meses.</p>
+
+            <div class="phase">
+                <h3>Fase 1 — Diseño &amp; Gobernanza</h3>
+                <div class="phase-meta">Meses 1-6</div>
+                <ul class="checklist">
+                    <li>Acuerdo entre OLAMI, Secretaría de Minería de la Nación y COFEMIN para crear el OMA.</li>
+                    <li>Definir el Consejo Rector y la estructura de nodos provinciales.</li>
+                    <li>Asegurar financiamiento (banco de desarrollo, Nación, provincias, sector privado).</li>
+                    <li>Contratar Dirección y equipo core (Datos, Política, Comunicación).</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <h3>Fase 2 — Piloto de Investigación</h3>
+                <div class="phase-meta">Meses 7-18</div>
+                <ul class="checklist">
+                    <li>Diseñar encuestas, adaptando la metodología del OIE al contexto minero argentino.</li>
+                    <li>Encuestar a empresas mineras que operan en Argentina (grandes y junior).</li>
+                    <li>Realizar entrevistas a CEOs, funcionarios nacionales/provinciales y académicos.</li>
+                    <li>Compilar proyecciones de demanda global (pilar Measure).</li>
+                    <li>Analizar oferta argentina frente a demanda (pilar Anticipate).</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <h3>Fase 3 — Primer Informe Público</h3>
+                <div class="phase-meta">Meses 18-24</div>
+                <ul class="checklist">
+                    <li>Publicar "OMA 2026-2027: Minería Crítica en Argentina".</li>
+                    <li>Estructurado en 3 pilares: demanda global, competitividad argentina, capital humano.</li>
+                    <li>Lanzamiento en Argentina Mining o San Juan Mining Summit.</li>
+                    <li>Generar cobertura de medios y posicionamiento ante Nación, provincias e inversores.</li>
+                </ul>
+            </div>
+
+            <div class="alert">
+                <strong>Objetivo de corto plazo:</strong> acuerdo y financiamiento en 6 meses. Primer informe: entre 18 y 24 meses desde el arranque.
+            </div>
+        </div>
+
+        <!-- Acerca de OMA -->
+        <div id="acerca" class="tab-content">
+            <h1>Acerca de OMA</h1>
+
+            <div class="subsection">
+                <h3>Misión</h3>
+                <p>Ser el centro de referencia para medir e informar objetivamente el estado del sector minero en Argentina, y traducir la demanda global de minerales críticos en decisiones estratégicas de inversión, política y capacidades de ejecución: estimar demanda a 2030-2050, anticipar oferta argentina, identificar "cuellos de botella" y guiar la ejecución coordinada de Nación, provincias, universidades y sector privado.</p>
+            </div>
+
+            <h2>Valor agregado único de OMA</h2>
+            <ul class="value-list">
+                <li>Observatorio nacional de minería crítica con foco exclusivo en Argentina — no existe hoy con este alcance.</li>
+                <li>Integra la lógica de CeProMin (demanda → oferta), consolidándola a nivel nacional.</li>
+                <li>Prospectiva de largo plazo (2050) — única fuente de base argentina con ese horizonte.</li>
+                <li>Cierra los tres strategic gaps: Measure (demanda), Anticipate (oferta), Guide (política).</li>
+                <li>Legitimidad triple: Nación/provincias + academia + sector privado.</li>
+                <li>Herramienta de coordinación federal (Nación-provincias) y de posicionamiento internacional del país.</li>
+            </ul>
+
+            <div class="subsection">
+                <h3>Relación con CeProMin</h3>
+                <p>CeProMin, diseñado como un Centro de Prospectiva Minera para Argentina, es pionero en el modelo de minería orientada a la demanda. OMA es su evolución natural a escala nacional, conectando la demanda global con decisiones de oferta argentina. OMA se construye directamente sobre la base ya existente de CeProMin.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Visión de largo plazo</h3>
+                <p>CeProMin es hoy pionero en Argentina. OMA aspira a ser la fuente de referencia de la minería crítica argentina: el lugar que gobiernos (Nación y provincias), inversores y académicos consultan para entender dónde invertir, qué regular y cómo atraer talento.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Próximo paso</h3>
+                <p>Presentar la propuesta a OLAMI, a la Secretaría de Minería de la Nación y a los gobiernos provinciales, con el objetivo de cerrar acuerdo y financiamiento en 6 meses, y publicar el primer informe entre los 18 y 24 meses siguientes.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Versión</h3>
+                <p>Observatorio en desarrollo. Contenido basado en el análisis conceptual de CeProMin.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 OMA - Observatorio Minero Argentino · Una iniciativa de OLAMI</p>
+            <div class="footer-links">
+                <a href="#" onclick="navigateTo('gobernanza')">Gobernanza</a>
+                <a href="#" onclick="navigateTo('acerca')">Acerca de OMA</a>
+                <a href="#" onclick="navigateTo('hoja-de-ruta')">Hoja de Ruta</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8;">Sitio independiente del de CeProMin — contenido en desarrollo</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navegación entre pestañas
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                navigateTo(tabId);
+            });
+        });
+
+        function navigateTo(tabId) {
+            // Ocultar todas las pestañas
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Desactivar todos los botones
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Mostrar pestaña activa
+            document.getElementById(tabId).classList.add('active');
+
+            // Activar botón correspondiente
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+
+            // Scroll al inicio
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
