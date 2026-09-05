@@ -610,6 +610,22 @@
             margin-bottom: 0.3rem;
         }
 
+        .opinion-author {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .opinion-author-photo {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+
         .opinion-card .opinion-meta {
             font-size: 0.75rem;
             color: #888;
@@ -1037,8 +1053,13 @@
                     <h3>Columna de Opinión</h3>
                     <div class="opinion-card">
                         <span class="opinion-tag">Opinión</span>
-                        <h4>IA y Minería</h4>
-                        <div class="opinion-meta">Ing. Eduardo Barrera, Asesor de la CRM Facility de la Unión Europea · Panorama Minero, 04/09/2026</div>
+                        <div class="opinion-author">
+                            <img src="img/eduardo-barrera.jpg" alt="Ing. Eduardo Barrera" class="opinion-author-photo">
+                            <div>
+                                <h4 style="margin-bottom:0.15rem;">IA y Minería</h4>
+                                <div class="opinion-meta" style="margin-bottom:0;">Ing. Eduardo Barrera, Asesor de la CRM Facility de la Unión Europea · Panorama Minero, 04/09/2026</div>
+                            </div>
+                        </div>
                         <div class="opinion-quote">"La IA no es solo software. La IA es materia."</div>
                         <button class="read-more-btn" onclick="toggleOpinion(this)">Leer columna completa</button>
                         <div class="opinion-body">
