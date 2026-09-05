@@ -54,6 +54,38 @@
             border-radius: 20px;
         }
 
+        .header-content {
+            position: relative;
+        }
+
+        .lang-toggle {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            transition: background 0.2s ease;
+        }
+
+        .lang-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        @media (max-width: 600px) {
+            .lang-toggle {
+                position: static;
+                display: inline-block;
+                margin-top: 0.8rem;
+            }
+        }
+
         /* Navegación */
         nav {
             background: white;
@@ -775,6 +807,7 @@
     <!-- Header -->
     <header>
         <div class="header-content">
+            <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()" aria-label="Switch language / Cambiar idioma">EN</button>
             <div class="logo">🇦🇷 OMA · Observatorio Minero Argentino</div>
             <div class="tagline">Una iniciativa de Panorama Minero y la Universidad de Buenos Aires (UBA) — midiendo demanda global, anticipando oferta argentina, guiando decisión estratégica</div>
             <div class="badge-relacion">Evolución del modelo CeProMin, con foco exclusivo en Argentina</div>
@@ -1027,13 +1060,13 @@
 
         <!-- Barómetro -->
         <div id="barometro" class="tab-content">
-            <h1>Barómetro OMA — Clima de Inversión Minera</h1>
-            <p>El Barómetro resume, en un solo vistazo tipo <em>spider chart</em>, la evolución de las variables no estrictamente productivas que más pesan en la decisión de un inversor minero: marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, disponibilidad de financiamiento, infraestructura y estabilidad macroeconómica. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), a partir de encuestas a empresas del Consejo Rector y análisis del equipo OMA.</p>
+            <h1 id="barometroH1">Barómetro OMA — Clima de Inversión Minera</h1>
+            <p id="barometroP">El Barómetro resume, en un solo vistazo tipo <em>spider chart</em>, la evolución de las variables no estrictamente productivas que más pesan en la decisión de un inversor minero: marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, disponibilidad de financiamiento, infraestructura y estabilidad macroeconómica. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), a partir de encuestas a empresas del Consejo Rector y análisis del equipo OMA.</p>
 
             <div class="barometer-grid">
                 <div class="barometer-chart-wrap">
                     <canvas id="barometerChart" height="320"></canvas>
-                    <p style="text-align:center; font-size:0.8rem; color:#888; margin-top:0.8rem;">Comparación 3T 2025 vs. 3T 2026 · Fuente: encuesta OMA a empresas mineras (ilustrativo, primer corte)</p>
+                    <p id="barometerCaption" style="text-align:center; font-size:0.8rem; color:#888; margin-top:0.8rem;">Comparación 3T 2025 vs. 3T 2026 · Fuente: encuesta OMA a empresas mineras (ilustrativo, primer corte)</p>
                 </div>
                 <div class="barometer-legend" id="barometerLegend"></div>
             </div>
@@ -1041,8 +1074,8 @@
 
         <!-- Noticias & Opinión -->
         <div id="noticias" class="tab-content">
-            <h1>Noticias &amp; Opinión</h1>
-            <p>Selección de actualidad minera argentina — curada a partir de <strong>Panorama Minero</strong> — junto con la columna de opinión del Observatorio.</p>
+            <h1 id="noticiasH1">Noticias &amp; Opinión</h1>
+            <p id="noticiasP">Selección de actualidad minera argentina — curada a partir de <strong>Panorama Minero</strong> — junto con la columna de opinión del Observatorio.</p>
 
             <div class="news-opinion-grid">
                 <div class="news-list" id="newsList">
@@ -1050,19 +1083,19 @@
                 </div>
 
                 <aside class="opinion-sidebar">
-                    <h3>Columna de Opinión</h3>
+                    <h3 id="opinionSidebarTitle">Columna de Opinión</h3>
                     <div class="opinion-card">
-                        <span class="opinion-tag">Opinión</span>
+                        <span class="opinion-tag" id="opinionTag">Opinión</span>
                         <div class="opinion-author">
                             <img src="img/eduardo-barrera.jpg" alt="Ing. Eduardo Barrera" class="opinion-author-photo">
                             <div>
-                                <h4 style="margin-bottom:0.15rem;">IA y Minería</h4>
-                                <div class="opinion-meta" style="margin-bottom:0;">Ing. Eduardo Barrera, Asesor de la CRM Facility de la Unión Europea · Panorama Minero, 04/09/2026</div>
+                                <h4 id="opinionTitle" style="margin-bottom:0.15rem;">IA y Minería</h4>
+                                <div class="opinion-meta" id="opinionMeta" style="margin-bottom:0;">Ing. Eduardo Barrera, Asesor de la CRM Facility de la Unión Europea · Panorama Minero, 04/09/2026</div>
                             </div>
                         </div>
-                        <div class="opinion-quote">"La IA no es solo software. La IA es materia."</div>
-                        <button class="read-more-btn" onclick="toggleOpinion(this)">Leer columna completa</button>
-                        <div class="opinion-body">
+                        <div class="opinion-quote" id="opinionQuote">"La IA no es solo software. La IA es materia."</div>
+                        <button class="read-more-btn" id="opinionReadMoreBtn" onclick="toggleOpinion(this)">Leer columna completa</button>
+                        <div class="opinion-body" id="opinionBody">
                             <p>Minería e inteligencia artificial compiten por capital y recursos, pero también pueden potenciarse mutuamente.</p>
                             <p>Detrás de cada modelo que entrenamos, detrás de cada chip que fabricamos y detrás de cada vez más grande datacenter que se levanta, hay una infraestructura física gigantesca: cobre extraído en minas, litio bombeado desde salares, tierras raras refinadas en cadenas industriales complejas, galio producido en redes de suministro altamente concentradas, millones de litros de agua y enormes cantidades de energía. La IA no flota en la nube: la IA pesa, ocupa espacio y consume minerales críticos.</p>
                             <p><strong>1. La base material de la IA.</strong> El cómputo de entrenamiento se duplica cada 5-6 meses. Los datacenters de IA requieren entre 27 y 33 toneladas de cobre por megavatio (hasta 47 en clústeres intensivos; 100-150 t/MW sumando transmisión y subestaciones). El galio de los chips de alto rendimiento podría absorber el 10% del suministro global hacia 2030. Las tierras raras para refrigeración crecerán ~7,5% anual hasta 2040. El litio asociado a almacenamiento de IA podría llegar a 300 GWh hacia 2030. Los datacenters consumieron ~1 km³ de agua en 2025 — 10 veces lo que consume Escondida.</p>
@@ -1249,35 +1282,589 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p>&copy; 2026 OMA - Observatorio Minero Argentino · Una iniciativa de Panorama Minero y la Universidad de Buenos Aires (UBA)</p>
+            <p id="footerCopyright">&copy; 2026 OMA - Observatorio Minero Argentino · Una iniciativa de Panorama Minero y la Universidad de Buenos Aires (UBA)</p>
             <div class="footer-links">
-                <a href="#" onclick="navigateTo('gobernanza')">Gobernanza</a>
-                <a href="#" onclick="navigateTo('acerca')">Acerca de OMA</a>
-                <a href="#" onclick="navigateTo('hoja-de-ruta')">Hoja de Ruta</a>
+                <a href="#" data-tab-link="gobernanza" onclick="navigateTo('gobernanza')">Gobernanza</a>
+                <a href="#" data-tab-link="acerca" onclick="navigateTo('acerca')">Acerca de OMA</a>
+                <a href="#" data-tab-link="hoja-de-ruta" onclick="navigateTo('hoja-de-ruta')">Hoja de Ruta</a>
             </div>
-            <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8;">Sitio independiente del de CeProMin — contenido en desarrollo</p>
+            <p id="footerNote" style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8;">Sitio independiente del de CeProMin — contenido en desarrollo</p>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
     <script>
-        // --- Configuración del backend en vivo ---
+        // ============================================================
+        // i18n — toggle ES/EN
+        // ============================================================
+        let currentLang = localStorage.getItem('omaLang') || 'es';
+
+        // Traducción de los 8 tabs 100% estáticos: se captura el HTML en
+        // español ya presente en el documento, y se define acá el HTML
+        // en inglés. Al togglear, se reemplaza el innerHTML completo del
+        // tab (misma estructura/clases, solo cambia el texto).
+        const STATIC_TAB_IDS = ['inicio', 'demanda', 'oferta', 'capital-humano', 'indicadores', 'gobernanza', 'hoja-de-ruta', 'acerca'];
+        const TAB_HTML_ES = {};
+        STATIC_TAB_IDS.forEach(id => { TAB_HTML_ES[id] = document.getElementById(id).innerHTML; });
+
+        const TAB_HTML_EN = {
+            inicio: `
+            <h1>The Argentine Mining Observatory</h1>
+            <p>OMA (Argentine Mining Observatory) is the monitoring, analysis and foresight system that gathers, processes and communicates key information about Argentina's mining sector, with the aim of organizing information, anticipating macro-trends, reducing uncertainty, improving public policy and professionalizing decision-making in the sector.</p>
+
+            <h2>What it does</h2>
+            <ul>
+                <li>Collect up-to-date, relevant information on Argentina's mining sector.</li>
+                <li>Process it technically with methodological rigor.</li>
+                <li>Turn that data into useful intelligence for strategic decisions.</li>
+                <li>Communicate it periodically, reliably and traceably.</li>
+                <li>Generate early warnings about future scenarios (anticipate trends).</li>
+            </ul>
+
+            <div class="quote-block">
+                "To be the reference center for monitoring the progress of mining in Argentina, informing and translating global critical mineral demand into strategic investment, policy and capacity decisions; estimating demand for 2030-2050, anticipating bottlenecks in Argentine supply, and guiding the coordinated execution of the Nation, provinces, universities and the private sector, to make the most of future growth opportunities."
+            </div>
+
+            <h2>The strategic cycle: Measure → Anticipate → Guide</h2>
+            <div class="flow-grid">
+                <div class="flow-step">
+                    <span class="flow-tag">MEASURE</span>
+                    <p>Estimate global demand for 2030/2040/2050 of Cu, Li, REE, graphite, W, Be and other critical minerals, broken down by end market, based on macro-trend analysis of the respective end industries and their relative price elasticities (substitutions), within the framework of a new, complex geopolitical scenario.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-tag">ANTICIPATE</span>
+                    <p>Project Argentine supply (production capacity, project pipeline, development timelines, infrastructure and regulatory constraints) based on future demand, and identify the "strategic gaps": the gap between what the world demands and what Argentina can competitively produce.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-tag">GUIDE</span>
+                    <p>Translate those market signals into policy decisions (regulation, incentives, RIGI), investment (which projects to prioritize) and execution (Nation-provinces coordination, capacity and infrastructure development).</p>
+                </div>
+            </div>
+
+            <h2>Three demand clusters</h2>
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-number">ELECTRIFICATION</div>
+                    <div class="pillar-body">
+                        <h4>Energy Transition</h4>
+                        <p>Cu, Li, Ni, Co, rare earths and graphite for batteries and renewables. Driver: 2050 carbon neutrality (EU, China, US). Argentina is a key player through NOA lithium and San Juan/Catamarca copper.</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">TECHNOLOGY &amp; DEFENSE</div>
+                    <div class="pillar-body">
+                        <h4>Semiconductors, AI and Defense</h4>
+                        <p>Rare earths, Ga, Ge, InP, Ta for advanced chips. Drivers: technological hegemony (US vs. China); strategic autonomy for Europe and India. Argentina holds largely unexplored rare-earth potential.</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">FUSION ENERGY</div>
+                    <div class="pillar-body">
+                        <h4>Fusion Energy</h4>
+                        <p>Heavy rare earths (yttrium), W, Be, Li-6 for fusion reactors. Driver: commercial viability of fusion (2030s-2040s). Tracking advanced projects such as the US Mission Genesis (superconductors, AI applied to plasma control), relevant to Argentine lithium-6.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('demanda')">View Global Demand</button>
+                <button class="btn btn-secondary" onclick="navigateTo('gobernanza')">View Governance</button>
+            </div>`,
+
+            demanda: `
+            <h1>Global Demand for Critical Minerals 2030-2050</h1>
+            <p><strong>Pillar 1</strong> of OMA: annual report with projections for Cu, Li, Ni, Co, REE, W, Be, Ga, Ge, InP and Ta, under base/high/low scenarios, with price-elasticity analysis and technological-substitution impact — the benchmark against which Argentine supply is measured.</p>
+
+            <div class="subsection">
+                <h3>Electrification — Energy Transition</h3>
+                <p>Copper, lithium, nickel, cobalt and rare earths for batteries and renewable energy. The underlying driver is the 2050 carbon-neutrality commitment made by the EU, China and the US, which sustains a structurally rising demand curve for these minerals over the next three decades. Argentina is fully involved through lithium (Lithium Triangle) and copper (San Juan, Catamarca).</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Technology &amp; Defense — Semiconductors, AI and Defense</h3>
+                <p>Gallium, germanium, indium phosphide and tantalum for advanced chips. The driver is geopolitical: the fight for technological hegemony between the US and China turns these inputs into strategic material, highly sensitive to export restrictions and "friend-shoring" policies.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Fusion Energy — Energy Innovation</h3>
+                <p>Yttrium, tungsten, beryllium and lithium-6 for nuclear fusion reactors. The driver is the commercial viability of fusion in the 2030s-2040s horizon. The Observatory tracks initiatives such as Mission Genesis, TokaMind and TokaMark, which apply artificial intelligence to plasma control, as an early indicator of accelerating demand.</p>
+            </div>
+
+            <h2>The "Measure Gap" OMA closes</h2>
+            <p>Today there are multiple demand-projection sources (IEA, S&amp;P, Wood Mackenzie, CRU, Fastmarkets, SMM, USGS, among others) that don't always agree with each other. The Observatory centralizes and reconciles these sources —adding direct data from mining companies operating in Argentina— to produce a single reference projection, applied to the country's reality.</p>
+
+            <div class="subsection">
+                <h3>Data sources</h3>
+                <p>IEA · S&amp;P Global · Wood Mackenzie · CRU · Fastmarkets · SMM · USGS · Adamas Intelligence · National Mining Secretariat · direct reports from mining companies operating in Argentina.</p>
+            </div>`,
+
+            oferta: `
+            <h1>Argentine Mining Supply and Competitiveness</h1>
+            <p><strong>Pillar 2</strong> of OMA: tracking of Argentine production costs versus the global market, project scale-up speed, regulatory stability (including RIGI), technical capabilities and ESG index, benchmarked against Australia, Canada, Indonesia, Chile and Peru.</p>
+
+            <div class="subsection">
+                <h3>The "Anticipate Gap"</h3>
+                <p>Today there is no unified observatory that compares Argentine supply —dispersed across provinces with their own jurisdiction over resources— against projected global demand. Each mining province keeps its own records, with no aggregated national view to identify where the country is competitive and where it lacks production capacity relative to what the world will need.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Opportunity Map</h3>
+                <p>The Observatory will produce an explicit mapping of strategic opportunities: which critical minerals show global supply-shortage risk toward 2030-2050, and in which provinces and conditions Argentina has real competitive advantage to close that gap (lithium in the NOA, copper in San Juan and Catamarca, gold and silver in Santa Cruz, potassium in Mendoza and Neuquén).</p>
+            </div>
+
+            <h2>International benchmark</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Country / Bloc</th>
+                        <th>Role in the benchmark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Australia</td><td>Reference for regulatory stability and project scale-up speed.</td></tr>
+                    <tr><td>Canada</td><td>Reference for investment framework and technical capabilities.</td></tr>
+                    <tr><td>Indonesia</td><td>Reference for value-added policy and control of strategic resources.</td></tr>
+                    <tr><td>Chile</td><td>Direct regional reference in copper and lithium — greater institutional development of the sector.</td></tr>
+                    <tr><td>Peru</td><td>Direct regional reference in copper — track record of attracting mining investment.</td></tr>
+                </tbody>
+            </table>
+
+            <div class="alert">
+                <strong>Note:</strong> Detailed content by province (reserves, unit costs, CAPEX, ESG index, among others) will be built from official data from the National Mining Secretariat, provincial mining agencies, and the Observatory's biennial survey and interview cycle (see Governance tab).
+            </div>`,
+
+            'capital-humano': `
+            <h1>Human Capital &amp; Mining Policy</h1>
+            <p><strong>Pillar 3</strong> of OMA: stock of mining professionals in Argentina by specialty, talent gap, comparative salaries, available training supply, and the regulatory policy needed to retain talent and attract investment.</p>
+
+            <div class="subsection">
+                <h3>Talent stock</h3>
+                <p>Argentine mining human capital (engineers, geologists) and its distribution by specialty and province, as a basis for identifying where the country has a technical-capability deficit relative to projected investment scale (lithium, copper, gold/silver).</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Employability and skills gap</h3>
+                <p>Employability in the Argentine mining sector, the skills gap relative to what new projects demand, and salary comparison against Chile and Peru.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Training and vocational interest</h3>
+                <p>Installed training capacity in mining-related degrees at Argentine universities (UNSJ, UNCa, UNJu, UNSa, among others), emerging specialized programs, enrollment trends in mining engineering, and attracting female talent and inclusion as an explicit tracking axis.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>The "Guide Gap"</h3>
+                <p>The Nation and the provinces tend to react to historical prices rather than anticipate. There is a lack of forward-looking vision linking regulatory and talent-training decisions to demand trends projected for 2030-2050. That is the gap this pillar aims to close.</p>
+            </div>`,
+
+            indicadores: `
+            <h1>Structured Indicator Framework</h1>
+            <p>The Spanish Engineering Observatory defines 8 indicator categories for its sector. OMA adapts this framework to Argentine critical mining, mapping each category to the CeProMin strategic gap it addresses.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category (OIE)</th>
+                        <th>OMA Adaptation</th>
+                        <th>Closes the gap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Stock</td>
+                        <td>Current production by mineral and province. Installed capacity.</td>
+                        <td>Measure</td>
+                    </tr>
+                    <tr>
+                        <td>Demographic</td>
+                        <td>Argentine mining human capital (engineers, geologists). Distribution by specialty and province.</td>
+                        <td>Guide (talent)</td>
+                    </tr>
+                    <tr>
+                        <td>Labor</td>
+                        <td>Employability in the mining sector. Skills gap. Salaries compared with Chile and Peru.</td>
+                        <td>Guide (talent)</td>
+                    </tr>
+                    <tr>
+                        <td>Compensation</td>
+                        <td>Unit operating costs (USD/ton Cu, USD/ton Li). CAPEX per new project.</td>
+                        <td>Anticipate</td>
+                    </tr>
+                    <tr>
+                        <td>Training</td>
+                        <td>Training capacity in mining-related degrees. Emerging specialized programs.</td>
+                        <td>Guide</td>
+                    </tr>
+                    <tr>
+                        <td>Corporate</td>
+                        <td>Operator profile (majors vs. juniors). R&amp;D investment. Innovation capacity (downstream, lithium carbonate vs. hydroxide, cathodes).</td>
+                        <td>Anticipate</td>
+                    </tr>
+                    <tr>
+                        <td>Foresight</td>
+                        <td>Global demand projections (2030/2040/2050) by cluster and mineral, and their translation into the Argentine project pipeline.</td>
+                        <td>Measure</td>
+                    </tr>
+                    <tr>
+                        <td>Vocational</td>
+                        <td>Enrollment trends in mining engineering at Argentine universities. Attracting female talent and inclusion.</td>
+                        <td>Guide</td>
+                    </tr>
+                </tbody>
+            </table>`,
+
+            gobernanza: `
+            <h1>Governance and Operating Structure</h1>
+
+            <h2>Multi-stakeholder governance</h2>
+            <p>The Spanish Engineering Observatory brings governments, academia, professional associations and companies together on its Governing Council — an architecture that breaks down silos and creates a shared language among actors who don't normally talk to each other. OMA applies this same logic to Argentine mining, where resource jurisdiction is provincial and federal coordination is key.</p>
+
+            <div class="subsection">
+                <h3>Governing Council</h3>
+                <p>Panorama Minero + University of Buenos Aires (UBA) + National Mining Secretariat + COFEMIN (Federal Mining Council) + provincial mining agencies (San Juan, Catamarca, Jujuy, Salta, Neuquén, La Rioja, Santa Cruz, Mendoza, Río Negro) + CAEM (Argentine Chamber of Mining Employers) + major companies (Barrick, McEwen, Ganfeng, Livent/Arcadium, Fortuna Silver, Pan American Silver), with CEPAL as observer.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Executive Committee</h3>
+                <p>Management + Data team + Policy Analysis team.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Advisory Council</h3>
+                <p>Companies, provincial chambers and sustainability NGOs.</p>
+            </div>
+
+            <h2>Dual methodology: data + narrative</h2>
+            <p>The OIE combines mass surveys (over 40,000 respondents) to obtain hard numbers, with qualitative interviews of decision-makers to capture context and trends. OMA adapts this method: surveys of mining companies operating in Argentina on costs, CAPEX and project timelines, plus interviews with CEOs, national and provincial officials, and academics. The result is demand and supply projections backed simultaneously by quantitative and qualitative evidence.</p>
+
+            <h2>Provincial nodes</h2>
+            <div class="node-grid">
+                <div class="node-card existing">
+                    <strong>San Juan</strong>
+                    <p>Copper (Josemaría, Filo del Sol) and gold/silver (Veladero, Gualcamayo).</p>
+                    <span class="node-status">Existing base: CeProMin</span>
+                </div>
+                <div class="node-card">
+                    <strong>Catamarca</strong>
+                    <p>Lithium (Fénix, Sal de Vida) and copper (Bajo la Alumbrera, MARA).</p>
+                    <span class="node-status">To be established</span>
+                </div>
+                <div class="node-card">
+                    <strong>Jujuy</strong>
+                    <p>Lithium (Salar de Olaroz, Cauchari).</p>
+                    <span class="node-status">To be established</span>
+                </div>
+                <div class="node-card">
+                    <strong>Salta</strong>
+                    <p>Lithium (Salar del Hombre Muerto, Rincón) and polymetallic mining.</p>
+                    <span class="node-status">To be established</span>
+                </div>
+                <div class="node-card">
+                    <strong>Santa Cruz</strong>
+                    <p>Gold and silver (Cerro Vanguardia, Cerro Negro, Manantial Espejo).</p>
+                    <span class="node-status">To be established</span>
+                </div>
+                <div class="node-card">
+                    <strong>Neuquén / Mendoza / Río Negro / La Rioja</strong>
+                    <p>Potassium, lithium and polymetallic projects under development.</p>
+                    <span class="node-status">To be established</span>
+                </div>
+            </div>
+            <p>OMA's central hub is proposed for Buenos Aires, with technical nodes in the mining provinces.</p>
+
+            <h2>Report production cycle</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Frequency</th>
+                        <th>Content</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Annual (light update)</td>
+                        <td>Current prices, annual production, regulatory changes (including RIGI), updates on projects under development.</td>
+                    </tr>
+                    <tr>
+                        <td>Biennial (full report)</td>
+                        <td>Survey of mining companies operating in Argentina + interviews with officials and academics. 2030/2040/2050 demand projections. Human capital analysis. Socio-environmental and macro-fiscal risks.</td>
+                    </tr>
+                    <tr>
+                        <td>Ad-hoc (crisis)</td>
+                        <td>Rapid briefings on geopolitical, technological, exchange-rate or price changes that redefine scenarios.</td>
+                    </tr>
+                </tbody>
+            </table>`,
+
+            'hoja-de-ruta': `
+            <h1>Implementation Roadmap</h1>
+            <p>OMA's implementation roadmap is organized into three phases over 12 to 24 months.</p>
+
+            <div class="phase">
+                <h3>Phase 1 — Design &amp; Governance</h3>
+                <div class="phase-meta">Months 1-6</div>
+                <ul class="checklist">
+                    <li>Agreement among Panorama Minero, UBA, the National Mining Secretariat and COFEMIN to create OMA.</li>
+                    <li>Define the Governing Council and the structure of provincial nodes.</li>
+                    <li>Secure funding (development bank, Nation, provinces, private sector).</li>
+                    <li>Hire Management and core team (Data, Policy, Communications).</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <h3>Phase 2 — Research Pilot</h3>
+                <div class="phase-meta">Months 7-18</div>
+                <ul class="checklist">
+                    <li>Design surveys, adapting the OIE methodology to the Argentine mining context.</li>
+                    <li>Survey mining companies operating in Argentina (majors and juniors).</li>
+                    <li>Conduct interviews with CEOs, national/provincial officials and academics.</li>
+                    <li>Compile global demand projections (Measure pillar).</li>
+                    <li>Analyze Argentine supply against demand (Anticipate pillar).</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <h3>Phase 3 — First Public Report</h3>
+                <div class="phase-meta">Months 18-24</div>
+                <ul class="checklist">
+                    <li>Publish "OMA 2026-2027: Critical Mining in Argentina."</li>
+                    <li>Structured into 3 pillars: global demand, Argentine competitiveness, human capital.</li>
+                    <li>Launch at Argentina Mining or the San Juan Mining Summit.</li>
+                    <li>Generate media coverage and positioning with the Nation, provinces and investors.</li>
+                </ul>
+            </div>
+
+            <div class="alert">
+                <strong>Short-term goal:</strong> agreement and funding within 6 months. First report: between 18 and 24 months from kickoff.
+            </div>`,
+
+            acerca: `
+            <h1>About OMA</h1>
+
+            <div class="subsection">
+                <h3>Mission</h3>
+                <p>To be the reference center for objectively measuring and reporting on the state of Argentina's mining sector, and translating global critical mineral demand into strategic investment, policy and execution-capacity decisions: estimating demand for 2030-2050, anticipating Argentine supply, identifying "bottlenecks," and guiding the coordinated execution of the Nation, provinces, universities and the private sector.</p>
+            </div>
+
+            <h2>OMA's unique added value</h2>
+            <ul class="value-list">
+                <li>National critical-mining observatory with an exclusive focus on Argentina — nothing with this scope exists today.</li>
+                <li>Integrates CeProMin's logic (demand → supply), consolidating it at the national level.</li>
+                <li>Long-term foresight (2050) — the only Argentine-based source with that horizon.</li>
+                <li>Closes all three strategic gaps: Measure (demand), Anticipate (supply), Guide (policy).</li>
+                <li>Triple legitimacy: Nation/provinces + academia + private sector.</li>
+                <li>A tool for federal coordination (Nation-provinces) and for the country's international positioning.</li>
+            </ul>
+
+            <div class="subsection">
+                <h3>Relationship with CeProMin</h3>
+                <p>CeProMin, designed as a Mining Foresight Center for Argentina, is a pioneer in the demand-driven mining model. OMA is its natural evolution at the national scale, connecting global demand with Argentine supply decisions. OMA is built directly on CeProMin's existing foundation.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Long-term vision</h3>
+                <p>CeProMin is a pioneer in Argentina today. OMA aims to become the reference source for Argentine critical mining: the place governments (Nation and provinces), investors and academics turn to understand where to invest, what to regulate, and how to attract talent.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Next step</h3>
+                <p>Present the proposal to the National Mining Secretariat and to provincial governments, with the goal of closing an agreement and securing funding within 6 months, and publishing the first report within the following 18 to 24 months.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Version</h3>
+                <p>Observatory under development. Content based on CeProMin's conceptual analysis.</p>
+            </div>`
+        };
+
+        // Header / nav / footer / ticker label
+        const HEADER_I18N = {
+            es: {
+                logo: '🇦🇷 OMA · Observatorio Minero Argentino',
+                tagline: 'Una iniciativa de Panorama Minero y la Universidad de Buenos Aires (UBA) — midiendo demanda global, anticipando oferta argentina, guiando decisión estratégica',
+                badge: 'Evolución del modelo CeProMin, con foco exclusivo en Argentina'
+            },
+            en: {
+                logo: '🇦🇷 OMA · Argentine Mining Observatory',
+                tagline: 'An initiative of Panorama Minero and the University of Buenos Aires (UBA) — measuring global demand, anticipating Argentine supply, guiding strategic decisions',
+                badge: 'Evolution of the CeProMin model, with an exclusive focus on Argentina'
+            }
+        };
+
+        const NAV_LABELS = {
+            es: { inicio: 'Inicio', demanda: 'Demanda Global', oferta: 'Oferta & Competitividad', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', barometro: 'Barómetro', noticias: 'Noticias & Opinión', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de OMA' },
+            en: { inicio: 'Home', demanda: 'Global Demand', oferta: 'Supply & Competitiveness', 'capital-humano': 'Human Capital', indicadores: 'Indicators', barometro: 'Barometer', noticias: 'News & Opinion', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About OMA' }
+        };
+
+        const TICKER_LABEL = { es: '💹 Cotizaciones', en: '💹 Market Prices' };
+
+        const FOOTER_I18N = {
+            es: {
+                copyright: '&copy; 2026 OMA - Observatorio Minero Argentino · Una iniciativa de Panorama Minero y la Universidad de Buenos Aires (UBA)',
+                note: 'Sitio independiente del de CeProMin — contenido en desarrollo'
+            },
+            en: {
+                copyright: '&copy; 2026 OMA - Argentine Mining Observatory · An initiative of Panorama Minero and the University of Buenos Aires (UBA)',
+                note: 'Site independent from CeProMin — content under development'
+            }
+        };
+
+        const BAROMETER_INTRO = {
+            es: {
+                h1: 'Barómetro OMA — Clima de Inversión Minera',
+                p: 'El Barómetro resume, en un solo vistazo tipo <em>spider chart</em>, la evolución de las variables no estrictamente productivas que más pesan en la decisión de un inversor minero: marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, disponibilidad de financiamiento, infraestructura y estabilidad macroeconómica. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), a partir de encuestas a empresas del Consejo Rector y análisis del equipo OMA.',
+                caption: 'Comparación 3T 2025 vs. 3T 2026 · Fuente: encuesta OMA a empresas mineras (ilustrativo, primer corte)'
+            },
+            en: {
+                h1: 'OMA Barometer — Mining Investment Climate',
+                p: 'The Barometer summarizes, in a single <em>spider chart</em> view, the evolution of the non-strictly-productive variables that weigh most heavily on a mining investor\'s decision: regulatory framework, social license, political climate, the State\'s "mining-friendly" attitude, funding availability, infrastructure and macroeconomic stability. Each axis is scored from 0 (very unfavorable) to 10 (very favorable), based on surveys of Governing Council companies and analysis by the OMA team.',
+                caption: 'Q3 2025 vs. Q3 2026 comparison · Source: OMA survey of mining companies (illustrative, first cut)'
+            }
+        };
+
+        const NOTICIAS_INTRO = {
+            es: { h1: 'Noticias &amp; Opinión', p: 'Selección de actualidad minera argentina — curada a partir de <strong>Panorama Minero</strong> — junto con la columna de opinión del Observatorio.', asideH3: 'Columna de Opinión' },
+            en: { h1: 'News &amp; Opinion', p: 'A selection of Argentine mining news — curated from <strong>Panorama Minero</strong> — together with the Observatory\'s opinion column.', asideH3: 'Opinion Column' }
+        };
+
+        const OPINION_I18N = {
+            es: {
+                tag: 'Opinión',
+                title: 'IA y Minería',
+                meta: 'Ing. Eduardo Barrera, Asesor de la CRM Facility de la Unión Europea · Panorama Minero, 04/09/2026',
+                quote: '"La IA no es solo software. La IA es materia."',
+                readMore: 'Leer columna completa',
+                showLess: 'Ver menos',
+                bodyHtml: `
+                    <p>Minería e inteligencia artificial compiten por capital y recursos, pero también pueden potenciarse mutuamente.</p>
+                    <p>Detrás de cada modelo que entrenamos, detrás de cada chip que fabricamos y detrás de cada vez más grande datacenter que se levanta, hay una infraestructura física gigantesca: cobre extraído en minas, litio bombeado desde salares, tierras raras refinadas en cadenas industriales complejas, galio producido en redes de suministro altamente concentradas, millones de litros de agua y enormes cantidades de energía. La IA no flota en la nube: la IA pesa, ocupa espacio y consume minerales críticos.</p>
+                    <p><strong>1. La base material de la IA.</strong> El cómputo de entrenamiento se duplica cada 5-6 meses. Los datacenters de IA requieren entre 27 y 33 toneladas de cobre por megavatio (hasta 47 en clústeres intensivos; 100-150 t/MW sumando transmisión y subestaciones). El galio de los chips de alto rendimiento podría absorber el 10% del suministro global hacia 2030. Las tierras raras para refrigeración crecerán ~7,5% anual hasta 2040. El litio asociado a almacenamiento de IA podría llegar a 300 GWh hacia 2030. Los datacenters consumieron ~1 km³ de agua en 2025 — 10 veces lo que consume Escondida.</p>
+                    <p><strong>2. Una relación simbiótica.</strong> La misma IA que demanda minería puede potenciarla: gemelos digitales en Escondida (BHP) y Quellaveco (Anglo American); en Mingomba (Zambia), KoBold Metals redujo el ciclo descubrimiento-producción de 18 a 5 años. Los modelos predictivos reducen el área de exploración necesaria hasta 80% y el capital de exploración entre 40-80%. Pero también compiten por capital: la IA demanda USD 2.000-5.000 M por datacenter hyperscale; la minería, USD 2.000-10.000 M por activo de larga vida útil.</p>
+                    <p><strong>3. Modelos abiertos: oportunidad y riesgo a dos velocidades.</strong> Los modelos de IA abiertos están, en promedio, apenas 4 meses detrás de los de frontera y son mucho más baratos — una oportunidad para las juniors de acceder a exploración asistida, optimización de voladuras y mantenimiento predictivo a bajo costo. Pero la minería artesanal y de pequeña escala (40-45 millones de personas) corre riesgo de quedar más rezagada si no accede a esas mismas herramientas.</p>
+                    <p><strong>Conclusión.</strong> La IA necesita minerales; la minería necesita IA para explorar, operar y competir. Ambas necesitan agua, energía y territorio. Esa relación puede ser simbiótica, pero no lo será por default: falta política pública explícita que evalúe el impacto conjunto sobre el territorio, monitoree cómo se distribuye la adopción de IA en el sector para cerrar la brecha con juniors y PyMEs mineras, y facilite el salto tecnológico antes de que se cierre la ventana de oportunidad. La pregunta no es si la IA va a transformar la minería — ya lo está haciendo — sino cómo lograr que esa transformación alcance a todos, no solo a unos pocos.</p>
+                    <p style="font-size:0.75rem; color:#888;">Fuente: <a href="https://www.panorama-minero.com/es" target="_blank" rel="noopener">Panorama Minero</a>, 04 de septiembre de 2026.</p>
+                `
+            },
+            en: {
+                tag: 'Opinion',
+                title: 'AI and Mining',
+                meta: 'Eng. Eduardo Barrera, Advisor to the EU CRM Facility · Panorama Minero, 09/04/2026',
+                quote: '"AI is not just software. AI is matter."',
+                readMore: 'Read full column',
+                showLess: 'Show less',
+                bodyHtml: `
+                    <p>Mining and artificial intelligence compete for capital and resources, but they can also reinforce each other.</p>
+                    <p>Behind every model we train, behind every chip we manufacture, and behind every ever-larger data center that goes up, there is a gigantic physical infrastructure: copper mined from the ground, lithium pumped from salt flats, rare earths refined through complex industrial supply chains, gallium produced in highly concentrated supply networks, millions of liters of water, and enormous amounts of energy. AI does not float in the cloud: AI weighs, takes up space, and consumes critical minerals.</p>
+                    <p><strong>1. AI's material base.</strong> Training compute doubles every 5-6 months. AI data centers require between 27 and 33 tons of copper per megawatt (up to 47 in intensive training clusters; 100-150 t/MW including transmission lines and substations). Gallium for high-performance chips could absorb 10% of global supply by 2030. Rare earths for cooling will grow about 7.5% annually through 2040. Lithium tied to AI storage could reach around 300 GWh by 2030. Data centers consumed roughly 1 km³ of water in 2025 — 10 times what Escondida, the world's largest copper mine, consumes.</p>
+                    <p><strong>2. A symbiotic relationship.</strong> The same AI that demands mining can also boost it: digital twins at Escondida (BHP) and Quellaveco (Anglo American). At Mingomba (Zambia), KoBold Metals cut the discovery-to-production cycle from a global average of nearly 18 years down to five. Predictive models cut the exploration area needed by up to 80% and exploration capital by 40-80%. But they also compete for capital: AI demands USD 2-5 billion per hyperscale data center; mining needs USD 2-10 billion per long-life physical asset.</p>
+                    <p><strong>3. Open models: opportunity and a two-speed risk.</strong> Open AI models are, on average, only about four months behind frontier closed models — and are far cheaper. That's a huge opportunity for junior miners to access AI-assisted exploration, blast optimization and predictive maintenance at a fraction of the previous cost. But that same cost drop won't reach everyone on its own: artisanal and small-scale mining — employing 40-45 million people worldwide — risks falling further behind if it doesn't gain access to the same tools.</p>
+                    <p><strong>Conclusion.</strong> AI needs minerals; mining needs AI to explore, operate and compete. Both need water, energy and territory. That relationship can be symbiotic — but it won't be by default: explicit public policy is needed to assess how both industries impact the same territory, monitor how AI adoption is distributed across the sector to help close the gap for juniors and mining SMEs, and enable the technological leap the open, more affordable models already allow — before the window of opportunity closes. The question isn't whether AI will transform mining — it already is — but how to make that transformation truly symbiotic and reach everyone, not just a few.</p>
+                    <p style="font-size:0.75rem; color:#888;">Source: <a href="https://www.panorama-minero.com/es" target="_blank" rel="noopener">Panorama Minero</a>, September 4, 2026 (translated from the original in Spanish).</p>
+                `
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('omaLang', lang);
+            document.documentElement.lang = lang;
+            document.getElementById('langToggle').textContent = lang === 'es' ? 'EN' : 'ES';
+
+            document.querySelector('.logo').textContent = HEADER_I18N[lang].logo;
+            document.querySelector('.tagline').textContent = HEADER_I18N[lang].tagline;
+            document.querySelector('.badge-relacion').textContent = HEADER_I18N[lang].badge;
+            document.querySelector('.ticker-label').textContent = TICKER_LABEL[lang];
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.textContent = NAV_LABELS[lang][btn.getAttribute('data-tab')];
+            });
+
+            document.getElementById('footerCopyright').innerHTML = FOOTER_I18N[lang].copyright;
+            document.querySelectorAll('.footer-links a').forEach(a => {
+                a.textContent = NAV_LABELS[lang][a.getAttribute('data-tab-link')];
+            });
+            document.getElementById('footerNote').textContent = FOOTER_I18N[lang].note;
+
+            STATIC_TAB_IDS.forEach(id => {
+                document.getElementById(id).innerHTML = lang === 'es' ? TAB_HTML_ES[id] : TAB_HTML_EN[id];
+            });
+
+            document.getElementById('barometroH1').textContent = BAROMETER_INTRO[lang].h1;
+            document.getElementById('barometroP').innerHTML = BAROMETER_INTRO[lang].p;
+            document.getElementById('barometerCaption').textContent = BAROMETER_INTRO[lang].caption;
+
+            document.getElementById('noticiasH1').innerHTML = NOTICIAS_INTRO[lang].h1;
+            document.getElementById('noticiasP').innerHTML = NOTICIAS_INTRO[lang].p;
+            document.getElementById('opinionSidebarTitle').textContent = NOTICIAS_INTRO[lang].asideH3;
+
+            document.getElementById('opinionTag').textContent = OPINION_I18N[lang].tag;
+            document.getElementById('opinionTitle').textContent = OPINION_I18N[lang].title;
+            document.getElementById('opinionMeta').textContent = OPINION_I18N[lang].meta;
+            document.getElementById('opinionQuote').textContent = OPINION_I18N[lang].quote;
+            const opinionBodyEl = document.getElementById('opinionBody');
+            const wasExpanded = opinionBodyEl.classList.contains('expanded');
+            opinionBodyEl.innerHTML = OPINION_I18N[lang].bodyHtml;
+            if (wasExpanded) opinionBodyEl.classList.add('expanded');
+            document.getElementById('opinionReadMoreBtn').textContent = wasExpanded ? OPINION_I18N[lang].showLess : OPINION_I18N[lang].readMore;
+
+            renderBarometerLegend();
+            renderBarometerChart();
+            loadTicker();
+            loadNews();
+        }
+
+        function toggleLanguage() {
+            setLanguage(currentLang === 'es' ? 'en' : 'es');
+        }
+
+        // ============================================================
+        // Configuración del backend en vivo
+        // ============================================================
         // Dejar en '' hasta desplegar el worker (ver /worker/README.md).
         // Una vez desplegado, pegar acá la URL que da `wrangler deploy`,
         // ej: 'https://oma-observatorio-api.tu-cuenta.workers.dev'
         const OMA_API_BASE = 'https://oma-observatorio-api.oma-observatorio.workers.dev';
 
         // --- Ticker de cotizaciones (fallback estático, se usa si no hay API o falla) ---
-        const FALLBACK_PRICES = [
-            { name: 'Cobre', price: '6,67 USD/lb', change: 0.05 },
-            { name: 'Litio (carbonato, China)', price: '11.200 USD/t', change: 1.2 },
-            { name: 'Tierras Raras (NdPr)', price: '68,5 USD/kg', change: 0.8 },
-            { name: 'Oro', price: '4.477,20 USD/oz', change: -1.38 },
-            { name: 'Plata', price: '66,82 USD/oz', change: -1.31 },
-            { name: 'Zinc', price: '3.927,75 USD/t', change: 0.92 },
-            { name: 'Estaño', price: '54.622 USD/t', change: 1.39 },
-            { name: 'Manganeso (mineral 44% Mn)', price: '4,35 USD/dmtu', change: -0.5 }
-        ];
+        const FALLBACK_PRICES = {
+            es: [
+                { name: 'Cobre', price: '6,67 USD/lb', change: 0.05 },
+                { name: 'Litio (carbonato, China)', price: '11.200 USD/t', change: 1.2 },
+                { name: 'Tierras Raras (NdPr)', price: '68,5 USD/kg', change: 0.8 },
+                { name: 'Oro', price: '4.477,20 USD/oz', change: -1.38 },
+                { name: 'Plata', price: '66,82 USD/oz', change: -1.31 },
+                { name: 'Zinc', price: '3.927,75 USD/t', change: 0.92 },
+                { name: 'Estaño', price: '54.622 USD/t', change: 1.39 },
+                { name: 'Manganeso (mineral 44% Mn)', price: '4,35 USD/dmtu', change: -0.5 }
+            ],
+            en: [
+                { name: 'Copper', price: '6.67 USD/lb', change: 0.05 },
+                { name: 'Lithium (carbonate, China)', price: '11,200 USD/t', change: 1.2 },
+                { name: 'Rare Earths (NdPr)', price: '68.5 USD/kg', change: 0.8 },
+                { name: 'Gold', price: '4,477.20 USD/oz', change: -1.38 },
+                { name: 'Silver', price: '66.82 USD/oz', change: -1.31 },
+                { name: 'Zinc', price: '3,927.75 USD/t', change: 0.92 },
+                { name: 'Tin', price: '54,622 USD/t', change: 1.39 },
+                { name: 'Manganese (44% Mn ore)', price: '4.35 USD/dmtu', change: -0.5 }
+            ]
+        };
+
+        const TICKER_TEXT = {
+            es: {
+                reference: 'Precios de referencia (spot/futuro cercano), 04/09/2026 · integración de feed en vivo pendiente',
+                live: when => `En vivo vía Panorama Minero · actualizado ${when}`,
+                degraded: when => `Feed en vivo no disponible ahora — mostrando última referencia · ${when}`,
+                offline: 'No se pudo conectar al feed en vivo — mostrando valores de referencia',
+                locale: 'es-AR'
+            },
+            en: {
+                reference: 'Reference prices (spot/near futures), 09/04/2026 · live feed integration pending',
+                live: when => `Live via Panorama Minero · updated ${when}`,
+                degraded: when => `Live feed unavailable right now — showing last known reference · ${when}`,
+                offline: 'Could not connect to the live feed — showing reference values',
+                locale: 'en-US'
+            }
+        };
 
         function renderTicker(items, note) {
             const track = document.getElementById('tickerContent');
@@ -1292,43 +1879,68 @@
         }
 
         async function loadTicker() {
+            const lang = currentLang;
+            const t = TICKER_TEXT[lang];
             if (!OMA_API_BASE) {
-                renderTicker(FALLBACK_PRICES, 'Precios de referencia (spot/futuro cercano), 04/09/2026 · integración de feed en vivo pendiente');
+                renderTicker(FALLBACK_PRICES[lang], t.reference);
                 return;
             }
             try {
-                const res = await fetch(`${OMA_API_BASE}/api/prices`);
+                const res = await fetch(`${OMA_API_BASE}/api/prices?lang=${lang}`);
                 const data = await res.json();
                 const items = data.items.map(it => ({
                     name: it.name,
                     price: `${it.price} ${it.unit}`,
                     change: it.direction === 'down' ? -Math.abs(it.changePct) : Math.abs(it.changePct)
                 }));
-                const when = new Date(data.updated).toLocaleString('es-AR');
-                const label = data.degraded
-                    ? `Feed en vivo no disponible ahora — mostrando última referencia · ${when}`
-                    : `En vivo vía Panorama Minero · actualizado ${when}`;
+                const when = new Date(data.updated).toLocaleString(t.locale);
+                const label = data.degraded ? t.degraded(when) : t.live(when);
                 renderTicker(items, label);
             } catch (e) {
-                renderTicker(FALLBACK_PRICES, 'No se pudo conectar al feed en vivo — mostrando valores de referencia');
+                renderTicker(FALLBACK_PRICES[lang], t.offline);
             }
         }
-        loadTicker();
 
         // --- Noticias (fallback estático, se usa si no hay API o falla) ---
-        const FALLBACK_NEWS = [
-            { title: 'La demanda de talento para la minería y la capacidad de respuesta del sistema de formación', url: 'https://www.panorama-minero.com/es/news/la-demanda-de-talento-para-la-mineria-y-la-capacidad-de-respuesta-del-sistema-de-formacion' },
-            { title: 'Prevención y seguridad ante el arco eléctrico: San Juan frente al crecimiento de la demanda energética industrial y minera impulsado por grandes proyectos', url: 'https://www.panorama-minero.com/es/news/prevencion-y-seguridad-ante-el-arco-electrico-san-juan-frente-al-crecimiento-de-la-demanda-energetica-industrial-y-minera-impulsado-por-grandes-proyectos' },
-            { title: 'Diesel 10 Minero: la nueva apuesta de YPF para responder a los desafíos energéticos de la minería', url: 'https://www.panorama-minero.com/es/news/diesel-10-minero-la-nueva-apuesta-de-ypf-para-responder-a-los-desafios-energeticos-de-la-mineria' },
-            { title: 'Kachi completó la audiencia pública y avanza hacia la definición de su Declaración de Impacto Ambiental', url: 'https://www.panorama-minero.com/es/news/kachi-completo-la-audiencia-publica-y-avanza-hacia-la-definicion-de-su-declaracion-de-impacto-ambiental' },
-            { title: 'Tras décadas de atraso en infraestructura, la Ruta Nacional 7 entra en una nueva etapa', url: 'https://www.panorama-minero.com/es/news/tras-decadas-de-atraso-en-infraestructura-la-ruta-nacional-7-entra-en-una-nueva-etapa' }
-        ];
+        const FALLBACK_NEWS = {
+            es: [
+                { title: 'La demanda de talento para la minería y la capacidad de respuesta del sistema de formación', url: 'https://www.panorama-minero.com/es/news/la-demanda-de-talento-para-la-mineria-y-la-capacidad-de-respuesta-del-sistema-de-formacion' },
+                { title: 'Prevención y seguridad ante el arco eléctrico: San Juan frente al crecimiento de la demanda energética industrial y minera impulsado por grandes proyectos', url: 'https://www.panorama-minero.com/es/news/prevencion-y-seguridad-ante-el-arco-electrico-san-juan-frente-al-crecimiento-de-la-demanda-energetica-industrial-y-minera-impulsado-por-grandes-proyectos' },
+                { title: 'Diesel 10 Minero: la nueva apuesta de YPF para responder a los desafíos energéticos de la minería', url: 'https://www.panorama-minero.com/es/news/diesel-10-minero-la-nueva-apuesta-de-ypf-para-responder-a-los-desafios-energeticos-de-la-mineria' },
+                { title: 'Kachi completó la audiencia pública y avanza hacia la definición de su Declaración de Impacto Ambiental', url: 'https://www.panorama-minero.com/es/news/kachi-completo-la-audiencia-publica-y-avanza-hacia-la-definicion-de-su-declaracion-de-impacto-ambiental' },
+                { title: 'Tras décadas de atraso en infraestructura, la Ruta Nacional 7 entra en una nueva etapa', url: 'https://www.panorama-minero.com/es/news/tras-decadas-de-atraso-en-infraestructura-la-ruta-nacional-7-entra-en-una-nueva-etapa' }
+            ],
+            en: [
+                { title: 'Mining Talent Demand and the Training System’s Capacity to Respond', url: 'https://www.panorama-minero.com/en/news/mining-talent-demand-and-the-training-system-s-capacity-to-respond' },
+                { title: 'Arc Flash Prevention and Safety: San Juan Faces Growing Industrial and Mining Energy Demand Driven by Major Projects', url: 'https://www.panorama-minero.com/en/news/arc-flash-prevention-and-safety-san-juan-faces-growing-industrial-and-mining-energy-demand-driven-by-major-projects' },
+                { title: 'After Decades of Infrastructure Delays, National Route 7 Enters a New Stage', url: 'https://www.panorama-minero.com/en/news/after-decades-of-infrastructure-delays-national-route-7-enters-a-new-stage' },
+                { title: 'Kachi Completes Public Hearing and Advances toward the Determination of Its Environmental Impact Declaration', url: 'https://www.panorama-minero.com/en/news/kachi-completes-public-hearing-and-advances-toward-the-determination-of-its-environmental-impact-declaration' },
+                { title: 'Chile: Safe Mining 2026 Brings Together Mining Safety and Occupational Health Specialists', url: 'https://www.panorama-minero.com/en/news/chile-safe-mining-2026-brings-together-mining-safety-and-occupational-health-specialists' }
+            ]
+        };
 
-        function renderNews(items, note) {
+        const NEWS_TEXT = {
+            es: {
+                fallback: 'Nota: listado curado a partir de <a href="https://www.panorama-minero.com/es" target="_blank" rel="noopener">panorama-minero.com</a>. Integración de feed en vivo — pendiente.',
+                live: when => `En vivo vía <a href="https://www.panorama-minero.com/es" target="_blank" rel="noopener">Panorama Minero</a> · actualizado ${when}`,
+                degraded: when => `Feed en vivo no disponible ahora — mostrando última referencia · ${when}`,
+                sourceLabel: 'Panorama Minero',
+                locale: 'es-AR'
+            },
+            en: {
+                fallback: 'Note: list curated from <a href="https://www.panorama-minero.com/en" target="_blank" rel="noopener">panorama-minero.com</a>. Live feed integration — pending.',
+                live: when => `Live via <a href="https://www.panorama-minero.com/en" target="_blank" rel="noopener">Panorama Minero</a> · updated ${when}`,
+                degraded: when => `Live feed unavailable right now — showing last known reference · ${when}`,
+                sourceLabel: 'Panorama Minero',
+                locale: 'en-US'
+            }
+        };
+
+        function renderNews(items, note, sourceLabel) {
             const list = document.getElementById('newsList');
             const itemsHtml = items.map(n => `
                 <div class="news-item">
-                    <div class="news-date"><span class="news-source">Panorama Minero</span></div>
+                    <div class="news-date"><span class="news-source">${sourceLabel}</span></div>
                     <h4><a href="${n.url}" target="_blank" rel="noopener">${n.title}</a></h4>
                 </div>
             `).join('');
@@ -1336,98 +1948,101 @@
         }
 
         async function loadNews() {
-            const fallbackNote = 'Nota: listado curado a partir de <a href="https://www.panorama-minero.com/es" target="_blank" rel="noopener">panorama-minero.com</a>. Integración de feed en vivo — pendiente.';
+            const lang = currentLang;
+            const t = NEWS_TEXT[lang];
             if (!OMA_API_BASE) {
-                renderNews(FALLBACK_NEWS, fallbackNote);
+                renderNews(FALLBACK_NEWS[lang], t.fallback, t.sourceLabel);
                 return;
             }
             try {
-                const res = await fetch(`${OMA_API_BASE}/api/news`);
+                const res = await fetch(`${OMA_API_BASE}/api/news?lang=${lang}`);
                 const data = await res.json();
-                const when = new Date(data.updated).toLocaleString('es-AR');
-                const note = data.degraded
-                    ? `Feed en vivo no disponible ahora — mostrando última referencia · ${when}`
-                    : `En vivo vía <a href="https://www.panorama-minero.com/es" target="_blank" rel="noopener">Panorama Minero</a> · actualizado ${when}`;
-                renderNews(data.items, note);
+                const when = new Date(data.updated).toLocaleString(t.locale);
+                const note = data.degraded ? t.degraded(when) : t.live(when);
+                renderNews(data.items, note, t.sourceLabel);
             } catch (e) {
-                renderNews(FALLBACK_NEWS, fallbackNote);
+                renderNews(FALLBACK_NEWS[lang], t.fallback, t.sourceLabel);
             }
         }
-        loadNews();
 
         // --- Barómetro (spider chart) ---
         const barometerAxes = [
-            { label: 'Marco Normativo', desc: 'Estabilidad y previsibilidad de las reglas mineras y fiscales (incluido RIGI).', v2025: 5.5, v2026: 7.2 },
-            { label: 'Licencia Social', desc: 'Nivel de aceptación comunitaria y conflictividad socioambiental.', v2025: 5.0, v2026: 5.4 },
-            { label: 'Clima Político', desc: 'Consenso Nación-provincias y continuidad de política minera.', v2025: 5.2, v2026: 6.5 },
-            { label: 'Mining-Friendly Attitude', desc: 'Disposición del Estado a facilitar permisos, incentivos y trámites.', v2025: 5.8, v2026: 7.0 },
-            { label: 'Financiamiento', desc: 'Disponibilidad de capital (local e internacional) para proyectos.', v2025: 4.8, v2026: 6.1 },
-            { label: 'Infraestructura', desc: 'Energía, rutas, agua y logística disponibles para operar y exportar.', v2025: 4.5, v2026: 5.3 },
-            { label: 'Estabilidad Macro', desc: 'Previsibilidad cambiaria, inflacionaria y de acceso a divisas.', v2025: 3.9, v2026: 5.8 },
-            { label: 'Capital Humano', desc: 'Disponibilidad de talento técnico especializado en la región.', v2025: 5.6, v2026: 5.9 }
+            { es: { label: 'Marco Normativo', desc: 'Estabilidad y previsibilidad de las reglas mineras y fiscales (incluido RIGI).' }, en: { label: 'Regulatory Framework', desc: 'Stability and predictability of mining and tax rules (including RIGI).' }, v2025: 5.5, v2026: 7.2 },
+            { es: { label: 'Licencia Social', desc: 'Nivel de aceptación comunitaria y conflictividad socioambiental.' }, en: { label: 'Social License', desc: 'Level of community acceptance and socio-environmental conflict.' }, v2025: 5.0, v2026: 5.4 },
+            { es: { label: 'Clima Político', desc: 'Consenso Nación-provincias y continuidad de política minera.' }, en: { label: 'Political Climate', desc: 'Nation-provinces consensus and continuity of mining policy.' }, v2025: 5.2, v2026: 6.5 },
+            { es: { label: 'Mining-Friendly Attitude', desc: 'Disposición del Estado a facilitar permisos, incentivos y trámites.' }, en: { label: 'Mining-Friendly Attitude', desc: "Government's willingness to facilitate permits, incentives and procedures." }, v2025: 5.8, v2026: 7.0 },
+            { es: { label: 'Financiamiento', desc: 'Disponibilidad de capital (local e internacional) para proyectos.' }, en: { label: 'Funding', desc: 'Availability of capital (local and international) for projects.' }, v2025: 4.8, v2026: 6.1 },
+            { es: { label: 'Infraestructura', desc: 'Energía, rutas, agua y logística disponibles para operar y exportar.' }, en: { label: 'Infrastructure', desc: 'Energy, roads, water and logistics available to operate and export.' }, v2025: 4.5, v2026: 5.3 },
+            { es: { label: 'Estabilidad Macro', desc: 'Previsibilidad cambiaria, inflacionaria y de acceso a divisas.' }, en: { label: 'Macro Stability', desc: 'Predictability of exchange rate, inflation and access to foreign currency.' }, v2025: 3.9, v2026: 5.8 },
+            { es: { label: 'Capital Humano', desc: 'Disponibilidad de talento técnico especializado en la región.' }, en: { label: 'Human Capital', desc: 'Availability of specialized technical talent in the region.' }, v2025: 5.6, v2026: 5.9 }
         ];
 
         function renderBarometerLegend() {
+            const lang = currentLang;
             const el = document.getElementById('barometerLegend');
             el.innerHTML = barometerAxes.map(a => `
                 <div class="barometer-legend-item">
                     <span class="barometer-score">${a.v2026.toFixed(1)}</span>
-                    <strong>${a.label}</strong>
-                    <span>${a.desc}</span>
+                    <strong>${a[lang].label}</strong>
+                    <span>${a[lang].desc}</span>
                 </div>
             `).join('');
         }
-        renderBarometerLegend();
 
-        window.addEventListener('load', function() {
+        let barometerChartInstance = null;
+        function renderBarometerChart() {
+            const lang = currentLang;
             const ctx = document.getElementById('barometerChart');
-            if (ctx && window.Chart) {
-                new Chart(ctx, {
-                    type: 'radar',
-                    data: {
-                        labels: barometerAxes.map(a => a.label),
-                        datasets: [
-                            {
-                                label: '3T 2025',
-                                data: barometerAxes.map(a => a.v2025),
-                                borderColor: '#94a3b8',
-                                backgroundColor: 'rgba(148,163,184,0.15)',
-                                borderDash: [4, 4],
-                                pointBackgroundColor: '#94a3b8'
-                            },
-                            {
-                                label: '3T 2026',
-                                data: barometerAxes.map(a => a.v2026),
-                                borderColor: '#2a5298',
-                                backgroundColor: 'rgba(42,82,152,0.25)',
-                                pointBackgroundColor: '#1e3c72'
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        animation: { duration: 1200, easing: 'easeOutQuart' },
-                        scales: {
-                            r: {
-                                min: 0,
-                                max: 10,
-                                ticks: { stepSize: 2, backdropColor: 'transparent' },
-                                pointLabels: { font: { size: 11 } }
-                            }
-                        },
-                        plugins: {
-                            legend: { position: 'bottom' }
-                        }
-                    }
-                });
+            if (!ctx || !window.Chart) return;
+            if (barometerChartInstance) {
+                barometerChartInstance.destroy();
             }
-        });
+            const quarterLabels = lang === 'es' ? ['3T 2025', '3T 2026'] : ['Q3 2025', 'Q3 2026'];
+            barometerChartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: barometerAxes.map(a => a[lang].label),
+                    datasets: [
+                        {
+                            label: quarterLabels[0],
+                            data: barometerAxes.map(a => a.v2025),
+                            borderColor: '#94a3b8',
+                            backgroundColor: 'rgba(148,163,184,0.15)',
+                            borderDash: [4, 4],
+                            pointBackgroundColor: '#94a3b8'
+                        },
+                        {
+                            label: quarterLabels[1],
+                            data: barometerAxes.map(a => a.v2026),
+                            borderColor: '#2a5298',
+                            backgroundColor: 'rgba(42,82,152,0.25)',
+                            pointBackgroundColor: '#1e3c72'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    animation: { duration: 1200, easing: 'easeOutQuart' },
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 10,
+                            ticks: { stepSize: 2, backdropColor: 'transparent' },
+                            pointLabels: { font: { size: 11 } }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
 
         // --- Toggle columna de opinión ---
         function toggleOpinion(btn) {
             const body = btn.nextElementSibling;
             const expanded = body.classList.toggle('expanded');
-            btn.textContent = expanded ? 'Ver menos' : 'Leer columna completa';
+            btn.textContent = expanded ? OPINION_I18N[currentLang].showLess : OPINION_I18N[currentLang].readMore;
         }
 
         // Navegación entre pestañas
@@ -1458,6 +2073,9 @@
             // Scroll al inicio
             window.scrollTo(0, 0);
         }
+
+        // Arranque: aplicar idioma guardado (o español por defecto) y cargar datos en vivo
+        setLanguage(currentLang);
     </script>
 </body>
 </html>
