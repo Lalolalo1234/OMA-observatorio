@@ -738,6 +738,23 @@
             border-left: 4px solid #2a5298;
         }
 
+        .barometer-legend-item.priority {
+            border-left: 4px solid #f59e0b;
+            background: #fffbeb;
+        }
+
+        .priority-badge {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 0.1rem 0.5rem;
+            border-radius: 10px;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.3rem;
+        }
+
         .barometer-legend-item strong {
             color: #1e3c72;
             display: block;
@@ -1966,7 +1983,10 @@
         }
 
         // --- Barómetro (spider chart) ---
+        const PRIORITY_BADGE = { es: 'Prioridad #1 del Gobierno', en: "Government's #1 Priority" };
+
         const barometerAxes = [
+            { es: { label: 'Exportaciones Mineras', desc: 'Evolución de las exportaciones mineras argentinas — la primera prioridad de la política del gobierno actual, en tendencia marcadamente creciente.' }, en: { label: 'Mining Exports', desc: "Evolution of Argentine mining exports — the current government's top policy priority, on a markedly rising trend." }, v2025: 6.3, v2026: 9.0, priority: true },
             { es: { label: 'Marco Normativo', desc: 'Estabilidad y previsibilidad de las reglas mineras y fiscales (incluido RIGI).' }, en: { label: 'Regulatory Framework', desc: 'Stability and predictability of mining and tax rules (including RIGI).' }, v2025: 5.5, v2026: 7.2 },
             { es: { label: 'Licencia Social', desc: 'Nivel de aceptación comunitaria y conflictividad socioambiental.' }, en: { label: 'Social License', desc: 'Level of community acceptance and socio-environmental conflict.' }, v2025: 5.0, v2026: 5.4 },
             { es: { label: 'Clima Político', desc: 'Consenso Nación-provincias y continuidad de política minera.' }, en: { label: 'Political Climate', desc: 'Nation-provinces consensus and continuity of mining policy.' }, v2025: 5.2, v2026: 6.5 },
@@ -1981,8 +2001,9 @@
             const lang = currentLang;
             const el = document.getElementById('barometerLegend');
             el.innerHTML = barometerAxes.map(a => `
-                <div class="barometer-legend-item">
+                <div class="barometer-legend-item${a.priority ? ' priority' : ''}">
                     <span class="barometer-score">${a.v2026.toFixed(1)}</span>
+                    ${a.priority ? `<span class="priority-badge">★ ${PRIORITY_BADGE[lang]}</span><br>` : ''}
                     <strong>${a[lang].label}</strong>
                     <span>${a[lang].desc}</span>
                 </div>
@@ -2016,7 +2037,9 @@
                             data: barometerAxes.map(a => a.v2026),
                             borderColor: '#2a5298',
                             backgroundColor: 'rgba(42,82,152,0.25)',
-                            pointBackgroundColor: '#1e3c72'
+                            pointBackgroundColor: barometerAxes.map(a => a.priority ? '#f59e0b' : '#1e3c72'),
+                            pointRadius: barometerAxes.map(a => a.priority ? 6 : 3),
+                            pointHoverRadius: barometerAxes.map(a => a.priority ? 8 : 5)
                         }
                     ]
                 },
@@ -2028,7 +2051,10 @@
                             min: 0,
                             max: 10,
                             ticks: { stepSize: 2, backdropColor: 'transparent' },
-                            pointLabels: { font: { size: 11 } }
+                            pointLabels: {
+                                font: (ctx) => ({ size: 11, weight: barometerAxes[ctx.index] && barometerAxes[ctx.index].priority ? 'bold' : 'normal' }),
+                                color: (ctx) => barometerAxes[ctx.index] && barometerAxes[ctx.index].priority ? '#b45309' : '#666'
+                            }
                         }
                     },
                     plugins: {
