@@ -1,0 +1,18 @@
+name = "oma-observatorio-api"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+# Se ejecuta gratis en el free tier de Cloudflare Workers (100.000 requests/día).
+# No necesita KV ni ninguna base de datos: usa la Cache API de Cloudflare
+# para no golpear panorama-minero.com en cada visita al sitio.
+
+[vars]
+# Dominio(s) permitidos para CORS. Poner "*" mientras se prueba;
+# una vez publicado el sitio en GitHub Pages, cambiar por la URL real,
+# ej: "https://lalolalo1234.github.io"
+ALLOWED_ORIGIN = "*"
+
+# Cuánto tiempo se guarda en caché cada endpoint antes de volver a pedirle
+# los datos a Panorama Minero (en segundos).
+PRICES_CACHE_SECONDS = "600"
+NEWS_CACHE_SECONDS = "900"

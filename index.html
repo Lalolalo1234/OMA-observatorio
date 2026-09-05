@@ -427,6 +427,291 @@
             border-radius: 4px;
         }
 
+        /* Ticker de cotizaciones */
+        .ticker-wrap {
+            background: #0f172a;
+            color: #fff;
+            display: flex;
+            align-items: stretch;
+            overflow: hidden;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .ticker-label {
+            flex: 0 0 auto;
+            background: #dc2626;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        .ticker-track {
+            flex: 1 1 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker {
+            display: flex;
+            width: max-content;
+            animation: ticker-scroll 45s linear infinite;
+        }
+
+        .ticker-track:hover .ticker {
+            animation-play-state: paused;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            white-space: nowrap;
+            font-size: 0.85rem;
+            border-right: 1px solid #1e293b;
+        }
+
+        .ticker-item .mineral-name {
+            font-weight: 600;
+            color: #93c5fd;
+        }
+
+        .ticker-item .mineral-price {
+            font-weight: bold;
+        }
+
+        .ticker-item .mineral-change.up {
+            color: #4ade80;
+        }
+
+        .ticker-item .mineral-change.down {
+            color: #f87171;
+        }
+
+        @keyframes ticker-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .ticker-note {
+            font-size: 0.7rem;
+            color: #9ca3af;
+            text-align: right;
+            padding: 0.3rem 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Noticias & Opinión */
+        .news-opinion-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .news-opinion-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .news-item {
+            background: white;
+            border-radius: 6px;
+            padding: 1.2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border-left: 4px solid #2a5298;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .news-item .news-date {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.4rem;
+        }
+
+        .news-item h4 {
+            color: #1e3c72;
+            margin-bottom: 0.4rem;
+            font-size: 1rem;
+        }
+
+        .news-item a {
+            color: #1e3c72;
+            text-decoration: none;
+        }
+
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+
+        .news-source {
+            font-size: 0.75rem;
+            color: #2a5298;
+            font-weight: 600;
+        }
+
+        .opinion-sidebar {
+            background: #eef4ff;
+            border-radius: 6px;
+            padding: 1.2rem;
+            position: sticky;
+            top: 90px;
+        }
+
+        .opinion-sidebar > h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            border-bottom: 2px solid #2a5298;
+            padding-bottom: 0.5rem;
+        }
+
+        .opinion-card {
+            background: white;
+            border-radius: 6px;
+            padding: 1.1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            margin-bottom: 1rem;
+        }
+
+        .opinion-card .opinion-tag {
+            display: inline-block;
+            background: #1e3c72;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .opinion-card h4 {
+            color: #1e3c72;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .opinion-card .opinion-meta {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 0.6rem;
+        }
+
+        .opinion-card .opinion-quote {
+            font-style: italic;
+            color: #2a5298;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .opinion-card .opinion-body {
+            font-size: 0.85rem;
+            display: none;
+            text-align: justify;
+        }
+
+        .opinion-card .opinion-body.expanded {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .opinion-card .opinion-body p {
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: 1px solid #2a5298;
+            color: #2a5298;
+            padding: 0.35rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .read-more-btn:hover {
+            background: #2a5298;
+            color: white;
+        }
+
+        /* Barómetro */
+        .barometer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .barometer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .barometer-chart-wrap {
+            background: white;
+            border-radius: 6px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .barometer-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .barometer-legend-item {
+            background: white;
+            border-radius: 6px;
+            padding: 0.9rem 1.1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border-left: 4px solid #2a5298;
+        }
+
+        .barometer-legend-item strong {
+            color: #1e3c72;
+            display: block;
+            margin-bottom: 0.2rem;
+            font-size: 0.9rem;
+        }
+
+        .barometer-legend-item span {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .barometer-score {
+            float: right;
+            background: #1e3c72;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 0.1rem 0.5rem;
+            border-radius: 10px;
+        }
+
         .quote-block {
             background: #eef4ff;
             border-left: 4px solid #1e3c72;
@@ -480,6 +765,15 @@
         </div>
     </header>
 
+    <!-- Ticker de cotizaciones -->
+    <div class="ticker-wrap">
+        <div class="ticker-label">💹 Cotizaciones</div>
+        <div class="ticker-track">
+            <div class="ticker" id="tickerContent"></div>
+        </div>
+    </div>
+    <div class="ticker-note" id="tickerNote"></div>
+
     <!-- Navegación -->
     <nav>
         <div class="nav-container">
@@ -489,6 +783,8 @@
                 <li><button class="nav-btn" data-tab="oferta">Oferta &amp; Competitividad</button></li>
                 <li><button class="nav-btn" data-tab="capital-humano">Capital Humano</button></li>
                 <li><button class="nav-btn" data-tab="indicadores">Indicadores</button></li>
+                <li><button class="nav-btn" data-tab="barometro">Barómetro</button></li>
+                <li><button class="nav-btn" data-tab="noticias">Noticias &amp; Opinión</button></li>
                 <li><button class="nav-btn" data-tab="gobernanza">Gobernanza</button></li>
                 <li><button class="nav-btn" data-tab="hoja-de-ruta">Hoja de Ruta</button></li>
                 <li><button class="nav-btn" data-tab="acerca">Acerca de OMA</button></li>
@@ -713,6 +1009,52 @@
             </table>
         </div>
 
+        <!-- Barómetro -->
+        <div id="barometro" class="tab-content">
+            <h1>Barómetro OMA — Clima de Inversión Minera</h1>
+            <p>El Barómetro resume, en un solo vistazo tipo <em>spider chart</em>, la evolución de las variables no estrictamente productivas que más pesan en la decisión de un inversor minero: marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, disponibilidad de financiamiento, infraestructura y estabilidad macroeconómica. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), a partir de encuestas a empresas del Consejo Rector y análisis del equipo OMA.</p>
+
+            <div class="barometer-grid">
+                <div class="barometer-chart-wrap">
+                    <canvas id="barometerChart" height="320"></canvas>
+                    <p style="text-align:center; font-size:0.8rem; color:#888; margin-top:0.8rem;">Comparación 3T 2025 vs. 3T 2026 · Fuente: encuesta OMA a empresas mineras (ilustrativo, primer corte)</p>
+                </div>
+                <div class="barometer-legend" id="barometerLegend"></div>
+            </div>
+        </div>
+
+        <!-- Noticias & Opinión -->
+        <div id="noticias" class="tab-content">
+            <h1>Noticias &amp; Opinión</h1>
+            <p>Selección de actualidad minera argentina — curada a partir de <strong>Panorama Minero</strong> — junto con la columna de opinión del Observatorio.</p>
+
+            <div class="news-opinion-grid">
+                <div class="news-list" id="newsList">
+                    <!-- Se completa por JS (loadNews) con fallback estático si no hay API -->
+                </div>
+
+                <aside class="opinion-sidebar">
+                    <h3>Columna de Opinión</h3>
+                    <div class="opinion-card">
+                        <span class="opinion-tag">Opinión</span>
+                        <h4>IA y Minería</h4>
+                        <div class="opinion-meta">Ing. Eduardo Barrera, Asesor de la CRM Facility de la Unión Europea · Panorama Minero, 04/09/2026</div>
+                        <div class="opinion-quote">"La IA no es solo software. La IA es materia."</div>
+                        <button class="read-more-btn" onclick="toggleOpinion(this)">Leer columna completa</button>
+                        <div class="opinion-body">
+                            <p>Minería e inteligencia artificial compiten por capital y recursos, pero también pueden potenciarse mutuamente.</p>
+                            <p>Detrás de cada modelo que entrenamos, detrás de cada chip que fabricamos y detrás de cada vez más grande datacenter que se levanta, hay una infraestructura física gigantesca: cobre extraído en minas, litio bombeado desde salares, tierras raras refinadas en cadenas industriales complejas, galio producido en redes de suministro altamente concentradas, millones de litros de agua y enormes cantidades de energía. La IA no flota en la nube: la IA pesa, ocupa espacio y consume minerales críticos.</p>
+                            <p><strong>1. La base material de la IA.</strong> El cómputo de entrenamiento se duplica cada 5-6 meses. Los datacenters de IA requieren entre 27 y 33 toneladas de cobre por megavatio (hasta 47 en clústeres intensivos; 100-150 t/MW sumando transmisión y subestaciones). El galio de los chips de alto rendimiento podría absorber el 10% del suministro global hacia 2030. Las tierras raras para refrigeración crecerán ~7,5% anual hasta 2040. El litio asociado a almacenamiento de IA podría llegar a 300 GWh hacia 2030. Los datacenters consumieron ~1 km³ de agua en 2025 — 10 veces lo que consume Escondida.</p>
+                            <p><strong>2. Una relación simbiótica.</strong> La misma IA que demanda minería puede potenciarla: gemelos digitales en Escondida (BHP) y Quellaveco (Anglo American); en Mingomba (Zambia), KoBold Metals redujo el ciclo descubrimiento-producción de 18 a 5 años. Los modelos predictivos reducen el área de exploración necesaria hasta 80% y el capital de exploración entre 40-80%. Pero también compiten por capital: la IA demanda USD 2.000-5.000 M por datacenter hyperscale; la minería, USD 2.000-10.000 M por activo de larga vida útil.</p>
+                            <p><strong>3. Modelos abiertos: oportunidad y riesgo a dos velocidades.</strong> Los modelos de IA abiertos están, en promedio, apenas 4 meses detrás de los de frontera y son mucho más baratos — una oportunidad para las juniors de acceder a exploración asistida, optimización de voladuras y mantenimiento predictivo a bajo costo. Pero la minería artesanal y de pequeña escala (40-45 millones de personas) corre riesgo de quedar más rezagada si no accede a esas mismas herramientas.</p>
+                            <p><strong>Conclusión.</strong> La IA necesita minerales; la minería necesita IA para explorar, operar y competir. Ambas necesitan agua, energía y territorio. Esa relación puede ser simbiótica, pero no lo será por default: falta política pública explícita que evalúe el impacto conjunto sobre el territorio, monitoree cómo se distribuye la adopción de IA en el sector para cerrar la brecha con juniors y PyMEs mineras, y facilite el salto tecnológico antes de que se cierre la ventana de oportunidad. La pregunta no es si la IA va a transformar la minería — ya lo está haciendo — sino cómo lograr que esa transformación alcance a todos, no solo a unos pocos.</p>
+                            <p style="font-size:0.75rem; color:#888;">Fuente: <a href="https://www.panorama-minero.com/es" target="_blank" rel="noopener">Panorama Minero</a>, 04 de septiembre de 2026.</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
         <!-- Gobernanza -->
         <div id="gobernanza" class="tab-content">
             <h1>Gobernanza y Estructura Operacional</h1>
@@ -896,7 +1238,177 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
     <script>
+        // --- Configuración del backend en vivo ---
+        // Dejar en '' hasta desplegar el worker (ver /worker/README.md).
+        // Una vez desplegado, pegar acá la URL que da `wrangler deploy`,
+        // ej: 'https://oma-observatorio-api.tu-cuenta.workers.dev'
+        const OMA_API_BASE = 'https://oma-observatorio-api.oma-observatorio.workers.dev';
+
+        // --- Ticker de cotizaciones (fallback estático, se usa si no hay API o falla) ---
+        const FALLBACK_PRICES = [
+            { name: 'Cobre', price: '6,67 USD/lb', change: 0.05 },
+            { name: 'Litio (carbonato, China)', price: '11.200 USD/t', change: 1.2 },
+            { name: 'Tierras Raras (NdPr)', price: '68,5 USD/kg', change: 0.8 },
+            { name: 'Oro', price: '4.477,20 USD/oz', change: -1.38 },
+            { name: 'Plata', price: '66,82 USD/oz', change: -1.31 },
+            { name: 'Zinc', price: '3.927,75 USD/t', change: 0.92 },
+            { name: 'Estaño', price: '54.622 USD/t', change: 1.39 },
+            { name: 'Manganeso (mineral 44% Mn)', price: '4,35 USD/dmtu', change: -0.5 }
+        ];
+
+        function renderTicker(items, note) {
+            const track = document.getElementById('tickerContent');
+            const itemsHtml = items.map(c => {
+                const dir = c.change >= 0 ? 'up' : 'down';
+                const arrow = c.change >= 0 ? '▲' : '▼';
+                return `<div class="ticker-item"><span class="mineral-name">${c.name}</span><span class="mineral-price">${c.price}</span><span class="mineral-change ${dir}">${arrow} ${Math.abs(c.change).toFixed(2)}%</span></div>`;
+            }).join('');
+            // Se duplica el contenido para lograr el scroll continuo sin cortes
+            track.innerHTML = itemsHtml + itemsHtml;
+            document.getElementById('tickerNote').textContent = note;
+        }
+
+        async function loadTicker() {
+            if (!OMA_API_BASE) {
+                renderTicker(FALLBACK_PRICES, 'Precios de referencia (spot/futuro cercano), 04/09/2026 · integración de feed en vivo pendiente');
+                return;
+            }
+            try {
+                const res = await fetch(`${OMA_API_BASE}/api/prices`);
+                const data = await res.json();
+                const items = data.items.map(it => ({
+                    name: it.name,
+                    price: `${it.price} ${it.unit}`,
+                    change: it.direction === 'down' ? -Math.abs(it.changePct) : Math.abs(it.changePct)
+                }));
+                const when = new Date(data.updated).toLocaleString('es-AR');
+                const label = data.degraded
+                    ? `Feed en vivo no disponible ahora — mostrando última referencia · ${when}`
+                    : `En vivo vía Panorama Minero · actualizado ${when}`;
+                renderTicker(items, label);
+            } catch (e) {
+                renderTicker(FALLBACK_PRICES, 'No se pudo conectar al feed en vivo — mostrando valores de referencia');
+            }
+        }
+        loadTicker();
+
+        // --- Noticias (fallback estático, se usa si no hay API o falla) ---
+        const FALLBACK_NEWS = [
+            { title: 'La demanda de talento para la minería y la capacidad de respuesta del sistema de formación', url: 'https://www.panorama-minero.com/es/news/la-demanda-de-talento-para-la-mineria-y-la-capacidad-de-respuesta-del-sistema-de-formacion' },
+            { title: 'Prevención y seguridad ante el arco eléctrico: San Juan frente al crecimiento de la demanda energética industrial y minera impulsado por grandes proyectos', url: 'https://www.panorama-minero.com/es/news/prevencion-y-seguridad-ante-el-arco-electrico-san-juan-frente-al-crecimiento-de-la-demanda-energetica-industrial-y-minera-impulsado-por-grandes-proyectos' },
+            { title: 'Diesel 10 Minero: la nueva apuesta de YPF para responder a los desafíos energéticos de la minería', url: 'https://www.panorama-minero.com/es/news/diesel-10-minero-la-nueva-apuesta-de-ypf-para-responder-a-los-desafios-energeticos-de-la-mineria' },
+            { title: 'Kachi completó la audiencia pública y avanza hacia la definición de su Declaración de Impacto Ambiental', url: 'https://www.panorama-minero.com/es/news/kachi-completo-la-audiencia-publica-y-avanza-hacia-la-definicion-de-su-declaracion-de-impacto-ambiental' },
+            { title: 'Tras décadas de atraso en infraestructura, la Ruta Nacional 7 entra en una nueva etapa', url: 'https://www.panorama-minero.com/es/news/tras-decadas-de-atraso-en-infraestructura-la-ruta-nacional-7-entra-en-una-nueva-etapa' }
+        ];
+
+        function renderNews(items, note) {
+            const list = document.getElementById('newsList');
+            const itemsHtml = items.map(n => `
+                <div class="news-item">
+                    <div class="news-date"><span class="news-source">Panorama Minero</span></div>
+                    <h4><a href="${n.url}" target="_blank" rel="noopener">${n.title}</a></h4>
+                </div>
+            `).join('');
+            list.innerHTML = itemsHtml + `<div class="alert" style="margin-top: 0.5rem;">${note}</div>`;
+        }
+
+        async function loadNews() {
+            const fallbackNote = 'Nota: listado curado a partir de <a href="https://www.panorama-minero.com/es" target="_blank" rel="noopener">panorama-minero.com</a>. Integración de feed en vivo — pendiente.';
+            if (!OMA_API_BASE) {
+                renderNews(FALLBACK_NEWS, fallbackNote);
+                return;
+            }
+            try {
+                const res = await fetch(`${OMA_API_BASE}/api/news`);
+                const data = await res.json();
+                const when = new Date(data.updated).toLocaleString('es-AR');
+                const note = data.degraded
+                    ? `Feed en vivo no disponible ahora — mostrando última referencia · ${when}`
+                    : `En vivo vía <a href="https://www.panorama-minero.com/es" target="_blank" rel="noopener">Panorama Minero</a> · actualizado ${when}`;
+                renderNews(data.items, note);
+            } catch (e) {
+                renderNews(FALLBACK_NEWS, fallbackNote);
+            }
+        }
+        loadNews();
+
+        // --- Barómetro (spider chart) ---
+        const barometerAxes = [
+            { label: 'Marco Normativo', desc: 'Estabilidad y previsibilidad de las reglas mineras y fiscales (incluido RIGI).', v2025: 5.5, v2026: 7.2 },
+            { label: 'Licencia Social', desc: 'Nivel de aceptación comunitaria y conflictividad socioambiental.', v2025: 5.0, v2026: 5.4 },
+            { label: 'Clima Político', desc: 'Consenso Nación-provincias y continuidad de política minera.', v2025: 5.2, v2026: 6.5 },
+            { label: 'Mining-Friendly Attitude', desc: 'Disposición del Estado a facilitar permisos, incentivos y trámites.', v2025: 5.8, v2026: 7.0 },
+            { label: 'Financiamiento', desc: 'Disponibilidad de capital (local e internacional) para proyectos.', v2025: 4.8, v2026: 6.1 },
+            { label: 'Infraestructura', desc: 'Energía, rutas, agua y logística disponibles para operar y exportar.', v2025: 4.5, v2026: 5.3 },
+            { label: 'Estabilidad Macro', desc: 'Previsibilidad cambiaria, inflacionaria y de acceso a divisas.', v2025: 3.9, v2026: 5.8 },
+            { label: 'Capital Humano', desc: 'Disponibilidad de talento técnico especializado en la región.', v2025: 5.6, v2026: 5.9 }
+        ];
+
+        function renderBarometerLegend() {
+            const el = document.getElementById('barometerLegend');
+            el.innerHTML = barometerAxes.map(a => `
+                <div class="barometer-legend-item">
+                    <span class="barometer-score">${a.v2026.toFixed(1)}</span>
+                    <strong>${a.label}</strong>
+                    <span>${a.desc}</span>
+                </div>
+            `).join('');
+        }
+        renderBarometerLegend();
+
+        window.addEventListener('load', function() {
+            const ctx = document.getElementById('barometerChart');
+            if (ctx && window.Chart) {
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: barometerAxes.map(a => a.label),
+                        datasets: [
+                            {
+                                label: '3T 2025',
+                                data: barometerAxes.map(a => a.v2025),
+                                borderColor: '#94a3b8',
+                                backgroundColor: 'rgba(148,163,184,0.15)',
+                                borderDash: [4, 4],
+                                pointBackgroundColor: '#94a3b8'
+                            },
+                            {
+                                label: '3T 2026',
+                                data: barometerAxes.map(a => a.v2026),
+                                borderColor: '#2a5298',
+                                backgroundColor: 'rgba(42,82,152,0.25)',
+                                pointBackgroundColor: '#1e3c72'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        animation: { duration: 1200, easing: 'easeOutQuart' },
+                        scales: {
+                            r: {
+                                min: 0,
+                                max: 10,
+                                ticks: { stepSize: 2, backdropColor: 'transparent' },
+                                pointLabels: { font: { size: 11 } }
+                            }
+                        },
+                        plugins: {
+                            legend: { position: 'bottom' }
+                        }
+                    }
+                });
+            }
+        });
+
+        // --- Toggle columna de opinión ---
+        function toggleOpinion(btn) {
+            const body = btn.nextElementSibling;
+            const expanded = body.classList.toggle('expanded');
+            btn.textContent = expanded ? 'Ver menos' : 'Leer columna completa';
+        }
+
         // Navegación entre pestañas
         document.querySelectorAll('.nav-btn').forEach(btn => {
             btn.addEventListener('click', function() {
