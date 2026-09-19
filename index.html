@@ -1266,7 +1266,7 @@
         <!-- Noticias & Opinión -->
         <div id="noticias" class="tab-content">
             <h1 id="noticiasH1">Noticias &amp; Opinión</h1>
-            <p id="noticiasP">Selección de actualidad minera argentina — curada a partir de <strong>Panorama Minero</strong> — junto con la columna de opinión del Observatorio.</p>
+            <p id="noticiasP">Selección de actualidad minera argentina — curada a partir de <strong>Panorama Minero</strong> — con webinars de inversión de <strong>Amvest Capital</strong>, junto con la columna de opinión del Observatorio.</p>
 
             <div class="news-opinion-grid">
                 <div class="news-list" id="newsList">
@@ -2109,8 +2109,8 @@
         };
 
         const NOTICIAS_INTRO = {
-            es: { h1: 'Noticias &amp; Opinión', p: 'Selección de actualidad minera argentina — curada a partir de <strong>Panorama Minero</strong> — junto con la columna de opinión del Observatorio.', asideH3: 'Columna de Opinión' },
-            en: { h1: 'News &amp; Opinion', p: 'A selection of Argentine mining news — curated from <strong>Panorama Minero</strong> — together with the Observatory\'s opinion column.', asideH3: 'Opinion Column' }
+            es: { h1: 'Noticias &amp; Opinión', p: 'Selección de actualidad minera argentina — curada a partir de <strong>Panorama Minero</strong> — con webinars de inversión de <strong>Amvest Capital</strong>, junto con la columna de opinión del Observatorio.', asideH3: 'Columna de Opinión' },
+            en: { h1: 'News &amp; Opinion', p: 'A selection of Argentine mining news — curated from <strong>Panorama Minero</strong> — with investment webinars from <strong>Amvest Capital</strong>, together with the Observatory\'s opinion column.', asideH3: 'Opinion Column' }
         };
 
         const OPINION_I18N = {
@@ -2324,6 +2324,47 @@
             }
         };
 
+        // --- Amvest Capital: webinars de inversión (curado a mano; revisar periódicamente) ---
+        const AMVEST_I18N = {
+            es: {
+                title: 'Webinars de inversión — Amvest Capital',
+                intro: 'Boletín de <a href="https://www.amvestcapital.com/" target="_blank" rel="noopener">Amvest Capital</a> (Nueva York), con webinars de inversión en recursos naturales. Selección relevante para OMA:',
+                items: [
+                    { date: '17/06/2026', tag: 'Argentina · Litio', title: 'NOA Lithium Brines: activos de salmueras de litio en el Triángulo del Litio argentino', url: 'https://www.amvestcapital.com/webinar-directory/noa-lithium-06-17-26', extra: 'Repetición disponible' },
+                    { date: '08/07/2026', tag: 'Minerales críticos · Tierras raras', title: 'The Hidden Mineral Toll of Modern Warfare (Amvest Terraden)', url: 'https://www.amvestcapital.com/webinar-directory/terraden-mineral-toll-07-08-26', extra: 'En inglés' }
+                ],
+                all: 'Ver todos los webinars',
+                subscribe: 'Suscribirse al boletín',
+                note: 'Selección curada por OMA; los contenidos pertenecen a Amvest Capital. Última revisión: 19/09/2026.'
+            },
+            en: {
+                title: 'Investment webinars — Amvest Capital',
+                intro: 'Newsletter from <a href="https://www.amvestcapital.com/" target="_blank" rel="noopener">Amvest Capital</a> (New York), featuring natural resources investment webinars. Selection relevant to OMA:',
+                items: [
+                    { date: '06/17/2026', tag: 'Argentina · Lithium', title: 'NOA Lithium Brines: lithium brine assets in Argentina\'s Lithium Triangle', url: 'https://www.amvestcapital.com/webinar-directory/noa-lithium-06-17-26', extra: 'Replay available' },
+                    { date: '07/08/2026', tag: 'Critical minerals · Rare earths', title: 'The Hidden Mineral Toll of Modern Warfare (Amvest Terraden)', url: 'https://www.amvestcapital.com/webinar-directory/terraden-mineral-toll-07-08-26', extra: 'In English' }
+                ],
+                all: 'View all webinars',
+                subscribe: 'Subscribe to the newsletter',
+                note: 'Selection curated by OMA; content belongs to Amvest Capital. Last reviewed: 09/19/2026.'
+            }
+        };
+
+        function amvestBlockHtml() {
+            const a = AMVEST_I18N[currentLang];
+            const rows = a.items.map(n => `
+                <div class="news-item">
+                    <div class="news-date"><span class="news-source">Amvest Capital</span> · ${n.date} · ${n.tag} · ${n.extra}</div>
+                    <h4><a href="${n.url}" target="_blank" rel="noopener">${n.title}</a></h4>
+                </div>
+            `).join('');
+            return `<h3 style="margin: 1.5rem 0 0.5rem;">${a.title}</h3>
+                <p style="margin-bottom: 0.5rem;">${a.intro}</p>
+                ${rows}
+                <p style="margin-top: 0.5rem;"><a href="https://www.amvestcapital.com/webinars-events" target="_blank" rel="noopener">${a.all} →</a> · <a href="https://www.amvestcapital.com/subscribe" target="_blank" rel="noopener">${a.subscribe} →</a></p>
+                <div class="alert" style="margin-top: 0.5rem;">${a.note}</div>`;
+        }
+
         function renderNews(items, note, sourceLabel) {
             const list = document.getElementById('newsList');
             const itemsHtml = items.map(n => `
@@ -2332,7 +2373,7 @@
                     <h4><a href="${n.url}" target="_blank" rel="noopener">${n.title}</a></h4>
                 </div>
             `).join('');
-            list.innerHTML = itemsHtml + `<div class="alert" style="margin-top: 0.5rem;">${note}</div>`;
+            list.innerHTML = itemsHtml + `<div class="alert" style="margin-top: 0.5rem;">${note}</div>` + amvestBlockHtml();
         }
 
         async function loadNews() {
