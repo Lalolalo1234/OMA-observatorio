@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="OMA - Observatorio Minero Argentino, una iniciativa de Panorama Minero y la Universidad de Buenos Aires (UBA)">
+    <meta name="description" content="OMA - Observatorio Minero Argentino, una iniciativa del Centro Argentino de Ingenieros (CAI), Panorama Minero (PM) y la Universidad de Buenos Aires (UBA)">
     <title>OMA - Observatorio Minero Argentino</title>
     <style>
         * {
@@ -818,6 +818,13 @@
         .btn-secondary:hover {
             background: #333;
         }
+
+        /* Alianza CAI + Monitor */
+        .quote-block small { display: block; margin-top: 0.5rem; font-style: normal; color: #555; }
+        .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: white; border-radius: 6px; padding: 1.2rem; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border-top: 3px solid #2a9d5c; }
+        .stat-card .stat-num { display: block; font-size: 2rem; font-weight: bold; color: #1e3c72; }
+        .stat-card .stat-label { font-size: 0.85rem; color: #555; }
     </style>
 </head>
 <body>
@@ -826,8 +833,8 @@
         <div class="header-content">
             <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()" aria-label="Switch language / Cambiar idioma">EN</button>
             <div class="logo">🇦🇷 OMA · Observatorio Minero Argentino</div>
-            <div class="tagline">Una iniciativa de Panorama Minero y la Universidad de Buenos Aires (UBA) — midiendo demanda global, anticipando oferta argentina, guiando decisión estratégica</div>
-            <div class="badge-relacion">Evolución del modelo CeProMin, con foco exclusivo en Argentina</div>
+            <div class="tagline">Una iniciativa del Centro Argentino de Ingenieros (CAI), Panorama Minero (PM) y la Universidad de Buenos Aires (UBA) — midiendo demanda global, anticipando oferta argentina, guiando decisión estratégica</div>
+            <div class="badge-relacion badge-cai">Monitor de Ingeniería de Minas en alianza con el Centro Argentino de Ingenieros (CAI)</div>
         </div>
     </header>
 
@@ -850,6 +857,7 @@
                 <li><button class="nav-btn" data-tab="capital-humano">Capital Humano</button></li>
                 <li><button class="nav-btn" data-tab="indicadores">Indicadores</button></li>
                 <li><button class="nav-btn" data-tab="barometro">Barómetro</button></li>
+                <li><button class="nav-btn" data-tab="monitor">Monitor MIMA</button></li>
                 <li><button class="nav-btn" data-tab="noticias">Noticias &amp; Opinión</button></li>
                 <li><button class="nav-btn" data-tab="gobernanza">Gobernanza</button></li>
                 <li><button class="nav-btn" data-tab="hoja-de-ruta">Hoja de Ruta</button></li>
@@ -872,6 +880,7 @@
                 <li>Transformar esos datos en inteligencia útil para decisiones estratégicas.</li>
                 <li>Comunicarla de forma periódica, confiable y trazable.</li>
                 <li>Generar alertas tempranas sobre escenarios futuros (anticipar tendencias).</li>
+                <li>Monitorear el capital humano y la formación en ingeniería de minas, junto al Centro Argentino de Ingenieros (CAI), a través del Monitor de Ingeniería de Minas de Argentina (MIMA).</li>
             </ul>
 
             <div class="quote-block">
@@ -915,6 +924,26 @@
                     <div class="pillar-body">
                         <h4>Energía de Fusión</h4>
                         <p>Tierras raras pesadas (itrio), W, Be, Li-6 para reactores de fusión. Driver: viabilidad comercial de la fusión (2030s-2040s). Monitoreo de proyectos avanzados como Misión Génesis de EE.UU. (superconductores, IA aplicada a plasma), relevante para el litio-6 argentino.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Dos instrumentos de monitoreo periódico</h2>
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-number">BARÓMETRO OMA</div>
+                    <div class="pillar-body">
+                        <h4>¿Invita el entorno a invertir?</h4>
+                        <p>Clima de inversión minera en un vistazo: marco normativo, licencia social, clima político, financiamiento, infraestructura, estabilidad macro y exportaciones mineras. Se nutre de encuestas a empresas.</p>
+                        <button class="btn" style="margin-top:0.8rem" onclick="navigateTo('barometro')">Ver Barómetro</button>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">MONITOR DE INGENIERÍA DE MINAS (MIMA)</div>
+                    <div class="pillar-body">
+                        <h4>¿Tiene Argentina los ingenieros para ejecutar esa inversión?</h4>
+                        <p>Formación, empleo y demanda de talento de la ingeniería de minas, con el Centro Argentino de Ingenieros (CAI). Mide, interpreta, conecta y anticipa las capacidades humanas que necesita el sector.</p>
+                        <button class="btn" style="margin-top:0.8rem" onclick="navigateTo('monitor')">Ver el Monitor</button>
                     </div>
                 </div>
             </div>
@@ -996,19 +1025,26 @@
             <h1>Capital Humano &amp; Política Minera</h1>
             <p><strong>Pilar 3</strong> del OMA: stock de profesionales mineros en Argentina y por especialidad, brecha de talento, sueldos comparados, oferta de formación disponible y política regulatoria necesaria para retener talento y atraer inversión.</p>
 
+            <div class="alert">
+                <strong>Instrumento de medición:</strong> este pilar se nutre del <strong>Monitor de Ingeniería de Minas de Argentina (MIMA)</strong>, la lectura periódica de formación, empleo y demanda de talento que el OMA desarrolla junto al Centro Argentino de Ingenieros (CAI).
+            </div>
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('monitor')">Ver el Monitor de Ingeniería de Minas</button>
+            </div>
+
             <div class="subsection">
                 <h3>Stock de talento</h3>
-                <p>Capital humano minero argentino (ingenieros, geólogos) y su distribución por especialidad y provincia, como base para identificar dónde el país tiene déficit de capacidades técnicas frente a la escala de inversión proyectada (litio, cobre, oro/plata).</p>
+                <p>Capital humano minero argentino (ingenieros, geólogos) y su distribución por especialidad y provincia, como base para identificar dónde el país tiene déficit de capacidades técnicas frente a la escala de inversión proyectada (litio, cobre, oro/plata). Fuente periódica: perspectiva de Profesionales del MIMA.</p>
             </div>
 
             <div class="subsection">
                 <h3>Empleabilidad y brecha de competencias</h3>
-                <p>Empleabilidad en el sector minero argentino, brecha de competencias respecto de lo que demandan los nuevos proyectos, y comparación de sueldos frente a Chile y Perú.</p>
+                <p>Empleabilidad en el sector minero argentino, brecha de competencias respecto de lo que demandan los nuevos proyectos, y comparación de sueldos frente a Chile y Perú. Fuente periódica: perspectivas de Profesionales y Empresas mineras del MIMA.</p>
             </div>
 
             <div class="subsection">
                 <h3>Formación y vocación</h3>
-                <p>Capacidad instalada de formación en carreras mineras en universidades argentinas (UNSJ, UNCa, UNJu, UNSa, entre otras), programas especializados emergentes, evolución de matrículas en ingeniería de minas, y atracción de talento femenino e inclusión como eje explícito de seguimiento.</p>
+                <p>Capacidad instalada de formación en carreras mineras en universidades argentinas (UNSJ, UNCa, UNJu, UNSa, entre otras), programas especializados emergentes, evolución de matrículas en ingeniería de minas, y atracción de talento femenino e inclusión como eje explícito de seguimiento. Fuente periódica: perspectivas de Universidades y Sociedad y Jóvenes del MIMA, con el CAI.</p>
             </div>
 
             <div class="subsection">
@@ -1020,7 +1056,7 @@
         <!-- Indicadores -->
         <div id="indicadores" class="tab-content">
             <h1>Marco de Indicadores Estructurado</h1>
-            <p>El Observatorio de Ingeniería de España define 8 categorías de indicadores para su sector. El OMA adapta este marco a la minería crítica argentina, mapeando cada categoría al gap estratégico de CeProMin que resuelve.</p>
+            <p>El Observatorio de Ingeniería de España define 8 categorías de indicadores para su sector. El OMA adapta este marco a la minería crítica argentina, mapeando cada categoría al gap estratégico de CeProMin que resuelve. Las categorías Demográfico, Laboral, Compensación, Formación y Vocacional se nutren del Monitor de Ingeniería de Minas (MIMA), desarrollado junto al Centro Argentino de Ingenieros (CAI).</p>
 
             <table>
                 <thead>
@@ -1087,6 +1123,144 @@
                 </div>
                 <div class="barometer-legend" id="barometerLegend"></div>
             </div>
+
+            <div class="alert" id="barometroMonitor"></div>
+        </div>
+
+        <!-- Monitor de Ingeniería de Minas (MIMA) -->
+        <div id="monitor" class="tab-content">
+            <h1>Monitor de Ingeniería de Minas de Argentina (MIMA)</h1>
+            <p>El <strong>MIMA</strong> es el instrumento del OMA para seguir, de forma periódica e integral, el <strong>capital humano y la formación</strong> de la ingeniería de minas argentina: cuántos profesionales se forman, dónde trabajan, qué talento necesitan los proyectos y qué capacidades van a faltar hacia 2030-2050. Se desarrolla junto al <strong>Centro Argentino de Ingenieros (CAI)</strong>, adaptando a la minería su <em>Monitor de la Ingeniería Argentina (MIA)</em>, y se suma al Barómetro OMA como segundo instrumento de monitoreo periódico.</p>
+
+            <div class="quote-block">
+                "Datos para transformar el futuro del talento minero argentino."
+                <small>Adaptado del lema del MIA del CAI: «Datos para transformar el futuro».</small>
+            </div>
+
+            <div class="alert">
+                <strong>Instrumento del Pilar 3 (Capital Humano &amp; Política Minera):</strong> el Barómetro dice si el entorno invita a invertir; el MIMA responde si el país tiene los ingenieros, técnicos y capacidades de formación para ejecutar esa inversión. Es la fuente periódica de datos de formación, empleabilidad, brechas de competencias y vocaciones del OMA.
+            </div>
+
+            <h2>Cuatro funciones aplicadas a la formación y el talento minero</h2>
+            <div class="flow-grid">
+                <div class="flow-step">
+                    <span class="flow-tag">MEDIR</span>
+                    <p>Construir indicadores consistentes sobre formación (matrícula, egreso), ejercicio profesional y demanda de talento de las empresas mineras, con series comparables en el tiempo.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-tag">INTERPRETAR</span>
+                    <p>Detectar tendencias, brechas territoriales (San Juan, Catamarca, Jujuy, Salta, Santa Cruz) y capacidades estratégicas faltantes según mineral: cobre, litio, oro/plata, tierras raras y procesamiento.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-tag">CONECTAR</span>
+                    <p>Vincular universidades, empresas mineras, profesionales, el CAI y los gobiernos nacional y provinciales para alinear la oferta de formación con lo que piden los proyectos.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-tag">ANTICIPAR</span>
+                    <p>Proyectar cuántos ingenieros y con qué competencias necesitará el país, cruzando el pipeline de proyectos y la demanda global 2030-2050 del pilar Measure.</p>
+                </div>
+            </div>
+
+            <h2>Cuatro perspectivas integradas</h2>
+            <p>El MIA del CAI encuesta a tres grupos —Sociedad, Profesionales y Empresas—. El MIMA los adapta a la minería y suma un cuarto, el de las <strong>universidades y centros de formación</strong>, para conectar el monitoreo de manera directa con la formación.</p>
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-number">UNIVERSIDADES Y FORMACIÓN</div>
+                    <div class="pillar-body">
+                        <h4>La cantera del talento</h4>
+                        <p>Matrícula, egresados y deserción en ingeniería de minas, geología y afines (UNSJ, UNCa, UNJu, UNSa, entre otras); programas especializados emergentes; prácticas y vinculación con empresas; capacidad docente.</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">PROFESIONALES</div>
+                    <div class="pillar-body">
+                        <h4>Trayectorias y condiciones laborales</h4>
+                        <p>Especialidad, provincia, empleabilidad, sueldos comparados con Chile y Perú, movilidad, satisfacción con la carrera y competencias que consideran clave a futuro (procesamiento, IA, sostenibilidad).</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">EMPRESAS MINERAS</div>
+                    <div class="pillar-body">
+                        <h4>La demanda de talento</h4>
+                        <p>Patrones de reclutamiento, vacantes críticas, brecha entre lo que enseñan las carreras y lo que piden las operaciones, y necesidades proyectadas a 3-5 años según su pipeline de proyectos.</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">SOCIEDAD Y JÓVENES</div>
+                    <div class="pillar-body">
+                        <h4>Vocaciones y percepción</h4>
+                        <p>Imagen de la ingeniería de minas, licencia social, interés vocacional de estudiantes secundarios y atracción de talento femenino como eje explícito de seguimiento.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Qué mide: la ruta del talento minero</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Etapa</th>
+                        <th>Qué mide el MIMA</th>
+                        <th>Categoría del marco OMA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vocación</td>
+                        <td>Interés de jóvenes en carreras mineras, percepción social de la ingeniería de minas, atracción de talento femenino.</td>
+                        <td>Vocacional</td>
+                    </tr>
+                    <tr>
+                        <td>Formación</td>
+                        <td>Matrícula, egreso y deserción; programas emergentes; capacidad instalada y vinculación universidad-empresa.</td>
+                        <td>Formación</td>
+                    </tr>
+                    <tr>
+                        <td>Inserción y empleo</td>
+                        <td>Empleabilidad, tiempo hasta el primer empleo, distribución por especialidad y provincia.</td>
+                        <td>Demográfico / Laboral</td>
+                    </tr>
+                    <tr>
+                        <td>Desarrollo y retención</td>
+                        <td>Condiciones laborales, sueldos comparados con Chile y Perú, movilidad y fuga de talento.</td>
+                        <td>Compensación / Laboral</td>
+                    </tr>
+                    <tr>
+                        <td>Competencias futuras</td>
+                        <td>Brecha entre la formación actual y lo que exigen los nuevos proyectos (procesamiento de litio, cobre a gran escala, IA, ESG).</td>
+                        <td>Formación / Prospectivo</td>
+                    </tr>
+                    <tr>
+                        <td>Demanda de talento</td>
+                        <td>Vacantes críticas y necesidades proyectadas de ingenieros a 3-5 años según el pipeline de proyectos.</td>
+                        <td>Empresarial / Prospectivo</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Metodología</h2>
+            <p>Siguiendo el modelo del MIA, el MIMA combina una encuesta anónima y breve (alrededor de 4 minutos, con preguntas sobre región, especialidad, competencias prioritarias e impacto de la IA) con la metodología dual del OMA: entrevistas cualitativas a empresas, universidades y funcionarios. Está pensado para publicarse en ediciones periódicas, de modo que sea posible seguir la evolución del talento minero en el tiempo.</p>
+
+            <div class="subsection">
+                <h3>Referencia: el MIA del CAI</h3>
+                <p>La edición 2026 del Monitor de la Ingeniería Argentina, para la ingeniería en general, reporta estos valores. Son solo un punto de comparación: el MIMA producirá sus propias cifras para la ingeniería de minas.</p>
+                <div class="stat-row">
+                    <div class="stat-card"><span class="stat-num">51%</span><span class="stat-label">de la sociedad cree que será la profesión con mayor demanda futura</span></div>
+                    <div class="stat-card"><span class="stat-num">86%</span><span class="stat-label">de los profesionales recomendaría estudiar ingeniería</span></div>
+                    <div class="stat-card"><span class="stat-num">59%</span><span class="stat-label">de las empresas prevé mayor demanda en los próximos 3 a 5 años</span></div>
+                </div>
+                <p style="font-size:0.85rem; color:#666;">Fuente: <a href="https://cai.org.ar/monitor-de-la-ingenieria-argentina/" target="_blank" rel="noopener">Monitor de la Ingeniería Argentina — Centro Argentino de Ingenieros</a>.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Estado</h3>
+                <p>Primera edición en diseño. Contenido en desarrollo.</p>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('capital-humano')">Ver Capital Humano</button>
+                <button class="btn btn-secondary" onclick="navigateTo('barometro')">Ver Barómetro</button>
+                <a class="btn btn-secondary" href="https://cai.org.ar/monitor-de-la-ingenieria-argentina/" target="_blank" rel="noopener">Conocer el MIA del CAI</a>
+            </div>
         </div>
 
         <!-- Noticias & Opinión -->
@@ -1148,8 +1322,13 @@
                 <p>Empresas, cámaras provinciales y ONGs de sostenibilidad.</p>
             </div>
 
+            <div class="subsection">
+                <h3>Aliado institucional: Centro Argentino de Ingenieros (CAI)</h3>
+                <p>El CAI, asociación civil sin fines de lucro con más de 130 años de trayectoria, aporta al Monitor de Ingeniería de Minas su experiencia con el Monitor de la Ingeniería Argentina (MIA) y su vínculo con la comunidad profesional de la ingeniería. Su rol en el MIMA: metodología de encuesta, canal de llegada a los profesionales y espacio de difusión de los resultados.</p>
+            </div>
+
             <h2>Metodología dual: datos + narrativa</h2>
-            <p>El OIE combina encuestas masivas (más de 40.000 respondentes) para obtener números duros, con entrevistas cualitativas a tomadores de decisión para capturar contexto y tendencias. El OMA adapta este método: encuestas a empresas mineras que operan en Argentina sobre costos, CAPEX y timeline de proyectos, más entrevistas a CEOs, funcionarios nacionales y provinciales, y académicos. El resultado son proyecciones de demanda y oferta respaldadas simultáneamente por evidencia cuantitativa y cualitativa.</p>
+            <p>El OIE combina encuestas masivas (más de 40.000 respondentes) para obtener números duros, con entrevistas cualitativas a tomadores de decisión para capturar contexto y tendencias. El OMA adapta este método: encuestas a empresas mineras que operan en Argentina sobre costos, CAPEX y timeline de proyectos, más entrevistas a CEOs, funcionarios nacionales y provinciales, y académicos. El resultado son proyecciones de demanda y oferta respaldadas simultáneamente por evidencia cuantitativa y cualitativa. En capital humano, el Monitor de Ingeniería de Minas (MIMA) aplica la misma lógica: encuesta anónima a profesionales, empresas, universidades y sociedad, más entrevistas.</p>
 
             <h2>Nodos provinciales</h2>
             <div class="node-grid">
@@ -1222,6 +1401,7 @@
                 <ul class="checklist">
                     <li>Acuerdo entre Panorama Minero, la UBA, la Secretaría de Minería de la Nación y COFEMIN para crear el OMA.</li>
                     <li>Definir el Consejo Rector y la estructura de nodos provinciales.</li>
+                    <li>Formalizar la alianza con el Centro Argentino de Ingenieros (CAI) para el Monitor de Ingeniería de Minas.</li>
                     <li>Asegurar financiamiento (banco de desarrollo, Nación, provincias, sector privado).</li>
                     <li>Contratar Dirección y equipo core (Datos, Política, Comunicación).</li>
                 </ul>
@@ -1233,6 +1413,7 @@
                 <ul class="checklist">
                     <li>Diseñar encuestas, adaptando la metodología del OIE al contexto minero argentino.</li>
                     <li>Encuestar a empresas mineras que operan en Argentina (grandes y junior).</li>
+                    <li>Adaptar el cuestionario del MIA del CAI y lanzar la primera edición del Monitor de Ingeniería de Minas (universidades, profesionales, empresas y sociedad).</li>
                     <li>Realizar entrevistas a CEOs, funcionarios nacionales/provinciales y académicos.</li>
                     <li>Compilar proyecciones de demanda global (pilar Measure).</li>
                     <li>Analizar oferta argentina frente a demanda (pilar Anticipate).</li>
@@ -1245,6 +1426,7 @@
                 <ul class="checklist">
                     <li>Publicar "OMA 2026-2027: Minería Crítica en Argentina".</li>
                     <li>Estructurado en 3 pilares: demanda global, competitividad argentina, capital humano.</li>
+                    <li>Incorporar los resultados del Monitor de Ingeniería de Minas (MIMA) al pilar de capital humano.</li>
                     <li>Lanzamiento en Argentina Mining o San Juan Mining Summit.</li>
                     <li>Generar cobertura de medios y posicionamiento ante Nación, provincias e inversores.</li>
                 </ul>
@@ -1271,8 +1453,14 @@
                 <li>Prospectiva de largo plazo (2050) — única fuente de base argentina con ese horizonte.</li>
                 <li>Cierra los tres strategic gaps: Measure (demanda), Anticipate (oferta), Guide (política).</li>
                 <li>Legitimidad triple: Nación/provincias + academia + sector privado.</li>
+                <li>Incorpora el Monitor de Ingeniería de Minas (MIMA), en alianza con el CAI: una lectura periódica de formación y talento que conecta la demanda proyectada con la capacidad humana para atenderla.</li>
                 <li>Herramienta de coordinación federal (Nación-provincias) y de posicionamiento internacional del país.</li>
             </ul>
+
+            <div class="subsection">
+                <h3>Alianza con el Centro Argentino de Ingenieros (CAI)</h3>
+                <p>El OMA suma al CAI (cai.org.ar) para desarrollar el Monitor de Ingeniería de Minas de Argentina, adaptación a la minería del Monitor de la Ingeniería Argentina (MIA) del CAI. El MIA parte de un diagnóstico compartido: Argentina carecía de una lectura integral y periódica de su capital humano ingenieril. El MIMA la construye para la ingeniería de minas y la conecta con formación, empleo y demanda de las empresas.</p>
+            </div>
 
             <div class="subsection">
                 <h3>Relación con CeProMin</h3>
@@ -1291,7 +1479,7 @@
 
             <div class="subsection">
                 <h3>Versión</h3>
-                <p>Observatorio en desarrollo. Contenido basado en el análisis conceptual de CeProMin.</p>
+                <p>Observatorio en desarrollo. Contenido basado en el análisis conceptual de CeProMin y en el modelo del Monitor de la Ingeniería Argentina del CAI.</p>
             </div>
         </div>
     </div>
@@ -1299,8 +1487,9 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p id="footerCopyright">&copy; 2026 OMA - Observatorio Minero Argentino · Una iniciativa de Panorama Minero y la Universidad de Buenos Aires (UBA)</p>
+            <p id="footerCopyright">&copy; 2026 OMA - Observatorio Minero Argentino · Una iniciativa del Centro Argentino de Ingenieros (CAI), Panorama Minero (PM) y la Universidad de Buenos Aires (UBA)</p>
             <div class="footer-links">
+                <a href="#" data-tab-link="monitor" onclick="navigateTo('monitor')">Monitor MIMA</a>
                 <a href="#" data-tab-link="gobernanza" onclick="navigateTo('gobernanza')">Gobernanza</a>
                 <a href="#" data-tab-link="acerca" onclick="navigateTo('acerca')">Acerca de OMA</a>
                 <a href="#" data-tab-link="hoja-de-ruta" onclick="navigateTo('hoja-de-ruta')">Hoja de Ruta</a>
@@ -1316,11 +1505,11 @@
         // ============================================================
         let currentLang = localStorage.getItem('omaLang') || 'es';
 
-        // Traducción de los 8 tabs 100% estáticos: se captura el HTML en
+        // Traducción de los 9 tabs 100% estáticos: se captura el HTML en
         // español ya presente en el documento, y se define acá el HTML
         // en inglés. Al togglear, se reemplaza el innerHTML completo del
         // tab (misma estructura/clases, solo cambia el texto).
-        const STATIC_TAB_IDS = ['inicio', 'demanda', 'oferta', 'capital-humano', 'indicadores', 'gobernanza', 'hoja-de-ruta', 'acerca'];
+        const STATIC_TAB_IDS = ['inicio', 'demanda', 'oferta', 'capital-humano', 'indicadores', 'monitor', 'gobernanza', 'hoja-de-ruta', 'acerca'];
         const TAB_HTML_ES = {};
         STATIC_TAB_IDS.forEach(id => { TAB_HTML_ES[id] = document.getElementById(id).innerHTML; });
 
@@ -1336,6 +1525,7 @@
                 <li>Turn that data into useful intelligence for strategic decisions.</li>
                 <li>Communicate it periodically, reliably and traceably.</li>
                 <li>Generate early warnings about future scenarios (anticipate trends).</li>
+                <li>Monitor human capital and training in mining engineering, together with the Argentine Center of Engineers (CAI), through the Argentine Mining Engineering Monitor (MIMA).</li>
             </ul>
 
             <div class="quote-block">
@@ -1379,6 +1569,26 @@
                     <div class="pillar-body">
                         <h4>Fusion Energy</h4>
                         <p>Heavy rare earths (yttrium), W, Be, Li-6 for fusion reactors. Driver: commercial viability of fusion (2030s-2040s). Tracking advanced projects such as the US Mission Genesis (superconductors, AI applied to plasma control), relevant to Argentine lithium-6.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Two periodic monitoring instruments</h2>
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-number">OMA BAROMETER</div>
+                    <div class="pillar-body">
+                        <h4>Does the environment invite investment?</h4>
+                        <p>The mining investment climate at a glance: regulatory framework, social license, political climate, funding, infrastructure, macro stability and mining exports. Fed by company surveys.</p>
+                        <button class="btn" style="margin-top:0.8rem" onclick="navigateTo('barometro')">View Barometer</button>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">MINING ENGINEERING MONITOR (MIMA)</div>
+                    <div class="pillar-body">
+                        <h4>Does Argentina have the engineers to deliver that investment?</h4>
+                        <p>Training, employment and talent demand in mining engineering, with the Argentine Center of Engineers (CAI). It measures, interprets, connects and anticipates the human capabilities the sector needs.</p>
+                        <button class="btn" style="margin-top:0.8rem" onclick="navigateTo('monitor')">View the Monitor</button>
                     </div>
                 </div>
             </div>
@@ -1454,19 +1664,26 @@
             <h1>Human Capital &amp; Mining Policy</h1>
             <p><strong>Pillar 3</strong> of OMA: stock of mining professionals in Argentina by specialty, talent gap, comparative salaries, available training supply, and the regulatory policy needed to retain talent and attract investment.</p>
 
+            <div class="alert">
+                <strong>Measurement instrument:</strong> this pillar draws on the <strong>Argentine Mining Engineering Monitor (MIMA)</strong>, the periodic reading of training, employment and talent demand that OMA is developing together with the Argentine Center of Engineers (CAI).
+            </div>
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('monitor')">View the Mining Engineering Monitor</button>
+            </div>
+
             <div class="subsection">
                 <h3>Talent stock</h3>
-                <p>Argentine mining human capital (engineers, geologists) and its distribution by specialty and province, as a basis for identifying where the country has a technical-capability deficit relative to projected investment scale (lithium, copper, gold/silver).</p>
+                <p>Argentine mining human capital (engineers, geologists) and its distribution by specialty and province, as a basis for identifying where the country has a technical-capability deficit relative to projected investment scale (lithium, copper, gold/silver). Periodic source: MIMA Professionals perspective.</p>
             </div>
 
             <div class="subsection">
                 <h3>Employability and skills gap</h3>
-                <p>Employability in the Argentine mining sector, the skills gap relative to what new projects demand, and salary comparison against Chile and Peru.</p>
+                <p>Employability in the Argentine mining sector, the skills gap relative to what new projects demand, and salary comparison against Chile and Peru. Periodic source: MIMA Professionals and Mining Companies perspectives.</p>
             </div>
 
             <div class="subsection">
                 <h3>Training and vocational interest</h3>
-                <p>Installed training capacity in mining-related degrees at Argentine universities (UNSJ, UNCa, UNJu, UNSa, among others), emerging specialized programs, enrollment trends in mining engineering, and attracting female talent and inclusion as an explicit tracking axis.</p>
+                <p>Installed training capacity in mining-related degrees at Argentine universities (UNSJ, UNCa, UNJu, UNSa, among others), emerging specialized programs, enrollment trends in mining engineering, and attracting female talent and inclusion as an explicit tracking axis. Periodic source: MIMA Universities and Society &amp; Youth perspectives, with CAI.</p>
             </div>
 
             <div class="subsection">
@@ -1474,9 +1691,143 @@
                 <p>The Nation and the provinces tend to react to historical prices rather than anticipate. There is a lack of forward-looking vision linking regulatory and talent-training decisions to demand trends projected for 2030-2050. That is the gap this pillar aims to close.</p>
             </div>`,
 
+            monitor: `
+            <h1>Argentine Mining Engineering Monitor (MIMA)</h1>
+            <p><strong>MIMA</strong> is OMA's instrument for tracking, periodically and comprehensively, the <strong>human capital and training</strong> of Argentine mining engineering: how many professionals are being trained, where they work, what talent projects need, and which capabilities will be missing by 2030-2050. It is being developed with the <strong>Argentine Center of Engineers (CAI)</strong>, adapting to mining its <em>Argentine Engineering Monitor (MIA)</em>, and joins the OMA Barometer as the second periodic monitoring instrument.</p>
+
+            <div class="quote-block">
+                "Data to transform the future of Argentine mining talent."
+                <small>Adapted from the CAI MIA slogan: "Data to transform the future" (Datos para transformar el futuro).</small>
+            </div>
+
+            <div class="alert">
+                <strong>Instrument of Pillar 3 (Human Capital &amp; Mining Policy):</strong> the Barometer tells whether the environment invites investment; MIMA answers whether the country has the engineers, technicians and training capacity to deliver it. It is OMA's periodic data source on training, employability, skills gaps and vocational interest.
+            </div>
+
+            <h2>Four functions applied to mining training and talent</h2>
+            <div class="flow-grid">
+                <div class="flow-step">
+                    <span class="flow-tag">MEASURE</span>
+                    <p>Build consistent indicators on training (enrollment, graduation), professional practice and mining-company talent demand, with series comparable over time.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-tag">INTERPRET</span>
+                    <p>Detect trends, territorial gaps (San Juan, Catamarca, Jujuy, Salta, Santa Cruz) and missing strategic capabilities by mineral: copper, lithium, gold/silver, rare earths and processing.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-tag">CONNECT</span>
+                    <p>Link universities, mining companies, professionals, CAI, and national and provincial governments to align the training offer with what projects demand.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-tag">ANTICIPATE</span>
+                    <p>Project how many engineers, with which skills, the country will need, crossing the project pipeline with the 2030-2050 global demand from the Measure pillar.</p>
+                </div>
+            </div>
+
+            <h2>Four integrated perspectives</h2>
+            <p>CAI's MIA surveys three groups — Society, Professionals and Companies. MIMA adapts them to mining and adds a fourth, <strong>universities and training centers</strong>, to link the monitoring directly to training.</p>
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-number">UNIVERSITIES &amp; TRAINING</div>
+                    <div class="pillar-body">
+                        <h4>The talent pipeline</h4>
+                        <p>Enrollment, graduates and dropout in mining engineering, geology and related fields (UNSJ, UNCa, UNJu, UNSa, among others); emerging specialized programs; internships and links with companies; teaching capacity.</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">PROFESSIONALS</div>
+                    <div class="pillar-body">
+                        <h4>Careers and working conditions</h4>
+                        <p>Specialty, province, employability, salaries compared with Chile and Peru, mobility, career satisfaction and the skills they see as key for the future (processing, AI, sustainability).</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">MINING COMPANIES</div>
+                    <div class="pillar-body">
+                        <h4>Talent demand</h4>
+                        <p>Recruitment patterns, critical vacancies, the gap between what degrees teach and what operations require, and needs projected over 3-5 years based on their project pipeline.</p>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-number">SOCIETY &amp; YOUTH</div>
+                    <div class="pillar-body">
+                        <h4>Vocations and perception</h4>
+                        <p>Image of mining engineering, social license, vocational interest among secondary-school students, and attracting female talent as an explicit tracking axis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>What it measures: the mining talent pathway</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stage</th>
+                        <th>What MIMA measures</th>
+                        <th>OMA framework category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vocation</td>
+                        <td>Young people's interest in mining degrees, social perception of mining engineering, attracting female talent.</td>
+                        <td>Vocational</td>
+                    </tr>
+                    <tr>
+                        <td>Training</td>
+                        <td>Enrollment, graduation and dropout; emerging programs; installed capacity and university-industry links.</td>
+                        <td>Training</td>
+                    </tr>
+                    <tr>
+                        <td>Entry and employment</td>
+                        <td>Employability, time to first job, distribution by specialty and province.</td>
+                        <td>Demographic / Labor</td>
+                    </tr>
+                    <tr>
+                        <td>Development and retention</td>
+                        <td>Working conditions, salaries compared with Chile and Peru, mobility and brain drain.</td>
+                        <td>Compensation / Labor</td>
+                    </tr>
+                    <tr>
+                        <td>Future skills</td>
+                        <td>Gap between current training and what new projects require (lithium processing, large-scale copper, AI, ESG).</td>
+                        <td>Training / Prospective</td>
+                    </tr>
+                    <tr>
+                        <td>Talent demand</td>
+                        <td>Critical vacancies and projected engineer needs over 3-5 years based on the project pipeline.</td>
+                        <td>Business / Prospective</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Methodology</h2>
+            <p>Following the MIA model, MIMA combines a short anonymous survey (about 4 minutes, with questions on region, specialty, priority skills and the impact of AI) with OMA's dual methodology: qualitative interviews with companies, universities and officials. It is designed to be published in periodic editions, so the evolution of mining talent can be tracked over time.</p>
+
+            <div class="subsection">
+                <h3>Reference: CAI's MIA</h3>
+                <p>The 2026 edition of the Argentine Engineering Monitor, covering engineering in general, reports these values. They are only a benchmark: MIMA will produce its own figures for mining engineering.</p>
+                <div class="stat-row">
+                    <div class="stat-card"><span class="stat-num">51%</span><span class="stat-label">of society believes it will be the profession with the highest future demand</span></div>
+                    <div class="stat-card"><span class="stat-num">86%</span><span class="stat-label">of professionals would recommend studying engineering</span></div>
+                    <div class="stat-card"><span class="stat-num">59%</span><span class="stat-label">of companies expect higher demand over the next 3 to 5 years</span></div>
+                </div>
+                <p style="font-size:0.85rem; color:#666;">Source: <a href="https://cai.org.ar/monitor-de-la-ingenieria-argentina/" target="_blank" rel="noopener">Monitor de la Ingeniería Argentina — Centro Argentino de Ingenieros</a> (in Spanish).</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Status</h3>
+                <p>First edition in design. Content under development.</p>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('capital-humano')">View Human Capital</button>
+                <button class="btn btn-secondary" onclick="navigateTo('barometro')">View Barometer</button>
+                <a class="btn btn-secondary" href="https://cai.org.ar/monitor-de-la-ingenieria-argentina/" target="_blank" rel="noopener">Learn about CAI's MIA</a>
+            </div>`,
+
             indicadores: `
             <h1>Structured Indicator Framework</h1>
-            <p>The Spanish Engineering Observatory defines 8 indicator categories for its sector. OMA adapts this framework to Argentine critical mining, mapping each category to the CeProMin strategic gap it addresses.</p>
+            <p>The Spanish Engineering Observatory defines 8 indicator categories for its sector. OMA adapts this framework to Argentine critical mining, mapping each category to the CeProMin strategic gap it addresses. The Demographic, Labor, Compensation, Training and Vocational categories draw on the Mining Engineering Monitor (MIMA), developed together with the Argentine Center of Engineers (CAI).</p>
 
             <table>
                 <thead>
@@ -1551,8 +1902,13 @@
                 <p>Companies, provincial chambers and sustainability NGOs.</p>
             </div>
 
+            <div class="subsection">
+                <h3>Institutional partner: Argentine Center of Engineers (CAI)</h3>
+                <p>CAI, a non-profit civil association with over 130 years of history, brings to the Mining Engineering Monitor its experience with the Argentine Engineering Monitor (MIA) and its ties to the engineering professional community. Its role in MIMA: survey methodology, a channel to reach professionals, and a platform to disseminate results.</p>
+            </div>
+
             <h2>Dual methodology: data + narrative</h2>
-            <p>The OIE combines mass surveys (over 40,000 respondents) to obtain hard numbers, with qualitative interviews of decision-makers to capture context and trends. OMA adapts this method: surveys of mining companies operating in Argentina on costs, CAPEX and project timelines, plus interviews with CEOs, national and provincial officials, and academics. The result is demand and supply projections backed simultaneously by quantitative and qualitative evidence.</p>
+            <p>The OIE combines mass surveys (over 40,000 respondents) to obtain hard numbers, with qualitative interviews of decision-makers to capture context and trends. OMA adapts this method: surveys of mining companies operating in Argentina on costs, CAPEX and project timelines, plus interviews with CEOs, national and provincial officials, and academics. The result is demand and supply projections backed simultaneously by quantitative and qualitative evidence. On human capital, the Mining Engineering Monitor (MIMA) applies the same logic: an anonymous survey of professionals, companies, universities and society, plus interviews.</p>
 
             <h2>Provincial nodes</h2>
             <div class="node-grid">
@@ -1623,6 +1979,7 @@
                 <ul class="checklist">
                     <li>Agreement among Panorama Minero, UBA, the National Mining Secretariat and COFEMIN to create OMA.</li>
                     <li>Define the Governing Council and the structure of provincial nodes.</li>
+                    <li>Formalize the partnership with the Argentine Center of Engineers (CAI) for the Mining Engineering Monitor.</li>
                     <li>Secure funding (development bank, Nation, provinces, private sector).</li>
                     <li>Hire Management and core team (Data, Policy, Communications).</li>
                 </ul>
@@ -1634,6 +1991,7 @@
                 <ul class="checklist">
                     <li>Design surveys, adapting the OIE methodology to the Argentine mining context.</li>
                     <li>Survey mining companies operating in Argentina (majors and juniors).</li>
+                    <li>Adapt the CAI MIA questionnaire and launch the first edition of the Mining Engineering Monitor (universities, professionals, companies and society).</li>
                     <li>Conduct interviews with CEOs, national/provincial officials and academics.</li>
                     <li>Compile global demand projections (Measure pillar).</li>
                     <li>Analyze Argentine supply against demand (Anticipate pillar).</li>
@@ -1646,6 +2004,7 @@
                 <ul class="checklist">
                     <li>Publish "OMA 2026-2027: Critical Mining in Argentina."</li>
                     <li>Structured into 3 pillars: global demand, Argentine competitiveness, human capital.</li>
+                    <li>Incorporate the Mining Engineering Monitor (MIMA) results into the human capital pillar.</li>
                     <li>Launch at Argentina Mining or the San Juan Mining Summit.</li>
                     <li>Generate media coverage and positioning with the Nation, provinces and investors.</li>
                 </ul>
@@ -1670,8 +2029,14 @@
                 <li>Long-term foresight (2050) — the only Argentine-based source with that horizon.</li>
                 <li>Closes all three strategic gaps: Measure (demand), Anticipate (supply), Guide (policy).</li>
                 <li>Triple legitimacy: Nation/provinces + academia + private sector.</li>
+                <li>Incorporates the Mining Engineering Monitor (MIMA), in partnership with CAI: a periodic reading of training and talent that connects projected demand with the human capacity to meet it.</li>
                 <li>A tool for federal coordination (Nation-provinces) and for the country's international positioning.</li>
             </ul>
+
+            <div class="subsection">
+                <h3>Partnership with the Argentine Center of Engineers (CAI)</h3>
+                <p>OMA brings CAI (cai.org.ar) on board to develop the Argentine Mining Engineering Monitor, an adaptation to mining of CAI's Argentine Engineering Monitor (MIA). The MIA starts from a shared diagnosis: Argentina lacked a comprehensive, periodic reading of its engineering human capital. MIMA builds it for mining engineering and connects it with training, employment and company demand.</p>
+            </div>
 
             <div class="subsection">
                 <h3>Relationship with CeProMin</h3>
@@ -1690,7 +2055,7 @@
 
             <div class="subsection">
                 <h3>Version</h3>
-                <p>Observatory under development. Content based on CeProMin's conceptual analysis.</p>
+                <p>Observatory under development. Content based on CeProMin's conceptual analysis and on the model of CAI's Argentine Engineering Monitor.</p>
             </div>`
         };
 
@@ -1698,30 +2063,30 @@
         const HEADER_I18N = {
             es: {
                 logo: '🇦🇷 OMA · Observatorio Minero Argentino',
-                tagline: 'Una iniciativa de Panorama Minero y la Universidad de Buenos Aires (UBA) — midiendo demanda global, anticipando oferta argentina, guiando decisión estratégica',
-                badge: 'Evolución del modelo CeProMin, con foco exclusivo en Argentina'
+                tagline: 'Una iniciativa del Centro Argentino de Ingenieros (CAI), Panorama Minero (PM) y la Universidad de Buenos Aires (UBA) — midiendo demanda global, anticipando oferta argentina, guiando decisión estratégica',
+                badgeCai: 'Monitor de Ingeniería de Minas en alianza con el Centro Argentino de Ingenieros (CAI)'
             },
             en: {
                 logo: '🇦🇷 OMA · Argentine Mining Observatory',
-                tagline: 'An initiative of Panorama Minero and the University of Buenos Aires (UBA) — measuring global demand, anticipating Argentine supply, guiding strategic decisions',
-                badge: 'Evolution of the CeProMin model, with an exclusive focus on Argentina'
+                tagline: 'An initiative of the Argentine Center of Engineers (CAI), Panorama Minero (PM) and the University of Buenos Aires (UBA) — measuring global demand, anticipating Argentine supply, guiding strategic decisions',
+                badgeCai: 'Mining Engineering Monitor in partnership with the Argentine Center of Engineers (CAI)'
             }
         };
 
         const NAV_LABELS = {
-            es: { inicio: 'Inicio', demanda: 'Demanda Global', oferta: 'Oferta & Competitividad', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', barometro: 'Barómetro', noticias: 'Noticias & Opinión', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de OMA' },
-            en: { inicio: 'Home', demanda: 'Global Demand', oferta: 'Supply & Competitiveness', 'capital-humano': 'Human Capital', indicadores: 'Indicators', barometro: 'Barometer', noticias: 'News & Opinion', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About OMA' }
+            es: { inicio: 'Inicio', demanda: 'Demanda Global', oferta: 'Oferta & Competitividad', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', barometro: 'Barómetro', monitor: 'Monitor MIMA', noticias: 'Noticias & Opinión', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de OMA' },
+            en: { inicio: 'Home', demanda: 'Global Demand', oferta: 'Supply & Competitiveness', 'capital-humano': 'Human Capital', indicadores: 'Indicators', barometro: 'Barometer', monitor: 'MIMA Monitor', noticias: 'News & Opinion', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About OMA' }
         };
 
         const TICKER_LABEL = { es: '💹 Cotizaciones', en: '💹 Market Prices' };
 
         const FOOTER_I18N = {
             es: {
-                copyright: '&copy; 2026 OMA - Observatorio Minero Argentino · Una iniciativa de Panorama Minero y la Universidad de Buenos Aires (UBA)',
+                copyright: '&copy; 2026 OMA - Observatorio Minero Argentino · Una iniciativa del Centro Argentino de Ingenieros (CAI), Panorama Minero (PM) y la Universidad de Buenos Aires (UBA)',
                 note: 'Sitio independiente del de CeProMin — contenido en desarrollo'
             },
             en: {
-                copyright: '&copy; 2026 OMA - Argentine Mining Observatory · An initiative of Panorama Minero and the University of Buenos Aires (UBA)',
+                copyright: '&copy; 2026 OMA - Argentine Mining Observatory · An initiative of the Argentine Center of Engineers (CAI), Panorama Minero (PM) and the University of Buenos Aires (UBA)',
                 note: 'Site independent from CeProMin — content under development'
             }
         };
@@ -1730,12 +2095,16 @@
             es: {
                 h1: 'Barómetro OMA — Clima de Inversión Minera',
                 p: 'El Barómetro resume, en un solo vistazo tipo <em>spider chart</em>, la evolución de las variables no estrictamente productivas que más pesan en la decisión de un inversor minero: marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, disponibilidad de financiamiento, infraestructura y estabilidad macroeconómica. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), a partir de encuestas a empresas del Consejo Rector y análisis del equipo OMA.',
-                caption: 'Comparación 3T 2025 vs. 3T 2026 · Fuente: encuesta OMA a empresas mineras (ilustrativo, primer corte)'
+                caption: 'Comparación 3T 2025 vs. 3T 2026 · Fuente: encuesta OMA a empresas mineras (ilustrativo, primer corte)',
+                monitor: '<strong>Se complementa con el Monitor de Ingeniería de Minas (MIMA):</strong> el Barómetro mide el clima de inversión; el Monitor mide si el país cuenta con la formación y el talento para ejecutarla.',
+                monitorLink: 'Ver el Monitor'
             },
             en: {
                 h1: 'OMA Barometer — Mining Investment Climate',
                 p: 'The Barometer summarizes, in a single <em>spider chart</em> view, the evolution of the non-strictly-productive variables that weigh most heavily on a mining investor\'s decision: regulatory framework, social license, political climate, the State\'s "mining-friendly" attitude, funding availability, infrastructure and macroeconomic stability. Each axis is scored from 0 (very unfavorable) to 10 (very favorable), based on surveys of Governing Council companies and analysis by the OMA team.',
-                caption: 'Q3 2025 vs. Q3 2026 comparison · Source: OMA survey of mining companies (illustrative, first cut)'
+                caption: 'Q3 2025 vs. Q3 2026 comparison · Source: OMA survey of mining companies (illustrative, first cut)',
+                monitor: '<strong>Complemented by the Mining Engineering Monitor (MIMA):</strong> the Barometer measures the investment climate; the Monitor measures whether the country has the training and talent to deliver on it.',
+                monitorLink: 'View the Monitor'
             }
         };
 
@@ -1789,7 +2158,7 @@
 
             document.querySelector('.logo').textContent = HEADER_I18N[lang].logo;
             document.querySelector('.tagline').textContent = HEADER_I18N[lang].tagline;
-            document.querySelector('.badge-relacion').textContent = HEADER_I18N[lang].badge;
+            document.querySelector('.badge-cai').textContent = HEADER_I18N[lang].badgeCai;
             document.querySelector('.ticker-label').textContent = TICKER_LABEL[lang];
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -1809,6 +2178,8 @@
             document.getElementById('barometroH1').textContent = BAROMETER_INTRO[lang].h1;
             document.getElementById('barometroP').innerHTML = BAROMETER_INTRO[lang].p;
             document.getElementById('barometerCaption').textContent = BAROMETER_INTRO[lang].caption;
+            document.getElementById('barometroMonitor').innerHTML = BAROMETER_INTRO[lang].monitor +
+                ' <a href="#" onclick="navigateTo(\'monitor\'); return false;">' + BAROMETER_INTRO[lang].monitorLink + ' →</a>';
 
             document.getElementById('noticiasH1').innerHTML = NOTICIAS_INTRO[lang].h1;
             document.getElementById('noticiasP').innerHTML = NOTICIAS_INTRO[lang].p;
