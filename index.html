@@ -602,8 +602,52 @@
             background: #eef4ff;
             border-radius: 6px;
             padding: 1.2rem;
-            position: sticky;
-            top: 90px;
+            align-self: start;
+        }
+
+        .amvest-card p {
+            text-align: left;
+        }
+
+        .amvest-card .amvest-intro {
+            font-size: 0.8rem;
+            color: #555;
+            margin-bottom: 0.6rem;
+        }
+
+        .amvest-card .amvest-item {
+            border-left: 3px solid #2a5298;
+            padding: 0.1rem 0 0.1rem 0.7rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .amvest-card .amvest-meta {
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.15rem;
+        }
+
+        .amvest-card .amvest-item a {
+            color: #1e3c72;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .amvest-card .amvest-item a:hover {
+            text-decoration: underline;
+        }
+
+        .amvest-card .amvest-links {
+            font-size: 0.8rem;
+            margin: 0.3rem 0 0.6rem;
+        }
+
+        .amvest-card .amvest-note {
+            font-size: 0.7rem;
+            color: #888;
         }
 
         .opinion-sidebar > h3 {
@@ -1296,6 +1340,8 @@
                             <p style="font-size:0.75rem; color:#888;">Fuente: <a href="https://www.panorama-minero.com/es" target="_blank" rel="noopener">Panorama Minero</a>, 04 de septiembre de 2026.</p>
                         </div>
                     </div>
+                    <h3 id="amvestSidebarTitle">Webinars de inversión — Amvest Capital</h3>
+                    <div class="opinion-card amvest-card" id="amvestSidebarCard"></div>
                 </aside>
             </div>
         </div>
@@ -2197,6 +2243,7 @@
 
             renderBarometerLegend();
             renderBarometerChart();
+            renderAmvestSidebar();
             loadTicker();
             loadNews();
         }
@@ -2350,19 +2397,20 @@
             }
         };
 
-        function amvestBlockHtml() {
+        function renderAmvestSidebar() {
             const a = AMVEST_I18N[currentLang];
+            document.getElementById('amvestSidebarTitle').textContent = a.title;
             const rows = a.items.map(n => `
-                <div class="news-item">
-                    <div class="news-date"><span class="news-source">Amvest Capital</span> · ${n.date} · ${n.tag} · ${n.extra}</div>
-                    <h4><a href="${n.url}" target="_blank" rel="noopener">${n.title}</a></h4>
+                <div class="amvest-item">
+                    <div class="amvest-meta">${n.date} · ${n.tag} · ${n.extra}</div>
+                    <a href="${n.url}" target="_blank" rel="noopener">${n.title}</a>
                 </div>
             `).join('');
-            return `<h3 style="margin: 1.5rem 0 0.5rem;">${a.title}</h3>
-                <p style="margin-bottom: 0.5rem;">${a.intro}</p>
+            document.getElementById('amvestSidebarCard').innerHTML = `
+                <p class="amvest-intro">${a.intro}</p>
                 ${rows}
-                <p style="margin-top: 0.5rem;"><a href="https://www.amvestcapital.com/webinars-events" target="_blank" rel="noopener">${a.all} →</a> · <a href="https://www.amvestcapital.com/subscribe" target="_blank" rel="noopener">${a.subscribe} →</a></p>
-                <div class="alert" style="margin-top: 0.5rem;">${a.note}</div>`;
+                <p class="amvest-links"><a href="https://www.amvestcapital.com/webinars-events" target="_blank" rel="noopener">${a.all} →</a><br><a href="https://www.amvestcapital.com/subscribe" target="_blank" rel="noopener">${a.subscribe} →</a></p>
+                <p class="amvest-note">${a.note}</p>`;
         }
 
         function renderNews(items, note, sourceLabel) {
@@ -2373,7 +2421,7 @@
                     <h4><a href="${n.url}" target="_blank" rel="noopener">${n.title}</a></h4>
                 </div>
             `).join('');
-            list.innerHTML = itemsHtml + `<div class="alert" style="margin-top: 0.5rem;">${note}</div>` + amvestBlockHtml();
+            list.innerHTML = itemsHtml + `<div class="alert" style="margin-top: 0.5rem;">${note}</div>`;
         }
 
         async function loadNews() {
