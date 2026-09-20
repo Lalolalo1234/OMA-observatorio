@@ -869,6 +869,120 @@
         .stat-card { background: white; border-radius: 6px; padding: 1.2rem; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border-top: 3px solid #2a9d5c; }
         .stat-card .stat-num { display: block; font-size: 2rem; font-weight: bold; color: #1e3c72; }
         .stat-card .stat-label { font-size: 0.85rem; color: #555; }
+
+        /* ===== Portada: hero de misión + dinamismo ===== */
+        .hero {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 3rem 2.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            color: #fff;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 12% 18%, rgba(242,183,5,0.16), transparent 42%),
+                radial-gradient(circle at 88% 82%, rgba(120,170,255,0.25), transparent 46%),
+                linear-gradient(135deg, #16305f 0%, #1e3c72 45%, #2a5298 100%);
+            background-size: 140% 140%, 140% 140%, 100% 100%;
+            animation: heroDrift 18s ease-in-out infinite alternate;
+            box-shadow: 0 10px 30px rgba(30,60,114,0.28);
+        }
+        .hero::before {
+            content: "";
+            position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px);
+            background-size: 22px 22px;
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 70%);
+            mask-image: linear-gradient(90deg, transparent 0%, #000 70%);
+            pointer-events: none;
+        }
+        @keyframes heroDrift {
+            from { background-position: 0% 0%, 100% 100%, 0 0; }
+            to   { background-position: 60% 40%, 40% 60%, 0 0; }
+        }
+        .hero-text, .hero-viz { position: relative; z-index: 1; }
+        .hero-kicker {
+            display: inline-block;
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+            color: #f2c94c; margin-bottom: 1rem;
+        }
+        .tab-content h1.hero-title {
+            color: #fff; border: 0; padding: 0; margin: 0 0 1.6rem;
+            font-size: 2.35rem; line-height: 1.15; letter-spacing: -0.01em;
+        }
+        .hero-mission {
+            border-left: 4px solid #f2b705;
+            padding: 0.2rem 0 0.2rem 1.1rem;
+            margin-bottom: 1.8rem;
+        }
+        .hero-label {
+            display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+            text-transform: uppercase; color: #f2c94c; margin-bottom: 0.4rem;
+        }
+        .tab-content .hero-mission p {
+            margin: 0; text-align: left; font-size: 1.02rem; line-height: 1.65; color: #e6eeff;
+        }
+        .hero-mission strong { color: #fff; box-shadow: inset 0 -0.4em 0 rgba(242,183,5,0.35); }
+        .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+        .btn-hero { background: #f2b705; color: #16305f; font-weight: 700; box-shadow: 0 4px 14px rgba(242,183,5,0.35); }
+        .btn-hero:hover { background: #ffd24a; transform: translateY(-1px); }
+        .btn-hero-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.65); padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s ease; }
+        .btn-hero-outline:hover { background: rgba(255,255,255,0.14); }
+
+        /* Diagrama secuencial */
+        .hero-viz { text-align: center; }
+        .hv-svg { width: 100%; height: auto; max-width: 440px; overflow: visible; }
+        .hv-base { stroke: rgba(255,255,255,0.35); stroke-width: 1.5; }
+        .hv-bar { fill: rgba(255,255,255,0.10); transform-box: fill-box; transform-origin: bottom; transform: scaleY(0.35); transition: transform 0.9s cubic-bezier(.2,.8,.2,1), fill 0.6s ease; }
+        .hv-bar.on { transform: scaleY(1); fill: rgba(255,255,255,0.20); }
+        .hv-ghost { stroke: rgba(255,255,255,0.22); stroke-width: 2; stroke-dasharray: 4 6; }
+        .hv-link { stroke: #f2b705; stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 0.9s ease; }
+        .hv-link.on { stroke-dashoffset: 0; }
+        .hv-node .hv-disc { fill: rgba(255,255,255,0.10); stroke: rgba(255,255,255,0.55); stroke-width: 2; transition: fill 0.5s ease, stroke 0.5s ease; }
+        .hv-node .hv-pulse { fill: none; stroke: #f2b705; stroke-width: 2; opacity: 0; transform-box: fill-box; transform-origin: center; }
+        .hv-node .hv-icon { fill: #fff; color: #fff; transition: fill 0.5s ease, stroke 0.5s ease; }
+        .hv-node .hv-icon.hv-stroke { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+        .hv-node .hv-label { fill: rgba(255,255,255,0.55); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-anchor: middle; transition: fill 0.5s ease; }
+        .hv-node.on .hv-disc { fill: #f2b705; stroke: #ffe08a; }
+        .hv-node.on .hv-icon { fill: #16305f; }
+        .hv-node.on .hv-icon.hv-stroke { fill: none; stroke: #16305f; }
+        .hv-node.on .hv-label { fill: #fff; }
+        .hv-node.current .hv-pulse { animation: hvPulse 1.6s ease-out infinite; }
+        @keyframes hvPulse { 0% { opacity: 0.9; transform: scale(1); } 100% { opacity: 0; transform: scale(1.6); } }
+        .hv-caption { display: flex; align-items: center; justify-content: center; gap: 0.7rem; min-height: 2.6rem; margin-top: 0.4rem; }
+        .hv-step { flex: none; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: #f2b705; color: #16305f; font-weight: 800; font-size: 0.85rem; display: inline-flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
+        .hv-text { font-size: 0.95rem; font-weight: 600; color: #fff; text-align: left; transition: opacity 0.3s ease, transform 0.3s ease; }
+        .hv-caption.swap .hv-text, .hv-caption.swap .hv-step { opacity: 0; transform: translateY(6px); }
+
+        /* Cifras */
+        .hero-stats .stat-card { border-top-color: #2a5298; }
+        .hero-stats .stat-num { font-size: 2rem; letter-spacing: -0.01em; }
+        .tab-content .hero-intro { text-align: left; color: #444; font-size: 1rem; max-width: 62rem; margin: 1.2rem 0 0.5rem; }
+
+        /* Aparición al hacer scroll + secuencia en el ciclo */
+        .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.in { opacity: 1; transform: none; }
+        .flow-step { transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.6s ease; }
+        .flow-step.seq-active { transform: translateY(-5px); box-shadow: 0 8px 22px rgba(42,82,152,0.28); outline: 2px solid #f2b705; }
+        .flow-step.reveal.in.seq-active { transform: translateY(-5px); }
+        @media (min-width: 860px) {
+            .flow-step:not(:last-child)::after {
+                content: "\25B6"; position: absolute; right: -0.95rem; top: 50%; transform: translateY(-50%);
+                font-size: 0.7rem; color: #2a5298; z-index: 2;
+            }
+        }
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; padding: 2rem 1.3rem; gap: 1.2rem; }
+            .tab-content h1.hero-title { font-size: 1.65rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero { animation: none; }
+            .hv-bar, .hv-link, .reveal { transition: none; }
+            .hv-node.current .hv-pulse { animation: none; }
+        }
     </style>
 </head>
 <body>
@@ -914,22 +1028,57 @@
     <div class="container">
         <!-- Inicio -->
         <div id="inicio" class="tab-content active">
-            <h1>El Observatorio Minero Argentino</h1>
-            <p>El OMA (Observatorio Minero Argentino) es el sistema de monitoreo, análisis y prospectiva que recopila, procesa y comunica información clave sobre la minería argentina, con el fin de ordenar la información, anticipar macrotendencias, reducir incertidumbres, mejorar la política pública y profesionalizar la toma de decisiones en el sector.</p>
+            <section class="hero">
+                <div class="hero-text">
+                    <span class="hero-kicker">Observatorio Minero Argentino</span>
+                    <h1 class="hero-title">Argentina tiene lo que el mundo va a necesitar. El OMA mide cuánto, y qué falta para llegar.</h1>
+                    <div class="hero-mission">
+                        <span class="hero-label">Nuestra misión</span>
+                        <p>Ser el centro de referencia para monitorear el progreso de la minería en Argentina, informar y traducir la demanda global de minerales críticos en <strong>decisiones estratégicas de inversión, política y capacidades</strong>; estimar demanda a <strong>2030-2050</strong>, anticipar <strong>cuellos de botella</strong> de la oferta argentina, y guiar la <strong>ejecución coordinada</strong> de Nación, provincias, universidades y sector privado, para aprovechar al máximo las oportunidades de crecimiento futuro.</p>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn btn-hero" onclick="navigateTo('demanda')">Explorar la demanda 2030-2050</button>
+                        <button class="btn btn-hero-outline" onclick="navigateTo('barometro')">Ver el Barómetro OMA</button>
+                    </div>
+                </div>
+                <div class="hero-viz" aria-hidden="false">
+                    <svg class="hv-svg" viewBox="0 0 440 310" role="img" aria-label="MEASURE → ANTICIPATE → GUIDE">
+                        <line class="hv-base" x1="20" y1="292" x2="420" y2="292"/>
+                        <rect class="hv-bar" x="48" y="250" width="44" height="42" rx="3"/>
+                        <rect class="hv-bar" x="198" y="170" width="44" height="122" rx="3"/>
+                        <rect class="hv-bar" x="348" y="90" width="44" height="202" rx="3"/>
+                        <line class="hv-ghost" x1="98" y1="218" x2="190" y2="168"/>
+                        <line class="hv-ghost" x1="250" y1="132" x2="342" y2="82"/>
+                        <line class="hv-link" pathLength="1" x1="98" y1="218" x2="190" y2="168"/>
+                        <line class="hv-link" pathLength="1" x1="250" y1="132" x2="342" y2="82"/>
+                        <g class="hv-node" transform="translate(70,235)">
+                            <circle class="hv-pulse" r="34"/><circle class="hv-disc" r="34"/>
+                            <g class="hv-icon"><rect x="-15" y="2" width="8" height="13"/><rect x="-4" y="-6" width="8" height="21"/><rect x="7" y="-14" width="8" height="29"/></g>
+                            <text class="hv-label" y="-46">MEASURE</text>
+                        </g>
+                        <g class="hv-node" transform="translate(220,150)">
+                            <circle class="hv-pulse" r="34"/><circle class="hv-disc" r="34"/>
+                            <g class="hv-icon hv-stroke"><path d="M-17 0 Q0 -17 17 0 Q0 17 -17 0Z"/><circle r="5"/></g>
+                            <text class="hv-label" y="-46">ANTICIPATE</text>
+                        </g>
+                        <g class="hv-node" transform="translate(370,65)">
+                            <circle class="hv-pulse" r="34"/><circle class="hv-disc" r="34"/>
+                            <g class="hv-icon hv-stroke"><path d="M-12 12 L12 -12 M1 -12 H12 V-1"/></g>
+                            <text class="hv-label" y="-46">GUIDE</text>
+                        </g>
+                    </svg>
+                    <div class="hv-caption"><span class="hv-step">1</span><span class="hv-text">Medimos la demanda global de minerales críticos</span></div>
+                </div>
+            </section>
 
-            <h2>Sus funciones</h2>
-            <ul>
-                <li>Recolectar información actualizada relevante del sector minero argentino.</li>
-                <li>Procesarla técnicamente con rigor metodológico.</li>
-                <li>Transformar esos datos en inteligencia útil para decisiones estratégicas.</li>
-                <li>Comunicarla de forma periódica, confiable y trazable.</li>
-                <li>Generar alertas tempranas sobre escenarios futuros (anticipar tendencias).</li>
-                <li>Monitorear el capital humano y la formación en ingeniería de minas, junto al Centro Argentino de Ingenieros (CAI), a través del Monitor de Ingeniería de Minas de Argentina (MIMA).</li>
-            </ul>
-
-            <div class="quote-block">
-                "Ser el centro de referencia para monitorear el progreso de la minería en Argentina, informar y traducir la demanda global de minerales críticos en decisiones estratégicas de inversión, política y capacidades; estimar demanda a 2030-2050, anticipar cuellos de botella de la oferta argentina, y guiar la ejecución coordinada de Nación, provincias, universidades y sector privado, para aprovechar al máximo las oportunidades de crecimiento futuro."
+            <div class="stat-row hero-stats">
+                <div class="stat-card"><span class="stat-num">2030–2050</span><span class="stat-label">horizonte de proyección de demanda</span></div>
+                <div class="stat-card"><span class="stat-num" data-count="11">11</span><span class="stat-label">minerales críticos bajo monitoreo</span></div>
+                <div class="stat-card"><span class="stat-num" data-count="3">3</span><span class="stat-label">clusters de demanda global</span></div>
+                <div class="stat-card"><span class="stat-num" data-count="2">2</span><span class="stat-label">instrumentos de monitoreo periódico</span></div>
             </div>
+
+            <p class="hero-intro">El OMA (Observatorio Minero Argentino) es el sistema de monitoreo, análisis y prospectiva que recopila, procesa y comunica información clave sobre la minería argentina, con el fin de ordenar la información, anticipar macrotendencias, reducir incertidumbres, mejorar la política pública y profesionalizar la toma de decisiones en el sector.</p>
 
             <h2>El ciclo estratégico: Measure → Anticipate → Guide</h2>
             <div class="flow-grid">
@@ -1561,22 +1710,57 @@
 
         const TAB_HTML_EN = {
             inicio: `
-            <h1>The Argentine Mining Observatory</h1>
-            <p>OMA (Argentine Mining Observatory) is the monitoring, analysis and foresight system that gathers, processes and communicates key information about Argentina's mining sector, with the aim of organizing information, anticipating macro-trends, reducing uncertainty, improving public policy and professionalizing decision-making in the sector.</p>
+            <section class="hero">
+                <div class="hero-text">
+                    <span class="hero-kicker">Argentine Mining Observatory</span>
+                    <h1 class="hero-title">Argentina has what the world is going to need. OMA measures how much, and what stands in the way.</h1>
+                    <div class="hero-mission">
+                        <span class="hero-label">Our mission</span>
+                        <p>To be the reference center for monitoring the progress of mining in Argentina, informing and translating global critical mineral demand into <strong>strategic investment, policy and capacity decisions</strong>; estimating demand for <strong>2030-2050</strong>, anticipating <strong>bottlenecks</strong> in Argentine supply, and guiding the <strong>coordinated execution</strong> of the Nation, provinces, universities and the private sector, to make the most of future growth opportunities.</p>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn btn-hero" onclick="navigateTo('demanda')">Explore 2030-2050 demand</button>
+                        <button class="btn btn-hero-outline" onclick="navigateTo('barometro')">View the OMA Barometer</button>
+                    </div>
+                </div>
+                <div class="hero-viz" aria-hidden="false">
+                    <svg class="hv-svg" viewBox="0 0 440 310" role="img" aria-label="MEASURE → ANTICIPATE → GUIDE">
+                        <line class="hv-base" x1="20" y1="292" x2="420" y2="292"/>
+                        <rect class="hv-bar" x="48" y="250" width="44" height="42" rx="3"/>
+                        <rect class="hv-bar" x="198" y="170" width="44" height="122" rx="3"/>
+                        <rect class="hv-bar" x="348" y="90" width="44" height="202" rx="3"/>
+                        <line class="hv-ghost" x1="98" y1="218" x2="190" y2="168"/>
+                        <line class="hv-ghost" x1="250" y1="132" x2="342" y2="82"/>
+                        <line class="hv-link" pathLength="1" x1="98" y1="218" x2="190" y2="168"/>
+                        <line class="hv-link" pathLength="1" x1="250" y1="132" x2="342" y2="82"/>
+                        <g class="hv-node" transform="translate(70,235)">
+                            <circle class="hv-pulse" r="34"/><circle class="hv-disc" r="34"/>
+                            <g class="hv-icon"><rect x="-15" y="2" width="8" height="13"/><rect x="-4" y="-6" width="8" height="21"/><rect x="7" y="-14" width="8" height="29"/></g>
+                            <text class="hv-label" y="-46">MEASURE</text>
+                        </g>
+                        <g class="hv-node" transform="translate(220,150)">
+                            <circle class="hv-pulse" r="34"/><circle class="hv-disc" r="34"/>
+                            <g class="hv-icon hv-stroke"><path d="M-17 0 Q0 -17 17 0 Q0 17 -17 0Z"/><circle r="5"/></g>
+                            <text class="hv-label" y="-46">ANTICIPATE</text>
+                        </g>
+                        <g class="hv-node" transform="translate(370,65)">
+                            <circle class="hv-pulse" r="34"/><circle class="hv-disc" r="34"/>
+                            <g class="hv-icon hv-stroke"><path d="M-12 12 L12 -12 M1 -12 H12 V-1"/></g>
+                            <text class="hv-label" y="-46">GUIDE</text>
+                        </g>
+                    </svg>
+                    <div class="hv-caption"><span class="hv-step">1</span><span class="hv-text">We measure global critical mineral demand</span></div>
+                </div>
+            </section>
 
-            <h2>What it does</h2>
-            <ul>
-                <li>Collect up-to-date, relevant information on Argentina's mining sector.</li>
-                <li>Process it technically with methodological rigor.</li>
-                <li>Turn that data into useful intelligence for strategic decisions.</li>
-                <li>Communicate it periodically, reliably and traceably.</li>
-                <li>Generate early warnings about future scenarios (anticipate trends).</li>
-                <li>Monitor human capital and training in mining engineering, together with the Argentine Center of Engineers (CAI), through the Argentine Mining Engineering Monitor (MIMA).</li>
-            </ul>
-
-            <div class="quote-block">
-                "To be the reference center for monitoring the progress of mining in Argentina, informing and translating global critical mineral demand into strategic investment, policy and capacity decisions; estimating demand for 2030-2050, anticipating bottlenecks in Argentine supply, and guiding the coordinated execution of the Nation, provinces, universities and the private sector, to make the most of future growth opportunities."
+            <div class="stat-row hero-stats">
+                <div class="stat-card"><span class="stat-num">2030–2050</span><span class="stat-label">demand projection horizon</span></div>
+                <div class="stat-card"><span class="stat-num" data-count="11">11</span><span class="stat-label">critical minerals monitored</span></div>
+                <div class="stat-card"><span class="stat-num" data-count="3">3</span><span class="stat-label">global demand clusters</span></div>
+                <div class="stat-card"><span class="stat-num" data-count="2">2</span><span class="stat-label">periodic monitoring instruments</span></div>
             </div>
+
+            <p class="hero-intro">OMA (Argentine Mining Observatory) is the monitoring, analysis and foresight system that gathers, processes and communicates key information about Argentina's mining sector, with the aim of organizing information, anticipating macro-trends, reducing uncertainty, improving public policy and professionalizing decision-making in the sector.</p>
 
             <h2>The strategic cycle: Measure → Anticipate → Guide</h2>
             <div class="flow-grid">
@@ -2244,6 +2428,7 @@
             renderBarometerLegend();
             renderBarometerChart();
             renderAmvestSidebar();
+            initHomeAnimations();
             loadTicker();
             loadNews();
         }
@@ -2558,6 +2743,99 @@
 
             // Scroll al inicio
             window.scrollTo(0, 0);
+        }
+
+        // --- Portada: diagrama secuencial, cifras animadas y aparición al scroll ---
+        const HOME_CAPTIONS = {
+            es: ['Medimos la demanda global de minerales críticos', 'Anticipamos los cuellos de botella de la oferta argentina', 'Guiamos la decisión de inversión, política y capacidades', 'Del dato a la decisión: medir → anticipar → guiar'],
+            en: ['We measure global critical mineral demand', 'We anticipate bottlenecks in Argentine supply', 'We guide investment, policy and capacity decisions', 'From data to decision: measure → anticipate → guide']
+        };
+        let homeAnim = { timer: null, io: null, phase: 0 };
+
+        function initHomeAnimations() {
+            if (homeAnim.timer) clearInterval(homeAnim.timer);
+            if (homeAnim.io) homeAnim.io.disconnect();
+            homeAnim = { timer: null, io: null, phase: 0 };
+
+            const root = document.getElementById('inicio');
+            const hero = root.querySelector('.hero');
+            if (!hero) return;
+            const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const nodes = hero.querySelectorAll('.hv-node');
+            const bars = hero.querySelectorAll('.hv-bar');
+            const links = hero.querySelectorAll('.hv-link');
+            const caption = hero.querySelector('.hv-caption');
+            const capStep = hero.querySelector('.hv-step');
+            const capText = hero.querySelector('.hv-text');
+            const flowSteps = root.querySelectorAll('.flow-step');
+            const caps = HOME_CAPTIONS[currentLang];
+
+            function setCaption(i) {
+                caption.classList.add('swap');
+                setTimeout(() => {
+                    capStep.textContent = i < 3 ? String(i + 1) : '✓';
+                    capText.textContent = caps[i];
+                    caption.classList.remove('swap');
+                }, 250);
+            }
+
+            function render(phase) {
+                // phase 0..2 = paso activo; 3 = ciclo completo
+                nodes.forEach((n, i) => { n.classList.toggle('on', i <= phase); n.classList.toggle('current', i === phase && phase < 3); });
+                bars.forEach((b, i) => b.classList.toggle('on', i <= phase));
+                links.forEach((l, i) => l.classList.toggle('on', i < phase));
+                flowSteps.forEach((s, i) => s.classList.toggle('seq-active', i === phase));
+            }
+
+            function tick() {
+                homeAnim.phase = (homeAnim.phase + 1) % 4;
+                render(homeAnim.phase);
+                setCaption(homeAnim.phase);
+            }
+
+            if (reduce) {
+                render(3);
+                capStep.textContent = '✓';
+                capText.textContent = caps[3];
+            } else {
+                render(0);
+            }
+
+            // Reveal al hacer scroll + arranque/pausa del ciclo según visibilidad
+            const revealEls = root.querySelectorAll('.flow-step, .pillar-card, .hero-stats .stat-card');
+            if (!('IntersectionObserver' in window)) return;
+            revealEls.forEach((el, i) => { if (!reduce) { el.classList.add('reveal'); el.style.transitionDelay = ((i % 4) * 90) + 'ms'; } });
+            const watched = new Set();
+            homeAnim.io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    const el = e.target;
+                    if (el.classList.contains('reveal') && e.isIntersecting) {
+                        el.classList.add('in');
+                        const num = el.querySelector('[data-count]');
+                        if (num && !num.dataset.done) { num.dataset.done = '1'; countUp(num); }
+                    }
+                    if (el === hero || el.classList.contains('flow-grid')) {
+                        if (e.isIntersecting) watched.add(el); else watched.delete(el);
+                    }
+                });
+                const shouldRun = watched.size > 0 && !reduce;
+                if (shouldRun && !homeAnim.timer) homeAnim.timer = setInterval(tick, 2600);
+                if (!shouldRun && homeAnim.timer) { clearInterval(homeAnim.timer); homeAnim.timer = null; }
+            }, { threshold: 0.25 });
+            revealEls.forEach(el => homeAnim.io.observe(el));
+            homeAnim.io.observe(hero);
+            const fg = root.querySelector('.flow-grid');
+            if (fg) homeAnim.io.observe(fg);
+        }
+
+        function countUp(el) {
+            const target = parseInt(el.dataset.count, 10);
+            const t0 = performance.now(), dur = 1100;
+            (function step(now) {
+                const p = Math.min(1, (now - t0) / dur);
+                el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+                if (p < 1) requestAnimationFrame(step);
+            })(t0);
         }
 
         // Arranque: aplicar idioma guardado (o español por defecto) y cargar datos en vivo
