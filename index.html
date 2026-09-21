@@ -983,6 +983,43 @@
             .hv-bar, .hv-link, .reveal { transition: none; }
             .hv-node.current .hv-pulse { animation: none; }
         }
+
+        /* ===== Infografías ===== */
+        .ig-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 1.2rem 0 0.4rem; }
+        .ig-chip { border: 1px solid #c3d1ec; background: #fff; color: #1e3c72; border-radius: 999px; padding: 0.4rem 1rem; font-size: 0.85rem; cursor: pointer; transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+        .ig-chip:hover { background: #eef4ff; }
+        .ig-chip.active { background: #1e3c72; color: #fff; border-color: #1e3c72; }
+        .ig-count { margin-left: auto; font-size: 0.85rem; color: #666; }
+        .ig-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin: 1rem 0 1.5rem; }
+        .ig-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.1); display: flex; flex-direction: column; animation: igIn 0.45s ease both; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .ig-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(30,60,114,0.2); }
+        @keyframes igIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        .ig-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #16305f; }
+        .ig-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #1a2340; cursor: zoom-in; }
+        .ig-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; color: #fff; text-align: center; padding: 0.5rem; }
+        .ig-ph b { font-size: 2.4rem; letter-spacing: 0.02em; line-height: 1; }
+        .ig-ph span { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.85; }
+        .ig-cobre .ig-media { background: linear-gradient(135deg, #7a3010, #d9772b); }
+        .ig-tierras-raras .ig-media { background: linear-gradient(135deg, #34206a, #7a4fc1); }
+        .ig-baterias .ig-media { background: linear-gradient(135deg, #0d4d5c, #1aa3a3); }
+        .ig-general .ig-media { background: linear-gradient(135deg, #16305f, #2a5298); }
+        .ig-body { padding: 1rem 1.1rem 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+        .ig-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+        .ig-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background: #eef4ff; color: #2a5298; padding: 0.15rem 0.5rem; border-radius: 3px; }
+        .ig-body h3 { font-size: 1rem; line-height: 1.35; color: #1e3c72; }
+        .ig-meta { font-size: 0.8rem; color: #666; }
+        .tab-content .ig-desc { font-size: 0.88rem; line-height: 1.55; margin: 0; text-align: left; color: #444; }
+        .ig-lic { font-size: 0.72rem; color: #555; background: #f3f5f9; border-left: 3px solid #2a9d5c; padding: 0.2rem 0.5rem; border-radius: 2px; align-self: flex-start; }
+        .ig-lic.restricted { border-left-color: #d9a11b; }
+        .ig-actions { display: flex; gap: 0.6rem; margin-top: auto; padding-top: 0.4rem; }
+        .ig-actions .btn { padding: 0.5rem 1rem; font-size: 0.82rem; }
+        .ig-empty { grid-column: 1 / -1; text-align: center; color: #666; padding: 2rem 0; }
+        .ig-lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(8, 14, 30, 0.92); display: none; align-items: center; justify-content: center; flex-direction: column; padding: 1.5rem; gap: 0.8rem; cursor: zoom-out; }
+        .ig-lightbox.open { display: flex; }
+        .ig-lightbox img { max-width: 100%; max-height: 82vh; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); background: #fff; }
+        .ig-lightbox figcaption { color: #dfe8ff; font-size: 0.85rem; text-align: center; max-width: 60rem; }
+        .ig-lightbox .ig-close { position: absolute; top: 0.8rem; right: 1.2rem; background: none; border: 0; color: #fff; font-size: 2rem; cursor: pointer; line-height: 1; }
+        @media (prefers-reduced-motion: reduce) { .ig-card { animation: none; } .ig-card:hover { transform: none; } }
     </style>
 </head>
 <body>
@@ -1014,6 +1051,7 @@
                 <li><button class="nav-btn" data-tab="oferta">Oferta &amp; Competitividad</button></li>
                 <li><button class="nav-btn" data-tab="capital-humano">Capital Humano</button></li>
                 <li><button class="nav-btn" data-tab="indicadores">Indicadores</button></li>
+                <li><button class="nav-btn" data-tab="infografias">Infografías</button></li>
                 <li><button class="nav-btn" data-tab="barometro">Barómetro</button></li>
                 <li><button class="nav-btn" data-tab="monitor">Monitor MIMA</button></li>
                 <li><button class="nav-btn" data-tab="noticias">Noticias &amp; Opinión</button></li>
@@ -1302,6 +1340,15 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <!-- Infografías -->
+        <div id="infografias" class="tab-content">
+            <h1 id="igH1">Infografías del mercado de minerales críticos</h1>
+            <p id="igP"></p>
+            <div class="ig-toolbar" id="igToolbar"></div>
+            <div class="ig-grid" id="igGrid"></div>
+            <div class="alert" id="igNote"></div>
         </div>
 
         <!-- Barómetro -->
@@ -2304,8 +2351,8 @@
         };
 
         const NAV_LABELS = {
-            es: { inicio: 'Inicio', demanda: 'Demanda Global', oferta: 'Oferta & Competitividad', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', barometro: 'Barómetro', monitor: 'Monitor MIMA', noticias: 'Noticias & Opinión', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de OMA' },
-            en: { inicio: 'Home', demanda: 'Global Demand', oferta: 'Supply & Competitiveness', 'capital-humano': 'Human Capital', indicadores: 'Indicators', barometro: 'Barometer', monitor: 'MIMA Monitor', noticias: 'News & Opinion', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About OMA' }
+            es: { inicio: 'Inicio', demanda: 'Demanda Global', oferta: 'Oferta & Competitividad', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', infografias: 'Infografías', barometro: 'Barómetro', monitor: 'Monitor MIMA', noticias: 'Noticias & Opinión', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de OMA' },
+            en: { inicio: 'Home', demanda: 'Global Demand', oferta: 'Supply & Competitiveness', 'capital-humano': 'Human Capital', indicadores: 'Indicators', infografias: 'Infographics', barometro: 'Barometer', monitor: 'MIMA Monitor', noticias: 'News & Opinion', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About OMA' }
         };
 
         const TICKER_LABEL = { es: '💹 Cotizaciones', en: '💹 Market Prices' };
@@ -2429,6 +2476,7 @@
             renderBarometerChart();
             renderAmvestSidebar();
             initHomeAnimations();
+            renderInfografias();
             loadTicker();
             loadNews();
         }
@@ -2837,6 +2885,81 @@
                 if (p < 1) requestAnimationFrame(step);
             })(t0);
         }
+
+        // --- Infografías: galería filtrable (datos curados a mano; sumar entradas a IG_ITEMS) ---
+        const IG_ITEMS = [{"id": "argus-cam-europa", "date": "2026-09", "minerals": ["baterias"], "source": "Argus Media", "url": "https://www.argusmedia.com", "lic": "copyright", "title": {"es": "355 GWhe de capacidad de CAM planificada en Europa a 2030", "en": "355 GWhe of CAM capacity planned in Europe by 2030"}, "desc": {"es": "Más del 50 % quedará en manos de empresas no europeas (43 % chinas) y solo 58 GWhe corresponden a LFP. El material activo de cátodo (CAM) crece por detrás de la fabricación de baterías.", "en": "Over 50% will be owned by non-European companies (43% Chinese) and only 58 GWhe is LFP. Cathode active material (CAM) is growing more slowly than battery manufacturing."}, "img": "img/infografias/argus-cam-europa-2026-09.png"}, {"id": "iea-precios-2026", "date": "2026-07", "minerals": ["cobre", "general"], "source": "IEA", "url": "https://www.iea.org/data-and-statistics/charts/price-developments-for-selected-critical-minerals-by-category-january-2023-april-2026", "lic": "cc-by", "title": {"es": "Evolución de precios de minerales críticos por categoría, ene 2023 – abr 2026", "en": "Price developments for selected critical minerals by category, Jan 2023 – Apr 2026"}, "desc": {"es": "Los metales base, entre ellos el cobre, frente al resto de categorías. Datos de S&P Capital IQ, Bloomberg y KOMIS. Global Critical Minerals Outlook 2026.", "en": "Base metals, including copper, against other categories. Data from S&P Capital IQ, Bloomberg and KOMIS. Global Critical Minerals Outlook 2026."}}, {"id": "iea-ree-controles", "date": "2026-07", "minerals": ["tierras-raras"], "source": "IEA", "url": "https://www.iea.org/data-and-statistics/charts/economic-value-of-downstream-production-at-risk-from-full-export-controls-of-rare-earths-by-sector-2025", "lic": "cc-by", "title": {"es": "Producción downstream en riesgo por un control total de exportaciones de tierras raras, por sector, 2025", "en": "Downstream production at risk from full export controls on rare earths, by sector, 2025"}, "desc": {"es": "Valor económico de la producción fuera de China que quedaría expuesto a restricciones a las exportaciones de tierras raras.", "en": "Economic value of production outside China that would be exposed to rare earth export restrictions."}}, {"id": "iea-refino-2025", "date": "2026-07", "minerals": ["general"], "source": "IEA", "url": "https://www.iea.org/data-and-statistics/charts/market-size-and-top-refining-country-share-for-select-minerals-2025", "lic": "cc-by", "title": {"es": "Tamaño de mercado y cuota del principal país refinador de minerales seleccionados, 2025", "en": "Market size and top refining country share for selected minerals, 2025"}, "desc": {"es": "Qué tan concentrado está el refino de cada mineral y cuánto vale su mercado. Global Critical Minerals Outlook 2026.", "en": "How concentrated refining is for each mineral and how large its market is. Global Critical Minerals Outlook 2026."}}, {"id": "iea-grafito-controles", "date": "2026-07", "minerals": ["general"], "source": "IEA", "url": "https://www.iea.org/data-and-statistics/charts/economic-value-of-downstream-production-at-risk-from-full-export-controls-of-graphite-by-sector-2025", "lic": "cc-by", "title": {"es": "Producción downstream en riesgo por un control total de exportaciones de grafito, por sector, 2025", "en": "Downstream production at risk from full export controls on graphite, by sector, 2025"}, "desc": {"es": "El mismo ejercicio para el grafito: valor económico expuesto por sector fuera de China.", "en": "The same exercise for graphite: economic value exposed by sector outside China."}}, {"id": "vc-tungsteno-2026", "date": "2026-08", "minerals": ["general"], "source": "Visual Capitalist", "url": "https://elements.visualcapitalist.com/tungsten-leads-critical-mineral-price-gains-in-2026/", "lic": "link", "title": {"es": "El tungsteno lidera las alzas de precios de minerales críticos en 2026", "en": "Tungsten leads critical mineral price gains in 2026"}, "desc": {"es": "Ranking de 27 minerales críticos por variación de precio entre enero de 2025 y abril de 2026: el tungsteno sube 622 %. Datos de la IEA.", "en": "Ranking of 27 critical minerals by price change between January 2025 and April 2026: tungsten is up 622%. Data from the IEA."}}, {"id": "mv-cobre-balance-2026", "date": "2026-03", "minerals": ["cobre"], "source": "MiningVisuals", "url": "https://www.miningvisuals.com/post/copper-market-balance-a-look-at-2026-deficit-forecasts", "lic": "link", "title": {"es": "Balance del mercado de cobre: previsiones de déficit para 2026", "en": "Copper market balance: 2026 deficit forecasts"}, "desc": {"es": "Compara las previsiones de distintos analistas, con déficits de 150.000 a 330.000 t para 2026. Fuentes: ICSG, J.P. Morgan, Cochilco y otras.", "en": "Compares analysts’ forecasts, with 2026 deficits of 150,000 to 330,000 t. Sources: ICSG, J.P. Morgan, Cochilco and others."}}, {"id": "mv-paradoja-cobre", "date": "2026-02", "minerals": ["cobre"], "source": "MiningVisuals", "url": "https://www.miningvisuals.com/post/the-copper-paradox-why-we-are-swimming-in-resources-but-facing-a-supply-crunch", "lic": "link", "title": {"es": "La paradoja del cobre: recursos abundantes, oferta ajustada", "en": "The copper paradox: ample resources, tight supply"}, "desc": {"es": "Contrasta la disponibilidad geológica con la económica del cobre y el contenido de cobre por tipo de vehículo.", "en": "Contrasts geological with economic copper availability and copper content by vehicle type."}}, {"id": "usgs-mcs-2026", "date": "2026-02", "minerals": ["cobre", "tierras-raras", "general"], "source": "USGS", "url": "https://pubs.usgs.gov/publication/mcs2026", "lic": "usgs", "title": {"es": "Mineral Commodity Summaries 2026", "en": "Mineral Commodity Summaries 2026"}, "desc": {"es": "Fichas de más de 90 minerales y materiales: producción, reservas, comercio y precios. Referencia obligada para cobre y tierras raras.", "en": "Synopses of more than 90 minerals and materials: production, reserves, trade and prices. A must-have reference for copper and rare earths."}}, {"id": "owid-minerales-transicion", "date": "2026-03", "minerals": ["cobre", "tierras-raras", "general"], "source": "Our World in Data", "url": "https://ourworldindata.org/countries-critical-minerals-needed-energy-transition", "lic": "cc-by", "title": {"es": "¿Qué países tienen los minerales críticos de la transición energética?", "en": "Which countries have the critical minerals needed for the energy transition?"}, "desc": {"es": "Producción minera y refinada y reservas por país para los minerales clave de la transición, incluidos cobre y tierras raras. Actualizado en marzo de 2026.", "en": "Mined and refined production and reserves by country for the key transition minerals, including copper and rare earths. Updated March 2026."}}, {"id": "iea-comentario-ree-imanes", "date": "2025-10", "minerals": ["tierras-raras"], "source": "IEA", "url": "https://www.iea.org/commentaries/with-new-export-controls-on-critical-minerals-supply-concentration-risks-become-reality", "lic": "cc-by", "title": {"es": "Composición regional de la producción de tierras raras e imanes permanentes, 2024", "en": "Regional composition of rare earths and permanent magnet production, 2024"}, "desc": {"es": "Una de las seis gráficas del comentario de la IEA sobre los controles de exportación de China y los riesgos de concentración del suministro (23 de octubre de 2025).", "en": "One of six charts in the IEA commentary on China’s export controls and supply concentration risks (23 October 2025)."}}];
+        const IG_I18N = {"es": {"h1": "Infografías del mercado de minerales críticos", "p": "Galería de infografías y gráficos actualizados sobre los mercados de minerales críticos, con foco en <strong>cobre</strong> y <strong>tierras raras</strong>. Cada pieza lleva el crédito de su fuente y su tipo de licencia: las de licencia abierta o autorizadas se muestran completas; el resto se enlaza a su origen.", "filters": {"all": "Todas", "cobre": "Cobre", "tierras-raras": "Tierras raras", "baterias": "Litio y baterías", "general": "Varios minerales"}, "tags": {"cobre": "Cobre", "tierras-raras": "Tierras raras", "baterias": "Litio y baterías", "general": "Varios minerales"}, "expand": "Ampliar", "source": "Ver fuente", "pending": "Imagen en preparación", "empty": "No hay infografías para este filtro.", "count": ["infografía", "infografías"], "lic": {"cc-by": "Licencia CC BY 4.0", "copyright": "© {s} · reproducida con crédito", "link": "Solo enlace · © {s}", "usgs": "Publicación del USGS"}, "note": "Galería en construcción: se irán sumando infografías nuevas y actualizadas, con prioridad para cobre y tierras raras. Última revisión: 21/09/2026.", "close": "Cerrar"}, "en": {"h1": "Critical minerals market infographics", "p": "A gallery of up-to-date infographics and charts on critical mineral markets, focused on <strong>copper</strong> and <strong>rare earths</strong>. Each piece carries its source credit and licence type: openly licensed or authorised pieces are shown in full; the rest link to their origin.", "filters": {"all": "All", "cobre": "Copper", "tierras-raras": "Rare earths", "baterias": "Lithium & batteries", "general": "Multi-mineral"}, "tags": {"cobre": "Copper", "tierras-raras": "Rare earths", "baterias": "Lithium & batteries", "general": "Multi-mineral"}, "expand": "Enlarge", "source": "View source", "pending": "Image coming soon", "empty": "No infographics for this filter.", "count": ["infographic", "infographics"], "lic": {"cc-by": "CC BY 4.0 licence", "copyright": "© {s} · reproduced with credit", "link": "Link only · © {s}", "usgs": "USGS publication"}, "note": "Work in progress: new, up-to-date infographics will keep being added, prioritising copper and rare earths. Last reviewed: 21/09/2026.", "close": "Close"}};
+        const IG_SYMBOL = { 'cobre': 'Cu', 'tierras-raras': 'REE', 'baterias': 'Li', 'general': 'CRM' };
+        let igFilter = 'all';
+
+        function igDateLabel(d) {
+            const [y, m] = d.split('-').map(Number);
+            return new Date(y, (m || 1) - 1, 1).toLocaleDateString(currentLang === 'es' ? 'es-AR' : 'en-GB', { month: 'short', year: 'numeric' });
+        }
+
+        function renderInfografias() {
+            const t = IG_I18N[currentLang];
+            document.getElementById('igH1').textContent = t.h1;
+            document.getElementById('igP').innerHTML = t.p;
+            document.getElementById('igNote').textContent = t.note;
+
+            const items = IG_ITEMS.filter(i => igFilter === 'all' || i.minerals.includes(igFilter))
+                .sort((a, b) => b.date.localeCompare(a.date));
+
+            const toolbar = document.getElementById('igToolbar');
+            toolbar.innerHTML = Object.keys(t.filters).map(k =>
+                `<button class="ig-chip${k === igFilter ? ' active' : ''}" data-f="${k}">${t.filters[k]}</button>`
+            ).join('') + `<span class="ig-count">${items.length} ${items.length === 1 ? t.count[0] : t.count[1]}</span>`;
+            toolbar.querySelectorAll('.ig-chip').forEach(b => b.addEventListener('click', () => { igFilter = b.dataset.f; renderInfografias(); }));
+
+            const grid = document.getElementById('igGrid');
+            if (!items.length) { grid.innerHTML = `<div class="ig-empty">${t.empty}</div>`; return; }
+            grid.innerHTML = items.map((i, n) => {
+                const main = i.minerals[0];
+                const title = i.title[currentLang];
+                const lic = t.lic[i.lic].replace('{s}', i.source);
+                const restricted = i.lic === 'copyright' || i.lic === 'link';
+                const media = i.img
+                    ? `<img src="${i.img}" alt="${title.replace(/"/g, '&quot;')}" loading="lazy" onclick="igOpen('${i.id}')" onerror="this.style.display='none'">`
+                    : '';
+                return `<article class="ig-card ig-${main}" style="animation-delay:${Math.min(n, 8) * 50}ms" data-id="${i.id}">
+                    <div class="ig-media"><div class="ig-ph"><b>${IG_SYMBOL[main]}</b><span>${i.img ? t.pending : i.source}</span></div>${media}</div>
+                    <div class="ig-body">
+                        <div class="ig-tags">${i.minerals.map(m => `<span class="ig-tag">${t.tags[m]}</span>`).join('')}</div>
+                        <h3>${title}</h3>
+                        <div class="ig-meta">${i.source} · ${igDateLabel(i.date)}</div>
+                        <p class="ig-desc">${i.desc[currentLang]}</p>
+                        <span class="ig-lic${restricted ? ' restricted' : ''}">${lic}</span>
+                        <div class="ig-actions">
+                            ${i.img ? `<button class="btn" onclick="igOpen('${i.id}')">${t.expand}</button>` : ''}
+                            <a class="btn btn-secondary" href="${i.url}" target="_blank" rel="noopener">${t.source} ↗</a>
+                        </div>
+                    </div>
+                </article>`;
+            }).join('');
+        }
+
+        function igOpen(id) {
+            const item = IG_ITEMS.find(i => i.id === id);
+            const img = document.querySelector(`.ig-card[data-id="${id}"] .ig-media img`);
+            if (!item || !img || !img.complete || !img.naturalWidth) { if (item) window.open(item.url, '_blank', 'noopener'); return; }
+            let box = document.getElementById('igLightbox');
+            if (!box) {
+                box = document.createElement('div');
+                box.id = 'igLightbox';
+                box.className = 'ig-lightbox';
+                box.innerHTML = '<button class="ig-close" aria-label="Cerrar">&times;</button><img alt=""><figcaption></figcaption>';
+                box.addEventListener('click', igClose);
+                document.body.appendChild(box);
+                document.addEventListener('keydown', e => { if (e.key === 'Escape') igClose(); });
+            }
+            box.querySelector('img').src = item.img;
+            box.querySelector('img').alt = item.title[currentLang];
+            box.querySelector('figcaption').textContent = item.title[currentLang] + ' — ' + item.source + ', ' + igDateLabel(item.date);
+            box.querySelector('.ig-close').setAttribute('aria-label', IG_I18N[currentLang].close);
+            box.classList.add('open');
+        }
+        function igClose() { const b = document.getElementById('igLightbox'); if (b) b.classList.remove('open'); }
 
         // Arranque: aplicar idioma guardado (o español por defecto) y cargar datos en vivo
         setLanguage(currentLang);
