@@ -1053,6 +1053,8 @@
                 <li><button class="nav-btn" data-tab="indicadores">Indicadores</button></li>
                 <li><button class="nav-btn" data-tab="infografias">Infografías</button></li>
                 <li><button class="nav-btn" data-tab="barometro">Barómetro</button></li>
+                <li><button class="nav-btn" data-tab="pulsometro">Pulsómetro</button></li>
+                <li><button class="nav-btn" data-tab="brechas">Análisis de Brechas</button></li>
                 <li><button class="nav-btn" data-tab="monitor">Monitor MIMA</button></li>
                 <li><button class="nav-btn" data-tab="noticias">Noticias &amp; Opinión</button></li>
                 <li><button class="nav-btn" data-tab="gobernanza">Gobernanza</button></li>
@@ -1365,6 +1367,99 @@
             </div>
 
             <div class="alert" id="barometroMonitor"></div>
+            <div class="alert" id="barometroPulsometro"></div>
+        </div>
+
+        <!-- Pulsómetro -->
+        <div id="pulsometro" class="tab-content">
+            <h1>Pulsómetro OMA — Percepción Externa de Inversión Minera</h1>
+            <p>El Pulsómetro es el instrumento complementario del Barómetro: mientras el Barómetro resume cómo ve la evolución del clima de inversión el sector ya instalado en Argentina (empresas del Consejo Rector de OMA), el Pulsómetro pregunta lo mismo a gobiernos y empresas extranjeras que miran al país desde afuera. Está modelado sobre el <em>Annual Survey of Mining Companies</em> del Fraser Institute, adaptado a la realidad argentina.</p>
+
+            <div class="alert">
+                <strong>En construcción — sin datos publicados todavía.</strong> La responsabilidad inicial por el diseño metodológico y la recolección de datos fue adjudicada a dos instituciones extranjeras independientes: la <strong>Universidad de Toronto</strong> (Canadá) y <strong><a href="https://www.rff.org" target="_blank" rel="noopener">Resources for the Future (RFF)</a></strong>, organización de investigación en política de recursos naturales con sede en Washington D.C. Esa asignación busca garantizar independencia y credibilidad frente al público inversor que el Pulsómetro busca captar.
+            </div>
+
+            <div class="subsection">
+                <h3>Por qué una mirada externa</h3>
+                <p>La percepción de quien ya opera en el país no tiene por qué coincidir con la de quien evalúa entrar desde afuera, sin el conocimiento acumulado ni la relación previa con reguladores provinciales. Confrontar ambas miradas —Barómetro y Pulsómetro— permite ver dónde el relato interno y la percepción externa divergen: esos son, casi por definición, los puntos donde más vale la pena actuar. Ver el <a href="#" onclick="navigateTo('brechas'); return false;">Análisis de Brechas</a>.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Qué va a medir</h3>
+                <p>Los mismos 9 ejes del Barómetro, en la misma escala de 0 a 10, para que la comparación sea directa: exportaciones mineras, marco normativo (RIGI), licencia social, clima político, actitud mining-friendly del Estado, financiamiento, infraestructura, estabilidad macro y capital humano. Se suman dos ejes propios, inspirados en el modelo Fraser: tiempos de permisos y competitividad regional (Argentina frente a Chile, Perú, Australia y Canadá).</p>
+            </div>
+
+            <div class="subsection">
+                <h3>A quién se encuesta</h3>
+                <p>Un panel externo: ejecutivos de exploración y desarrollo de empresas mineras extranjeras sin operación actual en Argentina (o evaluándola), oficinas comerciales y agencias de crédito a la exportación de países inversores clave, analistas de mercados de capitales especializados en minería latinoamericana, y contrapartes de la CRM Facility de la Unión Europea.</p>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('barometro')">Ver el Barómetro</button>
+                <button class="btn btn-secondary" onclick="navigateTo('brechas')">Ver el Análisis de Brechas</button>
+            </div>
+        </div>
+
+        <!-- Análisis de Brechas -->
+        <div id="brechas" class="tab-content">
+            <h1>Análisis de Brechas — Fase 1</h1>
+            <p>El Análisis de Brechas confronta el Barómetro (percepción interna) con el Pulsómetro (percepción externa) para ubicar dónde se aleja el relato del sector instalado de la mirada de quien evalúa invertir desde afuera. El Pulsómetro todavía no tiene datos propios: mientras se construye su primera edición, esta Fase 1 trabaja con lo que el propio Barómetro ya revela sobre sus puntos más débiles.</p>
+
+            <div class="alert">
+                <strong>Regla de esta fase:</strong> se toman los ejes del Barómetro 2026 con puntaje por debajo de 6 sobre 10 — hoy son cuatro: Licencia Social, Infraestructura, Estabilidad Macro y Capital Humano (Recursos Humanos). Los tres primeros son, junto con Capital Humano, los que menos avanzaron o los que arrancan de una base más baja pese a la mejora general del Barómetro.
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Eje</th>
+                        <th>2026</th>
+                        <th>Variación vs. 2025</th>
+                        <th>Lectura</th>
+                        <th>Propuesta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Licencia Social</td>
+                        <td>5.4</td>
+                        <td>+0.4 (2025: 5.0)</td>
+                        <td>El eje con menor mejora relativa del Barómetro, pese al impulso del RIGI: la aceptación comunitaria no avanza al mismo ritmo que el resto.</td>
+                        <td>Mesas de diálogo comunidad-empresa-Estado, protocolos estandarizados de consulta previa, monitoreo ambiental participativo y publicado.</td>
+                    </tr>
+                    <tr>
+                        <td>Infraestructura</td>
+                        <td>5.3</td>
+                        <td>+0.8 (2025: 4.5)</td>
+                        <td>Sigue siendo, en términos absolutos, el eje peor puntuado del Barómetro.</td>
+                        <td>Mapa de cuellos de botella logísticos y energéticos por corredor minero, coordinación explícita entre RIGI e infraestructura asociada.</td>
+                    </tr>
+                    <tr>
+                        <td>Estabilidad Macro</td>
+                        <td>5.8</td>
+                        <td>+1.9 (2025: 3.9)</td>
+                        <td>La mayor mejora absoluta de los 9 ejes, pero todavía entre los más bajos: arranca de una base muy exigente.</td>
+                        <td>Comunicar de forma explícita y comparada los mecanismos de cobertura ya disponibles (RIGI, contratos en dólares, acceso a divisas para minería).</td>
+                    </tr>
+                    <tr>
+                        <td>Capital Humano</td>
+                        <td>5.9</td>
+                        <td>+0.3 (2025: 5.6)</td>
+                        <td>La mejora más chica de los 9 ejes, pese a contar con un instrumento dedicado: el Monitor de Ingeniería de Minas (MIMA).</td>
+                        <td>Usar los datos del MIMA para identificar brechas de formación por mineral y región, y articular oferta universitaria con demanda de proyectos.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="subsection">
+                <h3>Fase 2, cuando el Pulsómetro tenga datos</h3>
+                <p>Cuando la Universidad de Toronto y Resources for the Future publiquen la primera edición del Pulsómetro, este análisis se ampliará a una Fase 2: comparación directa, eje por eje, entre percepción interna (Barómetro) y externa (Pulsómetro), con la misma metodología de clasificación de brechas (percepción, estructural, punto ciego, autocrítica excesiva).</p>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('barometro')">Ver el Barómetro</button>
+                <button class="btn btn-secondary" onclick="navigateTo('pulsometro')">Ver el Pulsómetro</button>
+            </div>
         </div>
 
         <!-- Monitor de Ingeniería de Minas (MIMA) -->
@@ -1751,7 +1846,7 @@
         // español ya presente en el documento, y se define acá el HTML
         // en inglés. Al togglear, se reemplaza el innerHTML completo del
         // tab (misma estructura/clases, solo cambia el texto).
-        const STATIC_TAB_IDS = ['inicio', 'demanda', 'oferta', 'capital-humano', 'indicadores', 'monitor', 'gobernanza', 'hoja-de-ruta', 'acerca'];
+        const STATIC_TAB_IDS = ['inicio', 'demanda', 'oferta', 'capital-humano', 'indicadores', 'pulsometro', 'brechas', 'monitor', 'gobernanza', 'hoja-de-ruta', 'acerca'];
         const TAB_HTML_ES = {};
         STATIC_TAB_IDS.forEach(id => { TAB_HTML_ES[id] = document.getElementById(id).innerHTML; });
 
@@ -1966,6 +2061,94 @@
             <div class="subsection">
                 <h3>The "Guide Gap"</h3>
                 <p>The Nation and the provinces tend to react to historical prices rather than anticipate. There is a lack of forward-looking vision linking regulatory and talent-training decisions to demand trends projected for 2030-2050. That is the gap this pillar aims to close.</p>
+            </div>`,
+
+            pulsometro: `
+            <h1>OMA Pulsometer — External Perception of Mining Investment</h1>
+            <p>The Pulsometer is the Barometer's companion instrument: while the Barometer summarizes how the sector already installed in Argentina (OMA Governing Council companies) sees the evolution of the investment climate, the Pulsometer asks the same questions to foreign governments and companies looking at the country from outside. It is modeled on the Fraser Institute's <em>Annual Survey of Mining Companies</em>, adapted to Argentina's reality.</p>
+
+            <div class="alert">
+                <strong>Under construction — no published data yet.</strong> Initial responsibility for the methodological design and data collection was assigned to two independent foreign institutions: the <strong>University of Toronto</strong> (Canada) and <strong><a href="https://www.rff.org" target="_blank" rel="noopener">Resources for the Future (RFF)</a></strong>, a natural-resource policy research organization based in Washington, D.C. This assignment is meant to guarantee independence and credibility with the external investor audience the Pulsometer aims to reach.
+            </div>
+
+            <div class="subsection">
+                <h3>Why an external view</h3>
+                <p>The perception of those already operating in the country need not match that of someone evaluating entry from outside, without the accumulated knowledge or prior relationships with provincial regulators. Confronting both views — Barometer and Pulsometer — shows where the internal narrative and external perception diverge: those are, almost by definition, the points most worth acting on. See the <a href="#" onclick="navigateTo('brechas'); return false;">Gap Analysis</a>.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>What it will measure</h3>
+                <p>The same 9 axes as the Barometer, on the same 0-10 scale, so the comparison is direct: mining exports, regulatory framework (RIGI), social license, political climate, the State's mining-friendly attitude, funding, infrastructure, macro stability and human capital. Two axes of its own are added, inspired by the Fraser model: permitting times and regional competitiveness (Argentina versus Chile, Peru, Australia and Canada).</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Who is surveyed</h3>
+                <p>An external panel: exploration and development executives from foreign mining companies with no current operation in Argentina (or evaluating one), trade offices and export credit agencies from key investor countries, capital-markets analysts specialized in Latin American mining, and counterparts from the EU CRM Facility.</p>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('barometro')">View the Barometer</button>
+                <button class="btn btn-secondary" onclick="navigateTo('brechas')">View the Gap Analysis</button>
+            </div>`,
+
+            brechas: `
+            <h1>Gap Analysis — Phase 1</h1>
+            <p>The Gap Analysis confronts the Barometer (internal perception) with the Pulsometer (external perception) to locate where the installed sector's narrative drifts from the view of someone evaluating investment from outside. The Pulsometer does not yet have its own data: while its first edition is being built, this Phase 1 works with what the Barometer itself already reveals about its weakest points.</p>
+
+            <div class="alert">
+                <strong>This phase's rule:</strong> axes from the 2026 Barometer scoring below 6 out of 10 are taken — today there are four: Social License, Infrastructure, Macro Stability and Human Capital. The first two are, together with Human Capital, the ones that improved the least or that start from the lowest base despite the Barometer's overall improvement.
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Axis</th>
+                        <th>2026</th>
+                        <th>Change vs. 2025</th>
+                        <th>Reading</th>
+                        <th>Proposal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Social License</td>
+                        <td>5.4</td>
+                        <td>+0.4 (2025: 5.0)</td>
+                        <td>The Barometer's axis with the smallest relative improvement, despite the RIGI push: community acceptance isn't advancing at the same pace as the rest.</td>
+                        <td>Community-company-State dialogue tables, standardized prior-consultation protocols, published participatory environmental monitoring.</td>
+                    </tr>
+                    <tr>
+                        <td>Infrastructure</td>
+                        <td>5.3</td>
+                        <td>+0.8 (2025: 4.5)</td>
+                        <td>Still, in absolute terms, the Barometer's lowest-scoring axis.</td>
+                        <td>Map of logistical and energy bottlenecks by mining corridor, explicit coordination between RIGI and associated infrastructure.</td>
+                    </tr>
+                    <tr>
+                        <td>Macro Stability</td>
+                        <td>5.8</td>
+                        <td>+1.9 (2025: 3.9)</td>
+                        <td>The largest absolute improvement of the 9 axes, but still among the lowest: it starts from a very demanding baseline.</td>
+                        <td>Explicitly and comparatively communicate the coverage mechanisms already available (RIGI, dollar-denominated contracts, foreign-currency access for mining).</td>
+                    </tr>
+                    <tr>
+                        <td>Human Capital</td>
+                        <td>5.9</td>
+                        <td>+0.3 (2025: 5.6)</td>
+                        <td>The smallest improvement of the 9 axes, despite having a dedicated instrument: the Mining Engineering Monitor (MIMA).</td>
+                        <td>Use MIMA data to identify training gaps by mineral and region, and align university supply with project demand.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="subsection">
+                <h3>Phase 2, once the Pulsometer has data</h3>
+                <p>Once the University of Toronto and Resources for the Future publish the Pulsometer's first edition, this analysis will expand into a Phase 2: a direct, axis-by-axis comparison between internal perception (Barometer) and external perception (Pulsometer), using the same gap-classification methodology (perception gap, structural gap, blind spot, excessive self-criticism).</p>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('barometro')">View the Barometer</button>
+                <button class="btn btn-secondary" onclick="navigateTo('pulsometro')">View the Pulsometer</button>
             </div>`,
 
             monitor: `
@@ -2351,8 +2534,8 @@
         };
 
         const NAV_LABELS = {
-            es: { inicio: 'Inicio', demanda: 'Demanda Global', oferta: 'Oferta & Competitividad', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', infografias: 'Infografías', barometro: 'Barómetro', monitor: 'Monitor MIMA', noticias: 'Noticias & Opinión', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de OMA' },
-            en: { inicio: 'Home', demanda: 'Global Demand', oferta: 'Supply & Competitiveness', 'capital-humano': 'Human Capital', indicadores: 'Indicators', infografias: 'Infographics', barometro: 'Barometer', monitor: 'MIMA Monitor', noticias: 'News & Opinion', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About OMA' }
+            es: { inicio: 'Inicio', demanda: 'Demanda Global', oferta: 'Oferta & Competitividad', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', infografias: 'Infografías', barometro: 'Barómetro', pulsometro: 'Pulsómetro', brechas: 'Análisis de Brechas', monitor: 'Monitor MIMA', noticias: 'Noticias & Opinión', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de OMA' },
+            en: { inicio: 'Home', demanda: 'Global Demand', oferta: 'Supply & Competitiveness', 'capital-humano': 'Human Capital', indicadores: 'Indicators', infografias: 'Infographics', barometro: 'Barometer', pulsometro: 'Pulsometer', brechas: 'Gap Analysis', monitor: 'MIMA Monitor', noticias: 'News & Opinion', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About OMA' }
         };
 
         const TICKER_LABEL = { es: '💹 Cotizaciones', en: '💹 Market Prices' };
@@ -2374,14 +2557,18 @@
                 p: 'El Barómetro resume, en un solo vistazo tipo <em>spider chart</em>, la evolución de las variables no estrictamente productivas que más pesan en la decisión de un inversor minero: marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, disponibilidad de financiamiento, infraestructura y estabilidad macroeconómica. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), a partir de encuestas a empresas del Consejo Rector y análisis del equipo OMA.',
                 caption: 'Comparación 3T 2025 vs. 3T 2026 · Fuente: encuesta OMA a empresas mineras (ilustrativo, primer corte)',
                 monitor: '<strong>Se complementa con el Monitor de Ingeniería de Minas (MIMA):</strong> el Barómetro mide el clima de inversión; el Monitor mide si el país cuenta con la formación y el talento para ejecutarla.',
-                monitorLink: 'Ver el Monitor'
+                monitorLink: 'Ver el Monitor',
+                pulsometro: '<strong>Se confronta con el Pulsómetro:</strong> mientras el Pulsómetro (Universidad de Toronto y Resources for the Future) no tenga datos propios, el Análisis de Brechas usa lo que el propio Barómetro revela sobre sus ejes más débiles.',
+                pulsometroLink: 'Ver el Análisis de Brechas'
             },
             en: {
                 h1: 'OMA Barometer — Mining Investment Climate',
                 p: 'The Barometer summarizes, in a single <em>spider chart</em> view, the evolution of the non-strictly-productive variables that weigh most heavily on a mining investor\'s decision: regulatory framework, social license, political climate, the State\'s "mining-friendly" attitude, funding availability, infrastructure and macroeconomic stability. Each axis is scored from 0 (very unfavorable) to 10 (very favorable), based on surveys of Governing Council companies and analysis by the OMA team.',
                 caption: 'Q3 2025 vs. Q3 2026 comparison · Source: OMA survey of mining companies (illustrative, first cut)',
                 monitor: '<strong>Complemented by the Mining Engineering Monitor (MIMA):</strong> the Barometer measures the investment climate; the Monitor measures whether the country has the training and talent to deliver on it.',
-                monitorLink: 'View the Monitor'
+                monitorLink: 'View the Monitor',
+                pulsometro: '<strong>Checked against the Pulsometer:</strong> until the Pulsometer (University of Toronto and Resources for the Future) has its own data, the Gap Analysis uses what the Barometer itself reveals about its weakest axes.',
+                pulsometroLink: 'View the Gap Analysis'
             }
         };
 
@@ -2457,6 +2644,8 @@
             document.getElementById('barometerCaption').textContent = BAROMETER_INTRO[lang].caption;
             document.getElementById('barometroMonitor').innerHTML = BAROMETER_INTRO[lang].monitor +
                 ' <a href="#" onclick="navigateTo(\'monitor\'); return false;">' + BAROMETER_INTRO[lang].monitorLink + ' →</a>';
+            document.getElementById('barometroPulsometro').innerHTML = BAROMETER_INTRO[lang].pulsometro +
+                ' <a href="#" onclick="navigateTo(\'brechas\'); return false;">' + BAROMETER_INTRO[lang].pulsometroLink + ' →</a>';
 
             document.getElementById('noticiasH1').innerHTML = NOTICIAS_INTRO[lang].h1;
             document.getElementById('noticiasP').innerHTML = NOTICIAS_INTRO[lang].p;
