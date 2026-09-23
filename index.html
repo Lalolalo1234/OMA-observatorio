@@ -863,6 +863,16 @@
             background: #333;
         }
 
+.table-scroll { overflow-x: auto; margin: 1.5rem 0; }
+        .table-scroll table { margin: 0; min-width: 640px; }
+        .table-note { font-size: 0.82rem; color: #666; }
+        .tab-content p.table-note { line-height: 1.5; text-align: left; }
+        .pending-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 3px; background: #fff4d6; color: #7a5a00; }
+        .pending-cell { color: #aaa; text-align: center; }
+        .prosp-stat { display: block; font-size: 1.15rem; font-weight: 700; color: #1e3c72; margin: 0.3rem 0 0.6rem; }
+        .prosp-grid .node-card h3 { color: #1e3c72; }
+        .prosp-grid .node-card p { font-size: 0.9rem; line-height: 1.6; text-align: left; margin-bottom: 0; }
+
         /* Alianza CAI + Monitor */
         .quote-block small { display: block; margin-top: 0.5rem; font-style: normal; color: #555; }
         .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
@@ -1048,6 +1058,7 @@
             <ul class="nav-menu">
                 <li><button class="nav-btn active" data-tab="inicio">Inicio</button></li>
                 <li><button class="nav-btn" data-tab="demanda">Demanda Global</button></li>
+                <li><button class="nav-btn" data-tab="prospectiva">Prospectiva</button></li>
                 <li><button class="nav-btn" data-tab="oferta">Oferta &amp; Competitividad</button></li>
                 <li><button class="nav-btn" data-tab="capital-humano">Capital Humano</button></li>
                 <li><button class="nav-btn" data-tab="indicadores">Indicadores</button></li>
@@ -1190,7 +1201,7 @@
         <!-- Demanda Global (Measure) -->
         <div id="demanda" class="tab-content">
             <h1>Demanda Global de Minerales Críticos 2030-2050</h1>
-            <p><strong>Pilar 1</strong> del OMA: informe anual con proyecciones de Cu, Li, Ni, Co, REE, W, Be, Ga, Ge, InP y Ta, bajo escenarios base/high/low, con análisis de elasticidad de precio e impacto de sustitución tecnológica — el marco de referencia contra el cual se mide la oferta argentina.</p>
+            <p><strong>Pilar 1</strong> del OMA: informe anual con proyecciones de Cu, Li, Ni, Co, REE, W, Be, Ga, Ge, InP y Ta, bajo escenarios base/high/low, con análisis de elasticidad de precio e impacto de sustitución tecnológica — el marco de referencia contra el cual se mide la oferta argentina. Las cifras de demanda y precio se publican en la pestaña <a href="#" onclick="navigateTo('prospectiva'); return false;">Prospectiva</a>, a partir del output de CeProMin.</p>
 
             <div class="subsection">
                 <h3>Electrification — Transición Energética</h3>
@@ -1213,6 +1224,121 @@
             <div class="subsection">
                 <h3>Fuentes de datos</h3>
                 <p>IEA · S&amp;P Global · Wood Mackenzie · CRU · Fastmarkets · SMM · USGS · Adamas Intelligence · Secretaría de Minería de la Nación · reportes directos de empresas mineras que operan en Argentina.</p>
+            </div>
+        </div>
+
+        <!-- Prospectiva (output de CeProMin) -->
+        <div id="prospectiva" class="tab-content">
+            <h1>Prospectiva — Demanda y Precios de Minerales Críticos</h1>
+            <p>Esta pestaña publica el output cuantitativo de <a href="https://lalolalo1234.github.io/CeProMin/" target="_blank" rel="noopener"><strong>CeProMin</strong></a> (Centro de Prospectiva Minera), la base sobre la que se construye el OMA: cuánto va a demandar el mundo de cada mineral crítico en los horizontes 2030, 2040 y 2050, en qué escenario, y qué parte de esa demanda puede cubrir la cartera de proyectos argentina. Cada cifra conserva la fuente y el escenario con que CeProMin la publicó.</p>
+
+            <div class="alert">
+                <strong>Qué está en otras pestañas (y no se repite acá):</strong> los <em>drivers</em> de demanda por cluster (electrificación, tecnología y defensa, fusión) están en <a href="#" onclick="navigateTo('demanda'); return false;">Demanda Global</a>; los precios spot actuales, en la barra de Cotizaciones; y las previsiones de terceros (IEA, MiningVisuals, Visual Capitalist) sobre cobre, litio, estaño o tungsteno, en <a href="#" onclick="navigateTo('infografias'); return false;">Infografías</a>.
+            </div>
+
+            <h2>1. Proyecciones de demanda global</h2>
+            <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr><th>Mineral</th><th>Demanda base (2024-25)</th><th>Rango 2040</th><th>Múltiplo</th><th>Driver mejor cuantificado</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Cobre</strong></td><td>25–28 Mt</td><td>42–43 Mt</td><td>~1,5–2x</td><td>Electrificación de red + VE</td></tr>
+                    <tr><td><strong>Litio</strong></td><td>1,3–1,8 Mt LCE</td><td>5,6–13,2 Mt LCE</td><td>~3–4x</td><td>Baterías de VE (72–80 % de la demanda hacia 2050)</td></tr>
+                    <tr><td><strong>Tierras raras (imanes)</strong></td><td>91–197 kt (según alcance)</td><td>123–150 kt hacia 2030*</td><td>~1,3–1,6x</td><td>Imanes NdFeB para VE + eólica offshore</td></tr>
+                    <tr><td><strong>Estaño</strong></td><td colspan="4"><span class="pending-badge">Pendiente CeProMin</span></td></tr>
+                    <tr><td><strong>Tungsteno</strong></td><td colspan="4"><span class="pending-badge">Pendiente CeProMin</span></td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p class="table-note">* Para tierras raras CeProMin solo publica el horizonte 2030. Rangos contrastados contra IEA, S&amp;P Global, Wood Mackenzie, ICSG, USGS y Adamas Intelligence.</p>
+
+            <div class="node-grid prosp-grid">
+                <div class="node-card">
+                    <h3>Cobre</h3>
+                    <span class="prosp-stat">42–43 Mt hacia 2040</span>
+                    <p>La electrificación de red por sí sola llega a ~13 Mt/año en 2030 y ~23 Mt/año en 2050 (BNEF NZE). La demanda de datacenters/IA es la estimación más dispersa: más de 4x de diferencia entre fuentes.</p>
+                </div>
+                <div class="node-card">
+                    <h3>Litio</h3>
+                    <span class="prosp-stat">3–4x hacia 2040</span>
+                    <p>El 88 % de la demanda depende de baterías (USGS). El almacenamiento estacionario es el driver "dormido": fuerte en lo cualitativo, sin serie de tonelaje confiable en ninguna fuente.</p>
+                </div>
+                <div class="node-card">
+                    <h3>Tierras raras</h3>
+                    <span class="prosp-stat">China: 85–94 % de los imanes</span>
+                    <p>Nd-Pr-Dy-Tb enfrentan escasez estructural mientras La-Ce están en superávit: mismo mineral, dinámicas de precio opuestas. Los motores sin tierras raras (Tesla, BMW, Renault) son la única válvula de sustitución documentada de los tres.</p>
+                </div>
+            </div>
+
+            <h2>2. Proyecciones de precio</h2>
+            <div class="alert">
+                <strong>En preparación.</strong> CeProMin todavía no publicó proyecciones de precio. Cuando lo haga, esta sección mostrará, para cada mineral, el rango proyectado a 2027-28, 2030 y 2040-50 frente al precio de referencia actual de la barra de Cotizaciones.
+            </div>
+            <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr><th>Mineral</th><th>Referencia de precio</th><th>2027-28</th><th>2030</th><th>2040-50</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Cobre</td><td>LME / COMEX, USD/t</td><td class="pending-cell">—</td><td class="pending-cell">—</td><td class="pending-cell">—</td></tr>
+                    <tr><td>Litio</td><td>Carbonato, USD/t</td><td class="pending-cell">—</td><td class="pending-cell">—</td><td class="pending-cell">—</td></tr>
+                    <tr><td>Tierras raras</td><td>Óxido de NdPr, USD/kg</td><td class="pending-cell">—</td><td class="pending-cell">—</td><td class="pending-cell">—</td></tr>
+                    <tr><td>Estaño</td><td>LME, USD/t</td><td class="pending-cell">—</td><td class="pending-cell">—</td><td class="pending-cell">—</td></tr>
+                    <tr><td>Tungsteno</td><td>APT, USD/mtu</td><td class="pending-cell">—</td><td class="pending-cell">—</td><td class="pending-cell">—</td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h2>3. Señales transversales</h2>
+            <ul>
+                <li>VE y eólica offshore son los únicos dos drivers con datos sólidos y cuantificados compartidos por cobre, litio y tierras raras.</li>
+                <li>La demanda de datacenters/IA es fuerte en cobre, solo cualitativa en tierras raras y ausente en litio.</li>
+                <li>La demanda de defensa se oculta dentro de categorías "civiles" en vez de aparecer como línea propia, tanto en cobre como en tierras raras.</li>
+                <li>2050 es el horizonte con menos datos para los tres minerales: la elección del escenario de política climática pesa más que cualquier supuesto tecnológico.</li>
+            </ul>
+
+            <h2>4. Argentina frente a la demanda proyectada</h2>
+            <p>Lectura del OMA sobre las cifras de cartera de CeProMin: órdenes de magnitud, no pronósticos de producción.</p>
+            <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr><th>Mineral</th><th>Hoy</th><th>Cartera / meta</th><th>Peso frente a la demanda global</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cobre</strong></td>
+                        <td>Escala artesanal: solo Martín Bronce (Jujuy) en operación.</td>
+                        <td>~1,05 Mt/año sumando Vicuña (~395 kt, 2030), El Pachón (~280 kt, 2034), Taca Taca (~227 kt) y Los Azules (~150 kt).</td>
+                        <td>~2,5 % de los 42–43 Mt de 2040, lo que ubicaría al país entre los grandes productores a mediados de la década de 2030.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Litio</strong></td>
+                        <td>~186 kt/año LCE instaladas (7 plantas); 116 kt producidas en 2025. 4.º productor mundial, 11,9 % de las reservas.</td>
+                        <td>Meta oficial: 15 plantas y ~650 kt/año hacia 2035. Cartera de 56 proyectos, con 216 Mt LCE de recursos identificados.</td>
+                        <td>la capacidad instalada equivale a ~10–14 % de la demanda actual; la meta 2035 equivale a ~5–12 % de la demanda 2040, según el escenario.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tierras raras</strong></td>
+                        <td>Sin producción ni reservas definidas. 19 ocurrencias (Segemar), 190.395 t TREO inferidas.</td>
+                        <td>Potencial no descubierto de hasta 3,3 Mt; 5 a 10 años solo para tener recursos bajo estándar internacional.</td>
+                        <td>Oportunidad de seguridad de suministro en elementos de imán; desafío de colocación para La-Ce en superávit.</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <div class="subsection">
+                <h3>Economía circular: cuánto baja la minería primaria</h3>
+                <p>La nota de confiabilidad de CeProMin (marzo 2026) acota la cifra de reducción del 25–40 % de la minería primaria hacia 2050 gracias al reciclaje: vale como techo en el escenario APS de la IEA, fuerte para cobre y cobalto (~40 %), menor para níquel y litio (~25 %) y apenas un 5–15 % para tierras raras. En el escenario STEPS, la reducción para el cobre cae a 10–15 %.</p>
+                <p><a href="https://lalolalo1234.github.io/CeProMin/static/CRM_CircularEconomy_ReliabilityNote.pdf" target="_blank" rel="noopener">Leer la nota completa de CeProMin (PDF, en inglés) ↗</a></p>
+            </div>
+
+            <p class="table-note">Fuente: <a href="https://lalolalo1234.github.io/CeProMin/" target="_blank" rel="noopener">CeProMin</a>, sobre IEA Global Critical Minerals Outlook 2025/2026, S&amp;P Global, Wood Mackenzie, ICSG, USGS MCS 2026, Adamas Intelligence, BNEF, Secretaría de Minería de la Nación, Segemar, Panorama Minero y reportes de empresas. Última revisión: 23/09/2026.</p>
+
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('demanda')">Ver Demanda Global</button>
+                <button class="btn btn-secondary" onclick="navigateTo('infografias')">Ver Infografías</button>
             </div>
         </div>
 
@@ -1332,7 +1458,7 @@
                     </tr>
                     <tr>
                         <td>Prospectivo</td>
-                        <td>Proyecciones de demanda global (2030/2040/2050) por cluster y mineral, y su traducción a pipeline de proyectos argentinos.</td>
+                        <td>Proyecciones de demanda global (2030/2040/2050) por cluster y mineral, y su traducción a pipeline de proyectos argentinos. Ver pestaña Prospectiva.</td>
                         <td>Measure</td>
                     </tr>
                     <tr>
@@ -1846,7 +1972,7 @@
         // español ya presente en el documento, y se define acá el HTML
         // en inglés. Al togglear, se reemplaza el innerHTML completo del
         // tab (misma estructura/clases, solo cambia el texto).
-        const STATIC_TAB_IDS = ['inicio', 'demanda', 'oferta', 'capital-humano', 'indicadores', 'pulsometro', 'brechas', 'monitor', 'gobernanza', 'hoja-de-ruta', 'acerca'];
+        const STATIC_TAB_IDS = ['inicio', 'demanda', 'prospectiva', 'oferta', 'capital-humano', 'indicadores', 'pulsometro', 'brechas', 'monitor', 'gobernanza', 'hoja-de-ruta', 'acerca'];
         const TAB_HTML_ES = {};
         STATIC_TAB_IDS.forEach(id => { TAB_HTML_ES[id] = document.getElementById(id).innerHTML; });
 
@@ -1970,9 +2096,123 @@
                 <button class="btn btn-secondary" onclick="navigateTo('gobernanza')">View Governance</button>
             </div>`,
 
+            prospectiva: `
+            <h1>Foresight — Critical Mineral Demand and Prices</h1>
+            <p>This tab publishes the quantitative output of <a href="https://lalolalo1234.github.io/CeProMin/" target="_blank" rel="noopener"><strong>CeProMin</strong></a> (Mining Foresight Center), the foundation OMA is built on: how much of each critical mineral the world will demand by 2030, 2040 and 2050, under which scenario, and what share of that demand Argentina's project pipeline can cover. Every figure keeps the source and scenario CeProMin published it with.</p>
+
+            <div class="alert">
+                <strong>What lives in other tabs (and is not repeated here):</strong> demand drivers by cluster (electrification, technology and defense, fusion) are in <a href="#" onclick="navigateTo('demanda'); return false;">Global Demand</a>; current spot prices are in the Market Prices bar; and third-party forecasts (IEA, MiningVisuals, Visual Capitalist) on copper, lithium, tin or tungsten are in <a href="#" onclick="navigateTo('infografias'); return false;">Infographics</a>.
+            </div>
+
+            <h2>1. Global demand projections</h2>
+            <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr><th>Mineral</th><th>Base demand (2024-25)</th><th>2040 range</th><th>Multiple</th><th>Best-quantified driver</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Copper</strong></td><td>25–28 Mt</td><td>42–43 Mt</td><td>~1.5–2x</td><td>Grid electrification + EVs</td></tr>
+                    <tr><td><strong>Lithium</strong></td><td>1.3–1.8 Mt LCE</td><td>5.6–13.2 Mt LCE</td><td>~3–4x</td><td>EV batteries (72–80% of demand by 2050)</td></tr>
+                    <tr><td><strong>Rare earths (magnets)</strong></td><td>91–197 kt (scope-dependent)</td><td>123–150 kt by 2030*</td><td>~1.3–1.6x</td><td>NdFeB magnets for EVs + offshore wind</td></tr>
+                    <tr><td><strong>Tin</strong></td><td colspan="4"><span class="pending-badge">Pending from CeProMin</span></td></tr>
+                    <tr><td><strong>Tungsten</strong></td><td colspan="4"><span class="pending-badge">Pending from CeProMin</span></td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p class="table-note">* For rare earths CeProMin only publishes the 2030 horizon. Ranges benchmarked against IEA, S&amp;P Global, Wood Mackenzie, ICSG, USGS and Adamas Intelligence.</p>
+
+            <div class="node-grid prosp-grid">
+                <div class="node-card">
+                    <h3>Copper</h3>
+                    <span class="prosp-stat">42–43 Mt by 2040</span>
+                    <p>Grid electrification alone reaches ~13 Mt/yr by 2030 and ~23 Mt/yr by 2050 (BNEF NZE). AI/datacenter demand is the most dispersed estimate: over a 4x spread between sources.</p>
+                </div>
+                <div class="node-card">
+                    <h3>Lithium</h3>
+                    <span class="prosp-stat">3–4x by 2040</span>
+                    <p>88% of demand is battery-bound (USGS). Stationary storage is the "sleeper" driver: qualitatively strong, with no reliable tonnage series from any source.</p>
+                </div>
+                <div class="node-card">
+                    <h3>Rare earths</h3>
+                    <span class="prosp-stat">China: 85–94% of magnets</span>
+                    <p>Nd-Pr-Dy-Tb face structural scarcity while La-Ce are in surplus: same ore, opposite price dynamics. REE-free motors (Tesla, BMW, Renault) are the only documented substitution escape valve of the three.</p>
+                </div>
+            </div>
+
+            <h2>2. Price projections</h2>
+            <div class="alert">
+                <strong>In preparation.</strong> CeProMin has not yet published price projections. Once it does, this section will show, for each mineral, the projected range for 2027-28, 2030 and 2040-50 against the current reference price in the Market Prices bar.
+            </div>
+            <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr><th>Mineral</th><th>Price benchmark</th><th>2027-28</th><th>2030</th><th>2040-50</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Copper</td><td>LME / COMEX, USD/t</td><td class="pending-cell">—</td><td class="pending-cell">—</td><td class="pending-cell">—</td></tr>
+                    <tr><td>Lithium</td><td>Carbonate, USD/t</td><td class="pending-cell">—</td><td class="pending-cell">—</td><td class="pending-cell">—</td></tr>
+                    <tr><td>Rare earths</td><td>NdPr oxide, USD/kg</td><td class="pending-cell">—</td><td class="pending-cell">—</td><td class="pending-cell">—</td></tr>
+                    <tr><td>Tin</td><td>LME, USD/t</td><td class="pending-cell">—</td><td class="pending-cell">—</td><td class="pending-cell">—</td></tr>
+                    <tr><td>Tungsten</td><td>APT, USD/mtu</td><td class="pending-cell">—</td><td class="pending-cell">—</td><td class="pending-cell">—</td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h2>3. Cross-cutting signals</h2>
+            <ul>
+                <li>EVs and offshore wind are the only two drivers with solid, quantified data shared across copper, lithium and rare earths.</li>
+                <li>AI/datacenter demand is strong for copper, qualitative-only for rare earths and absent for lithium.</li>
+                <li>Defense demand hides inside "civilian" trade categories rather than appearing as its own line item, in both copper and rare earths.</li>
+                <li>2050 is the weakest-data horizon for all three minerals: the choice of climate-policy scenario matters more than any single technology assumption.</li>
+            </ul>
+
+            <h2>4. Argentina against projected demand</h2>
+            <p>OMA's reading of CeProMin's pipeline figures: orders of magnitude, not production forecasts.</p>
+            <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr><th>Mineral</th><th>Today</th><th>Pipeline / target</th><th>Weight against global demand</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Copper</strong></td>
+                        <td>Artisanal scale: only Martín Bronce (Jujuy) operating.</td>
+                        <td>~1.05 Mt/yr adding up Vicuña (~395 kt, 2030), El Pachón (~280 kt, 2034), Taca Taca (~227 kt) and Los Azules (~150 kt).</td>
+                        <td>~2.5% of the 42–43 Mt expected in 2040, enough to place the country among major producers by the mid-2030s.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lithium</strong></td>
+                        <td>~186 kt/yr LCE installed (7 plants); 116 kt produced in 2025. 4th global producer, 11.9% of reserves.</td>
+                        <td>Official target: 15 plants and ~650 kt/yr by 2035. Pipeline of 56 projects, with 216 Mt LCE of identified resources.</td>
+                        <td>installed capacity equals ~10–14% of current demand; the 2035 target equals ~5–12% of 2040 demand, depending on the scenario.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rare earths</strong></td>
+                        <td>No production or defined reserves. 19 occurrences (Segemar), 190,395 t inferred TREO.</td>
+                        <td>Undiscovered potential of up to 3.3 Mt; 5 to 10 years just to reach internationally compliant resource estimates.</td>
+                        <td>A security-of-supply opportunity in magnet elements; an offtake challenge for surplus La-Ce.</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <div class="subsection">
+                <h3>Circular economy: how much primary mining falls</h3>
+                <p>CeProMin's reliability note (March 2026) qualifies the claim that recycling cuts primary mining by 25–40% by 2050: it holds as an upper bound under the IEA's APS scenario, strongly for copper and cobalt (~40%), less for nickel and lithium (~25%) and only 5–15% for rare earths. Under STEPS, the reduction for copper falls to 10–15%.</p>
+                <p><a href="https://lalolalo1234.github.io/CeProMin/static/CRM_CircularEconomy_ReliabilityNote.pdf" target="_blank" rel="noopener">Read CeProMin's full note (PDF) ↗</a></p>
+            </div>
+
+            <p class="table-note">Source: <a href="https://lalolalo1234.github.io/CeProMin/" target="_blank" rel="noopener">CeProMin</a>, based on IEA Global Critical Minerals Outlook 2025/2026, S&amp;P Global, Wood Mackenzie, ICSG, USGS MCS 2026, Adamas Intelligence, BNEF, Argentina's Mining Secretariat, Segemar, Panorama Minero and company filings. Last reviewed: 23/09/2026.</p>
+
+            <div class="button-group">
+                <button class="btn" onclick="navigateTo('demanda')">View Global Demand</button>
+                <button class="btn btn-secondary" onclick="navigateTo('infografias')">View Infographics</button>
+            </div>
+            `,
+
             demanda: `
             <h1>Global Demand for Critical Minerals 2030-2050</h1>
-            <p><strong>Pillar 1</strong> of OMA: annual report with projections for Cu, Li, Ni, Co, REE, W, Be, Ga, Ge, InP and Ta, under base/high/low scenarios, with price-elasticity analysis and technological-substitution impact — the benchmark against which Argentine supply is measured.</p>
+            <p><strong>Pillar 1</strong> of OMA: annual report with projections for Cu, Li, Ni, Co, REE, W, Be, Ga, Ge, InP and Ta, under base/high/low scenarios, with price-elasticity analysis and technological-substitution impact — the benchmark against which Argentine supply is measured. Demand and price figures are published in the <a href="#" onclick="navigateTo('prospectiva'); return false;">Foresight</a> tab, based on CeProMin's output.</p>
 
             <div class="subsection">
                 <h3>Electrification — Energy Transition</h3>
@@ -2330,7 +2570,7 @@
                     </tr>
                     <tr>
                         <td>Foresight</td>
-                        <td>Global demand projections (2030/2040/2050) by cluster and mineral, and their translation into the Argentine project pipeline.</td>
+                        <td>Global demand projections (2030/2040/2050) by cluster and mineral, and their translation into the Argentine project pipeline. See the Foresight tab.</td>
                         <td>Measure</td>
                     </tr>
                     <tr>
@@ -2534,8 +2774,8 @@
         };
 
         const NAV_LABELS = {
-            es: { inicio: 'Inicio', demanda: 'Demanda Global', oferta: 'Oferta & Competitividad', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', infografias: 'Infografías', barometro: 'Barómetro', pulsometro: 'Pulsómetro', brechas: 'Análisis de Brechas', monitor: 'Monitor MIMA', noticias: 'Noticias & Opinión', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de OMA' },
-            en: { inicio: 'Home', demanda: 'Global Demand', oferta: 'Supply & Competitiveness', 'capital-humano': 'Human Capital', indicadores: 'Indicators', infografias: 'Infographics', barometro: 'Barometer', pulsometro: 'Pulsometer', brechas: 'Gap Analysis', monitor: 'MIMA Monitor', noticias: 'News & Opinion', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About OMA' }
+            es: { inicio: 'Inicio', demanda: 'Demanda Global', prospectiva: 'Prospectiva', oferta: 'Oferta & Competitividad', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', infografias: 'Infografías', barometro: 'Barómetro', pulsometro: 'Pulsómetro', brechas: 'Análisis de Brechas', monitor: 'Monitor MIMA', noticias: 'Noticias & Opinión', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de OMA' },
+            en: { inicio: 'Home', demanda: 'Global Demand', prospectiva: 'Foresight', oferta: 'Supply & Competitiveness', 'capital-humano': 'Human Capital', indicadores: 'Indicators', infografias: 'Infographics', barometro: 'Barometer', pulsometro: 'Pulsometer', brechas: 'Gap Analysis', monitor: 'MIMA Monitor', noticias: 'News & Opinion', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About OMA' }
         };
 
         const TICKER_LABEL = { es: '💹 Cotizaciones', en: '💹 Market Prices' };
