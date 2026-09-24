@@ -1030,7 +1030,83 @@
         .ig-lightbox figcaption { color: #dfe8ff; font-size: 0.85rem; text-align: center; max-width: 60rem; }
         .ig-lightbox .ig-close { position: absolute; top: 0.8rem; right: 1.2rem; background: none; border: 0; color: #fff; font-size: 2rem; cursor: pointer; line-height: 1; }
         @media (prefers-reduced-motion: reduce) { .ig-card { animation: none; } .ig-card:hover { transform: none; } }
+    
+        /* ============ Consola de mando OMA (home dashboard) ============ */
+        .oc{--oc-bg:#05080d;--oc-panel:#0a111b;--oc-panel2:#0d1724;--oc-bezel:#1b2838;--oc-line:#1f3347;
+            --oc-cyan:#35e0ff;--oc-cyan-dim:#1b6f82;--oc-ink:#d8ecf5;--oc-muted:#6f8aa0;
+            --oc-good:#3ddc84;--oc-warn:#ffb020;--oc-crit:#ff4d5e;--oc-off:#3a4a5a;
+            position:relative;margin:2rem 0;padding:14px;border-radius:18px;color:var(--oc-ink);
+            font-family:'Rajdhani','Segoe UI',sans-serif;line-height:1.3;
+            background:radial-gradient(ellipse at 50% -10%,#0f2233 0%,#060b12 65%);
+            border:1px solid var(--oc-bezel);box-shadow:0 0 0 4px #070d15,0 24px 60px rgba(0,0,0,.35),inset 0 1px 0 #22364a;overflow:hidden}
+        .oc::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:18px;
+            background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px)}
+        .oc *{box-sizing:border-box}
+        .oc-top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+            padding:10px 14px;border:1px solid var(--oc-line);border-radius:12px;background:var(--oc-panel);margin-bottom:12px}
+        .oc-brand{display:flex;align-items:center;gap:12px}
+        .oc-logo{width:38px;height:38px;border:2px solid var(--oc-cyan);border-radius:50%;display:grid;place-items:center;
+            font-family:'Orbitron',sans-serif;font-weight:900;font-size:.7rem;color:var(--oc-cyan);box-shadow:0 0 14px rgba(53,224,255,.35)}
+        .oc-brand h2{font-family:'Orbitron',sans-serif;font-size:1rem;letter-spacing:.18em;font-weight:700;color:var(--oc-ink);margin:0}
+        .oc-brand small{display:block;color:var(--oc-muted);font-size:.78rem;letter-spacing:.12em}
+        .oc-right{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+        .oc-clock{font-family:'Share Tech Mono',monospace;color:var(--oc-cyan);font-size:.95rem;letter-spacing:.06em}
+        .oc-caution{font-family:'Orbitron',sans-serif;font-size:.64rem;letter-spacing:.14em;padding:7px 10px;border-radius:6px;cursor:pointer;
+            border:1px solid var(--oc-warn);color:var(--oc-warn);background:rgba(255,176,32,.08);animation:oc-blink 1.6s steps(2) infinite}
+        @keyframes oc-blink{50%{background:rgba(255,176,32,.25);box-shadow:0 0 16px rgba(255,176,32,.4)}}
+        .oc-grid{display:grid;gap:12px;grid-template-columns:1fr 1.15fr 1.15fr 1fr;
+            grid-template-areas:"ipm radar radar bar" "exp radar radar pul" "li cu hr sys"}
+        .oc-panel{background:var(--oc-panel);border:1px solid var(--oc-line);border-radius:12px;padding:12px;position:relative;overflow:hidden;min-width:0}
+        .oc-t{font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:.18em;color:var(--oc-muted);display:flex;justify-content:space-between;gap:8px;margin-bottom:8px}
+        .oc-t b{color:var(--oc-cyan);font-weight:500;white-space:nowrap}
+        .oc-hero{border-color:var(--oc-cyan-dim);box-shadow:0 0 0 1px rgba(53,224,255,.15),0 0 40px rgba(53,224,255,.12)}
+        .oc-hero .oc-t{font-size:.7rem;color:var(--oc-ink)}
+        .oc-inst{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:calc(100% - 20px)}
+        .oc-inst svg{width:100%;max-width:210px;height:auto;overflow:visible}
+        .oc-lbl{font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:.14em;color:var(--oc-ink);margin-top:4px}
+        .oc-sub{font-size:.82rem;color:var(--oc-muted);margin-top:2px;line-height:1.2}
+        .oc-sub.hl{color:var(--oc-cyan)}
+        .oc-needle{transition:transform 1.6s cubic-bezier(.2,1.4,.4,1);transform-origin:100px 100px}
+        .oc-tag{display:inline-block;font-family:'Orbitron',sans-serif;font-size:.5rem;letter-spacing:.14em;padding:2px 6px;border-radius:4px;margin-top:6px;border:1px solid}
+        .oc-tag.ill{color:var(--oc-muted);border-color:var(--oc-off)}
+        .oc-tag.real{color:var(--oc-cyan);border-color:var(--oc-cyan-dim)}
+        .oc-standby{animation:oc-pulse 2.4s ease-in-out infinite}
+        @keyframes oc-pulse{50%{opacity:.35}}
+        .oc-radar{display:flex;justify-content:center}
+        .oc-radar svg{width:100%;max-width:640px;height:auto}
+        .oc-sweep{animation:oc-spin 5s linear infinite}
+        @keyframes oc-spin{to{transform:rotate(360deg)}}
+        .oc-blip{animation:oc-blip 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+        @keyframes oc-blip{0%{r:6;opacity:.9}100%{r:20;opacity:0}}
+        .oc-hit{cursor:pointer}
+        .oc-legend{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;font-size:.8rem;color:var(--oc-muted);margin-top:2px}
+        .oc-legend span::before{content:"";display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle;background:currentColor}
+        .oc-annun{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+        .oc-lamp{border-radius:6px;padding:7px 6px;text-align:center;font-family:'Orbitron',sans-serif;font-size:.52rem;letter-spacing:.08em;line-height:1.3;border:1px solid;cursor:pointer;transition:transform .15s,filter .15s;background:none}
+        .oc-lamp:hover,.oc-lamp:focus-visible{transform:translateY(-1px);filter:brightness(1.3);outline:none}
+        .oc-lamp b{display:block;font-family:'Share Tech Mono',monospace;font-size:1rem;letter-spacing:0;margin-top:2px}
+        .oc-lamp.good{color:var(--oc-good);border-color:rgba(61,220,132,.5);background:rgba(61,220,132,.07)}
+        .oc-lamp.warn{color:var(--oc-warn);border-color:rgba(255,176,32,.55);background:rgba(255,176,32,.08)}
+        .oc-lamp.crit{color:var(--oc-crit);border-color:rgba(255,77,94,.6);background:rgba(255,77,94,.1);box-shadow:0 0 10px rgba(255,77,94,.25)}
+        .oc-key{display:flex;gap:12px;flex-wrap:wrap;font-size:.74rem;color:var(--oc-muted);margin-top:8px}
+        .oc-sys{list-style:none;display:grid;gap:6px;margin:0;padding:0}
+        .oc-sys li{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.86rem;line-height:1.15;padding:7px 8px;border:1px solid var(--oc-line);border-radius:6px;background:var(--oc-panel2);cursor:pointer}
+        .oc-sys li:hover{border-color:var(--oc-cyan-dim)}
+        .oc-led{display:inline-flex;align-items:center;gap:6px;font-family:'Orbitron',sans-serif;font-size:.5rem;letter-spacing:.1em;white-space:nowrap}
+        .oc-led::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+        .oc-led.on{color:var(--oc-good)}.oc-led.mid{color:var(--oc-warn)}.oc-led.off{color:var(--oc-muted)}
+        .oc-foot{font-size:.74rem;color:var(--oc-muted);margin:10px 4px 0;line-height:1.4}
+        .oc-tip{position:fixed;pointer-events:none;background:#02101a;border:1px solid var(--oc-cyan-dim);color:var(--oc-ink);font-family:'Rajdhani',sans-serif;font-size:.85rem;padding:6px 9px;border-radius:6px;opacity:0;transition:opacity .15s;z-index:2000;max-width:250px;line-height:1.3}
+        .oc-ipm{grid-area:ipm}.oc-exp{grid-area:exp}.oc-rad{grid-area:radar}.oc-bar{grid-area:bar}.oc-pul{grid-area:pul}
+        .oc-li{grid-area:li}.oc-cu{grid-area:cu}.oc-hr{grid-area:hr}.oc-sy{grid-area:sys}
+        @media (max-width: 1000px){.oc-grid{grid-template-columns:1fr 1fr;grid-template-areas:"radar radar" "ipm exp" "bar pul" "li cu" "hr sys"}}
+        @media (max-width: 600px){.oc{padding:10px}.oc-grid{grid-template-columns:1fr;grid-template-areas:"radar" "ipm" "exp" "bar" "pul" "li" "cu" "hr" "sys"}
+            .oc-brand h2{font-size:.82rem}.oc-annun{grid-template-columns:repeat(2,1fr)}}
+        @media (prefers-reduced-motion: reduce){.oc-sweep,.oc-blip,.oc-caution,.oc-standby{animation:none}.oc-needle{transition:none}}
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -1121,6 +1197,8 @@
                     <div class="hv-caption"><span class="hv-step">1</span><span class="hv-text">Medimos la demanda global de minerales críticos</span></div>
                 </div>
             </section>
+            <!-- Consola de mando OMA (dashboard) -->
+            <div id="omaConsole" class="oc" aria-label="Consola de mando OMA"></div>
 
             <div class="stat-row hero-stats">
                 <div class="stat-card"><span class="stat-num">2030–2050</span><span class="stat-label">horizonte de proyección de demanda</span></div>
@@ -2020,6 +2098,8 @@
                     <div class="hv-caption"><span class="hv-step">1</span><span class="hv-text">We measure global critical mineral demand</span></div>
                 </div>
             </section>
+            <!-- Consola de mando OMA (dashboard) -->
+            <div id="omaConsole" class="oc" aria-label="Consola de mando OMA"></div>
 
             <div class="stat-row hero-stats">
                 <div class="stat-card"><span class="stat-num">2030–2050</span><span class="stat-label">demand projection horizon</span></div>
@@ -2905,6 +2985,7 @@
             renderBarometerChart();
             renderAmvestSidebar();
             initHomeAnimations();
+            if (window.renderOmaConsole) renderOmaConsole(lang);
             renderInfografias();
             loadTicker();
             loadNews();
@@ -3393,5 +3474,226 @@
         // Arranque: aplicar idioma guardado (o español por defecto) y cargar datos en vivo
         setLanguage(currentLang);
     </script>
+
+    <script>
+    // ============================================================
+    // Consola de mando OMA — dashboard de la página de inicio
+    // Radar del Barómetro (lee barometerAxes) + relojes de indicadores
+    // ============================================================
+    (function () {
+        const C = { good: '#3ddc84', warn: '#ffb020', crit: '#ff4d5e', cyan: '#35e0ff', muted: '#6f8aa0', off: '#3a4a5a' };
+        const nf = (v, d, lang) => v.toLocaleString(lang === 'es' ? 'es-AR' : 'en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+        const T = {
+            es: {
+                title: 'CONSOLA DE MANDO', subtitle: 'OBSERVATORIO MINERO ARGENTINO · MEASURE → ANTICIPATE → GUIDE',
+                caution: n => `▲ MASTER CAUTION · ${n} EJES`, cautionTitle: 'Ejes del Barómetro por debajo de 6/10 — ver Análisis de Brechas',
+                pIpm: 'PERFORMANCE', pExp: 'EXPORTACIONES', pRad: 'BARÓMETRO OMA · RADAR DE CLIMA DE INVERSIÓN', pRadB: '● SEÑAL ACTIVA',
+                pBar: 'CLIMA INTERNO', pPul: 'CLIMA EXTERNO', pLi: 'LITIO · CAPACIDAD', pCu: 'COBRE · CARTERA', pHr: 'TALENTO · MIMA',
+                pSys: 'ESTADO DE SISTEMAS OMA', pSysB: n => `${n}/5 EN LÍNEA`,
+                legend: ['3T 2025', '3T 2026', 'anillo 6/10: umbral de alerta'],
+                key: ['● ≥ 7 nominal', '▲ 6–7 vigilar', '■ < 6 alerta', 'Tocá un eje o una luz para abrir su pestaña'],
+                real: 'DATO REAL', ill: 'ILUSTRATIVO', noSignal: 'SIN SEÑAL',
+                ipm: ['ÍNDICE DE PERFORMANCE MINERA', 'Exportaciones · producción · inversión', 'Compuesto · metodología a acordar'],
+                exp: ['EXPORTACIONES MINERAS 2026', '1S acumulado vs. proyección anual US$ 9.000 M', '▲ +74,4 % interanual', 'mil M US$'],
+                bar: ['ÍNDICE BARÓMETRO', 'Promedio 9 ejes · percepción interna', d => `▲ +${d} vs 2025`],
+                pul: ['ÍNDICE PULSÓMETRO', 'Percepción externa · 1.ª edición en preparación'],
+                li: ['CAPACIDAD INSTALADA', 'Meta oficial 2035: 650 kt/año', '29 % de la meta · 4.º productor mundial', 'kt LCE'],
+                cu: ['CUOTA DE LA DEMANDA 2040', '~1,05 Mt/año de cartera (Vicuña, El Pachón, Taca Taca, Los Azules)', 'Hoy: escala artesanal'],
+                hr: ['EJE CAPITAL HUMANO', 'La mejora más chica de los 9 ejes', d => `▲ +${d} vs 2025`],
+                sys: [['Barómetro', 'EN LÍNEA'], ['Prospectiva (CeProMin)', 'EN LÍNEA'], ['Análisis de Brechas', 'FASE 1'], ['Monitor MIMA (CAI)', 'EN DISEÑO'], ['Pulsómetro', 'CALIBRANDO']],
+                short: ['Exportaciones', 'Marco normativo', 'Licencia social', 'Clima político', 'Mining-friendly', 'Financiamiento', 'Infraestructura', 'Estab. macro', 'Capital humano'],
+                tipGo: 'Clic → ', tabs: { barometro: 'Barómetro', brechas: 'Brechas', monitor: 'Monitor MIMA', prospectiva: 'Prospectiva', pulsometro: 'Pulsómetro', oferta: 'Oferta' },
+                foot: 'Datos reales: exportaciones mineras 1S 2026 (INDEC / Secretaría de Minería) y proyección anual; capacidad de litio y cartera de cobre (CeProMin, pestaña Prospectiva). El Barómetro es un primer corte ilustrativo de la encuesta OMA. El Índice de Performance Minera es ilustrativo hasta acordar su metodología.',
+                locale: 'es-AR'
+            },
+            en: {
+                title: 'COMMAND CONSOLE', subtitle: 'ARGENTINE MINING OBSERVATORY · MEASURE → ANTICIPATE → GUIDE',
+                caution: n => `▲ MASTER CAUTION · ${n} AXES`, cautionTitle: 'Barometer axes below 6/10 — see Gap Analysis',
+                pIpm: 'PERFORMANCE', pExp: 'EXPORTS', pRad: 'OMA BAROMETER · INVESTMENT CLIMATE RADAR', pRadB: '● SIGNAL ACTIVE',
+                pBar: 'INTERNAL CLIMATE', pPul: 'EXTERNAL CLIMATE', pLi: 'LITHIUM · CAPACITY', pCu: 'COPPER · PIPELINE', pHr: 'TALENT · MIMA',
+                pSys: 'OMA SYSTEMS STATUS', pSysB: n => `${n}/5 ONLINE`,
+                legend: ['Q3 2025', 'Q3 2026', '6/10 ring: alert threshold'],
+                key: ['● ≥ 7 nominal', '▲ 6–7 watch', '■ < 6 alert', 'Click an axis or a light to open its tab'],
+                real: 'REAL DATA', ill: 'ILLUSTRATIVE', noSignal: 'NO SIGNAL',
+                ipm: ['MINING PERFORMANCE INDEX', 'Exports · production · investment', 'Composite · methodology to be agreed'],
+                exp: ['MINING EXPORTS 2026', 'H1 cumulative vs. US$ 9.0 bn annual projection', '▲ +74.4 % year-on-year', 'US$ bn'],
+                bar: ['BAROMETER INDEX', '9-axis average · internal perception', d => `▲ +${d} vs 2025`],
+                pul: ['PULSOMETER INDEX', 'External perception · 1st edition in preparation'],
+                li: ['INSTALLED CAPACITY', 'Official 2035 target: 650 kt/yr', '29 % of target · world #4 producer', 'kt LCE'],
+                cu: ['SHARE OF 2040 DEMAND', '~1.05 Mt/yr pipeline (Vicuña, El Pachón, Taca Taca, Los Azules)', 'Today: artisanal scale'],
+                hr: ['HUMAN CAPITAL AXIS', 'Smallest improvement of the 9 axes', d => `▲ +${d} vs 2025`],
+                sys: [['Barometer', 'ONLINE'], ['Foresight (CeProMin)', 'ONLINE'], ['Gap Analysis', 'PHASE 1'], ['MIMA Monitor (CAI)', 'IN DESIGN'], ['Pulsometer', 'CALIBRATING']],
+                short: ['Exports', 'Regulatory', 'Social license', 'Political climate', 'Mining-friendly', 'Funding', 'Infrastructure', 'Macro stability', 'Human capital'],
+                tipGo: 'Click → ', tabs: { barometro: 'Barometer', brechas: 'Gap Analysis', monitor: 'MIMA Monitor', prospectiva: 'Foresight', pulsometro: 'Pulsometer', oferta: 'Supply' },
+                foot: 'Real data: H1 2026 mining exports (INDEC / Mining Secretariat) and annual projection; lithium capacity and copper pipeline (CeProMin, Foresight tab). The Barometer is an illustrative first cut of the OMA survey. The Mining Performance Index is illustrative until its methodology is agreed.',
+                locale: 'en-GB'
+            }
+        };
+
+        const SYS_STATE = ['on', 'on', 'on', 'mid', 'off'];
+        const SYS_TAB = ['barometro', 'prospectiva', 'brechas', 'monitor', 'pulsometro'];
+
+        // ---------- geometry helpers ----------
+        const A0 = -225, A1 = 45;
+        const pol = (cx, cy, r, a) => [cx + r * Math.cos(a * Math.PI / 180), cy + r * Math.sin(a * Math.PI / 180)];
+        const ang = (d, v) => A0 + (A1 - A0) * ((v - d.min) / (d.max - d.min));
+        const arc = (r, a0, a1) => { const [x0, y0] = pol(100, 100, r, a0), [x1, y1] = pol(100, 100, r, a1); return `M${x0} ${y0} A${r} ${r} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1} ${y1}`; };
+
+        function gauge(d) {
+            let s = `<svg viewBox="0 0 200 175" aria-hidden="true">`;
+            s += `<circle cx="100" cy="100" r="92" fill="#060d15" stroke="#1f3347" stroke-width="2"/>`;
+            d.zones.forEach(([a, b, c]) => { s += `<path d="${arc(80, ang(d, a) + 1, ang(d, b) - 1)}" stroke="${c}" stroke-width="6" fill="none" opacity=".85" stroke-linecap="round"/>`; });
+            for (let i = 0; i <= 20; i++) {
+                const a = A0 + (A1 - A0) * i / 20, [x0, y0] = pol(100, 100, i % 5 ? 70 : 66, a), [x1, y1] = pol(100, 100, 74, a);
+                s += `<line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="#6f8aa0" stroke-width="${i % 5 ? 1 : 2}"/>`;
+                if (i % 5 === 0) {
+                    const [tx, ty] = pol(100, 100, 55, a), v = d.min + (d.max - d.min) * i / 20;
+                    s += `<text x="${tx}" y="${ty + 3}" fill="#6f8aa0" font-size="8" text-anchor="middle" font-family="Share Tech Mono, monospace">${d.max >= 1000 ? (v / 1000).toFixed(0) + 'k' : +v.toFixed(1)}</text>`;
+                }
+            }
+            if (d.target != null) {
+                const a = ang(d, d.target), [x0, y0] = pol(100, 100, 84, a), [x1, y1] = pol(100, 100, 94, a);
+                s += `<line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="#d8ecf5" stroke-width="2.5"/>`;
+            }
+            if (d.val == null) {
+                s += `<text x="100" y="74" fill="#6f8aa0" font-size="8.5" text-anchor="middle" font-family="Share Tech Mono, monospace" letter-spacing="1" class="oc-standby">${d.standby}</text>`;
+                s += `<g class="oc-needle" data-a="${A0}" style="transform:rotate(${A0 + 90}deg)"><line x1="100" y1="100" x2="100" y2="34" stroke="#3a4a5a" stroke-width="2"/></g>`;
+            } else {
+                s += `<g class="oc-needle" data-a="${ang(d, d.val)}" style="transform:rotate(${A0 + 90}deg)"><polygon points="97,100 100,28 103,100" fill="#35e0ff" style="filter:drop-shadow(0 0 4px #35e0ff)"/></g>`;
+                s += `<text x="100" y="138" fill="#d8ecf5" font-size="17" text-anchor="middle" font-family="Share Tech Mono, monospace">${d.txt}</text>`;
+                s += `<text x="100" y="150" fill="#6f8aa0" font-size="8" text-anchor="middle">${d.unit}</text>`;
+            }
+            return s + `<circle cx="100" cy="100" r="6" fill="#0a111b" stroke="#35e0ff" stroke-width="2"/></svg>`;
+        }
+
+        function inst(d, t) {
+            return `<div class="oc-inst" role="button" tabindex="0" data-go="${d.go}">${gauge(d)}
+                <div class="oc-lbl">${d.lbl}</div><div class="oc-sub">${d.sub}</div>
+                ${d.delta ? `<div class="oc-sub hl">${d.delta}</div>` : ''}
+                <span class="oc-tag ${d.real ? 'real' : 'ill'}">${d.real ? t.real : t.ill}</span></div>`;
+        }
+
+        let tipEl;
+        function tip(e, html) {
+            if (!tipEl) { tipEl = document.createElement('div'); tipEl.className = 'oc-tip'; document.body.appendChild(tipEl); }
+            if (!html) { tipEl.style.opacity = 0; return; }
+            tipEl.innerHTML = html; tipEl.style.opacity = 1;
+            tipEl.style.left = Math.min(e.clientX + 12, window.innerWidth - 260) + 'px'; tipEl.style.top = (e.clientY + 12) + 'px';
+        }
+
+        function radar(ax, t, lang) {
+            const c = 300, R = 210, n = ax.length;
+            const P = (i, v) => pol(c, c, R * v / 10, -90 + 360 * i / n);
+            const avg = k => ax.reduce((s, a) => s + a[k], 0) / n;
+            let s = `<svg viewBox="-80 -6 760 612" role="img" aria-label="${t.pRad}"><defs>
+                <radialGradient id="ocSw" cx="0" cy="0" r="1"><stop offset="0" stop-color="#35e0ff" stop-opacity=".45"/><stop offset="1" stop-color="#35e0ff" stop-opacity="0"/></radialGradient>
+                <radialGradient id="ocBg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#062232"/><stop offset="1" stop-color="#020b12"/></radialGradient></defs>`;
+            s += `<circle cx="${c}" cy="${c}" r="${R + 26}" fill="url(#ocBg)" stroke="#1b6f82" stroke-width="2"/>`;
+            for (let k = 0; k < 72; k++) { const a = k * 5, [x0, y0] = pol(c, c, R + 18, a), [x1, y1] = pol(c, c, R + (k % 6 ? 22 : 26), a); s += `<line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="#1b6f82" stroke-width="${k % 6 ? 1 : 2}"/>`; }
+            [2, 4, 6, 8, 10].forEach(k => {
+                s += `<circle cx="${c}" cy="${c}" r="${R * k / 10}" fill="none" ${k === 6 ? 'stroke="#ffb020" stroke-dasharray="4 4" opacity=".55"' : 'stroke="#1f3347"'}/>`;
+                s += `<text x="${c + 4}" y="${c - R * k / 10 + 12}" fill="#3d5870" font-size="10" font-family="Share Tech Mono, monospace">${k}</text>`;
+            });
+            for (let i = 0; i < n; i++) {
+                const [x, y] = P(i, 10); s += `<line x1="${c}" y1="${c}" x2="${x}" y2="${y}" stroke="#1f3347"/>`;
+                const [lx, ly] = P(i, 12.1), anc = Math.abs(lx - c) < 20 ? 'middle' : lx < c ? 'end' : 'start';
+                s += `<text x="${lx}" y="${ly + 5}" fill="#9fb8cc" font-size="15" text-anchor="${anc}" font-family="Rajdhani, sans-serif" font-weight="600" class="oc-hit" data-i="${i}">${ax[i].label}</text>`;
+            }
+            const [ex, ey] = pol(c, c, R, -45);
+            s += `<g class="oc-sweep" style="transform-origin:${c}px ${c}px"><path d="M${c} ${c} L${c} ${c - R} A${R} ${R} 0 0 1 ${ex} ${ey} Z" fill="url(#ocSw)"/><line x1="${c}" y1="${c}" x2="${c}" y2="${c - R}" stroke="#35e0ff" stroke-width="1.5" opacity=".8"/></g>`;
+            const poly = k => ax.map((a, i) => P(i, a[k]).join(',')).join(' ');
+            s += `<polygon points="${poly('v2025')}" fill="none" stroke="#6f8aa0" stroke-width="2" stroke-dasharray="5 4"/>`;
+            s += `<polygon points="${poly('v2026')}" fill="rgba(53,224,255,.13)" stroke="#35e0ff" stroke-width="2.5" style="filter:drop-shadow(0 0 8px #35e0ff)"/>`;
+            ax.forEach((a, i) => {
+                const [x, y] = P(i, a.v2026), col = a.v2026 < 6 ? C.crit : a.v2026 < 7 ? C.warn : C.good;
+                if (a.v2026 < 6) s += `<circle cx="${x}" cy="${y}" r="6" fill="none" stroke="${col}" stroke-width="2" class="oc-blip" style="animation-delay:${i * .25}s"/>`;
+                s += `<circle cx="${x}" cy="${y}" r="6.5" fill="${col}" stroke="#02101a" stroke-width="2"/><circle cx="${x}" cy="${y}" r="18" fill="transparent" data-i="${i}" class="oc-hit"/>`;
+            });
+            s += `<g class="oc-hit" data-center="1"><circle cx="${c}" cy="${c}" r="44" fill="#02101a" stroke="#1b6f82"/>`;
+            s += `<text x="${c}" y="${c + 4}" fill="#35e0ff" font-size="30" text-anchor="middle" font-family="Share Tech Mono, monospace" style="filter:drop-shadow(0 0 6px #35e0ff)">${nf(avg('v2026'), 1, lang)}</text>`;
+            s += `<text x="${c}" y="${c + 22}" fill="#3ddc84" font-size="11" text-anchor="middle" font-family="Share Tech Mono, monospace">▲ +${nf(avg('v2026') - avg('v2025'), 1, lang)}</text></g>`;
+            return s + `</svg>`;
+        }
+
+        function axisTab(i, v) { if (i === 8) return 'monitor'; return v < 6 ? 'brechas' : 'barometro'; }
+
+        window.renderOmaConsole = function (lang) {
+            const root = document.getElementById('omaConsole');
+            if (!root || typeof barometerAxes === 'undefined') return;
+            const t = T[lang] || T.es;
+            const ax = barometerAxes.map((a, i) => ({ label: t.short[i], full: a[lang].label, v2025: a.v2025, v2026: a.v2026 }));
+            const avg26 = ax.reduce((s, a) => s + a.v2026, 0) / ax.length, avg25 = ax.reduce((s, a) => s + a.v2025, 0) / ax.length;
+            const hr = ax[8], alerts = ax.filter(a => a.v2026 < 6).length;
+            const RYG10 = [[0, 5, C.crit], [5, 6.5, C.warn], [6.5, 10, C.good]];
+            const I = {
+                ipm: { min: 0, max: 100, val: 68, txt: '68', unit: '/100', zones: [[0, 40, C.crit], [40, 65, C.warn], [65, 100, C.good]], lbl: t.ipm[0], sub: t.ipm[1], delta: t.ipm[2], real: false, go: 'oferta' },
+                exp: { min: 0, max: 9000, val: 4742, target: 4500, txt: nf(4.742, 2, lang), unit: t.exp[3], zones: [[0, 3000, C.crit], [3000, 4500, C.warn], [4500, 9000, C.good]], lbl: t.exp[0], sub: t.exp[1], delta: t.exp[2], real: true, go: 'barometro' },
+                bar: { min: 0, max: 10, val: avg26, txt: nf(avg26, 1, lang), unit: '/10', zones: RYG10, lbl: t.bar[0], sub: t.bar[1], delta: t.bar[2](nf(avg26 - avg25, 1, lang)), real: false, go: 'barometro' },
+                pul: { min: 0, max: 10, val: null, standby: t.noSignal, zones: RYG10, lbl: t.pul[0], sub: t.pul[1], real: false, go: 'pulsometro' },
+                li: { min: 0, max: 650, val: 186, txt: '186', unit: t.li[3], zones: [[0, 650, C.cyan]], lbl: t.li[0], sub: t.li[1], delta: t.li[2], real: true, go: 'prospectiva' },
+                cu: { min: 0, max: 5, val: 2.5, txt: '~' + nf(2.5, 1, lang), unit: '%', zones: [[0, 5, C.cyan]], lbl: t.cu[0], sub: t.cu[1], delta: t.cu[2], real: true, go: 'prospectiva' },
+                hr: { min: 0, max: 10, val: hr.v2026, txt: nf(hr.v2026, 1, lang), unit: '/10', zones: RYG10, lbl: t.hr[0], sub: t.hr[1], delta: t.hr[2](nf(hr.v2026 - hr.v2025, 1, lang)), real: false, go: 'monitor' }
+            };
+            const P = (cls, title, badge, body, extra = '') => `<div class="oc-panel ${cls}${extra}"><div class="oc-t">${title}<b>${badge}</b></div>${body}</div>`;
+            const online = SYS_STATE.filter(x => x === 'on').length;
+
+            root.innerHTML = `
+              <div class="oc-top">
+                <div class="oc-brand"><div class="oc-logo">OMA</div><div><h2>${t.title}</h2><small>${t.subtitle}</small></div></div>
+                <div class="oc-right">
+                  ${alerts ? `<span class="oc-caution" role="button" tabindex="0" data-go="brechas" title="${t.cautionTitle}">${t.caution(alerts)}</span>` : ''}
+                  <span class="oc-clock" id="ocClock"></span>
+                </div>
+              </div>
+              <div class="oc-grid">
+                ${P('oc-ipm', t.pIpm, 'PFD-1', inst(I.ipm, t))}
+                ${P('oc-exp', t.pExp, 'PFD-2', inst(I.exp, t))}
+                ${P('oc-rad', t.pRad, t.pRadB, `<div class="oc-radar">${radar(ax, t, lang)}</div>
+                    <div class="oc-legend"><span style="color:var(--oc-muted)">${t.legend[0]}</span><span style="color:var(--oc-cyan)">${t.legend[1]}</span><span style="color:var(--oc-warn);opacity:.7">${t.legend[2]}</span></div>
+                    <div class="oc-annun">${ax.map((a, i) => { const k = a.v2026 < 6 ? 'crit' : a.v2026 < 7 ? 'warn' : 'good', ic = a.v2026 < 6 ? '■' : a.v2026 < 7 ? '▲' : '●';
+                        return `<button type="button" class="oc-lamp ${k}" data-i="${i}" title="${a.full}: ${nf(a.v2025, 1, lang)} → ${nf(a.v2026, 1, lang)}">${ic} ${a.label.toUpperCase()}<b>${nf(a.v2026, 1, lang)}</b></button>`; }).join('')}</div>
+                    <div class="oc-key"><span style="color:var(--oc-good)">${t.key[0]}</span><span style="color:var(--oc-warn)">${t.key[1]}</span><span style="color:var(--oc-crit)">${t.key[2]}</span><span>${t.key[3]}</span></div>`, ' oc-hero')}
+                ${P('oc-bar', t.pBar, 'BAR', inst(I.bar, t))}
+                ${P('oc-pul', t.pPul, 'PUL', inst(I.pul, t))}
+                ${P('oc-li', t.pLi, 'LI', inst(I.li, t))}
+                ${P('oc-cu', t.pCu, 'CU', inst(I.cu, t))}
+                ${P('oc-hr', t.pHr, 'HR', inst(I.hr, t))}
+                ${P('oc-sy', t.pSys, t.pSysB(online), `<ul class="oc-sys">${t.sys.map((s, i) => `<li data-go="${SYS_TAB[i]}">${s[0]}<span class="oc-led ${SYS_STATE[i]}">${s[1]}</span></li>`).join('')}</ul>`)}
+              </div>
+              <p class="oc-foot">${t.foot}</p>`;
+
+            // navigation
+            const go = tab => { tip(null, null); if (typeof navigateTo === 'function') { navigateTo(tab); window.scrollTo({ top: 0, behavior: 'smooth' }); } };
+            root.querySelectorAll('[data-go]').forEach(el => {
+                el.style.cursor = 'pointer';
+                el.addEventListener('click', () => go(el.dataset.go));
+                el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(el.dataset.go); } });
+            });
+            root.querySelectorAll('.oc-hit, .oc-lamp').forEach(el => {
+                if (el.dataset.center) { el.addEventListener('click', () => go('barometro')); return; }
+                const i = +el.dataset.i, a = ax[i], tab = axisTab(i, a.v2026), d = a.v2026 - a.v2025;
+                el.addEventListener('click', () => go(tab));
+                if (el.classList.contains('oc-hit')) {
+                    el.addEventListener('mousemove', e => tip(e, `<b>${a.full}</b><br>2026: ${nf(a.v2026, 1, lang)} · 2025: ${nf(a.v2025, 1, lang)} · Δ ${d >= 0 ? '+' : ''}${nf(d, 1, lang)}<br><span style="color:#35e0ff">${t.tipGo}${t.tabs[tab]}</span>`));
+                    el.addEventListener('mouseleave', () => tip(null, null));
+                }
+            });
+
+            // animate needles
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                root.querySelectorAll('.oc-needle').forEach(nd => nd.style.transform = `rotate(${+nd.dataset.a + 90}deg)`);
+            }));
+
+            // clock (Buenos Aires)
+            const tick = () => { const el = document.getElementById('ocClock'); if (el) el.textContent = new Date().toLocaleString(t.locale, { timeZone: 'America/Argentina/Buenos_Aires', hour12: false, day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' ART'; };
+            tick();
+            clearInterval(window._ocClock); window._ocClock = setInterval(tick, 1000);
+        };
+
+        renderOmaConsole(typeof currentLang !== 'undefined' ? currentLang : 'es');
+    })();
+    </script>
+
 </body>
 </html>
