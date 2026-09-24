@@ -1103,6 +1103,39 @@
         @media (max-width: 600px){.oc{padding:10px}.oc-grid{grid-template-columns:1fr;grid-template-areas:"radar" "ipm" "exp" "bar" "pul" "li" "cu" "hr" "sys"}
             .oc-brand h2{font-size:.82rem}.oc-annun{grid-template-columns:repeat(2,1fr)}}
         @media (prefers-reduced-motion: reduce){.oc-sweep,.oc-blip,.oc-caution,.oc-standby{animation:none}.oc-needle{transition:none}}
+    
+        /* ===== Portada compacta: el dashboard entra en la primera pantalla ===== */
+        header { padding: 0.55rem 0; }
+        header .header-content { display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 1rem; }
+        header .logo { font-size: 1.15rem; margin: 0; white-space: nowrap; }
+        header .tagline { font-size: 0.8rem; opacity: 0.85; }
+        header .badge-cai { display: none; }
+        header .lang-toggle { position: static; order: 3; margin-left: auto; padding: 0.25rem 0.7rem; font-size: 0.72rem; }
+        .ticker-label { padding: 0.3rem 0.8rem; font-size: 0.68rem; }
+        .ticker-item { padding: 0.3rem 1.2rem; font-size: 0.8rem; }
+        .ticker-note { display: none; }
+        .nav-container { max-width: 1440px; position: relative; }
+        .nav-menu { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+        .nav-menu::-webkit-scrollbar { display: none; }
+        .nav-menu li:first-child { margin-left: auto; }
+        .nav-menu li:last-child { margin-right: auto; }
+        .nav-menu { margin: 0; padding: 0; }
+        .nav-menu li { flex: 0 0 auto; min-width: 0; margin: 0; }
+        .nav-menu button { width: auto; padding: 0.6rem 0.75rem; font-size: 0.82rem; }
+        @media (max-width: 1400px) { .nav-menu button { padding: 0.6rem 0.55rem; font-size: 0.8rem; } }
+        .container { margin-top: 0.8rem; }
+        #inicio .hero { display: block; padding: 0; margin: 0 0 0.6rem; background: none; box-shadow: none; animation: none; color: #333; border-radius: 0; overflow: visible; }
+        #inicio .hero::before, #inicio .hero-kicker, #inicio .hero-title, #inicio .hero-actions, #inicio .hero-viz { display: none; }
+        #inicio .hero-mission { margin: 0; padding: 0.1rem 0 0.1rem 0.8rem; border-left-width: 3px; }
+        #inicio .hero-label { display: inline; font-size: 0.66rem; color: #b8860b; margin: 0 0.5rem 0 0; }
+        #inicio .hero-mission p { display: inline; font-size: 0.82rem; line-height: 1.5; color: #444; }
+        #inicio .hero-mission strong { color: #1e3c72; box-shadow: none; font-weight: 600; }
+        #inicio .oc { margin-top: 0; }
+        @media (max-width: 600px) {
+            header .logo { font-size: 1rem; }
+            header .tagline { flex-basis: 100%; order: 4; font-size: 0.74rem; }
+            #inicio .hero-mission { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1114,7 +1147,7 @@
         <div class="header-content">
             <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()" aria-label="Switch language / Cambiar idioma">EN</button>
             <div class="logo">🇦🇷 OMA · Observatorio Minero Argentino</div>
-            <div class="tagline">Una iniciativa del Centro Argentino de Ingenieros (CAI), Panorama Minero (PM) y la Universidad de Buenos Aires (UBA) — midiendo demanda global, anticipando oferta argentina, guiando decisión estratégica</div>
+            <div class="tagline">Una iniciativa del Centro Argentino de Ingenieros (CAI), Panorama Minero (PM) y la Universidad de Buenos Aires (UBA)</div>
             <div class="badge-relacion badge-cai">Monitor de Ingeniería de Minas en alianza con el Centro Argentino de Ingenieros (CAI)</div>
         </div>
     </header>
@@ -1133,20 +1166,20 @@
         <div class="nav-container">
             <ul class="nav-menu">
                 <li><button class="nav-btn active" data-tab="inicio">Inicio</button></li>
-                <li><button class="nav-btn" data-tab="demanda">Demanda Global</button></li>
+                <li><button class="nav-btn" data-tab="demanda">Demanda</button></li>
                 <li><button class="nav-btn" data-tab="prospectiva">Prospectiva</button></li>
-                <li><button class="nav-btn" data-tab="oferta">Oferta &amp; Competitividad</button></li>
+                <li><button class="nav-btn" data-tab="oferta">Oferta</button></li>
                 <li><button class="nav-btn" data-tab="capital-humano">Capital Humano</button></li>
                 <li><button class="nav-btn" data-tab="indicadores">Indicadores</button></li>
                 <li><button class="nav-btn" data-tab="infografias">Infografías</button></li>
                 <li><button class="nav-btn" data-tab="barometro">Barómetro</button></li>
                 <li><button class="nav-btn" data-tab="pulsometro">Pulsómetro</button></li>
-                <li><button class="nav-btn" data-tab="brechas">Análisis de Brechas</button></li>
+                <li><button class="nav-btn" data-tab="brechas">Brechas</button></li>
                 <li><button class="nav-btn" data-tab="monitor">Monitor MIMA</button></li>
-                <li><button class="nav-btn" data-tab="noticias">Noticias &amp; Opinión</button></li>
+                <li><button class="nav-btn" data-tab="noticias">Noticias</button></li>
                 <li><button class="nav-btn" data-tab="gobernanza">Gobernanza</button></li>
                 <li><button class="nav-btn" data-tab="hoja-de-ruta">Hoja de Ruta</button></li>
-                <li><button class="nav-btn" data-tab="acerca">Acerca de OMA</button></li>
+                <li><button class="nav-btn" data-tab="acerca">Acerca de</button></li>
             </ul>
         </div>
     </nav>
@@ -2843,19 +2876,19 @@
         const HEADER_I18N = {
             es: {
                 logo: '🇦🇷 OMA · Observatorio Minero Argentino',
-                tagline: 'Una iniciativa del Centro Argentino de Ingenieros (CAI), Panorama Minero (PM) y la Universidad de Buenos Aires (UBA) — midiendo demanda global, anticipando oferta argentina, guiando decisión estratégica',
+                tagline: 'Una iniciativa del Centro Argentino de Ingenieros (CAI), Panorama Minero (PM) y la Universidad de Buenos Aires (UBA)',
                 badgeCai: 'Monitor de Ingeniería de Minas en alianza con el Centro Argentino de Ingenieros (CAI)'
             },
             en: {
                 logo: '🇦🇷 OMA · Argentine Mining Observatory',
-                tagline: 'An initiative of the Argentine Center of Engineers (CAI), Panorama Minero (PM) and the University of Buenos Aires (UBA) — measuring global demand, anticipating Argentine supply, guiding strategic decisions',
+                tagline: 'An initiative of the Argentine Center of Engineers (CAI), Panorama Minero (PM) and the University of Buenos Aires (UBA)',
                 badgeCai: 'Mining Engineering Monitor in partnership with the Argentine Center of Engineers (CAI)'
             }
         };
 
         const NAV_LABELS = {
-            es: { inicio: 'Inicio', demanda: 'Demanda Global', prospectiva: 'Prospectiva', oferta: 'Oferta & Competitividad', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', infografias: 'Infografías', barometro: 'Barómetro', pulsometro: 'Pulsómetro', brechas: 'Análisis de Brechas', monitor: 'Monitor MIMA', noticias: 'Noticias & Opinión', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de OMA' },
-            en: { inicio: 'Home', demanda: 'Global Demand', prospectiva: 'Foresight', oferta: 'Supply & Competitiveness', 'capital-humano': 'Human Capital', indicadores: 'Indicators', infografias: 'Infographics', barometro: 'Barometer', pulsometro: 'Pulsometer', brechas: 'Gap Analysis', monitor: 'MIMA Monitor', noticias: 'News & Opinion', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About OMA' }
+            es: { inicio: 'Inicio', demanda: 'Demanda', prospectiva: 'Prospectiva', oferta: 'Oferta', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', infografias: 'Infografías', barometro: 'Barómetro', pulsometro: 'Pulsómetro', brechas: 'Brechas', monitor: 'Monitor MIMA', noticias: 'Noticias', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de' },
+            en: { inicio: 'Home', demanda: 'Demand', prospectiva: 'Foresight', oferta: 'Supply', 'capital-humano': 'Human Capital', indicadores: 'Indicators', infografias: 'Infographics', barometro: 'Barometer', pulsometro: 'Pulsometer', brechas: 'Gaps', monitor: 'MIMA Monitor', noticias: 'News', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About' }
         };
 
         const TICKER_LABEL = { es: '💹 Cotizaciones', en: '💹 Market Prices' };
@@ -3054,6 +3087,7 @@
             // Se duplica el contenido para lograr el scroll continuo sin cortes
             track.innerHTML = itemsHtml + itemsHtml;
             document.getElementById('tickerNote').textContent = note;
+            document.querySelector('.ticker-wrap').title = note;
         }
 
         async function loadTicker() {
