@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Convergencias 2050</title>
+<meta name="description" content="Modelo prospectivo de demanda de minerales críticos a partir de macrotendencias tecnológicas y sus convergencias.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+html { color-scheme: light; }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+html.embed .rail { position: static; max-height: none; overflow: visible; }
+html.embed .wrap { padding-block: 4px 16px; padding-inline: 0; }
+html.embed body { background: transparent; }
+html.embed header.top { display: none; }
+</style>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  if (q.has('embed')) {
+    document.documentElement.classList.add('embed');
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
+</head>
+<body>
+<style>
+:root {
+  --bg: #eceff0;
+  --surface: #fbfcfc;
+  --surface-2: #f3f5f6;
+  --ink: #131b20;
+  --ink-2: #47545c;
+  --ink-3: #6b7880;
+  --line: #d3d9dc;
+  --line-soft: #e3e7e9;
+  --accent: #a4502a;
+  --accent-soft: #f3e3da;
+  --accent-ink: #ffffff;
+  --grid: #e1e5e7;
+  --band: rgba(164, 80, 42, 0.14);
+  --s-base: #b7bfc4;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+  --s5: #e87ba4; --s6: #008300; --s7: #4a3aa7; --s8: #e34948;
+  --up: #b3401f;
+  --down: #1f6f8b;
+  --shadow: 0 1px 2px rgba(19, 27, 32, 0.06), 0 4px 16px rgba(19, 27, 32, 0.05);
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0e1417; --surface: #151d21; --surface-2: #1b252a; --ink: #e7edef; --ink-2: #aab7bd; --ink-3: #85939a;
+    --line: #2b373d; --line-soft: #223036; --accent: #e08a5c; --accent-soft: #3a261d; --accent-ink: #1a0f0a;
+    --grid: #243036; --band: rgba(224, 138, 92, 0.18); --s-base: #56636a;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+    --up: #ee8a67; --down: #62b6d4; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0e1417; --surface: #151d21; --surface-2: #1b252a; --ink: #e7edef; --ink-2: #aab7bd; --ink-3: #85939a;
+  --line: #2b373d; --line-soft: #223036; --accent: #e08a5c; --accent-soft: #3a261d; --accent-ink: #1a0f0a;
+  --grid: #243036; --band: rgba(224, 138, 92, 0.18); --s-base: #56636a;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+  --up: #ee8a67; --down: #62b6d4; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 14px; line-height: 1.5; }
+.wrap { max-width: 1320px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 56px; display: grid; gap: 22px; }
+@media (max-width: 600px) { .wrap { padding-inline: 16px; padding-block: 20px 40px; } }
+
+/* Cabecera */
+header.top { display: grid; grid-template-columns: 1fr auto; gap: 16px 32px; align-items: end; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(34px, 5vw, 54px); line-height: 1; letter-spacing: -0.01em; margin: 6px 0 10px; text-wrap: balance; }
+h1 span { color: var(--accent); }
+.lede { max-width: 64ch; color: var(--ink-2); font-size: 15px; margin: 0; }
+.chain { font-family: var(--f-mono); font-size: 12px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: flex-end; max-width: 420px; }
+.chain b { font-weight: 500; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 3px 7px; }
+.chain i { font-style: normal; color: var(--ink-3); }
+@media (max-width: 860px) { header.top { grid-template-columns: 1fr; } .chain { justify-content: flex-start; } }
+
+/* Escenarios */
+.scen { display: grid; gap: 10px; }
+.scen-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.scen-btn { font: 500 13.5px/1.2 var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.scen-btn:hover { border-color: var(--ink-3); }
+.scen-btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.scen-btn.custom { font-style: italic; }
+.scen-desc { color: var(--ink-2); font-size: 13.5px; margin: 0; min-height: 1.5em; }
+
+/* Layout principal */
+.main { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 22px; align-items: start; }
+@media (max-width: 980px) { .main { grid-template-columns: 1fr; } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.rail { display: grid; gap: 0; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow-y: auto; }
+@media (max-width: 980px) { .rail { position: static; max-height: none; } }
+.group { padding: 16px 18px 18px; border-bottom: 1px solid var(--line-soft); display: grid; gap: 14px; }
+.group:last-child { border-bottom: 0; }
+.group h2 { font-family: var(--f-display); font-weight: 600; font-size: 15px; letter-spacing: .02em; text-transform: uppercase; margin: 0; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.group h2 small { font-family: var(--f-body); text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 12px; color: var(--ink-3); }
+
+.ctl { display: grid; gap: 5px; }
+.ctl-head { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.ctl label { font-weight: 600; font-size: 13.5px; display: flex; align-items: center; gap: 7px; }
+.sw { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+.ctl-val { font-family: var(--f-mono); font-size: 12px; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ctl-desc { font-size: 12px; color: var(--ink-3); line-height: 1.35; }
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; background: transparent; margin: 0; cursor: pointer; }
+input[type=range]::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(to right, var(--accent) 0 var(--p, 50%), var(--line) var(--p, 50%) 100%); }
+input[type=range]::-moz-range-track { height: 4px; border-radius: 2px; background: var(--line); }
+input[type=range]::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--accent); }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); margin-top: -6px; }
+input[type=range]::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+input[type=range]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.conv { display: grid; grid-template-columns: auto 1fr auto; gap: 4px 10px; align-items: start; padding: 10px 0; border-top: 1px dashed var(--line-soft); }
+.conv:first-of-type { border-top: 0; padding-top: 0; }
+.conv input { margin: 3px 0 0; accent-color: var(--accent); width: 16px; height: 16px; cursor: pointer; }
+.conv-name { font-weight: 600; font-size: 13px; line-height: 1.3; }
+.conv-path { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); letter-spacing: .02em; }
+.conv-desc { grid-column: 2 / 4; font-size: 12px; color: var(--ink-3); line-height: 1.35; }
+.delta { font-family: var(--f-mono); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; padding: 1px 6px; border-radius: 4px; background: var(--surface-2); color: var(--ink-2); }
+.delta.up { color: var(--up); }
+.delta.down { color: var(--down); }
+
+/* Contenido */
+.content { display: grid; gap: 22px; min-width: 0; }
+.tabs { display: flex; gap: 0; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.tab { font: 600 14px/1.2 var(--f-display); letter-spacing: .01em; color: var(--ink-2); background: none; border: 0; border-bottom: 3px solid transparent; padding: 12px 14px 10px; cursor: pointer; white-space: nowrap; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.tab:focus-visible, .scen-btn:focus-visible, .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.card { padding: 20px 22px 22px; display: grid; gap: 16px; }
+@media (max-width: 600px) { .card { padding: 16px; } }
+.card-head { display: flex; justify-content: space-between; gap: 12px 24px; align-items: flex-start; flex-wrap: wrap; }
+.card h3 { font-family: var(--f-display); font-weight: 600; font-size: 20px; margin: 0; line-height: 1.2; text-wrap: balance; }
+.card .sub { color: var(--ink-3); font-size: 13px; margin: 3px 0 0; max-width: 70ch; }
+
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line-soft); border-radius: 8px; overflow: hidden; }
+.kpi { padding: 12px 14px; display: grid; gap: 2px; border-left: 1px solid var(--line-soft); }
+.kpi:first-child { border-left: 0; background: var(--surface-2); }
+.kpi .y { font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-3); letter-spacing: .05em; }
+.kpi .v { font-family: var(--f-display); font-weight: 600; font-size: 26px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kpi .v small { font-size: 14px; color: var(--ink-3); font-weight: 500; margin-left: 3px; }
+.kpi .r { font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .kpi:nth-child(3) { border-left: 0; } .kpi:nth-child(n+3) { border-top: 1px solid var(--line-soft); } }
+
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.seg button { font: 500 12.5px/1 var(--f-body); background: var(--surface); color: var(--ink-2); border: 0; padding: 7px 11px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12.5px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend .ln { width: 16px; height: 0; border-top: 2px dashed var(--ink); }
+.legend .bd { width: 14px; height: 10px; background: var(--band); border: 1px solid var(--accent); border-radius: 2px; }
+
+.chart-box { position: relative; width: 100%; }
+.chart-box svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart-box text { font-family: var(--f-mono); font-size: 11px; fill: var(--ink-3); }
+.tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 8px; padding: 10px 12px; font-size: 12.5px; min-width: 210px; z-index: 5; }
+.tip h4 { margin: 0 0 6px; font-family: var(--f-display); font-size: 14px; font-weight: 600; }
+.tip table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.tip td { padding: 1.5px 0; color: var(--ink-2); }
+.tip td.n { text-align: right; font-family: var(--f-mono); font-size: 11.5px; color: var(--ink); padding-left: 12px; }
+.tip tr.tot td { border-top: 1px solid var(--line-soft); padding-top: 4px; color: var(--ink); font-weight: 600; }
+
+.two { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 22px; }
+@media (max-width: 1480px) { .two { grid-template-columns: 1fr; } }
+
+.insight { border-left: 3px solid var(--accent); padding: 2px 0 2px 12px; color: var(--ink-2); font-size: 13.5px; margin: 0; max-width: 72ch; }
+.insight b { color: var(--ink); font-weight: 600; }
+
+/* Tabla */
+.tbl-wrap { overflow-x: auto; }
+table.mx { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 620px; }
+table.mx th { text-align: left; font-family: var(--f-mono); font-weight: 500; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+table.mx th.n, table.mx td.n { text-align: right; }
+table.mx td { padding: 10px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+table.mx tr:last-child td { border-bottom: 0; }
+table.mx td.n { font-variant-numeric: tabular-nums; }
+table.mx td.n b { font-family: var(--f-display); font-size: 17px; font-weight: 600; display: block; }
+table.mx td.n span { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); }
+table.mx tr.sel td { background: var(--accent-soft); }
+table.mx td .mn { font-weight: 600; }
+table.mx.src { min-width: 860px; }
+table.mx.src td { font-size: 12.5px; color: var(--ink-2); line-height: 1.45; }
+table.mx.src td:nth-child(4) { max-width: 46ch; }
+.st { display: inline-block; font-family: var(--f-mono); font-size: 11px; padding: 2px 7px; border-radius: 999px; white-space: nowrap; margin: 0 4px 4px 0; }
+.st.ok { background: color-mix(in srgb, var(--down) 15%, transparent); color: var(--down); }
+.st.est { background: color-mix(in srgb, var(--s4) 22%, transparent); color: var(--ink); }
+table.mx td .un { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); display: block; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--ink); }
+
+details.notes { padding: 0; }
+details.notes summary { cursor: pointer; padding: 16px 22px; font-family: var(--f-display); font-weight: 600; font-size: 16px; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+details.notes summary::-webkit-details-marker { display: none; }
+details.notes summary::after { content: "+"; font-family: var(--f-mono); color: var(--ink-3); font-size: 18px; }
+details.notes[open] summary::after { content: "−"; }
+.notes-body { padding: 0 22px 22px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px 28px; color: var(--ink-2); font-size: 13px; }
+.notes-body h4 { font-family: var(--f-display); font-weight: 600; font-size: 14px; color: var(--ink); margin: 0 0 4px; }
+.notes-body p { margin: 0 0 6px; }
+.notes-body code { font-family: var(--f-mono); font-size: 12px; background: var(--surface-2); padding: 1px 4px; border-radius: 3px; color: var(--ink); }
+footer { color: var(--ink-3); font-size: 12px; font-family: var(--f-mono); }
+@media (prefers-reduced-motion: no-preference) { .chart-box path.area { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Prospectiva de minerales críticos · Horizonte 2030 / 2040 / 2050</div>
+      <h1>Convergencias <span>2050</span></h1>
+      <p class="lede">Un modelo de escenarios que parte de los usos industriales. Cada macrotendencia tecnológica mueve la demanda de minerales por sí sola y también a través de las demás. Mueve los controles para ver cómo cambia la demanda de cada mineral y qué tendencia la explica.</p>
+    </div>
+    <div class="chain" aria-label="Estructura del modelo">
+      <b>Macrotendencias</b><i>→</i><b>Adopción tecnológica</b><i>→</i><b>Intensidad material</b><i>→</i><b>Demanda bruta</b><i>−</i><b>Reciclaje</b><i>=</i><b>Demanda primaria</b>
+    </div>
+  </header>
+
+  <section class="scen" aria-label="Escenarios">
+    <div class="scen-row" id="scenRow"></div>
+    <p class="scen-desc" id="scenDesc"></p>
+  </section>
+
+  <div class="main">
+    <aside class="panel rail" aria-label="Controles del modelo">
+      <div class="group" id="gDrivers"><h2>Macrotendencias <small>ritmo hacia 2050</small></h2></div>
+      <div class="group" id="gLevers"><h2>Palancas del sistema</h2></div>
+      <div class="group" id="gConv"><h2>Convergencias <small id="convUnit">efecto 2050</small></h2></div>
+    </aside>
+
+    <div class="content">
+      <div class="panel">
+        <div class="tabs" role="tablist" id="tabs" aria-label="Mineral"></div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3 id="mTitle"></h3>
+              <p class="sub" id="mSub"></p>
+            </div>
+            <div class="seg" role="group" aria-label="Vista del gráfico">
+              <button type="button" id="vComp" aria-pressed="true">Composición por tendencia</button>
+              <button type="button" id="vUnc" aria-pressed="false">Rango de incertidumbre</button>
+            </div>
+          </div>
+          <div class="kpis" id="kpis"></div>
+          <div class="legend" id="legend"></div>
+          <div class="chart-box" id="mainChart"></div>
+          <p class="insight" id="insight"></p>
+        </div>
+      </div>
+
+      <div class="two">
+        <div class="panel card">
+          <div class="card-head">
+            <div>
+              <h3>¿Qué mueve la demanda?</h3>
+              <p class="sub" id="tornSub"></p>
+            </div>
+            <div class="seg" role="group" aria-label="Horizonte de la sensibilidad">
+              <button type="button" data-h="2030" aria-pressed="false">2030</button>
+              <button type="button" data-h="2040" aria-pressed="false">2040</button>
+              <button type="button" data-h="2050" aria-pressed="true">2050</button>
+            </div>
+          </div>
+          <div class="chart-box" id="tornado"></div>
+        </div>
+        <div class="panel card">
+          <div class="card-head">
+            <div>
+              <h3>Mapa de demanda primaria</h3>
+              <p class="sub">Múltiplo frente a 2025 en el escenario actual, con rango p10–p90, y la tendencia que más suma al crecimiento hasta 2050.</p>
+            </div>
+          </div>
+          <div class="tbl-wrap"><table class="mx" id="matrix"></table></div>
+        </div>
+      </div>
+
+      <div class="panel card">
+        <div class="card-head">
+          <div>
+            <h3>Cifras base y contraste con fuentes</h3>
+            <p class="sub">Demanda de 2025 usada por el modelo, su origen y el objetivo de calibración del escenario de Referencia. <b>Verificada</b>: el total procede de una fuente oficial pública. <b>Estimada</b>: la fuente primaria es de pago o no publica el dato, y la cifra es una estimación coherente con los datos públicos.</p>
+          </div>
+        </div>
+        <div class="tbl-wrap"><table class="mx src">
+          <thead><tr><th>Mineral</th><th class="n">2025 en el modelo</th><th>Contraste</th><th>Fuentes y cifras de referencia</th><th>Referencia del modelo</th></tr></thead>
+          <tbody>
+            <tr><td><span class="mn">Cobre</span></td><td class="n">27.300 kt</td><td><span class="st ok">Verificada</span></td><td>AIE GCMO 2025: 26.717 kt en 2024, de ellas 7.737 kt de tecnologías limpias (29 %); 16,6 % de oferta secundaria; centros de datos 512 kt en 2030 (AIE, <i>Energy and AI</i>). USGS MCS 2026: 29 Mt refinadas en 2025. BNEF TMO 2025: déficit de 4 Mt en 2030.</td><td>AIE STEPS: ×1,15 en 2030 y ×1,25 en 2040. Modelo: ×1,09 y ×1,26.</td></tr>
+            <tr><td><span class="mn">Litio</span></td><td class="n">1.400 kt LCE</td><td><span class="st ok">Verificada</span></td><td>USGS MCS 2026: consumo de 263 kt Li en 2025 (+20 %), 88 % en baterías. AIE: 3 % de oferta secundaria. JRC 2023: demanda UE ×12 en 2030 y ×21 en 2050 frente a 2020.</td><td>AIE STEPS: ×5 de 2024 a 2040 (≈ ×4,2 desde 2025). Modelo: ×4,3.</td></tr>
+            <tr><td><span class="mn">NdPr</span></td><td class="n">100 kt óxido</td><td><span class="st est">Estimada</span></td><td>USGS MCS 2026: 390 kt REO de minería total en 2025, con los imanes como primer uso; no publica el reparto por elemento. AIE: los imanes son ~95 % del valor del mercado de tierras raras. El desglose por elemento es de Adamas Intelligence (de pago).</td><td>AIE: imanes +1/3 en 2030 y tierras raras +50–60 % en 2040. Modelo: ×1,21 y ×1,66.</td></tr>
+            <tr><td><span class="mn">Dy+Tb</span></td><td class="n">3.150 t óxido</td><td><span class="st est">Estimada</span></td><td>Sin dato oficial público. CRU prevé un déficit de 2.920 t de Dy+Tb en 2035. JRC 2023: en el escenario alto, la demanda de disprosio en 2050 sería 5,5 veces la oferta actual.</td><td>Se sigue la trayectoria de NdPr con más peso de defensa.</td></tr>
+            <tr><td><span class="mn">Galio</span></td><td class="n">900 t</td><td><span class="st ok">Verificada</span> <span class="st est">reparto estimado</span></td><td>USGS MCS 2026: unas 900 t de producción primaria en 2025. AIE: los centros de datos podrían necesitar en 2030 hasta el 10 % de la oferta actual; China refina el 95 %.</td><td>Sin escenario oficial de demanda total.</td></tr>
+            <tr><td><span class="mn">Zinc</span></td><td class="n">13.680 kt</td><td><span class="st ok">Verificada</span></td><td>USGS MCS 2026: consumo previsto de 13,7 Mt y minería de 13 Mt en 2025. ILZSG: galvanizado 60 %, aleaciones 15 %, latón y bronce 9 %; 13 % de zinc refinado secundario (2023).</td><td>Sin escenario oficial; crecimiento ligado a acero galvanizado de solar, eólica y redes.</td></tr>
+            <tr><td><span class="mn">Estaño</span></td><td class="n">370 kt</td><td><span class="st ok">Verificada</span></td><td>ITA: 370 kt refinadas en 2023, 51 % en soldadura electrónica. USGS MCS 2026: 290 kt de minería en 2025; en EE. UU., un 22 % del consumo procede de chatarra.</td><td>Sin escenario oficial; la soldadura liga el estaño a la IA y a la fotovoltaica.</td></tr>
+            <tr><td><span class="mn">Manganeso</span></td><td class="n">20.000 kt Mn</td><td><span class="st ok">Verificada</span> <span class="st est">reparto estimado</span></td><td>USGS MCS 2026: 20 Mt de Mn contenido en 2025. BNEF: el acero es el 97 % de la demanda. Benchmark: la demanda para baterías se multiplica por más de 8 esta década (LMFP, NMC); China produce el 96 % del sulfato de alta pureza.</td><td>Sin escenario oficial. La sustitución química aumenta la demanda de manganeso.</td></tr>
+            <tr><td><span class="mn">Wolframio</span></td><td class="n">115.000 t W</td><td><span class="st ok">Verificada</span> <span class="st est">reparto estimado</span></td><td>USGS MCS 2026: 85 kt de minería en 2025, 79 % de China, con controles de exportación desde febrero de 2025. ITIA: carburos 65 %; por sector, defensa 8 % y energía 6 %. Reciclaje de alrededor de un tercio del consumo (literatura técnica).</td><td>Sin escenario oficial. La fusión lo usa como material de primera pared y divertor.</td></tr>
+          </tbody>
+        </table></div>
+        <p class="insight">BNEF publica solo resúmenes; su Transition Metals Outlook completo es de pago. Las cifras de uso por macrotendencia (defensa, robótica, espacio, IA) son estimaciones del modelo: ninguna fuente oficial las desagrega todavía.</p>
+      </div>
+
+      <details class="panel notes">
+        <summary>Método, supuestos y límites</summary>
+        <div class="notes-body">
+          <div>
+            <h4>Estructura</h4>
+            <p>Para cada uso industrial, la demanda es <code>actividad × intensidad material</code>. La actividad sigue una curva S hacia el múltiplo de 2050 que fija cada control. La intensidad cae con la eficiencia material y la sustitución. A la demanda bruta se le resta la cuota de reciclaje para obtener la demanda primaria, la que tiene que venir de la minería.</p>
+          </div>
+          <div>
+            <h4>Calibración</h4>
+            <p>El escenario de Referencia reproduce el escenario de políticas declaradas (STEPS) de la AIE, Global Critical Minerals Outlook 2025, con un margen de ±5–10 %: cobre ×1,25 y litio ×4,2 entre 2025 y 2040. La tabla de cifras base indica qué total está verificado con fuentes oficiales y cuál es una estimación.</p>
+          </div>
+          <div>
+            <h4>Tecnologías emergentes</h4>
+            <p>La fusión se modela en GW nuevos con intensidad por GW: cobre en bobinas y planta, y litio para la regeneración de tritio (el enriquecimiento en Li‑6 multiplica el litio natural necesario). Sus superconductores usan itrio y gadolinio en capas de micras: tonelaje despreciable. La cuántica se modela como madurez 0–1; su huella directa es mínima y su peso está en las convergencias.</p>
+          </div>
+          <div>
+            <h4>Incertidumbre</h4>
+            <p>El rango p10–p90 sale de 200 simulaciones Monte Carlo que perturban cada control (desviación de 12 puntos) y la intensidad material de cada uso (±15 %). No es una predicción: indica cuánto cambia el resultado si los supuestos se mueven dentro de lo razonable.</p>
+          </div>
+          <div>
+            <h4>Qué no incluye todavía</h4>
+            <p>Precios y elasticidad de la demanda, restricciones de oferta, sustitución entre minerales (cobre por aluminio más allá de la red), metales del grupo del platino, níquel, cobalto, grafito, germanio y antimonio. Se pueden añadir con la misma estructura.</p><p>En manganeso, la sustitución funciona al revés: las químicas LMFP y sodio‑ion con manganeso aumentan su demanda.</p>
+          </div>
+          <div>
+            <h4>Cómo leerlo</h4>
+            <p>La pregunta útil no es cuánto litio habrá en 2050, sino qué tendencia mueve más cada mineral y qué señales tempranas conviene vigilar para saber hacia qué escenario vamos.</p>
+          </div>
+        </div>
+      </details>
+      <footer>Modelo ilustrativo para discusión · Cifras indicativas, calibrables con fuentes oficiales · Septiembre 2026</footer>
+    </div>
+  </div>
+</div>
+
+<script>
+const YEARS = []; for (let y = 2025; y <= 2050; y++) YEARS.push(y);
+
+const MINERALS = [
+  { id: 'cu', name: 'Cobre', unit: 'kt Cu', baseGrowth: 0.006, rec0: 0.17, recMax: 0.35, subMax: 0.12, subScope: ['transicion'] },
+  { id: 'li', name: 'Litio', unit: 'kt LCE', baseGrowth: 0.02, rec0: 0.03, recMax: 0.35, subMax: 0.40, subScope: ['transicion', 'ev'] },
+  { id: 'ndpr', name: 'Tierras raras ligeras (NdPr)', short: 'NdPr', unit: 'kt óxido', baseGrowth: 0.006, rec0: 0.01, recMax: 0.25, subMax: 0.30, subScope: ['ev', 'transicion', 'robotica'] },
+  { id: 'dytb', name: 'Tierras raras pesadas (Dy+Tb)', short: 'Dy+Tb', unit: 't óxido', baseGrowth: 0.008, rec0: 0.01, recMax: 0.25, subMax: 0.35, subScope: ['ev', 'transicion', 'robotica'] },
+  { id: 'ga', name: 'Galio', unit: 't Ga', baseGrowth: 0.02, rec0: 0.02, recMax: 0.15, subMax: 0.05, subScope: ['ia'] },
+  { id: 'zn', name: 'Zinc', unit: 'kt Zn', baseGrowth: 0.01, rec0: 0.13, recMax: 0.30, subMax: 0.05, subScope: ['transicion'] },
+  { id: 'sn', name: 'Estaño', unit: 'kt Sn', baseGrowth: 0.008, rec0: 0.25, recMax: 0.40, subMax: 0.05, subScope: ['ia'] },
+  { id: 'mn', name: 'Manganeso', unit: 'kt Mn', baseGrowth: 0.01, rec0: 0.02, recMax: 0.10, subMax: -0.35, subScope: ['ev', 'transicion'] },
+  { id: 'w', name: 'Wolframio (tungsteno)', short: 'Wolframio', unit: 't W', baseGrowth: 0.015, rec0: 0.32, recMax: 0.50, subMax: 0.05, subScope: [] },
+];
+
+// Demanda 2025 atribuida a cada uso (fuentes y grado de contraste en la tabla de la página)
+const BASE2025 = {
+  base:      { cu: 18770, li: 250, ndpr: 52,  dytb: 1400, ga: 710, zn: 12450, sn: 305,  mn: 18630, w: 99000 },
+  transicion:{ cu: 6400,  li: 250, ndpr: 13,  dytb: 380,  ga: 40,  zn: 900,   sn: 18,   mn: 800,   w: 3500 },
+  ev:        { cu: 1500,  li: 850, ndpr: 26,  dytb: 1050, ga: 35,  zn: 100,   sn: 12,   mn: 250,   w: 1000 },
+  ia:        { cu: 300,   li: 25,  ndpr: 4,   dytb: 50,   ga: 30,  zn: 60,    sn: 25,   mn: 50,    w: 1500 },
+  defensa:   { cu: 250,   li: 12,  ndpr: 3,   dytb: 200,  ga: 60,  zn: 150,   sn: 6,    mn: 250,   w: 9200 },
+  robotica:  { cu: 60,    li: 10,  ndpr: 2,   dytb: 60,   ga: 10,  zn: 20,    sn: 3,    mn: 20,    w: 500 },
+  espacio:   { cu: 20,    li: 3,   ndpr: 0.3, dytb: 10,   ga: 15,  zn: 2,     sn: 0.5,  mn: 2,     w: 300 },
+};
+// Elasticidad de la intensidad a la actividad (exponente): p. ej. el almacenamiento crece más rápido que la red
+const ELAST = { li: { transicion: 2.4, ev: 1.6 }, cu: { transicion: 0.6, ev: 0.8 }, mn: { ev: 1.8 }, ndpr: { ev: 0.75, robotica: 0.9 }, dytb: { ev: 0.75, robotica: 0.9 } };
+// Tecnologías emergentes: intensidad absoluta
+const FUSION_PER_GW = { cu: 4, li: 3, ndpr: 0, dytb: 0.05, ga: 0.5, zn: 0.5, sn: 0.01, mn: 1, w: 300 };  // por GW nuevo instalado
+const QUANTUM_FULL = { cu: 5, li: 0, ndpr: 0.05, dytb: 1, ga: 20, zn: 0, sn: 0.1, mn: 0, w: 5 };          // a madurez plena
+
+// Macrotendencias: rango del múltiplo de actividad 2050 frente a 2025 (slider 0 / 100)
+const DRIVERS = [
+  { id: 'transicion', name: 'Transición energética', desc: 'Renovables, redes eléctricas y almacenamiento', lo: 1.4, hi: 4.4, mid: 2035, k: 0.16 },
+  { id: 'ev', name: 'Electromovilidad', desc: 'Vehículos eléctricos y sus motores y baterías', lo: 1.4, hi: 5.0, mid: 2032, k: 0.22 },
+  { id: 'ia', name: 'IA y centros de datos', desc: 'Cómputo, chips, potencia eléctrica y refrigeración', lo: 2.0, hi: 12.0, mid: 2034, k: 0.22 },
+  { id: 'defensa', name: 'Defensa y rearme', desc: 'Drones, radares GaN, misiles, renovación de arsenales', lo: 1.1, hi: 3.5, mid: 2030, k: 0.35 },
+  { id: 'robotica', name: 'Robótica y humanoides', desc: 'Robots industriales, de servicio y humanoides', lo: 3.0, hi: 60.0, mid: 2040, k: 0.25 },
+  { id: 'espacio', name: 'Economía espacial', desc: 'Constelaciones de satélites, lanzadores, defensa espacial', lo: 1.8, hi: 12.0, mid: 2036, k: 0.2 },
+  { id: 'fusion', name: 'Energía de fusión', desc: 'Capacidad comercial instalada hacia 2050', emergent: true },
+  { id: 'cuantica', name: 'Computación cuántica', desc: 'Madurez de la computación cuántica tolerante a fallos', emergent: true },
+];
+const LEVERS = [
+  { id: 'eficiencia', name: 'Eficiencia material', desc: 'Menos material por unidad (0 a 2,5 % anual)' },
+  { id: 'sustitucion', name: 'Sustitución tecnológica', desc: 'Sodio-ion, motores sin tierras raras, aluminio' },
+  { id: 'reciclaje', name: 'Reciclaje', desc: 'Cuota secundaria alcanzada en 2050' },
+];
+const CONVERGENCES = [
+  { id: 'c1', from: 'Cuántica', to: 'IA', name: 'La cuántica abarata el cómputo de la IA', desc: 'Con madurez plena, la IA necesita un 35 % menos de hardware y energía por unidad de servicio.' },
+  { id: 'c2', from: 'IA', to: 'Energía', name: 'La IA tira de la red eléctrica', desc: 'El consumo de los centros de datos exige más generación renovable y más red.' },
+  { id: 'c3', from: 'IA × Cuántica', to: 'Materiales', name: 'Descubrimiento acelerado de materiales', desc: 'IA y cuántica aceleran químicas y diseños alternativos: más sustitución y eficiencia.' },
+  { id: 'c4', from: 'Fusión', to: 'Energía', name: 'La fusión desplaza renovables y baterías', desc: '1 GW de fusión sustituye unos 3,5 GW de renovables con almacenamiento.' },
+  { id: 'c5', from: 'Defensa', to: 'Robótica', name: 'El rearme impulsa drones y robótica', desc: 'La demanda militar acelera la curva de aprendizaje de sistemas autónomos.' },
+  { id: 'c6', from: 'Defensa', to: 'Espacio', name: 'Militarización del espacio', desc: 'Constelaciones militares y vigilancia amplían la economía espacial.' },
+];
+
+const SCENARIOS = [
+  { id: 'ref', name: 'Referencia', desc: 'Políticas actuales, sin rupturas tecnológicas ni geopolíticas nuevas.',
+    v: { transicion: 42, ev: 50, ia: 45, defensa: 50, robotica: 30, espacio: 40, fusion: 15, cuantica: 35, eficiencia: 40, sustitucion: 35, reciclaje: 40 } },
+  { id: 'net', name: 'Transición acelerada', desc: 'Descarbonización ambiciosa y cooperación internacional.',
+    v: { transicion: 85, ev: 85, ia: 50, defensa: 30, robotica: 45, espacio: 45, fusion: 30, cuantica: 45, eficiencia: 60, sustitucion: 50, reciclaje: 75 } },
+  { id: 'salto', name: 'Salto tecnológico', desc: 'Alta disrupción, baja tensión: cuántica, fusión y robótica llegan antes.',
+    v: { transicion: 60, ev: 70, ia: 85, defensa: 30, robotica: 85, espacio: 70, fusion: 85, cuantica: 90, eficiencia: 70, sustitucion: 70, reciclaje: 60 } },
+  { id: 'bloques', name: 'Bloques y rearme', desc: 'Baja disrupción, alta tensión: prioridad a la defensa y a la autonomía estratégica.',
+    v: { transicion: 35, ev: 35, ia: 55, defensa: 95, robotica: 50, espacio: 65, fusion: 10, cuantica: 35, eficiencia: 35, sustitucion: 25, reciclaje: 45 } },
+  { id: 'carrera', name: 'Carrera tecnológica', desc: 'Alta disrupción y alta tensión: competencia por la IA, el espacio y la defensa.',
+    v: { transicion: 55, ev: 55, ia: 95, defensa: 90, robotica: 90, espacio: 90, fusion: 50, cuantica: 80, eficiencia: 50, sustitucion: 50, reciclaje: 45 } },
+];
+
+function logisticProgress(t, mid, k) {
+  const f = x => 1 / (1 + Math.exp(-k * (x - mid)));
+  return (f(t) - f(2025)) / (f(2050) - f(2025));
+}
+const lerp = (a, b, s) => a + (b - a) * s;
+
+// v: valores 0–100 por slider; conv: {c1:true,...}; pert: perturbaciones opcionales para Monte Carlo
+function runModel(v, conv, pert) {
+  pert = pert || {};
+  const P = (id) => Math.max(0, Math.min(100, v[id] + (pert[id] || 0))) / 100;
+  const iM = pert.intensity || {}; // multiplicadores de intensidad por driver
+  const out = {};
+  // Actividad por driver (índice 2025 = 1)
+  const act = {};
+  for (const d of DRIVERS) {
+    if (d.emergent) continue;
+    const s = lerp(d.lo, d.hi, P(d.id));
+    act[d.id] = YEARS.map(y => 1 + (s - 1) * logisticProgress(y, d.mid, d.k));
+  }
+  // Cuántica: madurez 0–1
+  const q = P('cuantica');
+  const qMid = lerp(2049, 2032, q), qMax = lerp(0.25, 1, q);
+  const Q = YEARS.map(y => qMax / (1 + Math.exp(-0.45 * (y - qMid))));
+  // Fusión: GW acumulados
+  const f = P('fusion');
+  const fGW2050 = f < 0.02 ? 0 : 150 * Math.pow(f, 1.8);
+  const fMid = lerp(2047, 2042, f);
+  const fStart = 2035;
+  const FGW = YEARS.map(y => y < fStart ? 0 : fGW2050 * (1 / (1 + Math.exp(-0.35 * (y - fMid))) - 1 / (1 + Math.exp(-0.35 * (fStart - fMid)))) / (1 / (1 + Math.exp(-0.35 * (2050 - fMid))) - 1 / (1 + Math.exp(-0.35 * (fStart - fMid)))));
+  const FNEW = FGW.map((g, i) => i === 0 ? 0 : Math.max(0, g - FGW[i - 1]));
+
+  // Convergencias sobre la actividad
+  const A = {};
+  A.ia = act.ia.map((a, i) => conv.c1 ? a * (1 - 0.35 * Q[i]) : a);
+  A.defensa = act.defensa;
+  A.robotica = act.robotica.map((a, i) => conv.c5 ? a * (1 + 0.15 * (A.defensa[i] - 1)) : a);
+  A.espacio = act.espacio.map((a, i) => conv.c6 ? a * (1 + 0.2 * (A.defensa[i] - 1)) : a);
+  A.ev = act.ev;
+  A.transicion = act.transicion.map((a, i) => conv.c2 ? a + 0.12 * (A.ia[i] - 1) : a);
+  // Desplazamiento por fusión (c4)
+  const displaced = YEARS.map((y, i) => conv.c4 ? Math.min(0.6, 3.5 * FNEW[i] / (700 * A.transicion[i])) : 0);
+
+  // Descubrimiento de materiales (c3): refuerza sustitución y eficiencia
+  const discovery = YEARS.map((y, i) => conv.c3 ? Q[i] * Math.min(1, (A.ia[i] - 1) / 5) : 0);
+  const thriftRate = 0.025 * P('eficiencia');
+  const subLevel = P('sustitucion');
+  const recLevel = P('reciclaje');
+
+  for (const m of MINERALS) {
+    const series = { base: [], transicion: [], ev: [], ia: [], defensa: [], robotica: [], espacio: [], fusion: [], cuantica: [] };
+    const total = [], primary = [];
+    YEARS.forEach((y, i) => {
+      const n = y - 2025;
+      const thrift = Math.pow(1 - thriftRate * (1 + 0.5 * discovery[i]), n);
+      const subShare = Math.min(0.9, m.subMax * subLevel * (1 + 0.6 * discovery[i]) * logisticProgress(y, 2037, 0.2));
+      series.base.push(BASE2025.base[m.id] * Math.pow(1 + m.baseGrowth, n) * Math.pow(1 - thriftRate * 0.4, n));
+      for (const d of ['transicion', 'ev', 'ia', 'defensa', 'robotica', 'espacio']) {
+        let a = A[d][i];
+        if (d === 'transicion') a = a * (1 - displaced[i]);
+        const e = (ELAST[m.id] && ELAST[m.id][d]) || 1;
+        let val = BASE2025[d][m.id] * Math.pow(a, e) * thrift * (iM[d] || 1);
+        if (m.subScope.includes(d)) val *= (1 - subShare);
+        series[d].push(val);
+      }
+      series.fusion.push(FNEW[i] * FUSION_PER_GW[m.id] * (iM.fusion || 1));
+      series.cuantica.push(Q[i] * QUANTUM_FULL[m.id] * (iM.cuantica || 1));
+      const tot = Object.values(series).reduce((s, arr) => s + arr[i], 0);
+      total.push(tot);
+      const rec = m.rec0 + (lerp(m.rec0, m.recMax, recLevel) - m.rec0) * Math.min(1, n / 25) ** 1.3;
+      primary.push(tot * (1 - rec));
+    });
+    out[m.id] = { series, total, primary };
+  }
+  out._meta = { Q, FGW, displaced, discovery };
+  return out;
+}
+
+
+
+const COLORS = { base: 'var(--s-base)', transicion: 'var(--s1)', ev: 'var(--s2)', ia: 'var(--s3)', defensa: 'var(--s4)', robotica: 'var(--s5)', espacio: 'var(--s6)', fusion: 'var(--s7)', cuantica: 'var(--s8)' };
+const STACK = ['base', 'transicion', 'ev', 'ia', 'defensa', 'robotica', 'espacio', 'fusion', 'cuantica'];
+const LABEL = { base: 'Otros usos (construcción, industria, electrónica)', transicion: 'Transición energética', ev: 'Electromovilidad', ia: 'IA y centros de datos', defensa: 'Defensa y rearme', robotica: 'Robótica y humanoides', espacio: 'Economía espacial', fusion: 'Energía de fusión', cuantica: 'Computación cuántica' };
+const SHORT = { base: 'Otros usos', transicion: 'Transición energética', ev: 'Electromovilidad', ia: 'IA y centros de datos', defensa: 'Defensa', robotica: 'Robótica', espacio: 'Espacio', fusion: 'Fusión', cuantica: 'Cuántica' };
+const CTL_LABEL = Object.assign({}, SHORT, { eficiencia: 'Eficiencia material', sustitucion: 'Sustitución', reciclaje: 'Reciclaje' });
+
+const state = {
+  v: Object.assign({}, SCENARIOS[0].v),
+  conv: { c1: true, c2: true, c3: true, c4: true, c5: true, c6: true },
+  scen: 'ref', mineral: 'li', view: 'comp', horizon: 2050,
+};
+const fmtN = (x, d) => x.toLocaleString('es-ES', { maximumFractionDigits: d ?? 0, minimumFractionDigits: d ?? 0, useGrouping: 'always' });
+function fmtVal(x, m) {
+  if (m.id === 'ndpr') return fmtN(x, x < 100 ? 1 : 0);
+  return fmtN(x, 0);
+}
+const fmtX = x => '×' + fmtN(x, x >= 10 ? 0 : 1);
+const fmtPct = x => (x >= 0 ? '+' : '−') + fmtN(Math.abs(x), Math.abs(x) < 10 ? 1 : 0) + ' %';
+const MIN = id => MINERALS.find(m => m.id === id);
+const yi = y => y - 2025;
+
+// Texto del valor de cada control
+function ctlText(id, val) {
+  const p = val / 100;
+  const d = DRIVERS.find(x => x.id === id);
+  if (id === 'fusion') { const gw = p < 0.02 ? 0 : 150 * Math.pow(p, 1.8); return gw < 1 ? 'sin despliegue' : fmtN(gw, 0) + ' GW en 2050'; }
+  if (id === 'cuantica') { const mid = 2049 + (2032 - 2049) * p; return 'madura hacia ' + Math.round(mid); }
+  if (d) return fmtX(d.lo + (d.hi - d.lo) * p) + ' actividad 2050';
+  if (id === 'eficiencia') return '−' + fmtN(2.5 * p, 1) + ' %/año';
+  if (id === 'sustitucion') return fmtN(40 * p, 0) + ' % baterías sin litio';
+  if (id === 'reciclaje') return fmtN(35 * p, 0) + ' % litio reciclado';
+  return val;
+}
+
+// ---- Construcción de la interfaz ----
+const scenRow = document.getElementById('scenRow');
+[...SCENARIOS, { id: 'custom', name: 'Personalizado', desc: 'Escenario propio: has modificado los controles.' }].forEach(s => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'scen-btn' + (s.id === 'custom' ? ' custom' : ''); b.textContent = s.name; b.dataset.id = s.id;
+  if (s.id === 'custom') b.hidden = true;
+  b.addEventListener('click', () => { if (s.id === 'custom') return; state.scen = s.id; state.v = Object.assign({}, s.v); syncControls(); update(); });
+  scenRow.appendChild(b);
+});
+
+function makeSlider(parent, id, name, desc, color) {
+  const w = document.createElement('div'); w.className = 'ctl';
+  w.innerHTML = `<div class="ctl-head"><label for="s_${id}">${color ? `<span class="sw" style="background:${color}"></span>` : ''}${name}</label><span class="ctl-val" id="t_${id}"></span></div>
+    <input type="range" id="s_${id}" min="0" max="100" step="1" aria-describedby="d_${id}">
+    <div class="ctl-desc" id="d_${id}">${desc}</div>`;
+  parent.appendChild(w);
+  const inp = w.querySelector('input');
+  inp.addEventListener('input', () => { state.v[id] = +inp.value; state.scen = 'custom'; syncControls(); schedule(); });
+}
+const gD = document.getElementById('gDrivers');
+DRIVERS.forEach(d => makeSlider(gD, d.id, d.name, d.desc, COLORS[d.id]));
+const gL = document.getElementById('gLevers');
+LEVERS.forEach(l => makeSlider(gL, l.id, l.name, l.desc));
+const gC = document.getElementById('gConv');
+CONVERGENCES.forEach(c => {
+  const w = document.createElement('div'); w.className = 'conv';
+  w.innerHTML = `<input type="checkbox" id="c_${c.id}" checked>
+    <label for="c_${c.id}"><div class="conv-path">${c.from} → ${c.to}</div><div class="conv-name">${c.name}</div></label>
+    <span class="delta" id="dc_${c.id}">–</span>
+    <div class="conv-desc">${c.desc}</div>`;
+  gC.appendChild(w);
+  w.querySelector('input').addEventListener('change', e => { state.conv[c.id] = e.target.checked; update(); });
+});
+
+const tabs = document.getElementById('tabs');
+MINERALS.forEach(m => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'tab'; b.setAttribute('role', 'tab'); b.id = 'tab_' + m.id; b.textContent = m.short || m.name; b.dataset.id = m.id;
+  b.addEventListener('click', () => { state.mineral = m.id; update(); });
+  tabs.appendChild(b);
+});
+tabs.addEventListener('keydown', e => {
+  if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+  const i = MINERALS.findIndex(m => m.id === state.mineral);
+  const n = (i + (e.key === 'ArrowRight' ? 1 : MINERALS.length - 1)) % MINERALS.length;
+  state.mineral = MINERALS[n].id; update(); document.getElementById('tab_' + state.mineral).focus();
+});
+document.getElementById('vComp').addEventListener('click', () => { state.view = 'comp'; update(); });
+document.getElementById('vUnc').addEventListener('click', () => { state.view = 'unc'; update(); });
+document.querySelectorAll('[data-h]').forEach(b => b.addEventListener('click', () => { state.horizon = +b.dataset.h; update(); }));
+
+function syncControls() {
+  for (const id of Object.keys(state.v)) {
+    const inp = document.getElementById('s_' + id);
+    if (!inp) continue;
+    inp.value = state.v[id];
+    inp.style.setProperty('--p', state.v[id] + '%');
+    document.getElementById('t_' + id).textContent = ctlText(id, state.v[id]);
+  }
+  scenRow.querySelectorAll('.scen-btn').forEach(b => {
+    b.setAttribute('aria-pressed', b.dataset.id === state.scen ? 'true' : 'false');
+    if (b.dataset.id === 'custom') b.hidden = state.scen !== 'custom';
+  });
+  const s = SCENARIOS.find(x => x.id === state.scen);
+  document.getElementById('scenDesc').textContent = s ? s.desc : 'Escenario propio. Vuelve a un escenario de referencia con los botones de arriba.';
+}
+
+// ---- Cálculo ----
+let raf = 0;
+function schedule() { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; update(); }); }
+
+function mulberry(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function gauss(r) { let u = 0, v = 0; while (u === 0) u = r(); v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+function monteCarlo(n) {
+  const r = mulberry(20260927);
+  const acc = {}; MINERALS.forEach(m => acc[m.id] = YEARS.map(() => []));
+  const ids = Object.keys(state.v);
+  for (let k = 0; k < n; k++) {
+    const pert = { intensity: {} };
+    ids.forEach(id => pert[id] = gauss(r) * 12);
+    STACK.forEach(d => pert.intensity[d] = Math.exp(gauss(r) * 0.15));
+    const res = runModel(state.v, state.conv, pert);
+    MINERALS.forEach(m => res[m.id].primary.forEach((x, i) => acc[m.id][i].push(x)));
+  }
+  const q = (arr, p) => { const s = arr.slice().sort((a, b) => a - b); const i = (s.length - 1) * p; const lo = Math.floor(i); return s[lo] + (s[Math.ceil(i)] - s[lo]) * (i - lo); };
+  const out = {};
+  MINERALS.forEach(m => out[m.id] = { p10: acc[m.id].map(a => q(a, 0.1)), p90: acc[m.id].map(a => q(a, 0.9)) });
+  return out;
+}
+
+// ---- Gráfico principal ----
+const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true;
+function niceMax(v) { const e = Math.pow(10, Math.floor(Math.log10(v))); const f = v / e; const n = f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10; return n * e; }
+function ticks(max) { const step = max / 5; return [0, 1, 2, 3, 4, 5].map(i => i * step); }
+
+function drawMain(res, mc) {
+  const box = document.getElementById('mainChart');
+  const m = MIN(state.mineral);
+  const r = res[m.id];
+  const W = Math.max(320, box.clientWidth), H = W < 560 ? 280 : 340;
+  const pad = { l: 58, r: 16, t: 12, b: 28 };
+  const iw = W - pad.l - pad.r, ih = H - pad.t - pad.b;
+  const isUnc = state.view === 'unc';
+  const vmax = isUnc ? Math.max(...mc[m.id].p90, ...r.primary) : Math.max(...r.total);
+  const ymax = niceMax(vmax * 1.04);
+  const X = i => pad.l + iw * i / (YEARS.length - 1);
+  const Y = v => pad.t + ih - ih * v / ymax;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Demanda de ${m.name} 2025–2050">`;
+  ticks(ymax).forEach(t => { s += `<line x1="${pad.l}" x2="${W - pad.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--grid)" stroke-width="1"/><text x="${pad.l - 8}" y="${Y(t) + 4}" text-anchor="end">${fmtN(t, t < 10 && t % 1 ? 1 : 0)}</text>`; });
+  [2025, 2030, 2035, 2040, 2045, 2050].forEach(y => { const x = X(yi(y)); s += `<text x="${x}" y="${H - 8}" text-anchor="middle">${y}</text>`; if (y === 2030 || y === 2040) s += `<line x1="${x}" x2="${x}" y1="${pad.t}" y2="${pad.t + ih}" stroke="var(--grid)" stroke-dasharray="2 3"/>`; });
+  if (!isUnc) {
+    const cum = YEARS.map(() => 0);
+    STACK.forEach(k => {
+      const lower = cum.slice();
+      r.series[k].forEach((v, i) => cum[i] += v);
+      const top = cum.map((v, i) => `${X(i)},${Y(v)}`).join(' ');
+      const bot = lower.map((v, i) => `${X(i)},${Y(v)}`).reverse().join(' ');
+      s += `<polygon points="${top} ${bot}" fill="${COLORS[k]}" stroke="var(--surface)" stroke-width="1.5" stroke-linejoin="round"/>`;
+    });
+    s += `<polyline points="${r.primary.map((v, i) => `${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5 4"/>`;
+  } else {
+    const p10 = mc[m.id].p10, p90 = mc[m.id].p90;
+    s += `<polygon points="${p90.map((v, i) => `${X(i)},${Y(v)}`).join(' ')} ${p10.map((v, i) => `${X(i)},${Y(v)}`).reverse().join(' ')}" fill="var(--band)" stroke="none"/>`;
+    s += `<polyline points="${p90.map((v, i) => `${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="var(--accent)" stroke-width="1" opacity=".6"/>`;
+    s += `<polyline points="${p10.map((v, i) => `${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="var(--accent)" stroke-width="1" opacity=".6"/>`;
+    s += `<polyline points="${r.primary.map((v, i) => `${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="var(--accent)" stroke-width="2.5"/>`;
+    s += `<polyline points="${r.total.map((v, i) => `${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="3 4"/>`;
+    [2030, 2040, 2050].forEach(y => { const i = yi(y); s += `<circle cx="${X(i)}" cy="${Y(r.primary[i])}" r="4" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>`; });
+  }
+  s += `<line id="xh" x1="0" x2="0" y1="${pad.t}" y2="${pad.t + ih}" stroke="var(--ink-2)" stroke-width="1" visibility="hidden"/>`;
+  s += `<rect id="hit" x="${pad.l}" y="${pad.t}" width="${iw}" height="${ih}" fill="transparent"/>`;
+  s += `<text x="${pad.l}" y="${pad.t - 2}" text-anchor="start" dy="-2" style="fill:var(--ink-3)">${m.unit}</text>`;
+  s += `</svg>`;
+  box.innerHTML = s; box.appendChild(tip);
+  const svg = box.querySelector('svg'), xh = svg.querySelector('#xh'), hit = svg.querySelector('#hit');
+  function show(ev) {
+    const rect = svg.getBoundingClientRect(); const sx = (ev.clientX - rect.left) * W / rect.width;
+    const i = Math.max(0, Math.min(YEARS.length - 1, Math.round((sx - pad.l) / iw * (YEARS.length - 1))));
+    xh.setAttribute('x1', X(i)); xh.setAttribute('x2', X(i)); xh.setAttribute('visibility', 'visible');
+    let rows = '';
+    if (!isUnc) {
+      [...STACK].reverse().forEach(k => { const v = r.series[k][i]; if (v < 0.005 * r.total[i] && k !== 'base') return; rows += `<tr><td><span class="sw" style="display:inline-block;background:${COLORS[k]};margin-right:6px"></span>${SHORT[k]}</td><td class="n">${fmtVal(v, m)}</td></tr>`; });
+      rows += `<tr class="tot"><td>Demanda bruta</td><td class="n">${fmtVal(r.total[i], m)}</td></tr><tr><td>Demanda primaria</td><td class="n">${fmtVal(r.primary[i], m)}</td></tr>`;
+    } else {
+      rows = `<tr><td>p90</td><td class="n">${fmtVal(mc[m.id].p90[i], m)}</td></tr><tr class="tot"><td>Demanda primaria</td><td class="n">${fmtVal(r.primary[i], m)}</td></tr><tr><td>p10</td><td class="n">${fmtVal(mc[m.id].p10[i], m)}</td></tr><tr><td>Demanda bruta</td><td class="n">${fmtVal(r.total[i], m)}</td></tr>`;
+    }
+    tip.innerHTML = `<h4>${YEARS[i]} · ${m.unit}</h4><table>${rows}</table>`;
+    tip.hidden = false;
+    const bx = box.getBoundingClientRect(); const px = X(i) * rect.width / W;
+    const tw = tip.offsetWidth;
+    tip.style.left = (px + 14 + tw > bx.width ? px - tw - 14 : px + 14) + 'px';
+    tip.style.top = '8px';
+  }
+  hit.addEventListener('pointermove', show); hit.addEventListener('pointerdown', show);
+  hit.addEventListener('pointerleave', () => { tip.hidden = true; xh.setAttribute('visibility', 'hidden'); });
+
+  const lg = document.getElementById('legend');
+  if (!isUnc) {
+    lg.innerHTML = STACK.map(k => `<span><span class="sw" style="background:${COLORS[k]}"></span>${SHORT[k]}</span>`).join('') + `<span><span class="ln"></span>Demanda primaria (tras reciclaje)</span>`;
+  } else {
+    lg.innerHTML = `<span><span class="ln" style="border-top-style:solid;border-color:var(--accent)"></span>Demanda primaria</span><span><span class="bd"></span>Rango p10–p90 (200 simulaciones)</span><span><span class="ln" style="border-color:var(--ink-3)"></span>Demanda bruta</span>`;
+  }
+}
+
+// ---- Tornado ----
+function drawTornado(res) {
+  const box = document.getElementById('tornado');
+  const m = MIN(state.mineral); const i = yi(state.horizon);
+  const baseV = res[m.id].primary[i];
+  const ids = [...DRIVERS.map(d => d.id), ...LEVERS.map(l => l.id)];
+  const rows = ids.map(id => {
+    const lo = runModel(Object.assign({}, state.v, { [id]: 0 }), state.conv)[m.id].primary[i];
+    const hi = runModel(Object.assign({}, state.v, { [id]: 100 }), state.conv)[m.id].primary[i];
+    return { id, lo: (lo / baseV - 1) * 100, hi: (hi / baseV - 1) * 100 };
+  }).sort((a, b) => (Math.abs(b.hi - b.lo)) - (Math.abs(a.hi - a.lo)));
+  const W = Math.max(300, box.clientWidth), rowH = 26, pad = { l: 132, r: 52, t: 22, b: 8 };
+  const H = pad.t + rows.length * rowH + pad.b;
+  const ext = Math.max(10, ...rows.map(r => Math.max(Math.abs(r.lo), Math.abs(r.hi))));
+  const lim = niceMax(ext);
+  const iw = W - pad.l - pad.r; const X = v => pad.l + iw * (v + lim) / (2 * lim);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Sensibilidad de la demanda de ${m.name} en ${state.horizon}">`;
+  [-lim, -lim / 2, 0, lim / 2, lim].forEach(t => { s += `<line x1="${X(t)}" x2="${X(t)}" y1="${pad.t - 4}" y2="${H - pad.b}" stroke="${t === 0 ? 'var(--ink-3)' : 'var(--grid)'}" stroke-width="1"/><text x="${X(t)}" y="${pad.t - 8}" text-anchor="middle">${t === 0 ? '0' : (t > 0 ? '+' : '−') + fmtN(Math.abs(t), 0) + '%'}</text>`; });
+  rows.forEach((r, k) => {
+    const y = pad.t + k * rowH + 5, h = rowH - 10;
+    const col = COLORS[r.id] || 'var(--ink-2)';
+    const a = Math.min(r.lo, r.hi), b = Math.max(r.lo, r.hi);
+    s += `<g class="tb" data-k="${k}"><rect x="0" y="${y - 5}" width="${W}" height="${rowH}" fill="transparent"/>`;
+    s += `<text x="${pad.l - 10}" y="${y + h / 2 + 4}" text-anchor="end" style="fill:var(--ink-2);font-family:var(--f-body);font-size:12px">${CTL_LABEL[r.id]}</text>`;
+    s += `<rect x="${X(a)}" y="${y}" width="${Math.max(1, X(b) - X(a))}" height="${h}" rx="3" fill="${col}" opacity="${COLORS[r.id] ? 0.9 : 0.55}"/>`;
+    s += `<text x="${X(b) + 6}" y="${y + h / 2 + 4}" style="fill:var(--ink-2)">${fmtPct(b)}</text></g>`;
+  });
+  s += `</svg>`;
+  box.innerHTML = s;
+  const ttip = document.createElement('div'); ttip.className = 'tip'; ttip.hidden = true; box.appendChild(ttip);
+  box.querySelectorAll('g.tb').forEach(g => {
+    const r = rows[+g.dataset.k];
+    const mv = ev => {
+      ttip.innerHTML = `<h4>${CTL_LABEL[r.id]}</h4><table><tr><td>Control al mínimo</td><td class="n">${fmtPct(r.lo)}</td></tr><tr><td>Control al máximo</td><td class="n">${fmtPct(r.hi)}</td></tr></table>`;
+      ttip.hidden = false;
+      const bx = box.getBoundingClientRect();
+      const x = ev.clientX - bx.left, y = ev.clientY - bx.top;
+      ttip.style.left = Math.min(bx.width - ttip.offsetWidth, x + 12) + 'px'; ttip.style.top = (y + 14) + 'px';
+    };
+    g.addEventListener('pointermove', mv); g.addEventListener('pointerdown', mv);
+    g.addEventListener('pointerleave', () => ttip.hidden = true);
+  });
+  document.getElementById('tornSub').textContent = `Cambio en la demanda primaria de ${m.short || m.name} en ${state.horizon} al llevar cada control a su mínimo o máximo, con el resto fijo.`;
+  return rows;
+}
+
+// ---- Tabla resumen ----
+function drawMatrix(res, mc) {
+  const t = document.getElementById('matrix');
+  let h = `<thead><tr><th>Mineral</th><th class="n">2030</th><th class="n">2040</th><th class="n">2050</th><th>Mayor impulso</th></tr></thead><tbody>`;
+  MINERALS.forEach(m => {
+    const r = res[m.id], p0 = r.primary[0];
+    const cells = [2030, 2040, 2050].map(y => { const i = yi(y); return `<td class="n"><b>${fmtX(r.primary[i] / p0)}</b><span>${fmtN(mc[m.id].p10[i] / p0, 1)}–${fmtN(mc[m.id].p90[i] / p0, 1)}</span></td>`; }).join('');
+    let best = null, bv = -Infinity;
+    STACK.forEach(k => { if (k === 'base') return; const d = r.series[k][25] - r.series[k][0]; if (d > bv) { bv = d; best = k; } });
+    h += `<tr class="${m.id === state.mineral ? 'sel' : ''}"><td><span class="mn">${m.short || m.name}</span><span class="un">${fmtVal(p0, m)} ${m.unit} en 2025</span></td>${cells}<td><span class="chip"><span class="sw" style="background:${COLORS[best]}"></span>${SHORT[best]}</span></td></tr>`;
+  });
+  t.innerHTML = h + '</tbody>';
+}
+
+// ---- Convergencias ----
+function drawConv(res) {
+  const m = MIN(state.mineral); const base = res[m.id].primary[25];
+  document.getElementById('convUnit').textContent = `efecto en ${m.short || m.name} 2050`;
+  CONVERGENCES.forEach(c => {
+    const alt = Object.assign({}, state.conv, { [c.id]: !state.conv[c.id] });
+    const other = runModel(state.v, alt)[m.id].primary[25];
+    const on = state.conv[c.id] ? base : other, off = state.conv[c.id] ? other : base;
+    const d = (on / off - 1) * 100;
+    const el = document.getElementById('dc_' + c.id);
+    el.textContent = Math.abs(d) < 0.05 ? '≈ 0 %' : fmtPct(d);
+    el.className = 'delta' + (Math.abs(d) < 0.05 ? '' : d > 0 ? ' up' : ' down');
+    el.title = state.conv[c.id] ? 'Efecto de esta convergencia (activa)' : 'Efecto si se activara';
+    el.style.opacity = state.conv[c.id] ? 1 : 0.55;
+  });
+}
+
+// ---- KPIs e interpretación ----
+function drawKpis(res, mc) {
+  const m = MIN(state.mineral); const r = res[m.id];
+  document.getElementById('mTitle').textContent = m.name;
+  document.getElementById('mSub').textContent = `Demanda anual en ${m.unit}. El área apilada es la demanda bruta por uso; la línea discontinua, la demanda primaria que debe cubrir la minería.`;
+  let h = `<div class="kpi"><span class="y">2025 · primaria</span><span class="v">${fmtVal(r.primary[0], m)}<small>${m.unit}</small></span><span class="r">punto de partida</span></div>`;
+  [2030, 2040, 2050].forEach(y => { const i = yi(y); h += `<div class="kpi"><span class="y">${y}</span><span class="v">${fmtX(r.primary[i] / r.primary[0])}</span><span class="r">${fmtVal(r.primary[i], m)} · p10–p90 ${fmtVal(mc[m.id].p10[i], m)}–${fmtVal(mc[m.id].p90[i], m)}</span></div>`; });
+  document.getElementById('kpis').innerHTML = h;
+}
+function drawInsight(res, torn) {
+  const m = MIN(state.mineral); const r = res[m.id];
+  const incs = STACK.filter(k => k !== 'base').map(k => ({ k, d: r.series[k][25] - r.series[k][0] })).sort((a, b) => b.d - a.d);
+  const totInc = r.total[25] - r.total[0];
+  const top = incs[0];
+  const share = totInc > 0 ? top.d / totInc * 100 : 0;
+  const t1 = torn[0];
+  const meta = res._meta;
+  let extra = '';
+  const fus = r.series.fusion[25] / r.total[25] * 100;
+  if (state.v.fusion > 20) extra = ` La fusión aporta ${fus < 0.1 ? 'menos del 0,1' : fmtN(fus, 1)} % de la demanda de 2050 y desplaza un ${fmtN(meta.displaced[25] * 100, 1)} % de la inversión renovable de ese año: a este horizonte su peso es marginal.`;
+  document.getElementById('insight').innerHTML = `<b>${SHORT[top.k]}</b> explica ${totInc > 0 ? 'el ' + fmtN(Math.min(share, 999), 0) + ' %' : 'la mayor parte'} del aumento de la demanda bruta hasta 2050. La incertidumbre más relevante para ${state.horizon} es <b>${CTL_LABEL[t1.id].toLowerCase()}</b>: mueve la demanda primaria entre ${fmtPct(Math.min(t1.lo, t1.hi))} y ${fmtPct(Math.max(t1.lo, t1.hi))}.${extra}`;
+}
+
+function update() {
+  syncControls();
+  document.querySelectorAll('.tab').forEach(b => { const on = b.dataset.id === state.mineral; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
+  document.getElementById('vComp').setAttribute('aria-pressed', state.view === 'comp');
+  document.getElementById('vUnc').setAttribute('aria-pressed', state.view === 'unc');
+  document.querySelectorAll('[data-h]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.h === state.horizon));
+  const res = runModel(state.v, state.conv);
+  const mc = monteCarlo(200);
+  drawKpis(res, mc);
+  drawMain(res, mc);
+  const torn = drawTornado(res);
+  drawMatrix(res, mc);
+  drawConv(res);
+  drawInsight(res, torn);
+}
+let rw = 0;
+new ResizeObserver(() => { const w = document.getElementById('mainChart').clientWidth; if (Math.abs(w - rw) > 4) { rw = w; schedule(); } }).observe(document.getElementById('mainChart'));
+update();
+</script>
+
+<script>
+(function () {
+  if (!document.documentElement.classList.contains('embed') || window.parent === window) return;
+  var last = 0;
+  function send() {
+    var h = document.documentElement.scrollHeight;
+    if (Math.abs(h - last) < 2) return;
+    last = h;
+    window.parent.postMessage({ type: 'oma-convergencias-height', height: h }, '*');
+  }
+  new ResizeObserver(send).observe(document.body);
+  window.addEventListener('load', send);
+  send();
+})();
+</script>
+</body>
+</html>
