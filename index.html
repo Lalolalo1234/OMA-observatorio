@@ -1346,13 +1346,15 @@
         <div id="prospectiva" class="tab-content">
             <h1>Prospectiva — Convergencias 2050</h1>
             <p>Un modelo de escenarios que parte de los usos industriales. Cada macrotendencia tecnológica (transición energética, electromovilidad, IA y centros de datos, defensa, robótica, espacio, fusión y computación cuántica) mueve la demanda de minerales críticos por sí sola y también a través de las demás. Elegí un escenario o mové los controles para ver cómo cambia la demanda de cobre, litio, tierras raras, galio, zinc, estaño, manganeso y wolframio a 2030, 2040 y 2050, y qué tendencia la explica.</p>
+            <p>El botón <strong>Argentina vs demanda proyectada</strong> proyecta también la oferta argentina de cobre, litio y tierras raras y la compara con la demanda del escenario activo. Hasta 2030 se apoya en los proyectos con RIGI aprobado o en construcción; después depende de las condiciones internas (estabilidad macro y regulatoria, licencia social, infraestructura, <a href="#" onclick="navigateTo('capital-humano'); return false;">capital humano</a> y exploración).</p>
             <div class="oma-conv-frame">
                 <iframe src="convergencias-2050.html?embed=1" title="Modelo Convergencias 2050" loading="lazy"></iframe>
             </div>
             <p class="table-note">Cifras base contrastadas con AIE (Global Critical Minerals Outlook 2025), USGS (Mineral Commodity Summaries 2026), JRC, BNEF, ILZSG, ITA e ITIA; el escenario de Referencia reproduce el STEPS de la AIE. La tabla de fuentes dentro del modelo indica qué cifra está verificada y cuál es estimada. <a href="convergencias-2050.html" target="_blank" rel="noopener">Abrir el modelo a pantalla completa ↗</a></p>
 
             <div class="button-group">
-                <button class="btn" onclick="navigateTo('argentina')">Ver Argentina hoy</button>
+                <button class="btn" onclick="omaOpenArgentinaView()">Ver Argentina vs demanda proyectada</button>
+                <button class="btn btn-secondary" onclick="navigateTo('argentina')">Ver Argentina hoy</button>
                 <button class="btn btn-secondary" onclick="navigateTo('demanda')">Ver Demanda Global</button>
             </div>
         </div>
@@ -1360,7 +1362,7 @@
         <!-- Argentina hoy: posición actual frente a la demanda proyectada (CeProMin) -->
         <div id="argentina" class="tab-content">
             <h1>Argentina hoy — Posición frente a la demanda proyectada</h1>
-            <p>Dónde está hoy Argentina en cobre, litio y tierras raras, y qué peso tendría su cartera de proyectos frente a la demanda mundial que anticipa la pestaña Prospectiva. Es una comparación con la situación actual, no una proyección de la oferta argentina.</p>
+            <p>Dónde está hoy Argentina en cobre, litio y tierras raras, y qué peso tendría su cartera de proyectos frente a la demanda mundial que anticipa la pestaña Prospectiva. Es una foto de la situación actual. La proyección de la oferta argentina frente a cada escenario de demanda está en <a href="#" onclick="omaOpenArgentinaView(); return false;">Prospectiva → Argentina vs demanda proyectada</a>.</p>
 
             <h2>Argentina frente a la demanda proyectada</h2>
             <p>Lectura del OMA sobre las cifras de cartera de CeProMin: órdenes de magnitud, no pronósticos de producción. La demanda de cobre es la de la AIE (escenario STEPS, Global Critical Minerals Outlook 2025), la misma que reproduce el escenario de Referencia del modelo de la pestaña <a href="#" onclick="navigateTo('prospectiva'); return false;">Prospectiva</a>; el resto de cifras son de CeProMin.</p>
@@ -1374,7 +1376,7 @@
                         <td><strong>Cobre</strong></td>
                         <td>Escala artesanal: solo Martín Bronce (Jujuy) en operación.</td>
                         <td>~1,05 Mt/año sumando Vicuña (~395 kt, 2030), El Pachón (~280 kt, 2034), Taca Taca (~227 kt) y Los Azules (~150 kt).</td>
-                        <td>~3 % de los ~34 Mt de demanda de 2040 (AIE, escenario STEPS), lo que ubicaría al país entre los grandes productores a mediados de la década de 2030.</td>
+                        <td>~3 % de los ~34 Mt de demanda total de 2040 (AIE, escenario STEPS) y ~4 % de la demanda primaria, la que cubre la minería; ubicaría al país entre los grandes productores a mediados de la década de 2030.</td>
                     </tr>
                     <tr>
                         <td><strong>Litio</strong></td>
@@ -2165,20 +2167,22 @@
             prospectiva: `
             <h1>Foresight — Convergences 2050</h1>
             <p>A scenario model that starts from industrial end uses. Each technology megatrend (energy transition, e-mobility, AI and data centres, defence, robotics, space, fusion and quantum computing) moves critical mineral demand on its own and through the others. Pick a scenario or move the controls to see how demand for copper, lithium, rare earths, gallium, zinc, tin, manganese and tungsten changes by 2030, 2040 and 2050, and which trend drives it. The model is currently available in Spanish only.</p>
+            <p>The <strong>Argentina vs demanda proyectada</strong> button also projects Argentina's copper, lithium and rare earth supply and compares it with the demand of the active scenario. Up to 2030 it relies on projects with approved RIGI status or under construction; after that it depends on domestic conditions (macro and regulatory stability, social licence, infrastructure, <a href="#" onclick="navigateTo('capital-humano'); return false;">human capital</a> and exploration).</p>
             <div class="oma-conv-frame">
                 <iframe src="convergencias-2050.html?embed=1" title="Convergences 2050 model" loading="lazy"></iframe>
             </div>
             <p class="table-note">Baseline figures checked against the IEA (Global Critical Minerals Outlook 2025), USGS (Mineral Commodity Summaries 2026), JRC, BNEF, ILZSG, ITA and ITIA; the Reference scenario reproduces the IEA's STEPS. The sources table inside the model shows which figures are verified and which are estimates. <a href="convergencias-2050.html" target="_blank" rel="noopener">Open the model full screen ↗</a></p>
 
             <div class="button-group">
-                <button class="btn" onclick="navigateTo('argentina')">View Argentina today</button>
+                <button class="btn" onclick="omaOpenArgentinaView()">View Argentina vs projected demand</button>
+                <button class="btn btn-secondary" onclick="navigateTo('argentina')">View Argentina today</button>
                 <button class="btn btn-secondary" onclick="navigateTo('demanda')">View Global Demand</button>
             </div>
             `,
 
             argentina: `
             <h1>Argentina today — Position against projected demand</h1>
-            <p>Where Argentina stands today in copper, lithium and rare earths, and how much its project pipeline would weigh against the global demand anticipated in the Foresight tab. This is a comparison with the current situation, not a projection of Argentine supply.</p>
+            <p>Where Argentina stands today in copper, lithium and rare earths, and how much its project pipeline would weigh against the global demand anticipated in the Foresight tab. It is a snapshot of the current situation. The projection of Argentine supply against each demand scenario is in <a href="#" onclick="omaOpenArgentinaView(); return false;">Foresight → Argentina vs demanda proyectada</a>.</p>
 
             <h2>Argentina against projected demand</h2>
             <p>OMA's reading of CeProMin's pipeline figures: orders of magnitude, not production forecasts. Copper demand is the IEA's (STEPS scenario, Global Critical Minerals Outlook 2025), the same one reproduced by the Reference scenario of the model in the <a href="#" onclick="navigateTo('prospectiva'); return false;">Foresight</a> tab; all other figures are CeProMin's.</p>
@@ -2192,7 +2196,7 @@
                         <td><strong>Copper</strong></td>
                         <td>Artisanal scale: only Martín Bronce (Jujuy) operating.</td>
                         <td>~1.05 Mt/yr adding up Vicuña (~395 kt, 2030), El Pachón (~280 kt, 2034), Taca Taca (~227 kt) and Los Azules (~150 kt).</td>
-                        <td>~3% of the ~34 Mt of demand expected in 2040 (IEA, STEPS scenario), enough to place the country among major producers by the mid-2030s.</td>
+                        <td>~3% of the ~34 Mt of total demand expected in 2040 (IEA, STEPS scenario) and ~4% of primary demand, the part met by mining; enough to place the country among major producers by the mid-2030s.</td>
                     </tr>
                     <tr>
                         <td><strong>Lithium</strong></td>
@@ -3225,6 +3229,15 @@
             });
         });
 
+        // Abre Prospectiva con la vista Argentina del modelo embebido
+        function omaOpenArgentinaView() {
+            navigateTo('prospectiva');
+            document.querySelectorAll('#prospectiva .oma-conv-frame iframe').forEach(function (f) {
+                var send = function () { try { f.contentWindow.postMessage({ type: 'oma-convergencias-view', view: 'argentina' }, '*'); } catch (e) {} };
+                send(); f.addEventListener('load', send, { once: true });
+            });
+        }
+
         function navigateTo(tabId) {
             // Ocultar todas las pestañas
             document.querySelectorAll('.tab-content').forEach(tab => {
@@ -3599,7 +3612,7 @@
                 bar: { min: 0, max: 10, val: avg26, txt: nf(avg26, 1, lang), unit: '/10', zones: RYG10, lbl: t.bar[0], sub: t.bar[1], delta: t.bar[2](nf(avg26 - avg25, 1, lang)), real: false, go: 'barometro' },
                 pul: { min: 0, max: 10, val: null, standby: t.noSignal, zones: RYG10, lbl: t.pul[0], sub: t.pul[1], real: false, go: 'pulsometro' },
                 li: { min: 0, max: 650, val: 186, txt: '186', unit: t.li[3], zones: [[0, 650, C.cyan]], lbl: t.li[0], sub: t.li[1], delta: t.li[2], real: true, go: 'argentina' },
-                cu: { min: 0, max: 5, val: 2.5, txt: '~' + nf(2.5, 1, lang), unit: '%', zones: [[0, 5, C.cyan]], lbl: t.cu[0], sub: t.cu[1], delta: t.cu[2], real: true, go: 'argentina' },
+                cu: { min: 0, max: 5, val: 3, txt: '~' + nf(3, 0, lang), unit: '%', zones: [[0, 5, C.cyan]], lbl: t.cu[0], sub: t.cu[1], delta: t.cu[2], real: true, go: 'argentina' },
                 hr: { min: 0, max: 10, val: hr.v2026, txt: nf(hr.v2026, 1, lang), unit: '/10', zones: RYG10, lbl: t.hr[0], sub: t.hr[1], delta: t.hr[2](nf(hr.v2026 - hr.v2025, 1, lang)), real: false, go: 'monitor' }
             };
             const P = (cls, title, badge, body, extra = '') => `<div class="oc-panel ${cls}${extra}"><div class="oc-t">${title}<b>${badge}</b></div>${body}</div>`;

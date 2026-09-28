@@ -181,6 +181,29 @@ input[type=range]:focus-visible { outline: 2px solid var(--accent); outline-offs
 .insight { border-left: 3px solid var(--accent); padding: 2px 0 2px 12px; color: var(--ink-2); font-size: 13.5px; margin: 0; max-width: 72ch; }
 .insight b { color: var(--ink); font-weight: 600; }
 
+
+[hidden] { display: none !important; }
+/* Vista Argentina */
+.scen-sep { width: 1px; align-self: stretch; background: var(--line); margin: 2px 6px; }
+.scen-btn.arg { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.scen-btn.arg[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.arg-ctls-wrap { display: grid; gap: 10px; }
+.arg-presets { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12.5px; color: var(--ink-3); }
+.arg-presets button { font: 500 12.5px/1.2 var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.arg-presets button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.arg-presets button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.arg-ctls { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px 28px; padding: 14px 16px; background: var(--surface-2); border-radius: 8px; }
+.arg-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; }
+@media (max-width: 1100px) { .arg-grid { grid-template-columns: 1fr; } }
+.arg-grid h4 { font-family: var(--f-display); font-weight: 600; font-size: 15px; margin: 0 0 8px; }
+.h4x { font-family: var(--f-display); font-weight: 600; font-size: 15px; margin: 4px 0 8px; }
+.arg-empty { border: 1px dashed var(--line); border-radius: 8px; padding: 18px; color: var(--ink-2); font-size: 13.5px; display: grid; gap: 8px; }
+.arg-empty b { color: var(--ink); }
+table.mx.proj td { font-size: 12.5px; color: var(--ink-2); }
+table.mx.proj { min-width: 760px; }
+table.mx.proj td:last-child { min-width: 320px; }
+table.mx.proj .st { margin-top: 5px; }
+
 /* Tabla */
 .tbl-wrap { overflow-x: auto; }
 table.mx { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 620px; }
@@ -240,6 +263,34 @@ footer { color: var(--ink-3); font-size: 12px; font-family: var(--f-mono); }
     </aside>
 
     <div class="content">
+      <div id="argView" class="panel card" hidden>
+        <div class="card-head">
+          <div>
+            <h3>Argentina vs demanda proyectada</h3>
+            <p class="sub" id="argSub"></p>
+          </div>
+          <div class="seg" role="group" aria-label="Mineral" id="argSeg">
+            <button type="button" data-am="cu" aria-pressed="true">Cobre</button>
+            <button type="button" data-am="li" aria-pressed="false">Litio</button>
+            <button type="button" data-am="ndpr" aria-pressed="false">Tierras raras</button>
+          </div>
+        </div>
+        <div class="arg-ctls-wrap">
+          <div class="arg-presets" role="group" aria-label="Condiciones internas de Argentina" id="argPresets"></div>
+          <div class="arg-ctls" id="argCtls"></div>
+        </div>
+        <div class="kpis" id="argKpis"></div>
+        <div class="arg-grid" id="argGrid">
+          <div><h4 id="argProdTitle"></h4><div class="legend" id="argLegend"></div><div class="chart-box" id="argProd"></div></div>
+          <div><h4>Cuota de la demanda primaria mundial</h4><div class="legend"><span><span class="ln" style="border-top-style:solid;border-color:var(--accent)"></span>Escenario activo</span><span><span class="bd"></span>Rango p10–p90 de la demanda</span></div><div class="chart-box" id="argShare"></div></div>
+        </div>
+        <p class="insight" id="argInsight"></p>
+        <div><h4 class="h4x">¿Qué pesa más en 2040: la demanda mundial o las condiciones internas?</h4><div class="chart-box" id="argWho"></div></div>
+        <div class="tbl-wrap"><table class="mx proj" id="argTable"></table></div>
+        <p class="sub" id="argNote"></p>
+      </div>
+
+      <div id="demandView" class="content">
       <div class="panel">
         <div class="tabs" role="tablist" id="tabs" aria-label="Mineral"></div>
         <div class="card">
@@ -308,6 +359,8 @@ footer { color: var(--ink-3); font-size: 12px; font-family: var(--f-mono); }
           </tbody>
         </table></div>
         <p class="insight">BNEF publica solo resúmenes; su Transition Metals Outlook completo es de pago. Las cifras de uso por macrotendencia (defensa, robótica, espacio, IA) son estimaciones del modelo: ninguna fuente oficial las desagrega todavía.</p>
+      </div>
+
       </div>
 
       <details class="panel notes">
@@ -490,6 +543,110 @@ function runModel(v, conv, pert) {
   return out;
 }
 
+
+// ---- Oferta argentina: modelo prospectivo (cobre, litio, tierras raras) ----
+// Hasta ~2030 la oferta se ancla en proyectos concretos (RIGI aprobado, en construcción, datos de empresas,
+// Secretaría de Minería y cámaras). Después pesan más las condiciones internas y la demanda mundial,
+// igual que en el modelo de demanda: controles, escenarios, curvas y simulación Monte Carlo.
+
+const SUPPLY_FACTORS = [
+  { id: 'macro', name: 'Estabilidad macro y regulatoria', desc: 'RIGI, reglas cambiarias y fiscales estables' },
+  { id: 'social', name: 'Licencia social y ambiental', desc: 'Aceptación local, agua y permisos ambientales' },
+  { id: 'infra', name: 'Infraestructura', desc: 'Energía, agua, rutas, ferrocarril y puertos' },
+  { id: 'talento', name: 'Capital humano', desc: 'Ingenieros, técnicos y operarios disponibles' },
+  { id: 'explor', name: 'Exploración y nuevos proyectos', desc: 'Inversión para sumar proyectos más allá de la cartera actual' },
+];
+const SUPPLY_PRESETS = [
+  { id: 'estanca', name: 'Estancamiento', v: { macro: 25, social: 30, infra: 30, talento: 35, explor: 20 } },
+  { id: 'rigi', name: 'Continuidad RIGI', v: { macro: 60, social: 55, infra: 50, talento: 50, explor: 45 } },
+  { id: 'despegue', name: 'Despegue', v: { macro: 85, social: 75, infra: 80, talento: 80, explor: 80 } },
+];
+const TIERS = {
+  A: { name: 'RIGI aprobado o en construcción', delaySd: 1 },
+  B: { name: 'RIGI presentado / en evaluación', delaySd: 2.5 },
+  C: { name: 'Cartera y metas agregadas', delaySd: 2 },
+  R: { name: 'Reactivación', delaySd: 0.5 },
+};
+
+// stages: [año de inicio anunciado, kt/año a régimen]; ramp: años hasta régimen; p: probabilidad base
+const AR_PROJECTS = {
+  cu: [
+    { id: 'vicuna', name: 'Vicuña (Josemaría + Filo del Sol)', prov: 'San Juan', tier: 'A', p: 0.85, stages: [[2030, 250], [2038, 395]],
+      src: 'RIGI aprobado (etapa 1, US$ 9.712 M). Evaluación económica preliminar, feb. 2026: inicio 2030, 2,5 Mt de cobre en los primeros 10 años y 395 kt/año de media en 25 años.', sup: 'Año de las etapas 2 y 3 (2038): supuesto OMA.' },
+    { id: 'azules', name: 'Los Azules', prov: 'San Juan', tier: 'A', p: 0.8, stages: [[2030, 205], [2035, 150]],
+      src: 'RIGI aprobado (sep. 2025, US$ 2.672 M). Factibilidad 2025: primera producción prevista hacia 2030, 205 kt/año de cátodos en los primeros cinco años.', sup: '150 kt/año desde 2035: media de CeProMin.' },
+    { id: 'taca', name: 'Taca Taca', prov: 'Salta', tier: 'A', p: 0.75, stages: [[2032, 200], [2037, 320]],
+      src: 'RIGI aprobado (US$ 5.250 M). First Quantum, NI 43-101 (feb. 2026): construcción desde 2028, inicio a comienzos de la década de 2030, >200 kt/año y >320 kt/año con la expansión.', sup: 'Inicio en 2032 y expansión en 2037: supuesto OMA.' },
+    { id: 'sanjorge', name: 'San Jorge', prov: 'Mendoza', tier: 'A', p: 0.8, stages: [[2029, 40]],
+      src: 'RIGI aprobado (may. 2026): inicio de operaciones previsto en enero de 2029, unas 40 kt/año de cobre.', sup: '' },
+    { id: 'alumbrera', name: 'Alumbrera (reactivación)', prov: 'Catamarca', tier: 'R', p: 0.85, ramp: 1, stages: [[2027, 17.5], [2031, 0]],
+      src: 'Glencore (ago. 2026): unas 70 kt de cobre en cuatro años desde 2027, como fase puente hacia MARA.', sup: 'Reparto uniforme de 17,5 kt/año: supuesto OMA.' },
+    { id: 'mara', name: 'MARA (Agua Rica)', prov: 'Catamarca', tier: 'B', p: 0.55, stages: [[2032, 200]],
+      src: 'RIGI presentado (ago. 2025, US$ 4.000 M). Glencore (sep. 2026): más de 200 kt/año en los primeros diez años; grandes proyectos desde 2032.', sup: 'Inicio en 2032: supuesto OMA a partir de declaraciones de Glencore.' },
+    { id: 'pachon', name: 'El Pachón', prov: 'San Juan', tier: 'B', p: 0.5, stages: [[2034, 280]],
+      src: 'RIGI solicitado (US$ 9.500 M), sin fecha de producción anunciada. CeProMin: ~280 kt/año hacia 2034.', sup: '' },
+  ],
+  li: [
+    { id: 'actual', name: 'Operaciones actuales', prov: 'Catamarca, Jujuy, Salta', tier: 'A', p: 1, base: true, stages: [[2025, 116], [2030, 130]],
+      src: 'Secretaría de Minería / CeProMin: 186 kt/año LCE de capacidad y 116 kt producidas en 2025.', sup: 'Utilización del 70 % de la capacidad hacia 2030 (UIA–CAEM).' },
+    { id: 'rincon', name: 'Rincón (Rio Tinto)', prov: 'Salta', tier: 'A', p: 0.9, stages: [[2028, 42]],
+      src: 'RIGI aprobado (US$ 2.744 M) y financiación de US$ 1.175 M (mar. 2026): 60 kt/año LCE, inicio en 2028 y plena capacidad en tres años.', sup: 'Producción al 70 % de la capacidad.' },
+    { id: 'fenix', name: 'Fénix 1B y Hombre Muerto Oeste', prov: 'Catamarca', tier: 'A', p: 0.9, stages: [[2026, 10.4]],
+      src: 'Fénix 1B: RIGI aprobado, +9,5 kt/año desde julio de 2026. Hombre Muerto Oeste (Galan): RIGI aprobado, 5,4 kt/año en su fase 1.', sup: 'Producción al 70 % de la capacidad.' },
+    { id: 'avanzada', name: 'Resto de la cartera avanzada', prov: 'Puna', tier: 'C', p: 0.65, linear: [2026, 2033], add: 267 * 0.7,
+      src: 'UIA–CAEM con apoyo del BID (ago. 2026): 12 proyectos avanzados suman 342 kt/año LCE de capacidad entre 2026 y 2033 (~39 kt/año). Incluye Sal de Oro, Caucharí-Olaroz y Sal de Vida.', sup: 'Se restan Rincón, Fénix 1B y Hombre Muerto Oeste (75 kt) para no contarlos dos veces.' },
+    { id: 'meta', name: 'Meta oficial a 2035 (hasta 650 kt de capacidad)', prov: 'Puna', tier: 'C', p: 0.45, linear: [2034, 2035], add: 122 * 0.7,
+      src: 'Meta oficial: 15 plantas y ~650 kt/año de capacidad hacia 2035. Cartera total de 56 proyectos y 216 Mt LCE de recursos.', sup: 'Diferencia entre la meta y la cartera avanzada (122 kt).' },
+  ],
+  ndpr: [],
+};
+// Nuevos proyectos: parte de la demanda incremental mundial (desde 2035) que Argentina puede captar
+const AR_CAPTURE = { cu: { max: 0.05, start: 2037 }, li: { max: 0.14, start: 2036 }, ndpr: { max: 0.015, start: 2038 } };
+
+function projOutput(pr, y) {
+  if (pr.linear) { const [a, b] = pr.linear; return pr.add * Math.max(0, Math.min(1, (y - a + 1) / (b - a + 1))); }
+  if (pr.base) { const [[y0, v0], [y1, v1]] = pr.stages; return y <= y0 ? v0 : y >= y1 ? v1 : v0 + (v1 - v0) * (y - y0) / (y1 - y0); }
+  const rp = pr.ramp || 3;
+  let v = 0;
+  for (const [year, kt] of pr.stages) {
+    if (y < year) break;
+    const f = Math.min(1, (y - year + 1) / rp);
+    v = v + (kt - v) * f;
+  }
+  return v;
+}
+
+// sv: condiciones internas (0–100); dem: demanda primaria mundial por año; rnd: generador para Monte Carlo
+function runSupply(mid, sv, dem, rnd) {
+  const g = id => sv[id] / 100;
+  const reg = (g('macro') + g('social')) / 2;
+  const pFac = 0.5 + reg;
+  const delay = Math.max(0, 4 * (0.6 - g('infra')) + 2.5 * (0.6 - g('talento')) + 2 * (0.5 - g('macro')));
+  const series = {}; const total = YEARS.map(() => 0);
+  for (const pr of AR_PROJECTS[mid]) {
+    const tier = TIERS[pr.tier];
+    let p = pr.base ? 1 : Math.min(0.98, pr.p * (pr.tier === 'A' || pr.tier === 'R' ? Math.sqrt(pFac) : pFac));
+    let d = pr.base ? 0 : delay * (pr.tier === 'A' || pr.tier === 'R' ? 0.5 : 1);
+    let scale = 1;
+    if (rnd && !pr.base) {
+      if (pr.tier === 'C') scale = Math.max(0, p + (rnd() - 0.5) * 0.5);   // agregado: fracción que se concreta
+      else scale = rnd() < p ? 0.85 + rnd() * 0.3 : 0;
+      p = 1;
+      d = Math.max(0, d + (rnd() - 0.35) * 2 * tier.delaySd);
+    }
+    series[pr.id] = YEARS.map((y, i) => { const v = p * scale * projOutput(pr, y - Math.round(d)); total[i] += v; return v; });
+  }
+  const cap = AR_CAPTURE[mid];
+  const share = cap.max * g('explor') * (0.4 + 0.6 * reg) * (rnd ? 0.5 + rnd() : 1);
+  const i0 = YEARS.indexOf(2035);
+  series.nuevos = YEARS.map((y, i) => {
+    const yy = y - Math.round(delay);
+    if (yy < cap.start) return 0;
+    const v = Math.max(0, dem[i] - dem[i0]) * share * Math.min(1, (yy - cap.start + 1) / 6);
+    total[i] += v; return v;
+  });
+  return { series, total, delay };
+}
 
 
 const COLORS = { base: 'var(--s-base)', transicion: 'var(--s1)', ev: 'var(--s2)', ia: 'var(--s3)', defensa: 'var(--s4)', robotica: 'var(--s5)', espacio: 'var(--s6)', fusion: 'var(--s7)', cuantica: 'var(--s8)' };
@@ -790,8 +947,195 @@ function drawInsight(res, torn) {
   document.getElementById('insight').innerHTML = `<b>${SHORT[top.k]}</b> explica ${totInc > 0 ? 'el ' + fmtN(Math.min(share, 999), 0) + ' %' : 'la mayor parte'} del aumento de la demanda bruta hasta 2050. La incertidumbre más relevante para ${state.horizon} es <b>${CTL_LABEL[t1.id].toLowerCase()}</b>: mueve la demanda primaria entre ${fmtPct(Math.min(t1.lo, t1.hi))} y ${fmtPct(Math.max(t1.lo, t1.hi))}.${extra}`;
 }
 
+// ---- Vista Argentina vs demanda proyectada ----
+const AR_MIN = { cu: { name: 'Cobre', low: 'cobre', unit: 'kt Cu' }, li: { name: 'Litio', low: 'litio', unit: 'kt LCE' }, ndpr: { name: 'Tierras raras (NdPr)', low: 'tierras raras', unit: 'kt óxido' } };
+const AR_COLORS = ['var(--s1)', 'var(--s2)', 'var(--s3)', 'var(--s4)', 'var(--s5)', 'var(--s6)', 'var(--s7)', 'var(--s8)'];
+state.page = 'demand'; state.argMin = 'cu';
+state.sv = Object.assign({}, SUPPLY_PRESETS[1].v); state.sPreset = 'rigi';
+
+// Botón en la fila de escenarios
+const argSep = document.createElement('span'); argSep.className = 'scen-sep'; argSep.setAttribute('aria-hidden', 'true');
+const argBtn = document.createElement('button'); argBtn.type = 'button'; argBtn.className = 'scen-btn arg'; argBtn.textContent = 'Argentina vs demanda proyectada';
+argBtn.addEventListener('click', () => { state.page = state.page === 'arg' ? 'demand' : 'arg'; update(); });
+scenRow.appendChild(argSep); scenRow.appendChild(argBtn);
+
+// Controles de oferta
+const argPresets = document.getElementById('argPresets');
+argPresets.innerHTML = '<span>Condiciones internas:</span>';
+SUPPLY_PRESETS.forEach(p => {
+  const b = document.createElement('button'); b.type = 'button'; b.textContent = p.name; b.dataset.id = p.id;
+  b.addEventListener('click', () => { state.sPreset = p.id; state.sv = Object.assign({}, p.v); update(); });
+  argPresets.appendChild(b);
+});
+const argCtls = document.getElementById('argCtls');
+SUPPLY_FACTORS.forEach(f => {
+  const w = document.createElement('div'); w.className = 'ctl';
+  w.innerHTML = `<div class="ctl-head"><label for="sv_${f.id}">${f.name}</label><span class="ctl-val" id="tv_${f.id}"></span></div>
+    <input type="range" id="sv_${f.id}" min="0" max="100" step="1" aria-describedby="dv_${f.id}">
+    <div class="ctl-desc" id="dv_${f.id}">${f.desc}</div>`;
+  argCtls.appendChild(w);
+  w.querySelector('input').addEventListener('input', e => { state.sv[f.id] = +e.target.value; state.sPreset = 'custom'; schedule(); });
+});
+document.querySelectorAll('[data-am]').forEach(b => b.addEventListener('click', () => { state.argMin = b.dataset.am; update(); }));
+function svText(v) { return v < 34 ? 'débil' : v < 67 ? 'intermedia' : 'fuerte'; }
+
+function argMonteCarlo(n) {
+  const r = mulberry(4242); const mid = state.argMin;
+  const sup = YEARS.map(() => []), sh = YEARS.map(() => []);
+  const ids = Object.keys(state.v);
+  for (let k = 0; k < n; k++) {
+    const pert = { intensity: {} };
+    ids.forEach(id => pert[id] = gauss(r) * 12);
+    STACK.forEach(d => pert.intensity[d] = Math.exp(gauss(r) * 0.15));
+    const dem = runModel(state.v, state.conv, pert)[mid].primary;
+    const s = runSupply(mid, state.sv, dem, r).total;
+    s.forEach((x, i) => { sup[i].push(x); sh[i].push(dem[i] > 0 ? x / dem[i] * 100 : 0); });
+  }
+  const q = (arr, p) => { const s = arr.slice().sort((a, b) => a - b); const i = (s.length - 1) * p; const lo = Math.floor(i); return s[lo] + (s[Math.ceil(i)] - s[lo]) * (i - lo); };
+  return { s10: sup.map(a => q(a, .1)), s90: sup.map(a => q(a, .9)), h10: sh.map(a => q(a, .1)), h90: sh.map(a => q(a, .9)) };
+}
+
+function lineChart(box, W, H, pad, ymax, yfmt, drawFn) {
+  const iw = W - pad.l - pad.r, ih = H - pad.t - pad.b;
+  const X = i => pad.l + iw * i / (YEARS.length - 1), Y = v => pad.t + ih - ih * v / ymax;
+  let s = `<svg viewBox="0 0 ${W} ${H}">`;
+  ticks(ymax).forEach(t => { s += `<line x1="${pad.l}" x2="${W - pad.r}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--grid)"/><text x="${pad.l - 8}" y="${Y(t) + 4}" text-anchor="end">${yfmt(t)}</text>`; });
+  [2025, 2030, 2035, 2040, 2045, 2050].forEach(y => { s += `<text x="${X(yi(y))}" y="${H - 8}" text-anchor="middle">${y}</text>`; });
+  s += drawFn(X, Y, iw, ih);
+  s += `<line class="xh" x1="0" x2="0" y1="${pad.t}" y2="${pad.t + ih}" stroke="var(--ink-2)" visibility="hidden"/><rect class="hit" x="${pad.l}" y="${pad.t}" width="${iw}" height="${ih}" fill="transparent"/></svg>`;
+  box.innerHTML = s;
+  return { X, Y, iw, ih };
+}
+function attachTip(box, W, pad, geo, rowsFn) {
+  const svg = box.querySelector('svg'); const tp = document.createElement('div'); tp.className = 'tip'; tp.hidden = true; box.appendChild(tp);
+  const xh = svg.querySelector('.xh'), hit = svg.querySelector('.hit');
+  const show = ev => {
+    const rect = svg.getBoundingClientRect(); const sx = (ev.clientX - rect.left) * W / rect.width;
+    const i = Math.max(0, Math.min(YEARS.length - 1, Math.round((sx - pad.l) / geo.iw * (YEARS.length - 1))));
+    xh.setAttribute('x1', geo.X(i)); xh.setAttribute('x2', geo.X(i)); xh.setAttribute('visibility', 'visible');
+    tp.innerHTML = `<h4>${YEARS[i]}</h4><table>${rowsFn(i)}</table>`; tp.hidden = false;
+    const px = geo.X(i) * rect.width / W; const bw = box.getBoundingClientRect().width;
+    tp.style.left = (px + 14 + tp.offsetWidth > bw ? px - tp.offsetWidth - 14 : px + 14) + 'px'; tp.style.top = '8px';
+  };
+  hit.addEventListener('pointermove', show); hit.addEventListener('pointerdown', show);
+  hit.addEventListener('pointerleave', () => { tp.hidden = true; xh.setAttribute('visibility', 'hidden'); });
+}
+
+function drawArgentina() {
+  const mid = state.argMin, M = AR_MIN[mid];
+  const res = runModel(state.v, state.conv);
+  const dem = res[mid].primary;
+  const sup = runSupply(mid, state.sv, dem);
+  const mc = argMonteCarlo(200);
+  const share = sup.total.map((x, i) => dem[i] > 0 ? x / dem[i] * 100 : 0);
+  const scen = SCENARIOS.find(x => x.id === state.scen);
+  const fmtS = x => fmtN(x, x >= 100 ? 0 : 1);
+  const fmtP = x => fmtN(x, x < 10 ? 1 : 0) + ' %';
+
+  // controles
+  SUPPLY_FACTORS.forEach(f => { const inp = document.getElementById('sv_' + f.id); inp.value = state.sv[f.id]; inp.style.setProperty('--p', state.sv[f.id] + '%'); document.getElementById('tv_' + f.id).textContent = svText(state.sv[f.id]) + ' · ' + state.sv[f.id]; });
+  argPresets.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === state.sPreset));
+  document.querySelectorAll('[data-am]').forEach(b => b.setAttribute('aria-pressed', b.dataset.am === mid));
+  document.getElementById('argSub').innerHTML = `Oferta argentina proyectada frente a la demanda primaria mundial del escenario <b>${scen ? scen.name : 'personalizado'}</b>. Hasta 2030 la oferta se apoya en proyectos concretos (RIGI aprobado o en construcción); después pesan más las condiciones internas y el tirón de la demanda.`;
+
+  // KPIs
+  let k = `<div class="kpi"><span class="y">2025 · producción</span><span class="v">${fmtS(sup.total[0])}<small>${M.unit}</small></span><span class="r">${fmtP(share[0])} de la demanda primaria</span></div>`;
+  [2030, 2040, 2050].forEach(y => { const i = yi(y); k += `<div class="kpi"><span class="y">${y} · cuota</span><span class="v">${fmtP(share[i])}</span><span class="r">${fmtS(sup.total[i])} ${M.unit} · p10–p90 ${fmtP(mc.h10[i])}–${fmtP(mc.h90[i])}</span></div>`; });
+  document.getElementById('argKpis').innerHTML = k;
+
+  const grid = document.getElementById('argGrid');
+  const projs = AR_PROJECTS[mid];
+  const keys = [...projs.map(p => p.id), 'nuevos'];
+  const names = Object.fromEntries([...projs.map(p => [p.id, p.name]), ['nuevos', 'Nuevos proyectos (después de la cartera actual)']]);
+  const col = Object.fromEntries(keys.map((kk, i) => [kk, AR_COLORS[i % 8]]));
+
+  document.getElementById('argProdTitle').textContent = `Oferta argentina proyectada · ${M.unit}`;
+  const pBox = document.getElementById('argProd');
+  const sBox = document.getElementById('argShare');
+  const Wp = Math.max(300, pBox.clientWidth || 520), H = 280, pad = { l: 52, r: 14, t: 14, b: 28 };
+  const noSupply = Math.max(...share) < 0.1;
+  if (noSupply) {
+    const need = y => dem[yi(y)] * 0.01;
+    document.getElementById('argLegend').innerHTML = '';
+    pBox.innerHTML = `<div class="arg-empty"><b>Sin oferta proyectada con la cartera actual.</b><span>Argentina no tiene producción ni reservas definidas de tierras raras: hay 19 ocurrencias relevadas por Segemar y 190.395 t TREO inferidas, con un potencial no descubierto de hasta 3,3 Mt. Hacen falta de 5 a 10 años solo para tener recursos bajo estándar internacional.</span><span>Tamaño de referencia en este escenario: cubrir el 1 % de la demanda primaria mundial de NdPr exigiría unas <b>${fmtN(need(2040), 1)} kt/año</b> de óxido en 2040 y <b>${fmtN(need(2050), 1)} kt/año</b> en 2050.</span><span>Sube <b>Exploración y nuevos proyectos</b> para ver una primera oferta hipotética desde 2038.</span></div>`;
+  } else {
+    const ymax = niceMax(Math.max(...mc.s90, ...sup.total) * 1.05);
+    const geo = lineChart(pBox, Wp, H, pad, ymax, t => fmtN(t, 0), (X, Y) => {
+      let s = ''; const cum = YEARS.map(() => 0);
+      keys.forEach(kk => {
+        const lower = cum.slice(); sup.series[kk].forEach((v, i) => cum[i] += v);
+        if (Math.max(...sup.series[kk]) < 1e-6) return;
+        s += `<polygon points="${cum.map((v, i) => `${X(i)},${Y(v)}`).join(' ')} ${lower.map((v, i) => `${X(i)},${Y(v)}`).reverse().join(' ')}" fill="${col[kk]}" stroke="var(--surface)" stroke-width="1.2"/>`;
+      });
+      s += `<polyline points="${mc.s90.map((v, i) => `${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="var(--ink-2)" stroke-width="1.2" stroke-dasharray="3 3"/>`;
+      s += `<polyline points="${mc.s10.map((v, i) => `${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="var(--ink-2)" stroke-width="1.2" stroke-dasharray="3 3"/>`;
+      s += `<line x1="${X(yi(2030))}" x2="${X(yi(2030))}" y1="${pad.t}" y2="${H - pad.b}" stroke="var(--ink-3)" stroke-dasharray="2 3"/><text x="${X(yi(2030)) + 5}" y="${pad.t + 10}" style="fill:var(--ink-3)">anclado en RIGI ←</text>`;
+      return s;
+    });
+    attachTip(pBox, Wp, pad, geo, i => [...keys].reverse().filter(kk => sup.series[kk][i] > 0.05).map(kk => `<tr><td><span class="sw" style="display:inline-block;background:${col[kk]};margin-right:6px"></span>${names[kk]}</td><td class="n">${fmtS(sup.series[kk][i])}</td></tr>`).join('') + `<tr class="tot"><td>Oferta esperada</td><td class="n">${fmtS(sup.total[i])}</td></tr><tr><td>p10–p90</td><td class="n">${fmtS(mc.s10[i])}–${fmtS(mc.s90[i])}</td></tr>`);
+    document.getElementById('argLegend').innerHTML = keys.filter(kk => Math.max(...sup.series[kk]) > 1e-6).map(kk => `<span><span class="sw" style="background:${col[kk]}"></span>${names[kk]}</span>`).join('') + `<span><span class="ln" style="border-color:var(--ink-2);border-top-style:dashed"></span>p10–p90</span>`;
+  }
+  // Cuota
+  const Ws = Math.max(300, sBox.clientWidth || 520);
+  const smax = niceMax(Math.max(1, ...mc.h90, ...share) * 1.08);
+  const geoS = lineChart(sBox, Ws, H, pad, smax, t => fmtN(t, t < 10 && t % 1 ? 1 : 0) + '%', (X, Y) => {
+    let s = `<polygon points="${mc.h90.map((v, i) => `${X(i)},${Y(v)}`).join(' ')} ${mc.h10.map((v, i) => `${X(i)},${Y(v)}`).reverse().join(' ')}" fill="var(--band)"/>`;
+    s += `<polyline points="${share.map((v, i) => `${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="var(--accent)" stroke-width="2.5"/>`;
+    [2030, 2040, 2050].forEach(y => { s += `<circle cx="${X(yi(y))}" cy="${Y(share[yi(y)])}" r="4" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>`; });
+    return s;
+  });
+  attachTip(sBox, Ws, pad, geoS, i => `<tr class="tot"><td>Cuota esperada</td><td class="n">${fmtP(share[i])}</td></tr><tr><td>p10–p90</td><td class="n">${fmtP(mc.h10[i])}–${fmtP(mc.h90[i])}</td></tr><tr><td>Oferta argentina</td><td class="n">${fmtS(sup.total[i])}</td></tr><tr><td>Demanda primaria mundial</td><td class="n">${fmtN(dem[i], 0)}</td></tr>`);
+
+  // ¿Qué pesa más?
+  const i40 = yi(2040);
+  const byDem = SCENARIOS.map(s => { const d = runModel(s.v, state.conv)[mid].primary; return { n: s.name, v: runSupply(mid, state.sv, d).total[i40] / d[i40] * 100 }; });
+  const bySup = SUPPLY_PRESETS.map(p => ({ n: p.name, v: runSupply(mid, p.v, dem).total[i40] / dem[i40] * 100 }));
+  const rows = [{ lab: 'Escenario de demanda mundial', sub: 'los 5 escenarios, con las condiciones internas actuales', arr: byDem }, { lab: 'Condiciones internas', sub: 'Estancamiento, Continuidad RIGI y Despegue, con la demanda actual', arr: bySup }];
+  const wBox = document.getElementById('argWho'); const Ww = Math.max(300, wBox.clientWidth || 700);
+  const wmax = niceMax(Math.max(1, ...byDem.map(x => x.v), ...bySup.map(x => x.v)) * 1.1);
+  const wl = Ww < 560 ? 12 : 230, wr = 20, rowH = 46;
+  const WX = v => wl + (Ww - wl - wr) * v / wmax;
+  let w = `<svg viewBox="0 0 ${Ww} ${rows.length * rowH + 30}">`;
+  ticks(wmax).forEach(t => { w += `<line x1="${WX(t)}" x2="${WX(t)}" y1="4" y2="${rows.length * rowH + 6}" stroke="var(--grid)"/><text x="${WX(t)}" y="${rows.length * rowH + 22}" text-anchor="middle">${fmtN(t, t < 10 && t % 1 ? 1 : 0)}%</text>`; });
+  rows.forEach((r, k) => {
+    const y = 10 + k * rowH; const lo = Math.min(...r.arr.map(x => x.v)), hi = Math.max(...r.arr.map(x => x.v));
+    if (Ww >= 560) w += `<text x="${wl - 12}" y="${y + 12}" text-anchor="end" style="fill:var(--ink);font-family:var(--f-body);font-size:12.5px;font-weight:600">${r.lab}</text><text x="${wl - 12}" y="${y + 27}" text-anchor="end" style="font-family:var(--f-body);font-size:11px">${fmtP(lo)} – ${fmtP(hi)}</text>`;
+    else w += `<text x="${wl}" y="${y - 1}" style="fill:var(--ink);font-family:var(--f-body);font-size:12px;font-weight:600">${r.lab}: ${fmtP(lo)} – ${fmtP(hi)}</text>`;
+    w += `<rect x="${WX(lo)}" y="${y + 6}" width="${Math.max(2, WX(hi) - WX(lo))}" height="16" rx="4" fill="${k ? 'var(--accent)' : 'var(--s1)'}" opacity=".85"><title>${r.arr.map(x => x.n + ': ' + fmtP(x.v)).join(' · ')}</title></rect>`;
+  });
+  wBox.innerHTML = w + '</svg>';
+  const dRange = Math.max(...byDem.map(x => x.v)) - Math.min(...byDem.map(x => x.v));
+  const sRange = Math.max(...bySup.map(x => x.v)) - Math.min(...bySup.map(x => x.v));
+
+  // Interpretación
+  const ins = document.getElementById('argInsight');
+  if (noSupply) {
+    ins.innerHTML = `En tierras raras la pregunta no es la cuota sino el tiempo: sin recursos definidos, ningún escenario de demanda cambia la posición argentina antes de fines de la década de 2030.`;
+  } else {
+    ins.innerHTML = `Con las condiciones internas actuales, Argentina cubriría el <b>${fmtP(share[yi(2030)])}</b> de la demanda primaria mundial de ${M.low} en 2030 y el <b>${fmtP(share[i40])}</b> en 2040. Hacia 2040, ${sRange > dRange ? '<b>las condiciones internas pesan más que la demanda mundial</b>' : '<b>la demanda mundial pesa más que las condiciones internas</b>'}: la cuota se mueve ${fmtN(sRange, 1)} puntos según las condiciones internas y ${fmtN(dRange, 1)} puntos según el escenario de demanda.${sup.delay >= 0.5 ? ` Las condiciones actuales retrasan la cartera unos ${fmtN(sup.delay, 1)} años.` : ''}`;
+  }
+
+  // Tabla de proyectos
+  const reg = (state.sv.macro + state.sv.social) / 200, pFac = 0.5 + reg;
+  let tb = `<thead><tr><th>Proyecto y estado</th><th class="n">Inicio anunciado</th><th class="n">A régimen</th><th class="n">Prob. en este escenario</th><th>Fuente y supuestos</th></tr></thead><tbody>`;
+  projs.forEach(pr => {
+    const p = pr.base ? 1 : Math.min(0.98, pr.p * (pr.tier === 'A' || pr.tier === 'R' ? Math.sqrt(pFac) : pFac));
+    const start = pr.linear ? `${pr.linear[0]}–${pr.linear[1]}` : pr.base ? 'en operación' : pr.stages[0][0];
+    const cap = pr.linear ? pr.add : Math.max(...pr.stages.map(s => s[1]));
+    tb += `<tr><td><span class="mn">${pr.name}</span><span class="un">${pr.prov}</span><span class="st ${pr.tier === 'A' || pr.tier === 'R' ? 'ok' : 'est'}">${TIERS[pr.tier].name}</span></td><td class="n">${start}</td><td class="n">${fmtN(cap, cap < 20 ? 1 : 0)} ${M.unit}</td><td class="n">${fmtN(p * 100, 0)} %</td><td>${pr.src}${pr.sup ? ` <i>${pr.sup}</i>` : ''}</td></tr>`;
+  });
+  tb += `<tr><td><span class="mn">Nuevos proyectos</span><span class="un">después de la cartera actual</span><span class="st est">Proyección OMA</span></td><td class="n">desde ${AR_CAPTURE[mid].start}</td><td class="n">—</td><td class="n">—</td><td>Argentina capta hasta el ${fmtN(AR_CAPTURE[mid].max * 100, 1)} % del crecimiento de la demanda mundial posterior a 2035, según la exploración y el clima regulatorio y social.</td></tr>`;
+  document.getElementById('argTable').innerHTML = tb + '</tbody>';
+  document.getElementById('argNote').innerHTML = mid === 'li' ? 'Referencia externa: BNAmericas estima que Argentina podría superar las 450 kt LCE de producción en 2030; el modelo usa el estudio UIA–CAEM, más conservador. La producción se compara con la demanda primaria, la que cubre la minería.' : 'La producción minera se compara con la demanda primaria mundial, la que debe cubrir la minería una vez descontado el reciclaje.';
+}
+
 function update() {
   syncControls();
+  const isArg = state.page === 'arg';
+  argBtn.setAttribute('aria-pressed', isArg);
+  document.getElementById('argView').hidden = !isArg;
+  document.getElementById('demandView').hidden = isArg;
+  if (isArg) { drawArgentina(); return; }
   document.querySelectorAll('.tab').forEach(b => { const on = b.dataset.id === state.mineral; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
   document.getElementById('vComp').setAttribute('aria-pressed', state.view === 'comp');
   document.getElementById('vUnc').setAttribute('aria-pressed', state.view === 'unc');
@@ -807,6 +1151,13 @@ function update() {
 }
 let rw = 0;
 new ResizeObserver(() => { const w = document.getElementById('mainChart').clientWidth; if (Math.abs(w - rw) > 4) { rw = w; schedule(); } }).observe(document.getElementById('mainChart'));
+// Abrir directamente la vista Argentina: enlace con #argentina o mensaje desde la página que la embebe
+function openFromHash() { if (location.hash === '#argentina') { state.page = 'arg'; } }
+openFromHash();
+window.addEventListener('hashchange', () => { openFromHash(); update(); });
+window.addEventListener('message', e => { if (e.data && e.data.type === 'oma-convergencias-view') { state.page = e.data.view === 'argentina' ? 'arg' : 'demand'; update(); } });
+let aw = 0;
+new ResizeObserver(() => { const w = document.getElementById('argGrid').clientWidth; if (state.page === 'arg' && Math.abs(w - aw) > 4) { aw = w; schedule(); } }).observe(document.getElementById('argGrid'));
 update();
 </script>
 
