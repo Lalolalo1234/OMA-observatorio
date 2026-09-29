@@ -868,6 +868,58 @@
 
 .table-scroll { overflow-x: auto; margin: 1.5rem 0; }
         .table-scroll table { margin: 0; min-width: 640px; }
+
+        /* Barómetro: riesgo país */
+        .rp { margin-top: 2.5rem; }
+        .rp h2 { margin-bottom: 0.6rem; }
+        .rp-h3 { font-size: 1.05rem; color: #1e3c72; margin: 1.6rem 0 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        .rp-market { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+        .rp-inds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
+        @media (max-width: 900px) { .rp-market, .rp-inds { grid-template-columns: 1fr; } }
+        .rp-card, .rp-ind { background: white; border-radius: 6px; padding: 1.1rem 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .rp-card h4, .rp-ind h4 { margin: 0; font-size: 0.95rem; color: #1e3c72; }
+        .rp-big { font-size: 1.9rem; font-weight: 700; color: #1b2430; line-height: 1.15; margin: 0.35rem 0 0.2rem; font-variant-numeric: tabular-nums; }
+        .rp-big small { font-size: 0.95rem; font-weight: 600; color: #667; }
+        .rp-sub { font-size: 0.82rem; color: #555; margin-bottom: 0.5rem; }
+        .rp-ind p, .rp-note { font-size: 0.86rem; color: #444; line-height: 1.5; text-align: left; margin: 0.5rem 0 0; }
+        .rp-ind { border-left: 4px solid #94a3b8; }
+        .rp-ind.rp-ok { border-left-color: #15803d; }
+        .rp-ind.rp-warn { border-left-color: #d97706; }
+        .rp-ind.rp-bad { border-left-color: #b91c1c; }
+        .rp-ind-head { display: flex; justify-content: space-between; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+        .rp-pill { font-size: 0.75rem; font-weight: 600; padding: 0.15rem 0.6rem; border-radius: 999px; white-space: nowrap; }
+        .rp-pill-ok { background: #dcfce7; color: #14532d; }
+        .rp-pill-warn { background: #fef3c7; color: #78350f; }
+        .rp-pill-bad { background: #fee2e2; color: #7f1d1d; }
+        .rp-range { position: relative; height: 40px; margin: 1.6rem 0 0.2rem; }
+        .rp-range-track { position: absolute; left: 0; right: 0; top: 22px; height: 8px; border-radius: 4px; background: #e5e9ef; }
+        .rp-range-ig { position: absolute; top: 22px; height: 8px; border-radius: 4px 0 0 4px; background: #94a3b8; }
+        .rp-range-span { position: absolute; top: 18px; height: 16px; border-radius: 4px; background: rgba(185,28,28,0.18); border: 1px solid rgba(185,28,28,0.45); }
+        .rp-mark { position: absolute; top: 0; transform: translateX(-50%); text-align: center; font-size: 0.72rem; color: #555; white-space: nowrap; }
+        .rp-mark span { display: block; font-weight: 700; color: #1b2430; font-size: 0.8rem; margin-bottom: 20px; }
+        .rp-mark::before { content: ''; position: absolute; left: 50%; top: 16px; width: 2px; height: 22px; background: #1b2430; transform: translateX(-50%); }
+        .rp-mark-now::before { background: #b91c1c; width: 3px; }
+        .rp-mark-now span { color: #b91c1c; }
+        .rp-keys { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; font-size: 0.78rem; color: #555; margin-top: 0.45rem; }
+        .rp-keys b { color: #1b2430; font-variant-numeric: tabular-nums; }
+        .rp-keys b.now { color: #b91c1c; }
+        @media (max-width: 600px) { .rp-step { font-size: 0.58rem; padding: 0.4rem 0; } .rp-ladder { gap: 2px; } .rp-big { font-size: 1.6rem; } }
+        .rp-axis { display: flex; justify-content: space-between; font-size: 0.7rem; color: #888; margin-top: 0.6rem; font-variant-numeric: tabular-nums; }
+        .rp-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-top: 1rem; padding: 0.7rem 0.9rem; background: #f1f5fb; border-radius: 6px; font-size: 0.88rem; color: #1e3c72; }
+        .rp-cap strong { white-space: nowrap; font-size: 1.25rem; color: #1b2430; font-variant-numeric: tabular-nums; }
+        .rp-ladder { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 3px; margin: 1rem 0 0.4rem; }
+        .rp-step { background: #eef1f5; border-radius: 3px; text-align: center; padding: 0.45rem 0; font-size: 0.72rem; font-weight: 600; color: #667; }
+        .rp-step.on { background: #d97706; color: white; }
+        .rp-step.ig { background: #15803d; color: white; }
+        .rp-ladder-legend { font-size: 0.75rem; color: #555; display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap; }
+        .rp-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-left: 0.4rem; }
+        .rp-dot.on { background: #d97706; margin-left: 0; }
+        .rp-dot.ig { background: #15803d; }
+        .rp-strong { font-weight: 700; color: #1b2430; margin: 0.7rem 0 0.3rem; text-align: left; }
+        .rp-agencies { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; color: #444; line-height: 1.6; }
+        .rp-read { background: white; border-radius: 6px; padding: 0.2rem 1.25rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-top: 1.6rem; border-top: 4px solid #1e3c72; }
+        .rp-read p { font-size: 0.92rem; line-height: 1.6; text-align: left; }
+        .rp-vs { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 0.7rem 0.9rem; border-radius: 4px; }
         .table-note { font-size: 0.82rem; color: #666; }
         .tab-content p.table-note { line-height: 1.5; text-align: left; }
         .pending-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 3px; background: #fff4d6; color: #7a5a00; }
@@ -1558,6 +1610,8 @@
                 <div class="barometer-legend" id="barometerLegend"></div>
             </div>
 
+            <section class="rp" id="riesgoPais" aria-labelledby="riesgoPaisH2"></section>
+
             <div class="alert" id="barometroMonitor"></div>
             <div class="alert" id="barometroPulsometro"></div>
         </div>
@@ -1631,7 +1685,7 @@
                         <td>5.8</td>
                         <td>+1.9 (2025: 3.9)</td>
                         <td>La mayor mejora absoluta de los 9 ejes, pero todavía entre los más bajos: arranca de una base muy exigente.</td>
-                        <td>Comunicar de forma explícita y comparada los mecanismos de cobertura ya disponibles (RIGI, contratos en dólares, acceso a divisas para minería).</td>
+                        <td>Comunicar de forma explícita y comparada los mecanismos de cobertura ya disponibles (RIGI, contratos en dólares, acceso a divisas para minería). Seguir los cuatro fundamentos del riesgo país del <a href="#" onclick="navigateTo('barometro'); return false;">Barómetro</a>: hoy el servicio de la deuda externa de 2027 es el punto crítico.</td>
                     </tr>
                     <tr>
                         <td>Capital Humano</td>
@@ -2387,7 +2441,7 @@
                         <td>5.8</td>
                         <td>+1.9 (2025: 3.9)</td>
                         <td>The largest absolute improvement of the 9 axes, but still among the lowest: it starts from a very demanding baseline.</td>
-                        <td>Explicitly and comparatively communicate the coverage mechanisms already available (RIGI, dollar-denominated contracts, foreign-currency access for mining).</td>
+                        <td>Explicitly and comparatively communicate the coverage mechanisms already available (RIGI, dollar-denominated contracts, foreign-currency access for mining). Track the four country-risk fundamentals in the <a href="#" onclick="navigateTo('barometro'); return false;">Barometer</a>: today 2027 external debt service is the critical point.</td>
                     </tr>
                     <tr>
                         <td>Human Capital</td>
@@ -2921,6 +2975,7 @@
 
             renderBarometerLegend();
             renderBarometerChart();
+            renderRiesgoPais();
             renderAmvestSidebar();
             initHomeAnimations();
             if (window.renderOmaConsole) renderOmaConsole(lang);
@@ -3135,9 +3190,180 @@
             { es: { label: 'Mining-Friendly Attitude', desc: 'Disposición del Estado a facilitar permisos, incentivos y trámites.' }, en: { label: 'Mining-Friendly Attitude', desc: "Government's willingness to facilitate permits, incentives and procedures." }, v2025: 5.8, v2026: 7.0 },
             { es: { label: 'Financiamiento', desc: 'Disponibilidad de capital (local e internacional) para proyectos.' }, en: { label: 'Funding', desc: 'Availability of capital (local and international) for projects.' }, v2025: 4.8, v2026: 6.1 },
             { es: { label: 'Infraestructura', desc: 'Energía, rutas, agua y logística disponibles para operar y exportar.' }, en: { label: 'Infrastructure', desc: 'Energy, roads, water and logistics available to operate and export.' }, v2025: 4.5, v2026: 5.3 },
-            { es: { label: 'Estabilidad Macro', desc: 'Previsibilidad cambiaria, inflacionaria y de acceso a divisas.' }, en: { label: 'Macro Stability', desc: 'Predictability of exchange rate, inflation and access to foreign currency.' }, v2025: 3.9, v2026: 5.8 },
+            { es: { label: 'Estabilidad Macro', desc: 'Previsibilidad cambiaria, inflacionaria y de acceso a divisas. Contrastado con datos de mercado y fundamentos en la sección Riesgo país, más abajo.' }, en: { label: 'Macro Stability', desc: 'Predictability of exchange rate, inflation and access to foreign currency. Checked against market data and fundamentals in the Country risk section below.' }, v2025: 3.9, v2026: 5.8 },
             { es: { label: 'Capital Humano', desc: 'Disponibilidad de talento técnico especializado en la región.' }, en: { label: 'Human Capital', desc: 'Availability of specialized technical talent in the region.' }, v2025: 5.6, v2026: 5.9 }
         ];
+
+
+        // --- Barómetro: riesgo país (mercado + fundamentos macro) ---
+        // Datos al 28/09/2026. Para actualizar, editar solo RP_DATA.
+        const RP_DATA = {
+            asOf: '28/09/2026',
+            spread: { now: 628, nowDate: '28/09', min: 403, minDate: '07/07', max: 641, maxDate: '28/09 (intradiario)', igRef: 200 },
+            ust: 5.0,
+            // Escala de largo plazo en moneda extranjera. Índice 0 = CCC-/Caa3 … 9 = BBB-/Baa3 (grado de inversión)
+            scale: ['CCC-', 'CCC', 'CCC+', 'B-', 'B', 'B+', 'BB-', 'BB', 'BB+', 'BBB-'],
+            agencies: [
+                { name: 'Fitch', rating: 'B-', idx: 3, prev: 'CCC+', date: '05/05/2026', outlook: { es: 'estable', en: 'stable' } },
+                { name: 'S&P', rating: 'B-', idx: 3, prev: 'CCC+', date: '10/06/2026', outlook: { es: 'estable', en: 'stable' } },
+                { name: "Moody's", rating: 'B3', idx: 3, prev: 'Caa1', date: '21/07/2026', outlook: { es: 'positiva', en: 'positive' } }
+            ],
+            debt2027: { total: 21, bonds: 12, imf: 7.5, bopreal: 2, grossRes: 49 },
+            netRes: { jun: -7, target: -4.1 },
+            fiscal: { primary: 1.1, financial: 0.2, imfTarget: 1.4, proj: 1.3 },
+            infl: { m: 1.7, yoy: 33.5, ytd: 21.3, peakM: 3.4, rem2026: '20–21' },
+            rate: { tamarTNA: 24.1, tamarM: 1.98, expInflM: 1.7 }
+        };
+
+        const RP_I18N = {
+            es: {
+                h2: 'Riesgo país: mercado y fundamentos',
+                intro: 'El eje <strong>Estabilidad Macro</strong> del Barómetro refleja la percepción de las empresas. Esta sección la contrasta con datos duros: lo que dice el mercado (calificaciones y diferencial de los bonos) y lo que dicen los fundamentos locales que más pesan en el riesgo soberano. Para un proyecto minero, el riesgo país es el piso de su costo de capital en dólares.',
+                market: 'Lo que dice el mercado',
+                spreadT: 'Riesgo país (EMBI, puntos básicos)',
+                spreadMin: 'mínimo del año', spreadNow: 'actual', spreadMax: 'máximo del año',
+                spreadNote: s => `Subió ${s.now - s.min} puntos desde el mínimo de julio (+${Math.round((s.now / s.min - 1) * 100)} %), con once ruedas seguidas de alza, y tocó ${s.max} en el día. La franja gris marca el nivel típico de un país con grado de inversión (hasta ${s.igRef} puntos).`,
+                capT: 'Piso del costo de capital en dólares',
+                capNote: (u, s) => `Rendimiento de los bonos del Tesoro de EE. UU. (≈ ${u.toFixed(1).replace('.', ',')} %) más el riesgo país (${(s / 100).toFixed(2).replace('.', ',')} puntos). Un proyecto minero sin cobertura multilateral difícilmente se financia por debajo de este nivel.`,
+                ratingsT: 'Calificaciones soberanas',
+                ig: 'Grado de inversión',
+                notches: n => `A ${n} escalones del grado de inversión`,
+                upgraded: (a) => `subió desde ${a.prev} el ${a.date}`,
+                outlook: 'perspectiva',
+                ratingsNote: 'Las tres agencias sacaron a Argentina de la zona CCC entre mayo y julio de 2026 por el superávit fiscal, la mejora externa (el país pasó a ser exportador neto de energía) y la compra de reservas. Todas siguen ubicando la deuda en la categoría "altamente especulativa".',
+                fund: 'Lo que dicen los fundamentos',
+                status: { ok: 'Favorable', warn: 'En vigilancia', bad: 'Crítico' },
+                ind: [
+                    { k: 'fiscal', s: 'ok', t: 'Resultado fiscal',
+                      big: d => `+${d.fiscal.primary.toFixed(1).replace('.', ',')} % PIB`, sub: d => `superávit primario ene–ago 2026 · financiero +${d.fiscal.financial.toFixed(1).replace('.', ',')} % PIB`,
+                      txt: d => `El ancla principal de la política económica y la razón central de las subas de calificación. Riesgo: la meta anual acordada con el FMI es ${d.fiscal.imfTarget.toFixed(1).replace('.', ',')} % del PIB y la proyección oficial es ${d.fiscal.proj.toFixed(1).replace('.', ',')} %, con diciembre estacionalmente deficitario.` },
+                    { k: 'infl', s: 'warn', t: 'Inflación',
+                      big: d => `${d.infl.m.toFixed(1).replace('.', ',')} % mensual`, sub: d => `agosto 2026 · ${d.infl.yoy.toFixed(1).replace('.', ',')} % interanual · ${d.infl.ytd.toFixed(1).replace('.', ',')} % acumulada`,
+                      txt: d => `Retomó la baja después del repunte a ${d.infl.peakM.toFixed(1).replace('.', ',')} % mensual en marzo, impulsado por el traslado del tipo de cambio y la energía. El mercado (REM del BCRA) espera cerrar 2026 en torno a ${d.infl.rem2026} %. Sigue siendo alta para estándares regionales.` },
+                    { k: 'rate', s: 'warn', t: 'Tasa de interés real',
+                      big: d => `≈ +${((Math.pow(1 + d.rate.tamarM / 100, 12) / Math.pow(1 + d.rate.expInflM / 100, 12) - 1) * 100).toFixed(1).replace('.', ',')} % anual`, sub: d => `TAMAR ${d.rate.tamarTNA.toFixed(1).replace('.', ',')} % TNA (${d.rate.tamarM.toFixed(2).replace('.', ',')} % mensual) frente a ${d.rate.expInflM.toFixed(1).replace('.', ',')} % de inflación mensual esperada`,
+                      txt: () => 'Positiva y moderada: sostiene la demanda de pesos y la desinflación, pero encarece el crédito local para proveedores y contratistas mineros. Medida contra la inflación de los últimos doce meses (33,5 %) todavía sería negativa, porque esa cifra arrastra los meses de inflación más alta.' },
+                    { k: 'debt', s: 'bad', t: 'Servicio de la deuda externa',
+                      big: d => `> US$ ${d.debt2027.total} mil M`, sub: d => `vencimientos en moneda extranjera en 2027 · más del 40 % de las reservas brutas (≈ US$ ${d.debt2027.grossRes} mil M)`,
+                      txt: d => `US$ ${d.debt2027.bonds} mil M con bonistas privados, US$ ${d.debt2027.imf.toFixed(1).replace('.', ',')} mil M con el FMI y unos US$ ${d.debt2027.bopreal} mil M de Bopreal, en un año electoral. Las reservas netas según el FMI rondaban US$ ${d.netRes.jun} mil M en junio frente a una meta de US$ ${d.netRes.target.toFixed(1).replace('.', ',')} mil M a diciembre. El Gobierno no prevé emitir en dólares antes de las elecciones y apuesta a swaps y organismos. Es el principal factor detrás de la suba reciente del riesgo país.` }
+                ],
+                readT: 'Lectura combinada del OMA',
+                read: [
+                    '<strong>Solvencia mejor, liquidez en duda.</strong> Las calificadoras premian la mejora de fondo (superávit fiscal, balanza energética, compra de reservas). El diferencial de los bonos, en cambio, se ensanchó desde julio porque el mercado mira otra cosa: cómo se pagan los vencimientos de 2027 con reservas netas todavía negativas y en un año electoral.',
+                    '<strong>Una parte de la suba es externa.</strong> Rendimientos del Tesoro de EE. UU. cerca del 5 %, subas de tasas de la Reserva Federal y petróleo por encima de US$ 100 afectan a todos los emergentes. La parte propia es la acumulación de reservas, que se desaceleró en agosto y septiembre.',
+                    '<strong>Qué significa para la minería.</strong> El RIGI protege frente a cambios fiscales, cambiarios y aduaneros, pero no baja el techo soberano: el costo de capital de un proyecto sigue anclado al riesgo país. Por eso los proyectos grandes buscan financiamiento multilateral o de agencias de crédito a la exportación, como Rincón con IFC, BID Invest, Export Finance Australia y JBIC.',
+                    '<strong>Señales a vigilar.</strong> Reservas netas frente a la meta del FMI, plan de financiamiento de 2027, inflación mensual por debajo del 2 % y perspectiva de las calificadoras. Una suba a B por parte de dos agencias y un riesgo país sostenido por debajo de 500 puntos marcarían el paso a la siguiente etapa.'
+                ],
+                vs: (a) => `Percepción frente a datos: el eje Estabilidad Macro del Barómetro puntúa ${a.v2026.toFixed(1).replace('.', ',')} sobre 10 (${a.v2025.toFixed(1).replace('.', ',')} en 2025). Los datos confirman la mejora, pero la señalan más frágil de lo que sugiere la encuesta: dos de los cuatro fundamentos están en vigilancia y uno en estado crítico.`,
+                src: 'Fuentes: Fitch Ratings (05/05/2026), S&P Global Ratings (10/06/2026), Moody\'s Ratings (21/07/2026); JP Morgan EMBI según prensa financiera (Infobae, 28/09/2026); INDEC, IPC agosto 2026; Ministerio de Economía, resultado fiscal agosto 2026; BCRA, Relevamiento de Expectativas de Mercado (agosto 2026); vencimientos 2027 y reservas: Infobae (22 y 28/09/2026). Datos al '
+            },
+            en: {
+                h2: 'Country risk: market and fundamentals',
+                intro: 'The Barometer\'s <strong>Macro Stability</strong> axis reflects companies\' perception. This section checks it against hard data: what the market says (ratings and bond spreads) and what the local fundamentals that weigh most on sovereign risk say. For a mining project, country risk is the floor of its dollar cost of capital.',
+                market: 'What the market says',
+                spreadT: 'Country risk (EMBI, basis points)',
+                spreadMin: 'year low', spreadNow: 'current', spreadMax: 'year high',
+                spreadNote: s => `Up ${s.now - s.min} points from the July low (+${Math.round((s.now / s.min - 1) * 100)}%), after eleven straight sessions of increases, touching ${s.max} intraday. The grey band marks the typical level for an investment-grade country (up to ${s.igRef} points).`,
+                capT: 'Floor of the dollar cost of capital',
+                capNote: (u, s) => `US Treasury yield (≈ ${u.toFixed(1)}%) plus country risk (${(s / 100).toFixed(2)} points). A mining project without multilateral cover can hardly be financed below this level.`,
+                ratingsT: 'Sovereign ratings',
+                ig: 'Investment grade',
+                notches: n => `${n} notches below investment grade`,
+                upgraded: (a) => `up from ${a.prev} on ${a.date}`,
+                outlook: 'outlook',
+                ratingsNote: 'All three agencies moved Argentina out of the CCC range between May and July 2026, citing the fiscal surplus, the stronger external position (the country became a net energy exporter) and reserve purchases. All still rate the debt as "highly speculative".',
+                fund: 'What the fundamentals say',
+                status: { ok: 'Favourable', warn: 'Under watch', bad: 'Critical' },
+                ind: [
+                    { k: 'fiscal', s: 'ok', t: 'Fiscal balance',
+                      big: d => `+${d.fiscal.primary.toFixed(1)}% of GDP`, sub: d => `primary surplus Jan–Aug 2026 · overall +${d.fiscal.financial.toFixed(1)}% of GDP`,
+                      txt: d => `The main anchor of economic policy and the core reason for the upgrades. Risk: the annual target agreed with the IMF is ${d.fiscal.imfTarget.toFixed(1)}% of GDP and the official projection is ${d.fiscal.proj.toFixed(1)}%, with December seasonally in deficit.` },
+                    { k: 'infl', s: 'warn', t: 'Inflation',
+                      big: d => `${d.infl.m.toFixed(1)}% monthly`, sub: d => `August 2026 · ${d.infl.yoy.toFixed(1)}% year on year · ${d.infl.ytd.toFixed(1)}% year to date`,
+                      txt: d => `Falling again after the March spike to ${d.infl.peakM.toFixed(1)}% monthly, driven by exchange-rate pass-through and energy. The market (BCRA's REM survey) expects 2026 to close at around ${d.infl.rem2026}%. Still high by regional standards.` },
+                    { k: 'rate', s: 'warn', t: 'Real interest rate',
+                      big: d => `≈ +${((Math.pow(1 + d.rate.tamarM / 100, 12) / Math.pow(1 + d.rate.expInflM / 100, 12) - 1) * 100).toFixed(1)}% a year`, sub: d => `TAMAR ${d.rate.tamarTNA.toFixed(1)}% nominal annual (${d.rate.tamarM.toFixed(2)}% monthly) vs ${d.rate.expInflM.toFixed(1)}% expected monthly inflation`,
+                      txt: () => 'Positive and moderate: it supports peso demand and disinflation, but makes local credit more expensive for mining suppliers and contractors. Measured against inflation over the last twelve months (33.5%) it would still be negative, because that figure carries the months of higher inflation.' },
+                    { k: 'debt', s: 'bad', t: 'External debt service',
+                      big: d => `> US$ ${d.debt2027.total} bn`, sub: d => `foreign-currency maturities in 2027 · over 40% of gross reserves (≈ US$ ${d.debt2027.grossRes} bn)`,
+                      txt: d => `US$ ${d.debt2027.bonds} bn to private bondholders, US$ ${d.debt2027.imf.toFixed(1)} bn to the IMF and about US$ ${d.debt2027.bopreal} bn in Bopreal, in an election year. Net reserves under the IMF definition stood at about US$ ${d.netRes.jun} bn in June against a US$ ${d.netRes.target.toFixed(1)} bn December target. The government does not plan to issue dollar debt before the elections and is relying on swaps and multilaterals. It is the main driver behind the recent rise in country risk.` }
+                ],
+                readT: 'OMA combined reading',
+                read: [
+                    '<strong>Better solvency, doubtful liquidity.</strong> Rating agencies reward the underlying improvement (fiscal surplus, energy trade balance, reserve purchases). Bond spreads, however, have widened since July because the market is looking at something else: how the 2027 maturities will be paid with net reserves still negative and in an election year.',
+                    '<strong>Part of the rise is external.</strong> US Treasury yields near 5%, Federal Reserve rate hikes and oil above US$ 100 hit all emerging markets. The home-grown part is reserve accumulation, which slowed in August and September.',
+                    '<strong>What it means for mining.</strong> RIGI protects against tax, foreign-exchange and customs changes, but it does not lift the sovereign ceiling: a project\'s cost of capital remains anchored to country risk. That is why large projects seek multilateral or export-credit-agency financing, as Rincón did with IFC, IDB Invest, Export Finance Australia and JBIC.',
+                    '<strong>Signals to watch.</strong> Net reserves against the IMF target, the 2027 financing plan, monthly inflation below 2% and rating outlooks. An upgrade to B by two agencies and country risk sustained below 500 points would mark the next stage.'
+                ],
+                vs: (a) => `Perception vs data: the Barometer's Macro Stability axis scores ${a.v2026.toFixed(1)} out of 10 (${a.v2025.toFixed(1)} in 2025). The data confirm the improvement but show it to be more fragile than the survey suggests: two of the four fundamentals are under watch and one is critical.`,
+                src: 'Sources: Fitch Ratings (05/05/2026), S&P Global Ratings (10/06/2026), Moody\'s Ratings (21/07/2026); JP Morgan EMBI as reported by the financial press (Infobae, 28/09/2026); INDEC, CPI August 2026; Ministry of Economy, fiscal result August 2026; BCRA Market Expectations Survey (August 2026); 2027 maturities and reserves: Infobae (22 and 28/09/2026). Data as of '
+            }
+        };
+
+        function renderRiesgoPais() {
+            const el = document.getElementById('riesgoPais');
+            if (!el) return;
+            const lang = currentLang, t = RP_I18N[lang], d = RP_DATA, s = d.spread;
+            const num = x => lang === 'es' ? x.toLocaleString('es-AR') : x.toLocaleString('en-US');
+            // Barra del riesgo país: escala 0–1000 pb
+            const X = v => Math.max(0, Math.min(100, v / 10));
+            const spreadBar = `
+                <div class="rp-range" role="img" aria-label="${t.spreadT}: ${t.spreadMin} ${s.min}, ${t.spreadNow} ${s.now}, ${t.spreadMax} ${s.max}">
+                    <div class="rp-range-track"></div>
+                    <div class="rp-range-span" style="left:${X(s.min)}%;width:${X(s.max) - X(s.min)}%"></div>
+                    <div class="rp-range-ig" style="left:0;width:${X(s.igRef)}%"></div>
+                    <div class="rp-mark rp-mark-min" style="left:${X(s.min)}%"><span>${s.min}</span></div>
+                    <div class="rp-mark rp-mark-now" style="left:${X(s.now)}%"><span>${s.now}</span></div>
+                </div>
+                <div class="rp-axis"><span>0</span><span>250</span><span>500</span><span>750</span><span>${num(1000)}</span></div>
+                <div class="rp-keys"><span><b>${s.min}</b> ${t.spreadMin} (${s.minDate})</span><span><b class="now">${s.now}</b> ${t.spreadNow} (${s.nowDate})</span></div>`;
+            // Escalera de calificaciones
+            const n = d.scale.length;
+            const ladder = `
+                <div class="rp-ladder" role="img" aria-label="${t.ratingsT}">
+                    ${d.scale.map((r, i) => `<div class="rp-step${i === n - 1 ? ' ig' : ''}${d.agencies.some(a => a.idx === i) ? ' on' : ''}"><span>${r}</span></div>`).join('')}
+                </div>
+                <div class="rp-ladder-legend"><span class="rp-dot on"></span> Fitch · S&amp;P · Moody's (B3) <span class="rp-dot ig"></span> ${t.ig}</div>
+                <p class="rp-strong">${t.notches(n - 1 - d.agencies[0].idx)}</p>
+                <ul class="rp-agencies">${d.agencies.map(a => `<li><strong>${a.name} ${a.rating}</strong> — ${t.upgraded(a)} · ${t.outlook} ${a.outlook[lang]}</li>`).join('')}</ul>`;
+            const cap = d.ust + s.now / 100;
+            const capTxt = lang === 'es' ? `≈ ${cap.toFixed(1).replace('.', ',')} %` : `≈ ${cap.toFixed(1)}%`;
+            const ind = t.ind.map(i => `
+                <div class="rp-ind rp-${i.s}">
+                    <div class="rp-ind-head"><h4>${i.t}</h4><span class="rp-pill rp-pill-${i.s}"><span aria-hidden="true">${i.s === 'ok' ? '●' : i.s === 'warn' ? '▲' : '■'}</span> ${t.status[i.s]}</span></div>
+                    <div class="rp-big">${i.big(d)}</div>
+                    <div class="rp-sub">${i.sub(d)}</div>
+                    <p>${i.txt(d)}</p>
+                </div>`).join('');
+            const macroAxis = barometerAxes.find(a => a.es.label === 'Estabilidad Macro');
+            el.innerHTML = `
+                <h2 id="riesgoPaisH2">${t.h2}</h2>
+                <p>${t.intro}</p>
+                <h3 class="rp-h3">${t.market}</h3>
+                <div class="rp-market">
+                    <div class="rp-card">
+                        <h4>${t.spreadT}</h4>
+                        <div class="rp-big">${num(s.now)} <small>pb</small></div>
+                        ${spreadBar}
+                        <p class="rp-note">${t.spreadNote(s)}</p>
+                        <div class="rp-cap"><span>${t.capT}</span><strong>${capTxt}</strong></div>
+                        <p class="rp-note">${t.capNote(d.ust, s.now)}</p>
+                    </div>
+                    <div class="rp-card">
+                        <h4>${t.ratingsT}</h4>
+                        ${ladder}
+                        <p class="rp-note">${t.ratingsNote}</p>
+                    </div>
+                </div>
+                <h3 class="rp-h3">${t.fund}</h3>
+                <div class="rp-inds">${ind}</div>
+                <div class="rp-read">
+                    <h3 class="rp-h3">${t.readT}</h3>
+                    ${t.read.map(p => `<p>${p}</p>`).join('')}
+                    ${macroAxis ? `<p class="rp-vs">${t.vs(macroAxis)}</p>` : ''}
+                </div>
+                <p class="table-note">${t.src}${d.asOf}.</p>`;
+        }
 
         function renderBarometerLegend() {
             const lang = currentLang;
