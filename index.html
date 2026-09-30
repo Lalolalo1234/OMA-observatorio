@@ -869,6 +869,32 @@
 .table-scroll { overflow-x: auto; margin: 1.5rem 0; }
         .table-scroll table { margin: 0; min-width: 640px; }
 
+
+        /* Barómetro: gobernanza EITI */
+        .eiti-comp { margin-top: 0.7rem; }
+        .eiti-comp-h { display: flex; justify-content: space-between; font-size: 0.84rem; color: #444; }
+        .eiti-comp-h strong { color: #1b2430; font-variant-numeric: tabular-nums; }
+        .eiti-bar { height: 8px; background: #e5e9ef; border-radius: 4px; overflow: hidden; margin-top: 0.25rem; }
+        .eiti-bar span { display: block; height: 100%; border-radius: 4px; }
+        .eiti-bar-ok { background: #15803d; } .eiti-bar-warn { background: #d97706; } .eiti-bar-bad { background: #b91c1c; }
+        .eiti-bar-pay { background: #2a5298; }
+        .eiti-h5 { margin: 0.9rem 0 0.4rem; font-size: 0.82rem; color: #555; font-weight: 600; }
+        .eiti-payer { display: grid; grid-template-columns: minmax(0, 11rem) 1fr 3rem; gap: 0.6rem; align-items: center; font-size: 0.8rem; color: #444; margin-bottom: 0.3rem; }
+        .eiti-payer .eiti-bar { margin-top: 0; }
+        .eiti-payer strong { text-align: right; color: #1b2430; font-variant-numeric: tabular-nums; }
+        .eiti-table { width: 100%; background: white; }
+        .eiti-table td.n, .eiti-table th.n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+        .eiti-n { display: inline-block; min-width: 2.4rem; font-size: 0.75rem; color: #667; font-variant-numeric: tabular-nums; }
+        .eiti-na { font-size: 0.75rem; color: #888; }
+        .eiti-up { color: #15803d; font-size: 0.75rem; } .eiti-down { color: #b91c1c; font-size: 0.75rem; } .eiti-eq { color: #888; font-size: 0.75rem; }
+        .eiti-cos { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.8rem; }
+        .eiti-co { background: white; border-radius: 6px; padding: 0.8rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); display: grid; gap: 0.35rem; }
+        .eiti-co strong { color: #1b2430; font-size: 0.92rem; }
+        .eiti-co small { font-size: 0.75rem; color: #555; }
+        .eiti-dots { display: flex; gap: 4px; }
+        .eiti-dots i { width: 14px; height: 14px; border-radius: 3px; background: #15803d; }
+        .eiti-dots i.p { background: #fbbf24; }
+        @media (max-width: 600px) { .eiti-payer { grid-template-columns: minmax(0, 8rem) 1fr 2.6rem; } }
         /* Barómetro: riesgo país */
         .rp { margin-top: 2.5rem; }
         .rp h2 { margin-bottom: 0.6rem; }
@@ -1611,6 +1637,7 @@
             </div>
 
             <section class="rp" id="riesgoPais" aria-labelledby="riesgoPaisH2"></section>
+            <section class="rp" id="gobernanzaEiti" aria-labelledby="gobernanzaEitiH2"></section>
 
             <div class="alert" id="barometroMonitor"></div>
             <div class="alert" id="barometroPulsometro"></div>
@@ -1671,7 +1698,7 @@
                         <td>5.4</td>
                         <td>+0.4 (2025: 5.0)</td>
                         <td>El eje con menor mejora relativa del Barómetro, pese al impulso del RIGI: la aceptación comunitaria no avanza al mismo ritmo que el resto.</td>
-                        <td>Mesas de diálogo comunidad-empresa-Estado, protocolos estandarizados de consulta previa, monitoreo ambiental participativo y publicado.</td>
+                        <td>Mesas de diálogo comunidad-empresa-Estado, protocolos estandarizados de consulta previa, monitoreo ambiental participativo y publicado. Cumplir las acciones correctivas del EITI sobre contratos (25/100) y estudios de impacto ambiental: ver la evaluación de gobernanza en el <a href="#" onclick="navigateTo('barometro'); return false;">Barómetro</a>.</td>
                     </tr>
                     <tr>
                         <td>Infraestructura</td>
@@ -2427,7 +2454,7 @@
                         <td>5.4</td>
                         <td>+0.4 (2025: 5.0)</td>
                         <td>The Barometer's axis with the smallest relative improvement, despite the RIGI push: community acceptance isn't advancing at the same pace as the rest.</td>
-                        <td>Community-company-State dialogue tables, standardized prior-consultation protocols, published participatory environmental monitoring.</td>
+                        <td>Community-company-State dialogue tables, standardized prior-consultation protocols, published participatory environmental monitoring. Deliver the EITI corrective actions on contracts (25/100) and environmental impact assessments: see the governance assessment in the <a href="#" onclick="navigateTo('barometro'); return false;">Barometer</a>.</td>
                     </tr>
                     <tr>
                         <td>Infrastructure</td>
@@ -2976,6 +3003,7 @@
             renderBarometerLegend();
             renderBarometerChart();
             renderRiesgoPais();
+            renderEiti();
             renderAmvestSidebar();
             initHomeAnimations();
             if (window.renderOmaConsole) renderOmaConsole(lang);
@@ -3361,6 +3389,185 @@
                     <h3 class="rp-h3">${t.readT}</h3>
                     ${t.read.map(p => `<p>${p}</p>`).join('')}
                     ${macroAxis ? `<p class="rp-vs">${t.vs(macroAxis)}</p>` : ''}
+                </div>
+                <p class="table-note">${t.src}${d.asOf}.</p>`;
+        }
+
+
+        // --- Barómetro: gobernanza del sector (EITI) ---
+        // Fuente: EITI Database (eiti-database.eiti.org) y decisión del Consejo del EITI sobre la validación 2026.
+        const EITI_DATA = {
+            asOf: '30/09/2026',
+            score: 80, comps: [
+                { k: 'stake', v: 87.5 }, { k: 'outcomes', v: 82.5 }, { k: 'transp', v: 66 }
+            ],
+            bonus: 1.5, correctives: 21, recs: 22, deadline: '01/04/2030', joined: 2019, provinces: 7,
+            // Requisitos seleccionados: puntaje 2022 → 2026 (0–100). null = no evaluado ese año.
+            reqs: [
+                { n: '1.3', k: 'civil', v22: 90, v26: 90 },
+                { n: '1.1', k: 'gov', v22: 90, v26: 90 },
+                { n: '2.1', k: 'legal', v22: 90, v26: 90 },
+                { n: '7.2', k: 'open', v22: 90, v26: 90 },
+                { n: '2.5', k: 'bo', v22: 30, v26: 70 },
+                { n: '4.6', k: 'subnat', v22: 30, v26: 70 },
+                { n: '6.4', k: 'env', v22: null, v26: 70 },
+                { n: '4.1', k: 'rev', v22: 30, v26: 50 },
+                { n: '5.3', k: 'revmgmt', v22: null, v26: 50 },
+                { n: '6.1', k: 'social', v22: 30, v26: 50 },
+                { n: '2.4', k: 'contracts', v22: 30, v26: 25 },
+                { n: '4.10', k: 'costs', v22: null, v26: 25 },
+                { n: '6.2', k: 'quasi', v22: 60, v26: 25 }
+            ],
+            // Pagos de empresas mineras al Estado nacional (US$ millones, informes EITI)
+            pay: { nCompanies: 15, years: [2018, 2020, 2021], total: [441.3, 463.5, 446.8], exportDuties: [119.8, 203.5, 196.3], incomeTax: [185.8, 130.7, 106.6] },
+            payers2021: [
+                { c: 'Minera Andina del Sol (Veladero)', v: 139.6 },
+                { c: 'Cerro Vanguardia', v: 76.0 },
+                { c: 'Oroplata (Cerro Negro)', v: 58.3 },
+                { c: 'Minera Santa Cruz', v: 39.7 },
+                { c: 'Mina Pirquitas', v: 30.6 },
+                { c: 'Estelar Resources', v: 21.4 },
+                { c: 'Mansfield Minera', v: 20.5 }
+            ],
+            // Expectativas del EITI para empresas (evaluación 2025): cumplidas / aplicables y parciales
+            companies: [
+                { c: 'Glencore', met: 9, of: 9, p: [] },
+                { c: 'BHP', met: 8, of: 8, p: [] },
+                { c: 'Rio Tinto', met: 8, of: 8, p: [] },
+                { c: 'Newmont', met: 8, of: 8, p: [] },
+                { c: 'South32', met: 8, of: 8, p: [] },
+                { c: 'Barrick', met: 7, of: 8, p: ['anti'] },
+                { c: 'Eramet', met: 7, of: 8, p: ['tax'] },
+                { c: 'AngloGold Ashanti', met: 6, of: 8, p: ['tax', 'bo'] }
+            ]
+        };
+
+        const EITI_I18N = {
+            es: {
+                h2: 'Gobernanza del sector: evaluación EITI',
+                intro: 'Argentina adhiere desde 2019 a la <strong>Iniciativa para la Transparencia de las Industrias Extractivas (EITI)</strong>, el estándar internacional que evalúa cómo un país gestiona y publica la información de su minería y sus hidrocarburos. A diferencia de la encuesta del Barómetro, es una evaluación independiente, requisito por requisito. Sirve como dato duro para contrastar la percepción de las empresas.',
+                scoreT: 'Validación 2026',
+                scoreSub: d => `Calificación "Muy bueno" · ${d.provinces} provincias adheridas · bonificación +${String(d.bonus).replace('.', ',')}`,
+                comps: { stake: 'Participación de actores', outcomes: 'Resultados e impacto', transp: 'Transparencia' },
+                board: d => `El Consejo del EITI fijó <strong>${d.correctives} acciones correctivas</strong> y ${d.recs} recomendaciones, con plazo hasta el ${d.deadline}. Entre ellas: publicar los contratos completos desde 2021, divulgar los estudios de impacto ambiental y analizar el <strong>impacto del RIGI</strong> sobre las proyecciones de ingresos fiscales.`,
+                reqT: 'Requisitos clave: 2022 frente a 2026',
+                reqNote: 'Puntaje de 0 a 100. Las escalas de 2022 y 2026 no son idénticas: la comparación indica la dirección del cambio, no su magnitud exacta.',
+                colReq: 'Requisito', col22: '2022', col26: '2026', colSt: 'Estado',
+                req: {
+                    civil: 'Participación de la sociedad civil', gov: 'Compromiso del Gobierno', legal: 'Marco legal y régimen fiscal', open: 'Datos abiertos y accesibles',
+                    bo: 'Beneficiarios finales (dueños reales)', subnat: 'Pagos a provincias', env: 'Impacto ambiental', rev: 'Divulgación completa de impuestos e ingresos',
+                    revmgmt: 'Gestión de ingresos y gasto', social: 'Gasto social y ambiental de las empresas', contracts: 'Publicación de contratos', costs: 'Costos de los proyectos', quasi: 'Gasto cuasi-fiscal de empresas estatales'
+                },
+                st: { ok: 'Fortaleza', warn: 'A mejorar', bad: 'Brecha' },
+                notEval: 'no evaluado',
+                payT: 'Pagos de la minería al Estado nacional',
+                payBig: d => `US$ ${d.pay.total[2].toFixed(0)} M`,
+                paySub: d => `en 2021, declarados por ${d.pay.nCompanies} empresas mineras`,
+                payNote: d => `Los derechos de exportación pasaron de US$ ${d.pay.exportDuties[0].toFixed(0)} M en 2018 a US$ ${d.pay.exportDuties[2].toFixed(0)} M en 2021 y superaron al impuesto a las ganancias (US$ ${d.pay.incomeTax[2].toFixed(0)} M) como primer ingreso minero. No incluye regalías provinciales. El litio casi no aparece: los datos son anteriores al auge de producción.`,
+                payersT: 'Mayores pagadores en 2021 (US$ M)',
+                coT: 'Grandes mineras en Argentina: expectativas del EITI',
+                coNote: 'Evaluación 2025 de las empresas que apoyan el EITI, a escala global (no específica de Argentina). Nueve expectativas: apoyo al EITI, lista de filiales, pagos a gobiernos, comercialización, estados auditados, beneficiarios finales, anticorrupción, transparencia de contratos y diversidad de género.',
+                partial: { anti: 'anticorrupción parcial', tax: 'pagos a gobiernos parcial', bo: 'beneficiarios finales parcial' },
+                all: 'cumple todas',
+                readT: 'Lectura del OMA: percepción frente a gobernanza',
+                read: (ax) => [
+                    `<strong>Canales de participación sólidos, licencia social débil.</strong> El EITI califica con 90 la participación de la sociedad civil y del Gobierno, pero el eje Licencia Social del Barómetro apenas llega a ${ax.lic}. El problema no es la falta de espacios formales de diálogo: está en cómo llega la información a las comunidades y en la conflictividad local.`,
+                    `<strong>Buen marco legal, poca transparencia contractual.</strong> El marco legal y fiscal obtiene 90, en línea con la mejora del eje Marco Normativo (${ax.norm}). Pero contratos y costos de proyecto obtienen 25: la previsibilidad de las reglas avanza más que la publicidad de los acuerdos concretos, un punto sensible con los grandes proyectos del RIGI.`,
+                    '<strong>Mejoras que el mercado todavía no ve.</strong> Beneficiarios finales y pagos a provincias pasaron de 30 a 70. Son avances que reducen el riesgo de integridad para inversores y financistas internacionales y conviene comunicarlos.',
+                    '<strong>Qué conviene seguir.</strong> La publicación de contratos del RIGI, la inclusión de regalías provinciales y la carga de los informes 2022–2023 en la base del EITI.'
+                ],
+                limits: 'Límites: los datos financieros del EITI llegan hasta 2021 y solo cubren la recaudación nacional. Algunos indicadores económicos de la base tienen unidades inconsistentes y no se usan aquí.',
+                src: 'Fuentes: EITI Database (eiti-database.eiti.org); EITI, decisión del Consejo sobre la validación de Argentina 2026 (eiti.org/board-decision/2026-09); EITI, perfil de país Argentina. Datos al '
+            },
+            en: {
+                h2: 'Sector governance: EITI assessment',
+                intro: 'Argentina has been part of the <strong>Extractive Industries Transparency Initiative (EITI)</strong> since 2019, the international standard that assesses how a country manages and discloses information on its mining and hydrocarbons. Unlike the Barometer survey, it is an independent, requirement-by-requirement assessment. It serves as hard data to check companies\' perception against.',
+                scoreT: '2026 Validation',
+                scoreSub: d => `Rated "Very good" · ${d.provinces} provinces on board · bonus +${d.bonus}`,
+                comps: { stake: 'Stakeholder engagement', outcomes: 'Outcomes and impact', transp: 'Transparency' },
+                board: d => `The EITI Board set <strong>${d.correctives} corrective actions</strong> and ${d.recs} recommendations, due by ${d.deadline}. They include disclosing full contracts from 2021, publishing environmental impact assessments and analysing the <strong>impact of RIGI</strong> on revenue forecasts.`,
+                reqT: 'Key requirements: 2022 vs 2026',
+                reqNote: 'Score from 0 to 100. The 2022 and 2026 scales are not identical: the comparison shows the direction of change, not its exact size.',
+                colReq: 'Requirement', col22: '2022', col26: '2026', colSt: 'Status',
+                req: {
+                    civil: 'Civil society engagement', gov: 'Government engagement', legal: 'Legal framework and fiscal regime', open: 'Open and accessible data',
+                    bo: 'Beneficial ownership', subnat: 'Subnational (provincial) payments', env: 'Environmental impact', rev: 'Comprehensive disclosure of taxes and revenues',
+                    revmgmt: 'Revenue management and expenditure', social: 'Companies\' social and environmental spending', contracts: 'Contract disclosure', costs: 'Project costs', quasi: 'SOE quasi-fiscal expenditure'
+                },
+                st: { ok: 'Strength', warn: 'To improve', bad: 'Gap' },
+                notEval: 'not assessed',
+                payT: 'Mining payments to the national government',
+                payBig: d => `US$ ${d.pay.total[2].toFixed(0)} M`,
+                paySub: d => `in 2021, reported by ${d.pay.nCompanies} mining companies`,
+                payNote: d => `Export duties rose from US$ ${d.pay.exportDuties[0].toFixed(0)} M in 2018 to US$ ${d.pay.exportDuties[2].toFixed(0)} M in 2021, overtaking income tax (US$ ${d.pay.incomeTax[2].toFixed(0)} M) as the main mining revenue. Provincial royalties are not included. Lithium barely appears: the data predate the production boom.`,
+                payersT: 'Largest payers in 2021 (US$ M)',
+                coT: 'Major miners in Argentina: EITI expectations',
+                coNote: '2025 assessment of EITI supporting companies, at global level (not specific to Argentina). Nine expectations: support for the EITI, list of subsidiaries, payments to governments, commodity trading, audited accounts, beneficial ownership, anti-corruption, contract transparency and gender diversity.',
+                partial: { anti: 'anti-corruption partly met', tax: 'payments to governments partly met', bo: 'beneficial ownership partly met' },
+                all: 'meets all',
+                readT: 'OMA reading: perception vs governance',
+                read: (ax) => [
+                    `<strong>Strong participation channels, weak social licence.</strong> The EITI scores civil society and government engagement at 90, yet the Barometer's Social Licence axis only reaches ${ax.lic}. The problem is not a lack of formal dialogue spaces: it lies in how information reaches communities and in local conflict.`,
+                    `<strong>Good legal framework, little contract transparency.</strong> The legal and fiscal framework scores 90, in line with the improving Regulatory Framework axis (${ax.norm}). But contracts and project costs score 25: rule predictability is advancing faster than disclosure of specific agreements, a sensitive point for large RIGI projects.`,
+                    '<strong>Improvements the market has yet to see.</strong> Beneficial ownership and provincial payments rose from 30 to 70. These gains reduce integrity risk for international investors and lenders and are worth communicating.',
+                    '<strong>What to watch.</strong> Disclosure of RIGI contracts, inclusion of provincial royalties and the upload of the 2022–2023 reports to the EITI database.'
+                ],
+                limits: 'Limits: EITI financial data run to 2021 and only cover national revenue. Some economic indicators in the database have inconsistent units and are not used here.',
+                src: 'Sources: EITI Database (eiti-database.eiti.org); EITI Board decision on Argentina\'s 2026 Validation (eiti.org/board-decision/2026-09); EITI Argentina country profile. Data as of '
+            }
+        };
+
+        function renderEiti() {
+            const el = document.getElementById('gobernanzaEiti');
+            if (!el) return;
+            const lang = currentLang, t = EITI_I18N[lang], d = EITI_DATA;
+            const fmt = x => lang === 'es' ? x.toLocaleString('es-AR', { maximumFractionDigits: 1 }) : x.toLocaleString('en-US', { maximumFractionDigits: 1 });
+            const stOf = v => v >= 70 ? 'ok' : v >= 50 ? 'warn' : 'bad';
+            const axV = label => { const a = barometerAxes.find(x => x.es.label === label); return a ? fmt(a.v2026) : '—'; };
+            const comps = d.comps.map(c => `
+                <div class="eiti-comp"><div class="eiti-comp-h"><span>${t.comps[c.k]}</span><strong>${fmt(c.v)}</strong></div>
+                <div class="eiti-bar"><span style="width:${c.v}%" class="eiti-bar-${stOf(c.v)}"></span></div></div>`).join('');
+            const rows = d.reqs.map(r => {
+                const s = stOf(r.v26);
+                const arrow = r.v22 == null ? '' : r.v26 > r.v22 ? '<span class="eiti-up" aria-label="sube">▲</span>' : r.v26 < r.v22 ? '<span class="eiti-down" aria-label="baja">▼</span>' : '<span class="eiti-eq" aria-hidden="true">=</span>';
+                return `<tr><td><span class="eiti-n">${r.n}</span> ${t.req[r.k]}</td><td class="n">${r.v22 == null ? `<span class="eiti-na">${t.notEval}</span>` : r.v22}</td><td class="n"><strong>${r.v26}</strong> ${arrow}</td><td><span class="rp-pill rp-pill-${s}"><span aria-hidden="true">${s === 'ok' ? '●' : s === 'warn' ? '▲' : '■'}</span> ${t.st[s]}</span></td></tr>`;
+            }).join('');
+            const maxP = Math.max(...d.payers2021.map(p => p.v));
+            const payers = d.payers2021.map(p => `<div class="eiti-payer"><span>${p.c}</span><div class="eiti-bar"><span class="eiti-bar-pay" style="width:${p.v / maxP * 100}%"></span></div><strong>${fmt(p.v)}</strong></div>`).join('');
+            const cos = d.companies.map(c => `<div class="eiti-co"><strong>${c.c}</strong><span class="eiti-dots" aria-label="${c.met}/${c.of}">${Array.from({ length: c.of }, (_, i) => `<i class="${i < c.met ? 'm' : 'p'}"></i>`).join('')}</span><small>${c.p.length ? c.p.map(k => t.partial[k]).join(' · ') : t.all} · ${c.met}/${c.of}</small></div>`).join('');
+            el.innerHTML = `
+                <h2 id="gobernanzaEitiH2">${t.h2}</h2>
+                <p>${t.intro}</p>
+                <div class="rp-market">
+                    <div class="rp-card">
+                        <h4>${t.scoreT}</h4>
+                        <div class="rp-big">${d.score}<small> / 100</small></div>
+                        <div class="rp-sub">${t.scoreSub(d)}</div>
+                        ${comps}
+                        <p class="rp-note">${t.board(d)}</p>
+                    </div>
+                    <div class="rp-card">
+                        <h4>${t.payT}</h4>
+                        <div class="rp-big">${t.payBig(d)}</div>
+                        <div class="rp-sub">${t.paySub(d)}</div>
+                        <h5 class="eiti-h5">${t.payersT}</h5>
+                        ${payers}
+                        <p class="rp-note">${t.payNote(d)}</p>
+                    </div>
+                </div>
+                <h3 class="rp-h3">${t.reqT}</h3>
+                <div class="table-scroll"><table class="eiti-table">
+                    <thead><tr><th>${t.colReq}</th><th class="n">${t.col22}</th><th class="n">${t.col26}</th><th>${t.colSt}</th></tr></thead>
+                    <tbody>${rows}</tbody>
+                </table></div>
+                <p class="table-note">${t.reqNote}</p>
+                <h3 class="rp-h3">${t.coT}</h3>
+                <div class="eiti-cos">${cos}</div>
+                <p class="table-note">${t.coNote}</p>
+                <div class="rp-read">
+                    <h3 class="rp-h3">${t.readT}</h3>
+                    ${t.read({ lic: axV('Licencia Social'), norm: axV('Marco Normativo') }).map(p => `<p>${p}</p>`).join('')}
+                    <p class="rp-vs">${t.limits}</p>
                 </div>
                 <p class="table-note">${t.src}${d.asOf}.</p>`;
         }
