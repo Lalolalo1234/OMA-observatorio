@@ -870,6 +870,63 @@
         .table-scroll table { margin: 0; min-width: 640px; }
 
 
+
+        /* Oferta */
+        .of-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+        @media (max-width: 1000px) { .of-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 560px) { .of-kpis { grid-template-columns: 1fr; } }
+        .of-kpi { background: white; border-radius: 6px; padding: 1rem 1.1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); display: grid; gap: 0.25rem; border-top: 3px solid #1e3c72; }
+        .of-kpi-l { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: #1e3c72; font-weight: 600; }
+        .of-kpi strong { font-size: 1.6rem; color: #1b2430; font-variant-numeric: tabular-nums; line-height: 1.2; }
+        .of-kpi-s { font-size: 0.8rem; color: #555; line-height: 1.4; }
+        .of-proj { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.5rem; }
+        @media (max-width: 900px) { .of-proj { grid-template-columns: 1fr; } }
+        .of-path-row, .of-stack-row { display: grid; grid-template-columns: 3.2rem 1fr auto; gap: 0.6rem; align-items: center; margin-top: 0.7rem; font-size: 0.84rem; }
+        .of-path-row { grid-template-columns: 3.2rem 1fr 4.2rem 5.5rem; }
+        .of-path-row strong { text-align: right; font-variant-numeric: tabular-nums; color: #1b2430; }
+        .of-path-row small { color: #777; font-size: 0.74rem; }
+        .of-path-y { color: #444; font-weight: 600; font-variant-numeric: tabular-nums; }
+        .of-path-bar { height: 16px; background: #eef1f5; border-radius: 4px; overflow: hidden; }
+        .of-path-bar span { display: block; height: 100%; border-radius: 4px; background: #1e3c72; }
+        .of-path-bar span.est { background: repeating-linear-gradient(135deg, #2a5298 0 6px, #4f73b8 6px 12px); }
+        .of-path-bar span.rigi { background: #94a3b8; }
+        .of-stack-row { grid-template-columns: 3.2rem 1fr; }
+        .of-stack { display: flex; height: 22px; border-radius: 4px; overflow: hidden; gap: 2px; min-width: 2px; }
+        .of-stack span { display: block; min-width: 2px; }
+        .of-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin-top: 0.9rem; font-size: 0.8rem; color: #444; font-variant-numeric: tabular-nums; }
+        .of-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 0.35rem; vertical-align: -1px; }
+        .of-table { width: 100%; background: white; font-size: 0.88rem; }
+        .of-table td.n, .of-table th.n { text-align: right; white-space: nowrap; }
+        .of-table tr.of-grp td { background: #f1f5fb; font-weight: 600; color: #1e3c72; }
+        .of-chip { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.5rem; border-radius: 999px; color: white; background: var(--c); white-space: nowrap; }
+        .of-mat { background: white; min-width: 520px; }
+        .of-mat th, .of-mat td { text-align: center; }
+        .of-mat th:first-child { text-align: left; }
+        .of-cell { display: inline-block; min-width: 2.2rem; padding: 0.2rem 0.4rem; border-radius: 4px; background: rgba(30,60,114, calc(0.08 + var(--a) * 0.55)); color: #1b2430; font-weight: 600; font-variant-numeric: tabular-nums; }
+        .of-filters { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.4rem 0 1rem; }
+        .of-filter { font: inherit; font-size: 0.85rem; padding: 0.35rem 0.9rem; border-radius: 999px; border: 1px solid #c7d0dc; background: white; color: #1e3c72; cursor: pointer; }
+        .of-filter.on { background: #1e3c72; color: white; border-color: #1e3c72; }
+        .of-filter:focus-visible { outline: 2px solid #f59e0b; outline-offset: 2px; }
+        .of-board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+        @media (max-width: 1100px) { .of-board { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 600px) { .of-board { grid-template-columns: 1fr; } }
+        .of-col h4 { margin: 0 0 0.6rem; font-size: 0.88rem; color: #1e3c72; text-transform: uppercase; letter-spacing: 0.03em; display: flex; justify-content: space-between; gap: 0.5rem; border-bottom: 2px solid #1e3c72; padding-bottom: 0.35rem; }
+        .of-col h4 span { color: #555; }
+        .of-card { background: white; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 0.75rem 0.85rem; margin-bottom: 0.7rem; border-left: 4px solid var(--c, #c9d1da); display: grid; gap: 0.3rem; }
+        .of-card-h { display: flex; justify-content: space-between; gap: 0.5rem; align-items: flex-start; }
+        .of-card-h strong { color: #1b2430; font-size: 0.92rem; line-height: 1.3; }
+        .of-card-m { font-size: 0.78rem; color: #555; }
+        .of-card-c { font-size: 0.84rem; color: #1b2430; font-weight: 600; }
+        .of-card-c em { font-weight: 400; color: #888; font-style: normal; font-size: 0.78rem; }
+        .of-card-f { display: flex; flex-wrap: wrap; gap: 0.3rem 0.6rem; font-size: 0.75rem; color: #444; }
+        .of-rigi { padding: 0.05rem 0.45rem; border-radius: 999px; font-weight: 600; }
+        .of-rigi.ok { background: #dcfce7; color: #14532d; }
+        .of-rigi.eval { background: #fef3c7; color: #78350f; }
+        .of-card-x { font-size: 0.75rem; color: #555; font-style: italic; }
+        .of-empty { color: #aaa; text-align: center; }
+        .of-details { margin-top: 1rem; background: white; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 0.8rem 1.1rem; }
+        .of-details summary { cursor: pointer; font-weight: 600; color: #1e3c72; }
+        .of-advx { font-size: 0.84rem; line-height: 1.7; text-align: left; margin: 0.7rem 0 0; }
         /* Barómetro: gobernanza EITI */
         .eiti-comp { margin-top: 0.7rem; }
         .eiti-comp-h { display: flex; justify-content: space-between; font-size: 0.84rem; color: #444; }
@@ -1486,22 +1543,14 @@
             </div>
         </div>
 
-        <!-- Oferta y Competitividad (Anticipate) -->
+        <!-- Oferta: operaciones, cartera de proyectos y proyecciones -->
         <div id="oferta" class="tab-content">
-            <h1>Oferta y Competitividad Minera Argentina</h1>
-            <p><strong>Pilar 2</strong> del OMA: seguimiento del costo de producción argentino frente al mercado global, velocidad de scale-up de proyectos, estabilidad regulatoria (incluido el RIGI), capacidades técnicas e índice ESG, con benchmark contra Australia, Canadá, Indonesia, Chile y Perú.</p>
-
-            <div class="subsection">
-                <h3>El "Anticipate Gap"</h3>
-                <p>Hoy no existe un observatorio unificado que confronte la oferta argentina —dispersa entre provincias con jurisdicción propia sobre sus recursos— con la demanda global proyectada. Cada provincia minera lleva su propio registro, sin una lectura agregada a nivel nacional que permita identificar dónde el país es competitivo y dónde le falta capacidad de producción frente a lo que el mundo va a necesitar.</p>
-            </div>
-
-            <div class="subsection">
-                <h3>Mapa de Oportunidad</h3>
-                <p>El Observatorio producirá un mapeo explícito de oportunidades estratégicas: qué minerales críticos muestran riesgo de escasez de oferta a nivel global hacia 2030-2050, y en qué provincias y condiciones Argentina tiene ventaja competitiva real para cerrar esa brecha (litio en el NOA, cobre en San Juan y Catamarca, oro y plata en Santa Cruz, potasio en Mendoza y Neuquén).</p>
-            </div>
+            <h1>Oferta Minera Argentina — Operaciones, Proyectos y Proyecciones</h1>
+            <p><strong>Pilar 2</strong> del OMA: qué produce hoy Argentina, qué proyectos vienen detrás y cuánto podrían exportar en las próximas décadas. Cobre, litio, oro y plata, con la cartera oficial de la Secretaría de Minería de la Nación ordenada por estado de avance.</p>
+            <div id="ofertaDyn"></div>
 
             <h2>Benchmark internacional</h2>
+            <p>Países de referencia con los que el OMA comparará costos, velocidad de desarrollo de proyectos y estabilidad regulatoria.</p>
             <table>
                 <thead>
                     <tr>
@@ -1518,9 +1567,6 @@
                 </tbody>
             </table>
 
-            <div class="alert">
-                <strong>Nota:</strong> El contenido detallado por provincia (reservas, costos unitarios, CAPEX, índice ESG, entre otros) se construirá a partir de datos oficiales de la Secretaría de Minería de la Nación, los organismos mineros provinciales y las encuestas y entrevistas del ciclo bienal de investigación del Observatorio (ver pestaña Gobernanza).
-            </div>
         </div>
 
         <!-- Capital Humano y Política (Guide) -->
@@ -2337,20 +2383,12 @@
             </div>`,
 
             oferta: `
-            <h1>Argentine Mining Supply and Competitiveness</h1>
-            <p><strong>Pillar 2</strong> of OMA: tracking of Argentine production costs versus the global market, project scale-up speed, regulatory stability (including RIGI), technical capabilities and ESG index, benchmarked against Australia, Canada, Indonesia, Chile and Peru.</p>
-
-            <div class="subsection">
-                <h3>The "Anticipate Gap"</h3>
-                <p>Today there is no unified observatory that compares Argentine supply —dispersed across provinces with their own jurisdiction over resources— against projected global demand. Each mining province keeps its own records, with no aggregated national view to identify where the country is competitive and where it lacks production capacity relative to what the world will need.</p>
-            </div>
-
-            <div class="subsection">
-                <h3>Opportunity Map</h3>
-                <p>The Observatory will produce an explicit mapping of strategic opportunities: which critical minerals show global supply-shortage risk toward 2030-2050, and in which provinces and conditions Argentina has real competitive advantage to close that gap (lithium in the NOA, copper in San Juan and Catamarca, gold and silver in Santa Cruz, potassium in Mendoza and Neuquén).</p>
-            </div>
+            <h1>Argentine Mining Supply — Operations, Projects and Outlook</h1>
+            <p>OMA <strong>Pillar 2</strong>: what Argentina produces today, which projects are coming next and how much they could export over the coming decades. Copper, lithium, gold and silver, with the official pipeline of Argentina's Mining Secretariat organised by development stage.</p>
+            <div id="ofertaDyn"></div>
 
             <h2>International benchmark</h2>
+            <p>Reference countries against which OMA will compare costs, project development speed and regulatory stability.</p>
             <table>
                 <thead>
                     <tr>
@@ -2366,10 +2404,7 @@
                     <tr><td>Peru</td><td>Direct regional reference in copper — track record of attracting mining investment.</td></tr>
                 </tbody>
             </table>
-
-            <div class="alert">
-                <strong>Note:</strong> Detailed content by province (reserves, unit costs, CAPEX, ESG index, among others) will be built from official data from the National Mining Secretariat, provincial mining agencies, and the Observatory's biennial survey and interview cycle (see Governance tab).
-            </div>`,
+            `,
 
             'capital-humano': `
             <h1>Human Capital &amp; Mining Policy</h1>
@@ -3004,6 +3039,7 @@
             renderBarometerChart();
             renderRiesgoPais();
             renderEiti();
+            renderOferta();
             renderAmvestSidebar();
             initHomeAnimations();
             if (window.renderOmaConsole) renderOmaConsole(lang);
@@ -3570,6 +3606,263 @@
                     <p class="rp-vs">${t.limits}</p>
                 </div>
                 <p class="table-note">${t.src}${d.asOf}.</p>`;
+        }
+
+
+        // --- Oferta: operaciones, cartera de proyectos y proyecciones ---
+        // Cartera y estados: Secretaría de Minería, "Portfolio of Mining Projects 2026".
+        // Producción 2025: CAEM, Informe productivo (datos Secretaría de Minería). Exportaciones: Secretaría de Minería.
+        // Operadores y capacidades de los proyectos avanzados: Secretaría de Minería y comunicados de las empresas.
+        const OF_DATA = {
+            asOf: '01/10/2026',
+            stages: [
+                { k: 'prod', n: 26 }, { k: 'cons', n: 7 }, { k: 'feas', n: 10 }, { k: 'pfs', n: 6 }, { k: 'pea', n: 11 },
+                { k: 'advx', n: 73 }, { k: 'initx', n: 131 }, { k: 'prosp', n: 61 }
+            ],
+            total: 325,
+            byMineral: { au: 58, li: 66, cu: 76, ag: 40, u: 21, other: 64 },
+            // Matriz de proyectos avanzados por mineral principal y estado (Portfolio 2026)
+            matrix: {
+                cu: { prod: 1, cons: 1, feas: 4, pfs: 2, pea: 1, advx: 15 },
+                li: { prod: 7, cons: 5, feas: 2, pfs: 3, pea: 4, advx: 27 },
+                au: { prod: 14, cons: 1, feas: 1, pfs: 1, pea: 1, advx: 15 },
+                ag: { prod: 3, cons: 0, feas: 0, pfs: 1, pea: 2, advx: 3 }
+            },
+            prod2025: { au: 1184, ag: 22.1, li: 116.6, liCap: 200.8, cu: 2.1, jobs: 39311 },
+            exp: {
+                y2025: { total: 6071, au: 4094, li: 911, ag: 785, cu: 13 },
+                ytd2026: { total: 6059, au: 3623, li: 1467, ag: 726, chg: 65.7, li_chg: 190.5 },
+                path: [ { y: 2025, v: 6071, real: true }, { y: 2030, v: 15411 }, { y: 2035, v: 36250 } ],
+                y2035: { total: 36250, cu: 18712, li: 11493, au: 3448, ag: 2597 },
+                rigiOnly2035: 28000,
+                capex: { total: 57000, cu: 41190, li: 14000, ag: 544, au: 231 },
+                cuTarget: '1,5–1,6 Mt', liTarget: '600 kt LCE'
+            },
+            // Operaciones en producción (Portfolio 2026). cap = capacidad nominal anunciada por la empresa
+            ops: [
+                { n: 'Cauchari-Olaroz', m: 'li', p: 'Jujuy', o: 'Minera Exar (Ganfeng, Lithium Argentina, JEMSE)', cap: '40 kt LCE', x: { es: 'Meta de 85 kt hacia 2029', en: 'Target of 85 kt by 2029' } },
+                { n: 'Olaroz', m: 'li', p: 'Jujuy', o: 'Rio Tinto', cap: '42,5 kt LCE' },
+                { n: 'Fénix', m: 'li', p: 'Catamarca', o: 'Rio Tinto', cap: '≈30 kt LCE', x: { es: 'Fase 1B: +9,5 kt (RIGI)', en: 'Phase 1B: +9.5 kt (RIGI)' } },
+                { n: 'Sal de Oro', m: 'li', p: 'Salta / Catamarca', o: 'POSCO', cap: '25 kt LiOH', x: { es: 'Fase 2 anunciada', en: 'Phase 2 announced' } },
+                { n: 'Centenario-Ratones', m: 'li', p: 'Salta', o: 'Eramet', cap: '24 kt LCE' },
+                { n: 'Tres Quebradas', m: 'li', p: 'Catamarca', o: 'Zijin Mining', cap: '20 kt LCE' },
+                { n: 'Mariana', m: 'li', p: 'Salta', o: 'Ganfeng Lithium', cap: '20 kt LiCl' },
+                { n: 'Veladero', m: 'au', p: 'San Juan', o: 'Barrick – Shandong Gold', x: { es: 'Expansión con RIGI (US$ 380 M, 2028)', en: 'Expansion under RIGI (US$ 380 M, 2028)' } },
+                { n: 'Cerro Negro', m: 'au', p: 'Santa Cruz', o: 'Newmont' },
+                { n: 'Cerro Vanguardia', m: 'au', p: 'Santa Cruz', o: 'AngloGold Ashanti' },
+                { n: 'Cerro Moro', m: 'au', p: 'Santa Cruz', o: 'Pan American Silver' },
+                { n: 'Lindero', m: 'au', p: 'Salta', o: 'Fortuna Mining' },
+                { n: 'Gualcamayo', m: 'au', p: 'San Juan', o: 'Minas Argentinas', x: { es: 'Proyecto de expansión con RIGI (US$ 665 M)', en: 'Expansion project under RIGI (US$ 665 M)' } },
+                { n: 'Casposo', m: 'au', p: 'San Juan', o: 'Austral Gold' },
+                { n: 'Don Nicolás', m: 'au', p: 'Santa Cruz', o: 'Cerrado Gold' },
+                { n: 'Las Calandrias', m: 'au', p: 'Santa Cruz', o: 'Cerrado Gold' },
+                { n: 'Cap-Oeste', m: 'au', p: 'Santa Cruz', o: 'Patagonia Gold' },
+                { n: 'Farallón Negro', m: 'au', p: 'Catamarca', o: 'YMAD' },
+                { n: 'Ajedrez', m: 'au', p: 'Jujuy', o: 'Espíritu de los Andes' },
+                { n: 'Mina Catalina II', m: 'au', p: 'Jujuy', o: 'Espíritu de los Andes' },
+                { n: 'Córdoba', m: 'au', p: 'Jujuy', o: 'Gasmarra Minería' },
+                { n: 'San José', m: 'ag', p: 'Santa Cruz', o: 'Hochschild Mining' },
+                { n: 'Puna (Chinchillas–Pirquitas)', m: 'ag', p: 'Jujuy', o: 'SSR Mining' },
+                { n: 'La Providencia', m: 'ag', p: 'Jujuy', o: 'Hanaq Group' },
+                { n: 'Aguilar', m: 'pb', p: 'Jujuy', o: 'Grupo Integra', x: { es: 'Plomo, zinc y plata', en: 'Lead, zinc and silver' } },
+                { n: 'Martín Bronce', m: 'cu', p: 'Jujuy', o: 'MOM Mining', x: { es: 'Única mina de cobre en producción, a pequeña escala', en: 'The only producing copper mine, small scale' } }
+            ],
+            // Proyectos en construcción, factibilidad, prefactibilidad y PEA (Portfolio 2026)
+            projects: [
+                { n: 'Vicuña – Josemaría', m: 'cu', s: 'cons', p: 'San Juan', o: 'Vicuña (BHP – Lundin Mining)', cap: '≈395 kt Cu/año (media 25 años)', y: 2030, rigi: 'ok', capex: 'US$ 9.712 M (etapa 1)' },
+                { n: 'Salar del Rincón', m: 'li', s: 'cons', p: 'Salta', o: 'Rio Tinto', cap: '60 kt LCE', y: 2028, rigi: 'ok', capex: 'US$ 2.744 M' },
+                { n: 'Sal de Vida', m: 'li', s: 'cons', p: 'Catamarca', o: 'Rio Tinto', cap: '15 kt LCE (fase 1)', rigi: 'eval', capex: 'US$ 638 M' },
+                { n: 'Hombre Muerto Oeste', m: 'li', s: 'cons', p: 'Catamarca', o: 'Galan Lithium', cap: '5,4 kt LCE (fase 1)', y: 2026, rigi: 'ok', capex: 'US$ 217 M' },
+                { n: 'Rincón', m: 'li', s: 'cons', p: 'Salta', o: 'Argosy Minerals' },
+                { n: 'Sal de los Ángeles', m: 'li', s: 'cons', p: 'Salta', o: 'Revotech Asia' },
+                { n: 'Calcatreu', m: 'au', s: 'cons', p: 'Río Negro', o: 'Patagonia Gold', cap: '≈32 koz Au/año', y: 2026 },
+                { n: 'Los Azules', m: 'cu', s: 'feas', p: 'San Juan', o: 'McEwen Copper', cap: '205 kt Cu/año (primeros 5 años)', y: 2030, rigi: 'ok', capex: 'US$ 2.672 M' },
+                { n: 'Taca Taca', m: 'cu', s: 'feas', p: 'Salta', o: 'First Quantum Minerals', cap: '>200 kt Cu/año (>320 kt con expansión)', y: '2031–2033', rigi: 'ok', capex: 'US$ 5.250 M' },
+                { n: 'MARA (Agua Rica – Alumbrera)', m: 'cu', s: 'feas', p: 'Catamarca', o: 'Glencore', cap: '>200 kt Cu/año (primeros 10 años)', y: '≈2032', rigi: 'eval', capex: 'US$ 4.000 M', x: { es: 'Reactivación de Alumbrera desde 2027 (~70 kt en 4 años)', en: 'Alumbrera restart from 2027 (~70 kt over 4 years)' } },
+                { n: 'El Pachón', m: 'cu', s: 'feas', p: 'San Juan', o: 'Glencore', cap: '≈280 kt Cu/año', rigi: 'eval', capex: 'US$ 9.500 M' },
+                { n: 'Pozuelos – Pastos Grandes', m: 'li', s: 'feas', p: 'Salta', o: 'Ganfeng Lithium', cap: '≈150 kt LCE (distrito, plan)', rigi: 'eval' },
+                { n: 'Kachi', m: 'li', s: 'feas', p: 'Catamarca', o: 'Lake Resources', cap: '≈25 kt LCE' },
+                { n: 'Suyai', m: 'au', s: 'feas', p: 'Chubut', o: 'Pan American Silver', x: { es: 'Sujeto a la legislación minera de Chubut', en: 'Subject to Chubut mining legislation' } },
+                { n: 'Vicuña – Filo del Sol', m: 'cu', s: 'pfs', p: 'San Juan', o: 'Vicuña (BHP – Lundin Mining)', x: { es: 'Etapas 2 y 3 del distrito Vicuña', en: 'Stages 2 and 3 of the Vicuña district' } },
+                { n: 'San Jorge (PSJ Cobre Mendocino)', m: 'cu', s: 'pfs', p: 'Mendoza', o: 'Zonda Metals', cap: '≈40 kt Cu/año', y: 2029, rigi: 'ok', capex: 'US$ 613 M' },
+                { n: 'Arizaro', m: 'li', s: 'pfs', p: 'Salta', o: 'Lithium Chile' },
+                { n: 'Cauchari', m: 'li', s: 'pfs', p: 'Jujuy', o: 'Austroid Corp.' },
+                { n: 'Cauchari JV', m: 'li', s: 'pfs', p: 'Jujuy', o: 'Rio Tinto' },
+                { n: 'Hualilán', m: 'au', s: 'pfs', p: 'San Juan', o: 'Challenger Gold' },
+                { n: 'Diablillos', m: 'ag', s: 'pfs', p: 'Salta / Catamarca', o: 'AbraSilver Resource', rigi: 'ok', capex: 'US$ 760 M' },
+                { n: 'Altar', m: 'cu', s: 'pea', p: 'San Juan', o: 'Aldebaran Resources' },
+                { n: 'Candelas', m: 'li', s: 'pea', p: 'Catamarca', o: 'Galan Lithium' },
+                { n: 'Hombre Muerto Norte', m: 'li', s: 'pea', p: 'Salta', o: 'Lithium South' },
+                { n: 'Río Grande', m: 'li', s: 'pea', p: 'Salta' },
+                { n: 'Salar de Tolillar', m: 'li', s: 'pea', p: 'Salta', o: 'Alpha Lithium' },
+                { n: 'Taguas', m: 'au', s: 'pea', p: 'San Juan', o: 'Minsud Resources' },
+                { n: 'El Quevar', m: 'ag', s: 'pea', p: 'Salta', o: 'Argenta Silver' },
+                { n: 'Navidad', m: 'ag', s: 'pea', p: 'Chubut', o: 'Pan American Silver', x: { es: 'Sujeto a la legislación minera de Chubut', en: 'Subject to Chubut mining legislation' } }
+            ],
+            advx: {
+                cu: ['Barro Negro', 'Brealito', 'Cerro Atajo', 'Cerro Socompa', 'Chachas', 'La Ortiga', 'Marcelo', 'Mogotes (Filo Sur)', 'Prospecto Arizaro', 'Río Cenicero', 'Río Grande', 'Río Salinas', 'Santa Inés', 'Sapo y otras', 'Valle de Chita'],
+                li: ['Alba X', 'Alcalina', 'Arizaro', 'Arizaro Norte', 'Arizaro Sur', 'Cangrejillos', 'Centenario', 'Doncella', 'Gallego', 'Incahuasi', 'Incahuasi Moncho', 'Laguna Verde', 'Mina Sísifo – Mina Patilla', 'Pocitos I', 'Pular', 'Reina Sofía IV', 'Rincón Oeste', 'Río Grande', 'Río Grande Sur', 'Salar de Antofalla I', 'Salari', 'Salari 22', 'Sincera', 'Solaroz', 'Taca Sal IV', 'Trila Lea', 'Vega de Arizaro'],
+                au: ['Claudia', 'Conserrat', 'Don Julio', 'Don Sixto', 'El Dorado Monserrat', 'La Josefina', 'La Manchuria', 'Lama', 'Michelle', 'Mosquito', 'Potrerillos', 'San Roque', 'Tebenquiche Chico', 'Valle Ancho', 'Yanso'],
+                ag: ['Cañadón del Moro', 'Pingüino', 'Virginia']
+            }
+        };
+
+        const OF_I18N = {
+            es: {
+                stages: { prod: 'Producción', cons: 'Construcción', feas: 'Factibilidad', pfs: 'Prefactibilidad', pea: 'Evaluación económica preliminar (PEA)', advx: 'Exploración avanzada', initx: 'Exploración inicial', prosp: 'Prospección' },
+                stShort: { prod: 'Producción', cons: 'Construcción', feas: 'Factibilidad', pfs: 'Prefactib.', pea: 'PEA', advx: 'Expl. avanzada' },
+                min: { cu: 'Cobre', li: 'Litio', au: 'Oro', ag: 'Plata', pb: 'Plomo-zinc', u: 'Uranio', other: 'Otros' },
+                all: 'Todos',
+                k1: 'Exportaciones mineras 2025', k1s: e => `Récord. Oro ${pct(e.au, e.total)}, litio ${pct(e.li, e.total)}, plata ${pct(e.ag, e.total)}, cobre ${pct(e.cu, e.total)}`,
+                k2: 'Enero–agosto 2026', k2s: e => `+${fmtEs(e.chg)} % interanual. El litio crece ${fmtEs(e.li_chg)} %`,
+                k3: 'Producción 2025', k3s: p => `Litio ${fmtEs(p.li)} kt LCE (capacidad ${fmtEs(p.liCap)} kt) · plata ${fmtEs(p.ag)} Moz · cobre ≈${fmtEs(p.cu)} kt`,
+                k3v: p => `${fmtEs(p.au / 1000, 2)} Moz de oro`,
+                k4: 'Cartera de proyectos', k4s: d => `${d.stages[0].n} en producción · ${d.stages[1].n} en construcción · ${d.stages[2].n + d.stages[3].n + d.stages[4].n} en estudios económicos · ${d.stages[5].n} en exploración avanzada`,
+                projT: 'Proyección de exportaciones: de oro a cobre y litio',
+                projP: 'Escenario de la Secretaría de Minería con 38 proyectos y precios de S&P Capital IQ. Requiere unos US$ 57.000 M de inversión, US$ 41.190 M de ellos en cobre.',
+                path: 'Total exportado (US$ M)', real: 'real', est: 'proyección',
+                rigiNote: v => `Si solo avanzan los proyectos con RIGI aprobado, la Secretaría estima unos US$ ${fmtEs(v)} M en 2035. Metas de producción oficiales: cobre ${OF_DATA.exp.cuTarget} por año hacia 2035 y litio más de ${OF_DATA.exp.liTarget} hacia 2036.`,
+                mix: 'Composición por mineral (US$ M)',
+                goldNote: 'El oro retrocede porque las operaciones actuales entran en fase de declinación y hay pocos proyectos nuevos; la plata crece como subproducto de los proyectos de cobre.',
+                opsT: 'Operaciones en producción',
+                opsP: 'Las 26 operaciones que la Secretaría de Minería registra en producción. En litio se indica la capacidad nominal anunciada por cada empresa; entre todas suman unos 200 kt LCE, en línea con los 200,8 kt de capacidad instalada que informa el sector.',
+                colN: 'Operación', colP: 'Provincia', colO: 'Operador', colC: 'Capacidad', colX: 'Notas',
+                opsGold: 'Oro: Santa Cruz aporta la mitad de la producción, San Juan el 43 % y Salta el 7 %. La plata sale en partes casi iguales de Jujuy y Santa Cruz, sobre todo como subproducto del oro.',
+                pipeT: 'Proyectos por estado',
+                pipeP: 'Construcción, factibilidad, prefactibilidad y evaluación económica preliminar (PEA), según la Secretaría de Minería. Capacidad, año de inicio e inversión, según las empresas y los trámites del RIGI.',
+                matT: 'Cartera por mineral y estado',
+                rigi: { ok: 'RIGI aprobado', eval: 'RIGI en evaluación' },
+                start: 'Inicio', capex: 'Inversión', none: 'Sin datos públicos de capacidad',
+                advxT: n => `Exploración avanzada (${n} proyectos)`,
+                readT: 'Lectura del OMA',
+                read: [
+                    '<strong>Cambio de matriz.</strong> Hoy el oro explica dos tercios de las exportaciones. Hacia 2035, si la cartera avanza, el cobre pasaría a más de la mitad y el litio a casi un tercio.',
+                    '<strong>El cobre depende de pocos proyectos grandes.</strong> Vicuña, Los Azules, Taca Taca, MARA y El Pachón concentran casi toda la producción futura. Cualquier demora en uno de ellos mueve la curva de exportaciones varios miles de millones.',
+                    '<strong>El litio ya está en marcha.</strong> Siete plantas producen y cinco están en construcción. La restricción ya no es el recurso sino la ejecución y el precio.',
+                    '<strong>Lo que conviene seguir.</strong> El avance físico de los proyectos en construcción, las decisiones de inversión de los proyectos con RIGI aprobado y la aprobación de los que siguen en evaluación.'
+                ],
+                links: 'La comparación de esta oferta con la demanda mundial proyectada está en <a href="#" onclick="omaOpenArgentinaView(); return false;">Prospectiva → Argentina vs demanda proyectada</a>; la posición actual, en <a href="#" onclick="navigateTo(\'argentina\'); return false;">Argentina hoy</a>.',
+                src: 'Fuentes: Secretaría de Minería de la Nación, "Portfolio of Mining Projects 2026" (estados y cartera), exportaciones mineras 2025 y enero–agosto 2026, y proyección de exportaciones a 2035; CAEM, Informe productivo de la minería argentina (datos 2025); comunicados de las empresas y trámites del RIGI para capacidades, inversiones y fechas. La Secretaría aclara que parte de los datos de la cartera son estimaciones de terceros. Datos al '
+            },
+            en: {
+                stages: { prod: 'Production', cons: 'Construction', feas: 'Feasibility', pfs: 'Pre-feasibility', pea: 'Preliminary economic assessment (PEA)', advx: 'Advanced exploration', initx: 'Initial exploration', prosp: 'Prospecting' },
+                stShort: { prod: 'Production', cons: 'Construction', feas: 'Feasibility', pfs: 'Pre-feas.', pea: 'PEA', advx: 'Adv. exploration' },
+                min: { cu: 'Copper', li: 'Lithium', au: 'Gold', ag: 'Silver', pb: 'Lead-zinc', u: 'Uranium', other: 'Others' },
+                all: 'All',
+                k1: 'Mining exports 2025', k1s: e => `A record. Gold ${pct(e.au, e.total)}, lithium ${pct(e.li, e.total)}, silver ${pct(e.ag, e.total)}, copper ${pct(e.cu, e.total)}`,
+                k2: 'January–August 2026', k2s: e => `+${e.chg}% year on year. Lithium up ${e.li_chg}%`,
+                k3: '2025 production', k3s: p => `Lithium ${p.li} kt LCE (capacity ${p.liCap} kt) · silver ${p.ag} Moz · copper ≈${p.cu} kt`,
+                k3v: p => `${(p.au / 1000).toFixed(2)} Moz of gold`,
+                k4: 'Project pipeline', k4s: d => `${d.stages[0].n} producing · ${d.stages[1].n} under construction · ${d.stages[2].n + d.stages[3].n + d.stages[4].n} in economic studies · ${d.stages[5].n} in advanced exploration`,
+                projT: 'Export outlook: from gold to copper and lithium',
+                projP: 'Mining Secretariat scenario with 38 projects and S&P Capital IQ prices. It requires about US$ 57 bn of investment, US$ 41.2 bn of it in copper.',
+                path: 'Total exports (US$ M)', real: 'actual', est: 'projection',
+                rigiNote: v => `If only projects with approved RIGI status go ahead, the Secretariat estimates about US$ ${v.toLocaleString('en-US')} M in 2035. Official production targets: copper at 1.5–1.6 Mt a year by 2035 and lithium above 600 kt LCE by 2036.`,
+                mix: 'Mix by mineral (US$ M)',
+                goldNote: 'Gold declines because current operations are entering their decline phase and there are few new projects; silver grows as a by-product of copper projects.',
+                opsT: 'Producing operations',
+                opsP: 'The 26 operations the Mining Secretariat lists as producing. For lithium, the nominal capacity announced by each company is shown; together they add up to about 200 kt LCE, in line with the 200.8 kt of installed capacity reported by the industry.',
+                colN: 'Operation', colP: 'Province', colO: 'Operator', colC: 'Capacity', colX: 'Notes',
+                opsGold: 'Gold: Santa Cruz accounts for half of output, San Juan 43% and Salta 7%. Silver comes in almost equal parts from Jujuy and Santa Cruz, mostly as a by-product of gold.',
+                pipeT: 'Projects by stage',
+                pipeP: 'Construction, feasibility, pre-feasibility and preliminary economic assessment (PEA), according to the Mining Secretariat. Capacity, start year and investment from the companies and RIGI filings.',
+                matT: 'Pipeline by mineral and stage',
+                rigi: { ok: 'RIGI approved', eval: 'RIGI under review' },
+                start: 'Start', capex: 'Investment', none: 'No public capacity data',
+                advxT: n => `Advanced exploration (${n} projects)`,
+                readT: 'OMA reading',
+                read: [
+                    '<strong>A shift in the mix.</strong> Gold accounts for two thirds of exports today. By 2035, if the pipeline advances, copper would make up more than half and lithium almost a third.',
+                    '<strong>Copper depends on a few large projects.</strong> Vicuña, Los Azules, Taca Taca, MARA and El Pachón account for almost all future output. A delay in any of them shifts the export curve by several billion dollars.',
+                    '<strong>Lithium is already under way.</strong> Seven plants are producing and five are under construction. The constraint is no longer the resource but execution and price.',
+                    '<strong>What to watch.</strong> Physical progress of projects under construction, investment decisions on projects with approved RIGI status and approval of those still under review.'
+                ],
+                links: 'The comparison of this supply with projected global demand is in <a href="#" onclick="omaOpenArgentinaView(); return false;">Foresight → Argentina vs demanda proyectada</a>; the current position is in <a href="#" onclick="navigateTo(\'argentina\'); return false;">Argentina today</a>.',
+                src: 'Sources: Argentina\'s Mining Secretariat, "Portfolio of Mining Projects 2026" (stages and pipeline), mining exports 2025 and January–August 2026, and export projection to 2035; CAEM, Argentine mining production report (2025 data); company announcements and RIGI filings for capacities, investments and dates. The Secretariat notes that some pipeline data are third-party estimates. Data as of '
+            }
+        };
+        function trCap(s) {
+            if (!s || currentLang === 'es') return s;
+            return s.replace('media 25 años', '25-year average').replace('primeros 5 años', 'first 5 years').replace('primeros 10 años', 'first 10 years')
+                .replace('con expansión', 'with expansion').replace('fase 1', 'phase 1').replace('distrito, plan', 'district, planned').replace(/\/año/g, '/yr').replace(/(\d),(\d)/g, '$1.$2');
+        }
+        function fmtEs(x, d) { return Number(x).toLocaleString('es-AR', { maximumFractionDigits: d == null ? 1 : d, minimumFractionDigits: d == null ? 0 : d }); }
+        function pct(a, b) { const v = a / b * 100; return (currentLang === 'es' ? fmtEs(v, v < 1 ? 1 : 0) + ' %' : v.toFixed(v < 1 ? 1 : 0) + '%'); }
+        const OF_COLORS = { au: '#c8961e', ag: '#8e9aa6', li: '#1f8a7a', cu: '#b5562b', pb: '#6b6f9c', other: '#c9d1da' };
+        let ofFilter = 'all';
+
+        function renderOferta() {
+            const el = document.getElementById('ofertaDyn');
+            if (!el) return;
+            const lang = currentLang, t = OF_I18N[lang], d = OF_DATA, e = d.exp;
+            const num = x => lang === 'es' ? Number(x).toLocaleString('es-AR') : Number(x).toLocaleString('en-US');
+            const kpi = (label, big, sub) => `<div class="of-kpi"><span class="of-kpi-l">${label}</span><strong>${big}</strong><span class="of-kpi-s">${sub}</span></div>`;
+            const kpis = kpi(t.k1, `US$ ${num(e.y2025.total)} M`, t.k1s(e.y2025))
+                + kpi(t.k2, `US$ ${num(e.ytd2026.total)} M`, t.k2s(e.ytd2026))
+                + kpi(t.k3, t.k3v(d.prod2025), t.k3s(d.prod2025))
+                + kpi(t.k4, `${d.total}`, t.k4s(d));
+            // Trayectoria de exportaciones
+            const maxV = 40000;
+            const path = e.path.map(p => `<div class="of-path-row"><span class="of-path-y">${p.y}</span><div class="of-path-bar"><span style="width:${p.v / maxV * 100}%" class="${p.real ? 'real' : 'est'}"></span></div><strong>${num(p.v)}</strong><small>${p.real ? t.real : t.est}</small></div>`).join('')
+                + `<div class="of-path-row"><span class="of-path-y">2035*</span><div class="of-path-bar"><span style="width:${e.rigiOnly2035 / maxV * 100}%" class="rigi"></span></div><strong>${num(e.rigiOnly2035)}</strong><small>RIGI</small></div>`;
+            const stack = (label, o) => {
+                const tot = ['cu', 'li', 'au', 'ag'].reduce((s, k) => s + (o[k] || 0), 0);
+                const other = Math.max(0, o.total - tot);
+                const parts = ['au', 'li', 'ag', 'cu'].map(k => ({ k, v: o[k] || 0 })).concat(other > 1 ? [{ k: 'other', v: other }] : []);
+                return `<div class="of-stack-row"><span class="of-path-y">${label}</span><div class="of-stack" style="width:${o.total / maxV * 100}%">${parts.map(p => `<span style="flex:${p.v};background:${OF_COLORS[p.k]}" title="${t.min[p.k]}: US$ ${num(p.v)} M"></span>`).join('')}</div></div>`;
+            };
+            const legend = ['au', 'li', 'ag', 'cu'].map(k => `<span><i style="background:${OF_COLORS[k]}"></i>${t.min[k]}: ${num(e.y2025[k])} → ${num(e.y2035[k])}</span>`).join('');
+            // Operaciones
+            const opsByM = ['li', 'au', 'ag', 'pb', 'cu'].map(m => {
+                const rows = d.ops.filter(o => o.m === m);
+                if (!rows.length) return '';
+                return `<tr class="of-grp"><td colspan="5"><span class="of-chip" style="--c:${OF_COLORS[m]}">${t.min[m]}</span> ${rows.length}</td></tr>` + rows.map(o => `<tr><td><strong>${o.n}</strong></td><td>${o.p}</td><td>${o.o}</td><td class="n">${trCap(o.cap) || '—'}</td><td>${o.x ? o.x[lang] : ''}</td></tr>`).join('');
+            }).join('');
+            // Matriz
+            const stK = ['prod', 'cons', 'feas', 'pfs', 'pea', 'advx'];
+            const mat = `<table class="of-mat"><thead><tr><th></th>${stK.map(s => `<th class="n">${t.stShort[s]}</th>`).join('')}</tr></thead><tbody>${['cu', 'li', 'au', 'ag'].map(m => `<tr><th><span class="of-chip" style="--c:${OF_COLORS[m]}">${t.min[m]}</span></th>${stK.map(s => { const v = d.matrix[m][s]; return `<td class="n"><span class="of-cell" style="--a:${Math.min(1, v / 15)}">${v || '·'}</span></td>`; }).join('')}</tr>`).join('')}</tbody></table>`;
+            // Proyectos por estado
+            const filt = p => ofFilter === 'all' || p.m === ofFilter;
+            const cols = ['cons', 'feas', 'pfs', 'pea'].map(s => {
+                const ps = d.projects.filter(p => p.s === s && filt(p));
+                return `<div class="of-col"><h4>${t.stages[s]} <span>${ps.length}</span></h4>${ps.map(p => `
+                    <div class="of-card" style="--c:${OF_COLORS[p.m]}">
+                        <div class="of-card-h"><strong>${p.n}</strong><span class="of-chip" style="--c:${OF_COLORS[p.m]}">${t.min[p.m]}</span></div>
+                        <div class="of-card-m">${p.p}${p.o ? ' · ' + p.o : ''}</div>
+                        <div class="of-card-c">${trCap(p.cap) || `<em>${t.none}</em>`}</div>
+                        <div class="of-card-f">${p.y ? `<span>${t.start}: ${p.y}</span>` : ''}${p.capex ? `<span>${t.capex}: ${lang === 'es' ? p.capex : p.capex.replace(/\./g, ',').replace('etapa', 'stage')}</span>` : ''}${p.rigi ? `<span class="of-rigi ${p.rigi}">${t.rigi[p.rigi]}</span>` : ''}</div>
+                        ${p.x ? `<div class="of-card-x">${p.x[lang]}</div>` : ''}
+                    </div>`).join('') || '<div class="of-card of-empty">—</div>'}</div>`;
+            }).join('');
+            const chips = ['all', 'cu', 'li', 'au', 'ag'].map(k => `<button type="button" class="of-filter${ofFilter === k ? ' on' : ''}" data-f="${k}" aria-pressed="${ofFilter === k}">${k === 'all' ? t.all : t.min[k]}</button>`).join('');
+            const advx = ['cu', 'li', 'au', 'ag'].filter(m => ofFilter === 'all' || ofFilter === m).map(m => `<p class="of-advx"><span class="of-chip" style="--c:${OF_COLORS[m]}">${t.min[m]}</span> ${d.advx[m].join(' · ')}</p>`).join('');
+            const nAdvx = ['cu', 'li', 'au', 'ag'].filter(m => ofFilter === 'all' || ofFilter === m).reduce((s, m) => s + d.advx[m].length, 0);
+            el.innerHTML = `
+                <div class="of-kpis">${kpis}</div>
+                <h2>${t.projT}</h2>
+                <p>${t.projP}</p>
+                <div class="of-proj">
+                    <div class="rp-card"><h4>${t.path}</h4>${path}<p class="rp-note">${t.rigiNote(e.rigiOnly2035)}</p></div>
+                    <div class="rp-card"><h4>${t.mix}</h4>${stack('2025', e.y2025)}${stack('2035', e.y2035)}<div class="of-legend">${legend}</div><p class="rp-note">${t.goldNote}</p></div>
+                </div>
+                <h2>${t.opsT}</h2>
+                <p>${t.opsP}</p>
+                <div class="table-scroll"><table class="of-table"><thead><tr><th>${t.colN}</th><th>${t.colP}</th><th>${t.colO}</th><th class="n">${t.colC}</th><th>${t.colX}</th></tr></thead><tbody>${opsByM}</tbody></table></div>
+                <p class="table-note">${t.opsGold}</p>
+                <h2>${t.pipeT}</h2>
+                <p>${t.pipeP}</p>
+                <h3 class="rp-h3">${t.matT}</h3>
+                <div class="table-scroll">${mat}</div>
+                <div class="of-filters" role="group" aria-label="${t.pipeT}">${chips}</div>
+                <div class="of-board">${cols}</div>
+                <details class="of-details"><summary>${t.advxT(nAdvx)}</summary>${advx}</details>
+                <div class="rp-read">
+                    <h3 class="rp-h3">${t.readT}</h3>
+                    ${t.read.map(p => `<p>${p}</p>`).join('')}
+                    <p class="rp-vs">${t.links}</p>
+                </div>
+                <p class="table-note">${t.src}${d.asOf}.</p>`;
+            el.querySelectorAll('.of-filter').forEach(b => b.addEventListener('click', () => { ofFilter = b.dataset.f; renderOferta(); }));
         }
 
         function renderBarometerLegend() {
