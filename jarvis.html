@@ -369,7 +369,7 @@ function onLine(i, l) {
 }
 
 // --- voz
-let voices = [];
+let voices = [], userVoice = false;
 const PREF = ['es-AR', 'es-419', 'es-US', 'es-MX', 'es-ES', 'es'];
 function loadVoices() {
   if (!('speechSynthesis' in window)) return;
@@ -387,9 +387,12 @@ function loadVoices() {
   voices.sort((a, b) => score(a) - score(b));
   const sel = $('voice'); const prev = sel.value;
   sel.innerHTML = voices.map((v, k) => `<option value="${k}">${v.name.replace(/Microsoft |Google /, '')} (${v.lang})</option>`).join('') + '<option value="silent">Sin voz (solo subtítulos)</option>';
-  if (prev) sel.value = prev;
+  // La lista de voces llega con retraso: solo se respeta la elección si la hizo la persona.
   if (SILENT) sel.value = 'silent';
+  else if (userVoice && [...sel.options].some(o => o.value === prev)) sel.value = prev;
+  else sel.value = voices.length ? '0' : 'silent';
 }
+$('voice').addEventListener('change', () => { userVoice = true; });
 loadVoices();
 if ('speechSynthesis' in window) speechSynthesis.onvoiceschanged = loadVoices;
 
@@ -416,7 +419,9 @@ function speakLine() {
   u.voice = voices[+$('voice').value] || voices[0];
   u.lang = u.voice ? u.voice.lang : 'es-AR';
   u.rate = +$('rate').value; u.pitch = 0.96;
-  u.onstart = () => speaking(true);
+  let started = false;
+  u.onstart = () => { started = true; speaking(true); };
+  setTimeout(() => { if (!started && my === token && playing) { speechSynthesis.cancel(); $('voice').value = 'silent'; $('statusTxt').textContent = 'SIN VOZ: ELIGE OTRA VOZ O NAVEGADOR'; speakLine(); } }, 4000);
   u.onboundary = () => talkPulse();
   u.onend = () => { if (my !== token || !playing) return; li++; timer = setTimeout(speakLine, 260); };
   u.onerror = () => { if (my !== token || !playing) return; li++; timer = setTimeout(speakLine, 260); };
@@ -426,8 +431,9 @@ function stopAll() { token++; clearTimeout(timer); if ('speechSynthesis' in wind
 function play() { $('start').classList.add('hide'); playing = true; $('bPlay').textContent = '❚❚ Pausa'; stopAll(); playing = true; showScene(si); timer = setTimeout(speakLine, 500); }
 function pause() { playing = false; stopAll(); $('bPlay').textContent = '▶ Continuar'; $('statusTxt').textContent = 'EN PAUSA'; }
 function goScene(i, autoplay) { stopAll(); si = Math.max(0, Math.min(scenes.length - 1, i)); li = 0; showScene(si); onLine(si, 0); if (autoplay) { playing = true; timer = setTimeout(speakLine, 500); } }
-$('bPlay').onclick = () => { if (playing) pause(); else { if ($('bPlay').textContent.includes('Repetir')) { si = 0; li = 0; } play(); } };
-$('startBtn').onclick = () => { si = 0; li = 0; play(); };
+$('bPlay').onclick = () => { if (playing) pause(); else { unlockSpeech(); if ($('bPlay').textContent.includes('Repetir')) { si = 0; li = 0; } play(); } };
+function unlockSpeech() { try { if ('speechSynthesis' in window && $('voice').value !== 'silent') { const u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); } } catch (e) {} }
+$('startBtn').onclick = () => { unlockSpeech(); si = 0; li = 0; play(); };
 $('bPrev').onclick = () => goScene(si - 1, playing);
 $('bNext').onclick = () => goScene(si + 1, playing);
 $('bRestart').onclick = () => { goScene(0, true); $('bPlay').textContent = '❚❚ Pausa'; $('start').classList.add('hide'); };
