@@ -805,6 +805,7 @@
         .ls-score { font-weight: 700; font-size: 1.05rem; }
         .ls-ok { color: #15803d; } .ls-warn { color: #b45309; } .ls-bad { color: #b91c1c; }
         .ls-table td.n { min-width: 7rem; }
+        .ls-igf .ls-s { max-width: none; }
         .priority-badge {
             display: inline-block;
             background: #f59e0b;
@@ -1760,7 +1761,7 @@
                         <td>5.4</td>
                         <td>+0.2 (2025: 5.2)</td>
                         <td>Medido con datos externos. La mayoría apoya los proyectos en las provincias mineras, pero solo uno de cada cinco confía en los controles del Estado, y para los inversores (Fraser) los acuerdos con comunidades siguen siendo un freno: la brecha es de credibilidad institucional.</td>
-                        <td>Mesas de diálogo comunidad-empresa-Estado, protocolos estandarizados de consulta previa, monitoreo ambiental participativo y publicado. Cumplir las acciones correctivas del EITI sobre contratos (25/100) y estudios de impacto ambiental: ver la evaluación de gobernanza en el <a href="#" onclick="navigateTo('barometro'); return false;">Barómetro</a>.</td>
+                        <td>Mesas de diálogo comunidad-empresa-Estado, protocolos estandarizados de consulta previa, monitoreo ambiental participativo y publicado. Cumplir las acciones correctivas del EITI sobre contratos (25/100) y estudios de impacto ambiental: ver la evaluación de gobernanza en el <a href="#" onclick="navigateTo('barometro'); return false;">Barómetro</a>. Siguiendo al IGF: consulta desde la exploración, datos de agua públicos y verificados por terceros, e indicadores de empleo y proveedores locales por proyecto.</td>
                     </tr>
                     <tr>
                         <td>Infraestructura</td>
@@ -2505,7 +2506,7 @@
                         <td>5.4</td>
                         <td>+0.2 (2025: 5.2)</td>
                         <td>Measured with external data. Most people in mining provinces support projects, but only one in five trusts government oversight, and investors (Fraser) still see community agreements as a deterrent: the gap is one of institutional credibility.</td>
-                        <td>Community-company-State dialogue tables, standardized prior-consultation protocols, published participatory environmental monitoring. Deliver the EITI corrective actions on contracts (25/100) and environmental impact assessments: see the governance assessment in the <a href="#" onclick="navigateTo('barometro'); return false;">Barometer</a>.</td>
+                        <td>Community-company-State dialogue tables, standardized prior-consultation protocols, published participatory environmental monitoring. Deliver the EITI corrective actions on contracts (25/100) and environmental impact assessments: see the governance assessment in the <a href="#" onclick="navigateTo('barometro'); return false;">Barometer</a>. Following the IGF: consultation from exploration, public water data verified by third parties, and local jobs and supplier indicators for each project.</td>
                     </tr>
                     <tr>
                         <td>Infrastructure</td>
@@ -3302,15 +3303,26 @@
                 fraserT: 'Fraser 2025: comunidades y territorio, por provincia',
                 fraserHead: ['Jurisdicción', 'Acuerdos con comunidades', 'Reclamos territoriales'],
                 fraserNote: '% de empresas para las que el factor desalienta la inversión. Ninguna empresa lo señala como un incentivo. Salta, Jujuy, Catamarca y La Rioja no se publican por falta de respuestas.',
+                igfT: 'Marco del IGF: qué mide el índice y qué falta',
+                igfIntro: 'Para el Foro Intergubernamental sobre Minería (IGF), la licencia social no es un permiso: es un proceso continuo de legitimidad y confianza entre empresa, Estado y comunidades. En su asistencia técnica a Argentina, el IGF la apoya en cuatro pilares.',
+                igfHead: ['Pilar del IGF', 'En el índice', 'Estado'],
+                igfSt: { yes: 'Medido', part: 'Parcial', no: 'Sin dato' },
+                igf: [
+                    { s: 'yes', t: 'Gobernanza y transparencia', m: 'Confianza en los controles (2,6) y EITI (7,0). Es el pilar más débil: la confianza es el componente que más baja el índice.' },
+                    { s: 'part', t: 'Participación comunitaria permanente', m: 'Participación de la sociedad civil en el EITI (90) y acuerdos con comunidades según Fraser. Falta medir la consulta desde la exploración y en los estudios de impacto.' },
+                    { s: 'no', t: 'Gestión hídrica verificable', m: 'Sin indicador. El IGF la señala como el factor que más pesa en la aceptación en zonas áridas, como las del cobre y el litio.' },
+                    { s: 'no', t: 'Desarrollo económico local', m: 'Sin indicador. Empleo y proveedores locales, capacitación e infraestructura comunitaria: pesan más que la comunicación corporativa.' }
+                ],
+                igfNote: 'Próximo paso: sumar al índice un componente de agua (monitoreo público e independiente) y otro de beneficios locales (empleo y compras locales de los proyectos), y preguntar por ambos en la encuesta del OMA.',
                 readT: 'Lectura del OMA',
                 read: [
                     '<strong>Por qué el índice no sube más, aunque Fraser y el EITI sean favorables.</strong> Su lectura favorable viene de otros factores. En Fraser, San Juan vuelve a ser la jurisdicción más atractiva de América Latina por su geología y por el marco de inversiones; en las preguntas sobre comunidades, en cambio, la mayoría de las empresas ve un freno en todas las provincias. En el EITI, el 80/100 premia sobre todo la transparencia fiscal; los requisitos de participación e impacto suman 7 sobre 10 y ya están en el índice.',
                     '<strong>Aceptación sí, confianza no.</strong> En las provincias mineras una mayoría clara apoya los proyectos y la conversación pública es mucho más favorable que desfavorable (48 % frente a 8 %). Pero solo uno de cada cinco catamarqueños confía algo o mucho en los controles del Estado. La brecha es de credibilidad institucional, no de rechazo a la actividad.',
-                    '<strong>La palanca está en la transparencia.</strong> El EITI pide publicar contratos (hoy 25/100) y estudios de impacto ambiental. Es la forma más directa de subir la confianza en los controles, que es el componente que más pesa hacia abajo.',
+                    '<strong>La palanca está en la transparencia.</strong> El EITI pide publicar contratos (hoy 25/100) y estudios de impacto ambiental. Es la forma más directa de subir la confianza en los controles, que es el componente que más pesa hacia abajo. El IGF llega a la misma conclusión: la licencia social depende de la calidad de la gobernanza, del agua y de los beneficios visibles, no de la comunicación.',
                     '<strong>Un mapa dividido.</strong> El Noroeste y Cuyo concentran la conversación favorable; la Patagonia, sobre todo Chubut, sigue siendo zona de conflicto para los inversores.'
                 ],
                 method: 'Método: promedio simple de los cinco componentes. Revisión del 01/10/2026: (1) la confianza y la conversación pública usan ahora escalas que dan valor al punto medio (antes "poca confianza" y los mensajes neutrales contaban como cero); (2) se corrigió el dato de confianza: el 29,7 % corresponde a "poca" confianza, no a "algo"; (3) se agregó Fraser con las preguntas sobre comunidades y territorio. Para 3T 2025 cambia solo el EITI (validación 2022); el resto se mantiene porque no hay datos comparables anteriores. Si se toman solo San Juan y Santa Cruz, el componente Fraser sería 5,4 y el índice 5,6.',
-                src: 'Fuentes: Zuban Córdoba (Letra P, 23/09/2026); IOPPS (Editorial RN, junio de 2026); Enter Comunicación (El Esquiú, 07/09/2026); LLYC (Infobae, 31/08/2025); EITI, validación de Argentina 2026; Fraser Institute, Annual Survey of Mining Companies 2025 (Ámbito y Dinamicarg). Datos al '
+                src: 'Fuentes: Zuban Córdoba (Letra P, 23/09/2026); IOPPS (Editorial RN, junio de 2026); Enter Comunicación (El Esquiú, 07/09/2026); LLYC (Infobae, 31/08/2025); EITI, validación de Argentina 2026; Fraser Institute, Annual Survey of Mining Companies 2025 (Ámbito y Dinamicarg); IGF, trabajos recientes y asistencia técnica a Argentina (igfmining.org, IISD). Datos al '
             },
             en: {
                 h2: 'Social licence: what external data say',
@@ -3328,15 +3340,26 @@
                 fraserT: 'Fraser 2025: communities and land, by province',
                 fraserHead: ['Jurisdiction', 'Community agreements', 'Land claims'],
                 fraserNote: '% of companies for which the factor deters investment. No company cites it as an encouragement. Salta, Jujuy, Catamarca and La Rioja are not published for lack of responses.',
+                igfT: 'IGF framework: what the index measures and what is missing',
+                igfIntro: 'For the Intergovernmental Forum on Mining (IGF), social licence is not a permit: it is an ongoing process of legitimacy and trust between companies, government and communities. In its technical assistance to Argentina, the IGF rests it on four pillars.',
+                igfHead: ['IGF pillar', 'In the index', 'Status'],
+                igfSt: { yes: 'Measured', part: 'Partial', no: 'No data' },
+                igf: [
+                    { s: 'yes', t: 'Governance and transparency', m: 'Trust in oversight (2.6) and EITI (7.0). The weakest pillar: trust is the component that pulls the index down the most.' },
+                    { s: 'part', t: 'Ongoing community participation', m: 'Civil society engagement in the EITI (90) and community agreements according to Fraser. Consultation from exploration and in impact assessments is not yet measured.' },
+                    { s: 'no', t: 'Verifiable water management', m: 'No indicator. The IGF flags it as the factor that weighs most on acceptance in arid areas, such as those of copper and lithium.' },
+                    { s: 'no', t: 'Local economic development', m: 'No indicator. Local jobs and suppliers, training and community infrastructure: they weigh more than corporate communication.' }
+                ],
+                igfNote: 'Next step: add a water component (public, independent monitoring) and a local benefits component (local jobs and procurement of projects) to the index, and ask about both in the OMA survey.',
                 readT: 'OMA reading',
                 read: [
                     '<strong>Why the index does not rise further, even though Fraser and the EITI are favourable.</strong> Their favourable reading comes from other factors. In Fraser, San Juan is again the most attractive jurisdiction in Latin America thanks to its geology and investment framework; on the community questions, however, most companies see a deterrent in every province. In the EITI, the 80/100 mainly rewards fiscal transparency; the participation and impact requirements score 7 out of 10 and are already in the index.',
                     '<strong>Acceptance yes, trust no.</strong> In mining provinces a clear majority supports projects and public conversation is far more favourable than unfavourable (48% vs 8%). But only one in five people in Catamarca has some or a lot of trust in government oversight. The gap is one of institutional credibility, not rejection of the activity.',
-                    '<strong>Transparency is the lever.</strong> The EITI asks for contracts (now 25/100) and environmental impact assessments to be published. That is the most direct way to build trust in oversight, the component that pulls the index down the most.',
+                    '<strong>Transparency is the lever.</strong> The EITI asks for contracts (now 25/100) and environmental impact assessments to be published. That is the most direct way to build trust in oversight, the component that pulls the index down the most. The IGF reaches the same conclusion: social licence depends on the quality of governance, water management and visible benefits, not on communication.',
                     '<strong>A divided map.</strong> The Northwest and Cuyo concentrate favourable conversation; Patagonia, especially Chubut, remains a conflict zone for investors.'
                 ],
                 method: 'Method: simple average of the five components. Revision of 01/10/2026: (1) trust and public conversation now use scales that give value to the midpoint (previously "little trust" and neutral posts counted as zero); (2) the trust figure was corrected: 29.7% is "little" trust, not "some"; (3) Fraser was added with its community and land questions. For Q3 2025 only the EITI changes (2022 Validation); the rest is held constant because there are no comparable earlier data. Taking only San Juan and Santa Cruz, the Fraser component would be 5.4 and the index 5.6.',
-                src: 'Sources: Zuban Córdoba (Letra P, 23/09/2026); IOPPS (Editorial RN, June 2026); Enter Comunicación (El Esquiú, 07/09/2026); LLYC (Infobae, 31/08/2025); EITI, Argentina 2026 Validation; Fraser Institute, Annual Survey of Mining Companies 2025 (Ámbito and Dinamicarg). Data as of '
+                src: 'Sources: Zuban Córdoba (Letra P, 23/09/2026); IOPPS (Editorial RN, June 2026); Enter Comunicación (El Esquiú, 07/09/2026); LLYC (Infobae, 31/08/2025); EITI, Argentina 2026 Validation; Fraser Institute, Annual Survey of Mining Companies 2025 (Ámbito and Dinamicarg); IGF, recent work and technical assistance to Argentina (igfmining.org, IISD). Data as of '
             }
         };
 
@@ -3368,6 +3391,13 @@
                     <thead><tr><th>${t.colC}</th><th class="n">${t.colV}</th><th>${t.colS}</th></tr></thead>
                     <tbody>${rows}</tbody>
                 </table></div>
+                <h3 class="rp-h3">${t.igfT}</h3>
+                <p>${t.igfIntro}</p>
+                <div class="table-scroll"><table class="eiti-table ls-igf">
+                    <thead><tr><th>${t.igfHead[0]}</th><th>${t.igfHead[1]}</th><th>${t.igfHead[2]}</th></tr></thead>
+                    <tbody>${t.igf.map(r => `<tr><td><strong>${r.t}</strong></td><td class="ls-s">${r.m}</td><td><span class="rp-pill rp-pill-${r.s === 'yes' ? 'ok' : r.s === 'part' ? 'warn' : 'bad'}">${t.igfSt[r.s]}</span></td></tr>`).join('')}</tbody>
+                </table></div>
+                <p class="rp-note">${t.igfNote}</p>
                 <div class="rp-read">
                     <h3 class="rp-h3">${t.readT}</h3>
                     ${t.read.map(p => `<p>${p}</p>`).join('')}
