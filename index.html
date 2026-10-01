@@ -807,6 +807,10 @@
         .ls-table td.n { min-width: 7rem; }
         .ls-igf .ls-s { max-width: none; }
         .ls-na { color: #9aa3ad; font-size: 0.8rem; }
+        .ls-rob { margin: 1.2rem 0; }
+        .ls-rob-range { font-size: 1rem; color: #1b2430; margin: 0.6rem 0; text-align: left; }
+        .ls-rob-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+        @media (max-width: 700px) { .ls-rob-cols { grid-template-columns: 1fr; } }
         .ls-prov td, .ls-prov th { white-space: nowrap; }
         .ls-prov td:first-child { white-space: normal; min-width: 8rem; }
         .ls-prov .ls-idx .ls-score { font-size: 1.2rem; }
@@ -1762,9 +1766,9 @@
                 <tbody>
                     <tr>
                         <td>Licencia Social</td>
-                        <td>5.6</td>
-                        <td>+0.1 (2025: 5.5)</td>
-                        <td>Medido con datos externos y por provincia: San Juan 6,0, Catamarca 4,7. La brecha es de credibilidad institucional (confianza en los controles 5,1 frente a 2,6) y de beneficios visibles. No hay encuestas públicas en Salta ni Jujuy, las provincias del litio con más comunidades.</td>
+                        <td>5.8</td>
+                        <td>+0.1 (2025: 5.7)</td>
+                        <td>Medido con datos externos y por provincia: San Juan 6,1, Catamarca 4,7. Licencia condicionada, no negada: la brecha es de credibilidad institucional (confianza en los controles 5,2 frente a 2,6) y de beneficios visibles. No hay encuestas públicas en Salta ni Jujuy, las provincias del litio con más comunidades.</td>
                         <td>Mesas de diálogo comunidad-empresa-Estado, protocolos estandarizados de consulta previa, monitoreo ambiental participativo y publicado. Cumplir las acciones correctivas del EITI sobre contratos (25/100) y estudios de impacto ambiental: ver la evaluación de gobernanza en el <a href="#" onclick="navigateTo('barometro'); return false;">Barómetro</a>. Siguiendo al IGF: consulta desde la exploración, datos de agua públicos y verificados por terceros, e indicadores de empleo y proveedores locales por proyecto.</td>
                     </tr>
                     <tr>
@@ -2507,9 +2511,9 @@
                 <tbody>
                     <tr>
                         <td>Social License</td>
-                        <td>5.6</td>
-                        <td>+0.1 (2025: 5.5)</td>
-                        <td>Measured with external data and by province: San Juan 6.0, Catamarca 4.7. The gap is one of institutional credibility (trust in oversight 5.1 vs 2.6) and visible benefits. There are no public surveys in Salta or Jujuy, the lithium provinces with the most communities.</td>
+                        <td>5.8</td>
+                        <td>+0.1 (2025: 5.7)</td>
+                        <td>Measured with external data and by province: San Juan 6.1, Catamarca 4.7. A conditional, not denied, licence: the gap is one of institutional credibility (trust in oversight 5.2 vs 2.6) and visible benefits. There are no public surveys in Salta or Jujuy, the lithium provinces with the most communities.</td>
                         <td>Community-company-State dialogue tables, standardized prior-consultation protocols, published participatory environmental monitoring. Deliver the EITI corrective actions on contracts (25/100) and environmental impact assessments: see the governance assessment in the <a href="#" onclick="navigateTo('barometro'); return false;">Barometer</a>. Following the IGF: consultation from exploration, public water data verified by third parties, and local jobs and supplier indicators for each project.</td>
                     </tr>
                     <tr>
@@ -3267,7 +3271,7 @@
 
 
         // --- Barómetro: Licencia Social con datos externos ---
-        // Índice OMA = promedio simple de siete componentes (0–10). Actualizar solo LS_DATA.
+        // Índice OMA = promedio simple de seis componentes (0–10). Fraser, retirado el 01/10/2026 hasta verificar sus cifras por provincia. Actualizar solo LS_DATA.
         // Las encuestas provinciales se promedian para obtener los componentes nacionales de aceptación,
         // confianza, ambiente y beneficios. El índice provincial exige al menos tres componentes con dato.
         const LS_DATA = {
@@ -3278,41 +3282,32 @@
                 { k: 'water', v: 5.0, v25: 5.0 },
                 { k: 'benefit', v: 5.8, v25: 5.8 },
                 { k: 'talk', v: 7.0, v25: 7.0 },
-                { k: 'eiti', v: 7.0, v25: 6.0 },
-                { k: 'fraser', v: 4.3, v25: 4.3 }
+                { k: 'eiti', v: 7.0, v25: 6.0 }
             ],
             // Componentes por provincia (0–10; null = sin dato público). emp = % del empleo privado registrado (SecMin, nov. 2023); wage = salario minero / promedio privado.
             prov: [
-                { p: 'San Juan', m: 'cuCu', accept: 6.9, trust: 5.1, water: 5.0, benefit: 7.3, fraser: 5.7, emp: 6.2, wage: 2.1 },
-                { p: 'Catamarca', m: 'liCu', accept: 6.1, trust: 2.6, water: null, benefit: 5.3, fraser: null, emp: 7.4, wage: 1.6 },
-                { p: 'La Rioja', m: 'expl', accept: 6.0, trust: null, water: null, benefit: 4.8, fraser: null, emp: null, wage: null },
-                { p: 'Santa Cruz', m: 'au', accept: null, trust: null, water: null, benefit: null, fraser: 5.0, emp: 14.7, wage: 2.7 },
-                { p: 'Salta', m: 'li', accept: null, trust: null, water: null, benefit: null, fraser: null, emp: 4.5, wage: 1.8 },
-                { p: 'Jujuy', m: 'li', accept: null, trust: null, water: null, benefit: null, fraser: null, emp: 5.9, wage: 1.9 }
-            ],
-            // Fraser 2025: % de empresas para las que cada factor desalienta la inversión
-            fraser: [
-                { j: 'San Juan', socio: 57, land: 29 },
-                { j: 'Santa Cruz', socio: 60, land: 40 },
-                { j: 'Neuquén', socio: 63, land: 50 },
-                { j: 'Mendoza', socio: 78, land: 44 },
-                { j: 'Chubut', socio: 88, land: 63 }
+                { p: 'San Juan', m: 'cuCu', accept: 6.9, trust: 5.2, water: 5.0, benefit: 7.3, emp: 6.2, wage: 2.1 },
+                { p: 'Catamarca', m: 'liCu', accept: 6.1, trust: 2.6, water: null, benefit: 5.3, emp: 7.4, wage: 1.6 },
+                { p: 'La Rioja', m: 'expl', accept: 6.0, trust: null, water: null, benefit: 4.8, emp: null, wage: null },
+                { p: 'Santa Cruz', m: 'au', accept: null, trust: null, water: null, benefit: null, emp: 14.7, wage: 2.7 },
+                { p: 'Salta', m: 'li', accept: null, trust: null, water: null, benefit: null, emp: 4.5, wage: 1.8 },
+                { p: 'Jujuy', m: 'li', accept: null, trust: null, water: null, benefit: null, emp: 5.9, wage: 1.9 }
             ]
         };
         const lsIndex = key => Math.round(LS_DATA.comps.reduce((s, c) => s + c[key], 0) / LS_DATA.comps.length * 10) / 10;
-        const LS_PROV_KEYS = ['accept', 'trust', 'water', 'benefit', 'fraser'];
+        const LS_PROV_KEYS = ['accept', 'trust', 'water', 'benefit'];
         const lsProvIndex = r => { const v = LS_PROV_KEYS.map(k => r[k]).filter(x => x !== null); return v.length >= 3 ? Math.round(v.reduce((a, b) => a + b, 0) / v.length * 10) / 10 : null; };
 
         const LS_I18N = {
             es: {
                 h2: 'Licencia social: qué dicen los datos externos',
-                intro: 'Mientras la encuesta propia del OMA no esté disponible, el eje <strong>Licencia Social</strong> del Barómetro se calcula con datos externos y verificables. El índice nacional es el promedio simple de siete componentes, cada uno en una escala de 0 a 10. Cuatro salen de encuestas provinciales (aceptación, confianza, ambiente y agua, beneficios), uno de la conversación pública y dos de las instituciones y los inversores (EITI y Fraser). Más abajo, el mismo índice por provincia.',
+                intro: 'Mientras la encuesta propia del OMA no esté disponible, el eje <strong>Licencia Social</strong> del Barómetro se calcula con datos externos y verificables. El índice nacional es el promedio simple de seis componentes, cada uno en una escala de 0 a 10. Cuatro salen de encuestas provinciales (aceptación, confianza, ambiente y agua, beneficios), uno de la conversación pública y uno de las instituciones (EITI). Más abajo, el mismo índice por provincia.',
                 idxT: 'Índice de licencia social',
                 idxSub: (a, b) => `3T 2026 · ${b} en 3T 2025`,
                 colC: 'Componente', colV: 'Puntaje', colS: 'Dato y fuente',
                 comps: {
                     accept: { t: 'Aceptación de los proyectos', f: '% a favor de la minería o de un proyecto en la provincia ÷ 10 (promedio de tres provincias)', s: 'San Juan, Poliarquía (jul. 2025, 238 casos): 69 % a favor del desarrollo minero y 68 % del cobre. Catamarca, Zuban Córdoba (sep. 2026, 640 casos): 60,7 % apoya un proyecto en la provincia. La Rioja, IOPPS (jun. 2026, 500 casos): 60 % a favor.' },
-                    trust: { t: 'Confianza en los controles del Estado', f: 'Escala graduada de cada encuesta, llevada a 0–10 (promedio de dos provincias)', s: 'San Juan: control provincial muy bueno 11 %, bueno 19 %, regular 29 %, malo 14 %, muy malo 10 % (5,1). Catamarca: mucha confianza 4,1 %, algo 16,9 %, poca 29,7 %, ninguna 45,7 % (2,6).' },
+                    trust: { t: 'Confianza en los controles del Estado', f: 'Escala graduada de cada encuesta, llevada a 0–10 (promedio de dos provincias)', s: 'San Juan: control provincial muy bueno 11 %, bueno 19 %, regular 29 %, malo 14 %, muy malo 10 %; 16 % no responde (5,2). Catamarca: mucha confianza 4,1 %, algo 16,9 %, poca 29,7 %, ninguna 45,7 % (2,6).' },
                     water: { t: 'Gestión ambiental y del agua', f: 'Escala graduada sobre la gestión ambiental, llevada a 0–10 (solo San Juan)', s: 'San Juan: gestión ambiental muy buena 10 %, buena 23 %, regular 24 %, mala 23 %, muy mala 10 %. Solo el 9 % cree que la minería usa mucha agua. No hay datos públicos comparables de monitoreo hídrico en ninguna provincia.' },
                     benefit: { t: 'Beneficios locales percibidos', f: '% que ve beneficios concretos (empleo, desarrollo, salarios) ÷ 10 (promedio de tres provincias)', s: 'San Juan: 75 % cree que la minería genera empleo y 71 % que impulsa el crecimiento. Catamarca: 56,1 % cree que mejoraría el desarrollo y 49,1 % los salarios. La Rioja: 47 % empleo y 48 % obras de infraestructura.' },
                     talk: { t: 'Clima de la conversación pública', f: 'Balance favorables − desfavorables, llevado a 0–10 (neutral = 5)', s: 'Enter Comunicación (2026): 48,2 % positivo, 44,2 % neutral o informativo y 7,6 % negativo. LLYC: las comunidades favorables pasaron de 35 % (dic. 2023) a 47,4 % (feb. 2025) del volumen.' },
@@ -3321,44 +3316,65 @@
                 },
                 provT: 'Licencia social por provincia',
                 provIntro: 'El índice nacional mezcla realidades muy distintas. Esta tabla muestra cada componente en las provincias con datos públicos. El índice provincial se calcula solo cuando hay al menos tres componentes.',
-                provHead: ['Provincia', 'Aceptación', 'Confianza', 'Ambiente y agua', 'Beneficios', 'Fraser', 'Índice', 'Empleo minero*', 'Salario minero**'],
+                provHead: ['Provincia', 'Aceptación', 'Confianza', 'Ambiente y agua', 'Beneficios', 'Índice', 'Empleo minero*', 'Salario minero**'],
                 mineral: { cuCu: 'cobre y oro', liCu: 'litio y cobre', expl: 'exploración', au: 'oro y plata', li: 'litio' },
                 noIdx: 'sin datos suficientes',
-                provNote: '* % del empleo privado registrado de la provincia; ** veces el salario privado promedio (Secretaría de Minería, noviembre de 2023). En Catamarca la minería llegó al 8,1 % del empleo privado en diciembre de 2025 y el 76,6 % de los puestos son locales; en Vicuña (San Juan) el 73 % de los empleados directos son sanjuaninos. — = sin dato público.',
-                fraserT: 'Fraser 2025: comunidades y territorio, por provincia',
-                fraserHead: ['Jurisdicción', 'Acuerdos con comunidades', 'Reclamos territoriales'],
-                fraserNote: '% de empresas para las que el factor desalienta la inversión. Ninguna empresa lo señala como un incentivo. Salta, Jujuy, Catamarca y La Rioja no se publican por falta de respuestas.',
+                provNote: '* % del empleo privado registrado de la provincia; ** veces el salario privado registrado promedio del país (Secretaría de Minería, noviembre de 2023). En Catamarca la minería llegó al 8,1 % del empleo privado en diciembre de 2025 y el 76,6 % de los puestos son locales; en Vicuña (San Juan) el 73 % de los empleados directos son sanjuaninos. — = sin dato público.',
+                fraserT: 'Fraser 2025: lo que se puede verificar',
+                fraserFacts: [
+                    '<strong>San Juan</strong> es otra vez la jurisdicción más atractiva de América Latina para invertir (puesto 18 de 68 en el mundo), por su geología y su marco de inversiones.',
+                    'Pero su índice de percepción de políticas cayó 6 puntos, y los inversores mencionan la incertidumbre en la aplicación de las normas y los conflictos por reclamos territoriales.',
+                    '<strong>Mendoza:</strong> el 78 % de las empresas ve en los acuerdos socioeconómicos con las comunidades un freno a la inversión. <strong>Chubut:</strong> el 88 % señala la definición de áreas protegidas y el 89 % la incertidumbre ambiental.',
+                    'Salta, Jujuy, Catamarca y La Rioja no se publican por falta de respuestas.'
+                ],
+                fraserNote: 'Fraser salió del índice el 01/10/2026: las cifras por provincia que usábamos no estaban verificadas contra la planilla original del informe. Volverá cuando estén cotejadas. Fuentes: Ámbito y Dinamicarg sobre el informe Fraser 2025.',
                 igfT: 'Marco del IGF: qué mide el índice y qué falta',
                 igfIntro: 'Para el Foro Intergubernamental sobre Minería (IGF), la licencia social no es un permiso: es un proceso continuo de legitimidad y confianza entre empresa, Estado y comunidades. En su asistencia técnica a Argentina, el IGF la apoya en cuatro pilares.',
                 igfHead: ['Pilar del IGF', 'En el índice', 'Estado'],
                 igfSt: { yes: 'Medido', part: 'Parcial', no: 'Sin dato' },
                 igf: [
                     { s: 'yes', t: 'Gobernanza y transparencia', m: 'Confianza en los controles (3,9) y EITI (7,0). Es el pilar más débil: la confianza es el componente que más baja el índice, sobre todo en Catamarca.' },
-                    { s: 'part', t: 'Participación comunitaria permanente', m: 'Participación de la sociedad civil en el EITI (90) y acuerdos con comunidades según Fraser. Falta medir la consulta desde la exploración y en los estudios de impacto.' },
+                    { s: 'part', t: 'Participación comunitaria permanente', m: 'Participación de la sociedad civil en el EITI (90). Falta medir la consulta desde la exploración y en los estudios de impacto, y la mirada verificada de los inversores (Fraser).' },
                     { s: 'part', t: 'Gestión hídrica verificable', m: 'Solo hay percepción en San Juan (5,0). Ninguna provincia publica monitoreo hídrico independiente y comparable, que es justamente lo que pide el IGF.' },
                     { s: 'yes', t: 'Desarrollo económico local', m: 'Beneficios percibidos (5,8), con el empleo minero y el salario por provincia como contexto. Faltan datos públicos de compras a proveedores locales por proyecto.' }
                 ],
                 igfNote: 'Próximo paso: pedir a las provincias y a las empresas datos públicos de agua (monitoreo independiente) y de compras locales, y cubrir Salta y Jujuy en la encuesta del OMA.',
+                robT: 'Robustez: cuánto depende el resultado del método',
+                robIntro: 'Probamos 48 variantes razonables del cálculo: confianza medida como % favorable o con escala graduada; conversación como balance, % positivo o % entre quienes opinan; con y sin el componente de agua; EITI por requisitos o por puntaje global; encuestas promediadas por igual o ponderadas por empleo minero.',
+                robRange: 'El índice queda siempre entre <strong>5,2 y 6,9</strong>. Ninguna variante lo lleva por debajo de 5 ni por encima de 7, y en todas San Juan supera a Catamarca.',
+                robSays: 'Qué afirma el índice',
+                says: [
+                    'Que la licencia social está <strong>condicionada, no negada</strong>: la mayoría acepta la minería (6,3) y la conversación pública es favorable (7,0).',
+                    'Que la condición pendiente es la <strong>confianza en los controles del Estado</strong> (3,9), y que eso coincide con lo que piden el EITI y el IGF: publicar contratos, estudios ambientales y datos de agua.',
+                    'Que la licencia varía mucho entre provincias, y que es más fuerte donde los beneficios se ven.'
+                ],
+                robLim: 'Límites que reconocemos',
+                lims: [
+                    'Muestras chicas: San Juan 238 casos (margen cercano a ±6 puntos), La Rioja 500 y Catamarca 640 (±3,9).',
+                    'Las preguntas no son idénticas entre provincias: comparamos órdenes de magnitud, no décimas.',
+                    'Agua y ambiente tiene un solo dato (San Juan); Salta y Jujuy no tienen encuestas públicas.',
+                    'No usamos el llamado "voto minero" (entre 54 % y 98 % de votos a fuerzas favorables a la minería según LLYC): mide preferencias políticas generales, no la aceptación de la actividad.'
+                ],
                 readT: 'Lectura del OMA',
                 read: [
-                    '<strong>Dos provincias, dos licencias.</strong> San Juan llega a 6,0 y Catamarca a 4,7. La mayor diferencia está en la confianza en los controles del Estado (5,1 frente a 2,6) y en los beneficios percibidos (7,3 frente a 5,3). En San Juan la minería del oro y el cobre opera en la alta cordillera, con pocas comunidades cerca, y la sociedad ya vio su derrame económico. En Catamarca conviven el litio de los salares de la Puna, con comunidades directamente involucradas, y una historia de conflictos en torno al cobre.',
+                    '<strong>Dos provincias, dos licencias.</strong> San Juan llega a 6,1 y Catamarca a 4,7. La mayor diferencia está en la confianza en los controles del Estado (5,2 frente a 2,6) y en los beneficios percibidos (7,3 frente a 5,3). En San Juan la minería del oro y el cobre opera en la alta cordillera, con pocas comunidades cerca, y la sociedad ya vio su derrame económico. En Catamarca conviven el litio de los salares de la Puna, con comunidades directamente involucradas, y una historia de conflictos en torno al cobre.',
                     '<strong>Los beneficios tienen que verse.</strong> En Catamarca la minería pesa más en el empleo privado que en San Juan (7,4 % frente a 6,2 % en 2023, y 8,1 % en 2025) y tres de cada cuatro puestos son locales, pero la población percibe menos beneficios. Es lo que señala el IGF: no alcanza con generar empleo; el derrame tiene que ser visible para la comunidad.',
-                    '<strong>Por qué el índice nacional no sube más, aunque Fraser y el EITI sean favorables.</strong> En Fraser, San Juan vuelve a ser la jurisdicción más atractiva de América Latina por su geología y por el marco de inversiones; en las preguntas sobre comunidades, en cambio, la mayoría de las empresas ve un freno en todas las provincias. En el EITI, el 80/100 premia sobre todo la transparencia fiscal; los requisitos de participación e impacto suman 7 sobre 10 y ya están en el índice.',
+                    '<strong>Por qué el índice no es más alto, aunque Fraser y el EITI sean favorables.</strong> Fraser premia a San Juan por su geología y su marco de inversiones, no por su licencia social: en las preguntas sobre comunidades y territorio, los inversores marcan frenos en varias provincias. El 80/100 del EITI premia sobre todo la transparencia fiscal; los requisitos de participación e impacto suman 7 sobre 10 y ya están en el índice. Lo que baja el promedio es la confianza en los controles del Estado, que es baja en todas las variantes del cálculo.',
                     '<strong>El vacío está en el litio.</strong> No hay encuestas públicas en Salta ni en Jujuy, las provincias con más comunidades en los salares. Hasta que existan, el índice nacional se apoya sobre todo en el cobre y el oro. Cubrir esas provincias es la prioridad de la encuesta del OMA.',
                     '<strong>La palanca está en la transparencia.</strong> El EITI pide publicar contratos (hoy 25/100) y estudios de impacto ambiental, y el IGF agrega datos de agua públicos y verificables. Es la forma más directa de subir la confianza en los controles.'
                 ],
-                method: 'Método: promedio simple de los siete componentes. Las encuestas provinciales se promedian sin ponderar por provincia. Revisión del 01/10/2026: (1) se sumaron la encuesta de Poliarquía en San Juan y dos componentes nuevos, ambiente y agua y beneficios locales percibidos; (2) la confianza y la conversación pública usan escalas que dan valor al punto medio; (3) se corrigió el dato de confianza de Catamarca: el 29,7 % corresponde a "poca" confianza, no a "algo"; (4) se agregó Fraser con las preguntas sobre comunidades y territorio. Para 3T 2025 cambia solo el EITI (validación 2022); la encuesta de San Juan es de julio de 2025 y el resto se mantiene porque no hay datos comparables anteriores. Si se toman solo San Juan y Santa Cruz, el componente Fraser sería 5,4 y el índice 5,8.',
+                method: 'Método: promedio simple de los seis componentes; las encuestas provinciales se promedian sin ponderar por provincia. Las escalas graduadas dan valor a cada respuesta intermedia (en confianza y ambiente, "regular" o "poca" no cuentan como cero) y excluyen a quienes no responden. Auditoría del 01/10/2026: se corrigieron la confianza de Catamarca (el 29,7 % es "poca", no "algo") y la de San Juan (5,2, no 5,1), y se retiró Fraser hasta verificar sus cifras por provincia. Para 3T 2025 cambia solo el EITI (validación 2022); la encuesta de San Juan es de julio de 2025 y el resto se mantiene, por lo que la comparación entre años es débil.',
                 src: 'Fuentes: Poliarquía (Diario de Cuyo, julio de 2025); Zuban Córdoba (Letra P, 23/09/2026); IOPPS (Editorial RN, junio de 2026); Enter Comunicación (El Esquiú, 07/09/2026); LLYC (Infobae, 31/08/2025); EITI, validación de Argentina 2026; Fraser Institute, Annual Survey of Mining Companies 2025 (Ámbito y Dinamicarg); Secretaría de Minería, empleo por provincia (noviembre de 2023); empleo minero en Catamarca (El Ancasti, 2026); Vicuña (Ámbito, 07/07/2026); IGF, trabajos recientes y asistencia técnica a Argentina (igfmining.org, IISD). Datos al '
             },
             en: {
                 h2: 'Social licence: what external data say',
-                intro: 'Until OMA\'s own survey is available, the Barometer\'s <strong>Social Licence</strong> axis is calculated from external, verifiable data. The national index is the simple average of seven components, each on a 0 to 10 scale. Four come from provincial surveys (acceptance, trust, environment and water, benefits), one from public conversation and two from institutions and investors (EITI and Fraser). Below, the same index by province.',
+                intro: 'Until OMA\'s own survey is available, the Barometer\'s <strong>Social Licence</strong> axis is calculated from external, verifiable data. The national index is the simple average of six components, each on a 0 to 10 scale. Four come from provincial surveys (acceptance, trust, environment and water, benefits), one from public conversation and one from institutions (EITI). Below, the same index by province.',
                 idxT: 'Social licence index',
                 idxSub: (a, b) => `Q3 2026 · ${b} in Q3 2025`,
                 colC: 'Component', colV: 'Score', colS: 'Data and source',
                 comps: {
                     accept: { t: 'Acceptance of projects', f: '% in favour of mining or a project in the province ÷ 10 (average of three provinces)', s: 'San Juan, Poliarquía (Jul 2025, 238 respondents): 69% in favour of mining development and 68% of copper. Catamarca, Zuban Córdoba (Sep 2026, 640 respondents): 60.7% support a project in the province. La Rioja, IOPPS (Jun 2026, 500 respondents): 60% in favour.' },
-                    trust: { t: 'Trust in government oversight', f: 'Graded scale of each survey, mapped to 0–10 (average of two provinces)', s: 'San Juan: provincial oversight very good 11%, good 19%, fair 29%, poor 14%, very poor 10% (5.1). Catamarca: a lot of trust 4.1%, some 16.9%, little 29.7%, none 45.7% (2.6).' },
+                    trust: { t: 'Trust in government oversight', f: 'Graded scale of each survey, mapped to 0–10 (average of two provinces)', s: 'San Juan: provincial oversight very good 11%, good 19%, fair 29%, poor 14%, very poor 10%; 16% did not answer (5.2). Catamarca: a lot of trust 4.1%, some 16.9%, little 29.7%, none 45.7% (2.6).' },
                     water: { t: 'Environmental and water management', f: 'Graded scale on environmental management, mapped to 0–10 (San Juan only)', s: 'San Juan: environmental management very good 10%, good 23%, fair 24%, poor 23%, very poor 10%. Only 9% think mining uses a lot of water. No province publishes comparable water monitoring data.' },
                     benefit: { t: 'Perceived local benefits', f: '% seeing concrete benefits (jobs, development, wages) ÷ 10 (average of three provinces)', s: 'San Juan: 75% think mining creates jobs and 71% that it drives growth. Catamarca: 56.1% think it would improve development and 49.1% wages. La Rioja: 47% jobs and 48% infrastructure works.' },
                     talk: { t: 'Tone of public conversation', f: 'Favourable minus unfavourable balance, mapped to 0–10 (neutral = 5)', s: 'Enter Comunicación (2026): 48.2% positive, 44.2% neutral or informative and 7.6% negative. LLYC: favourable communities rose from 35% (Dec 2023) to 47.4% (Feb 2025) of volume.' },
@@ -3367,33 +3383,54 @@
                 },
                 provT: 'Social licence by province',
                 provIntro: 'The national index blends very different realities. This table shows each component in the provinces with public data. The provincial index is calculated only when at least three components are available.',
-                provHead: ['Province', 'Acceptance', 'Trust', 'Environment and water', 'Benefits', 'Fraser', 'Index', 'Mining jobs*', 'Mining wage**'],
+                provHead: ['Province', 'Acceptance', 'Trust', 'Environment and water', 'Benefits', 'Index', 'Mining jobs*', 'Mining wage**'],
                 mineral: { cuCu: 'copper and gold', liCu: 'lithium and copper', expl: 'exploration', au: 'gold and silver', li: 'lithium' },
                 noIdx: 'not enough data',
-                provNote: '* % of the province\'s registered private employment; ** times the average private wage (Mining Secretariat, November 2023). In Catamarca mining reached 8.1% of private employment in December 2025 and 76.6% of jobs are local; at Vicuña (San Juan) 73% of direct employees are from San Juan. — = no public data.',
-                fraserT: 'Fraser 2025: communities and land, by province',
-                fraserHead: ['Jurisdiction', 'Community agreements', 'Land claims'],
-                fraserNote: '% of companies for which the factor deters investment. No company cites it as an encouragement. Salta, Jujuy, Catamarca and La Rioja are not published for lack of responses.',
+                provNote: '* % of the province\'s registered private employment; ** times the national average registered private wage (Mining Secretariat, November 2023). In Catamarca mining reached 8.1% of private employment in December 2025 and 76.6% of jobs are local; at Vicuña (San Juan) 73% of direct employees are from San Juan. — = no public data.',
+                fraserT: 'Fraser 2025: what can be verified',
+                fraserFacts: [
+                    '<strong>San Juan</strong> is again the most attractive jurisdiction in Latin America for investment (18th of 68 worldwide), thanks to its geology and investment framework.',
+                    'But its policy perception index fell 6 points, and investors cite uncertainty in how rules are applied and conflicts over land claims.',
+                    '<strong>Mendoza:</strong> 78% of companies see socioeconomic agreements with communities as a deterrent to investment. <strong>Chubut:</strong> 88% cite the definition of protected areas and 89% environmental uncertainty.',
+                    'Salta, Jujuy, Catamarca and La Rioja are not published for lack of responses.'
+                ],
+                fraserNote: 'Fraser was removed from the index on 01/10/2026: the province figures we used had not been checked against the report\'s original spreadsheet. It will return once they are verified. Sources: Ámbito and Dinamicarg on the Fraser 2025 report.',
                 igfT: 'IGF framework: what the index measures and what is missing',
                 igfIntro: 'For the Intergovernmental Forum on Mining (IGF), social licence is not a permit: it is an ongoing process of legitimacy and trust between companies, government and communities. In its technical assistance to Argentina, the IGF rests it on four pillars.',
                 igfHead: ['IGF pillar', 'In the index', 'Status'],
                 igfSt: { yes: 'Measured', part: 'Partial', no: 'No data' },
                 igf: [
                     { s: 'yes', t: 'Governance and transparency', m: 'Trust in oversight (3.9) and EITI (7.0). The weakest pillar: trust is the component that pulls the index down the most, above all in Catamarca.' },
-                    { s: 'part', t: 'Ongoing community participation', m: 'Civil society engagement in the EITI (90) and community agreements according to Fraser. Consultation from exploration and in impact assessments is not yet measured.' },
+                    { s: 'part', t: 'Ongoing community participation', m: 'Civil society engagement in the EITI (90). Consultation from exploration and in impact assessments, and the verified view of investors (Fraser), are not yet measured.' },
                     { s: 'part', t: 'Verifiable water management', m: 'Only perception in San Juan (5.0). No province publishes independent, comparable water monitoring, which is precisely what the IGF asks for.' },
                     { s: 'yes', t: 'Local economic development', m: 'Perceived benefits (5.8), with mining jobs and wages by province as context. Public data on purchases from local suppliers by project are missing.' }
                 ],
                 igfNote: 'Next step: ask provinces and companies for public water data (independent monitoring) and local procurement data, and cover Salta and Jujuy in the OMA survey.',
+                robT: 'Robustness: how much the result depends on the method',
+                robIntro: 'We tested 48 reasonable variants of the calculation: trust measured as % favourable or on a graded scale; conversation as a balance, % positive or % among those with an opinion; with and without the water component; EITI by requirements or by overall score; surveys averaged equally or weighted by mining employment.',
+                robRange: 'The index always stays between <strong>5.2 and 6.9</strong>. No variant takes it below 5 or above 7, and in all of them San Juan scores higher than Catamarca.',
+                robSays: 'What the index claims',
+                says: [
+                    'That the social licence is <strong>conditional, not denied</strong>: most people accept mining (6.3) and public conversation is favourable (7.0).',
+                    'That the outstanding condition is <strong>trust in government oversight</strong> (3.9), in line with what the EITI and the IGF ask for: publishing contracts, environmental studies and water data.',
+                    'That the licence varies widely by province, and is stronger where benefits are visible.'
+                ],
+                robLim: 'Limits we acknowledge',
+                lims: [
+                    'Small samples: San Juan 238 respondents (margin close to ±6 points), La Rioja 500 and Catamarca 640 (±3.9).',
+                    'Questions are not identical across provinces: we compare orders of magnitude, not decimals.',
+                    'Environment and water has a single data point (San Juan); Salta and Jujuy have no public surveys.',
+                    'We do not use the so-called "mining vote" (between 54% and 98% of votes for pro-mining parties according to LLYC): it measures general political preferences, not acceptance of the activity.'
+                ],
                 readT: 'OMA reading',
                 read: [
-                    '<strong>Two provinces, two licences.</strong> San Juan reaches 6.0 and Catamarca 4.7. The largest gaps are trust in government oversight (5.1 vs 2.6) and perceived benefits (7.3 vs 5.3). In San Juan, gold and copper mining operates in the high Andes, with few communities nearby, and society has already seen its economic spillover. Catamarca combines lithium in the Puna salt flats, with communities directly involved, and a history of conflict around copper.',
+                    '<strong>Two provinces, two licences.</strong> San Juan reaches 6.1 and Catamarca 4.7. The largest gaps are trust in government oversight (5.2 vs 2.6) and perceived benefits (7.3 vs 5.3). In San Juan, gold and copper mining operates in the high Andes, with few communities nearby, and society has already seen its economic spillover. Catamarca combines lithium in the Puna salt flats, with communities directly involved, and a history of conflict around copper.',
                     '<strong>Benefits have to be visible.</strong> In Catamarca mining weighs more in private employment than in San Juan (7.4% vs 6.2% in 2023, and 8.1% in 2025) and three in four jobs are local, yet people perceive fewer benefits. This is the IGF\'s point: creating jobs is not enough; the spillover has to be visible to the community.',
-                    '<strong>Why the national index does not rise further, even though Fraser and the EITI are favourable.</strong> In Fraser, San Juan is again the most attractive jurisdiction in Latin America thanks to its geology and investment framework; on the community questions, however, most companies see a deterrent in every province. In the EITI, the 80/100 mainly rewards fiscal transparency; the participation and impact requirements score 7 out of 10 and are already in the index.',
+                    '<strong>Why the index is not higher, even though Fraser and the EITI are favourable.</strong> Fraser rewards San Juan for its geology and investment framework, not for its social licence: on the community and land questions, investors flag deterrents in several provinces. The EITI 80/100 mainly rewards fiscal transparency; the participation and impact requirements score 7 out of 10 and are already in the index. What pulls the average down is trust in government oversight, which is low in every variant of the calculation.',
                     '<strong>The gap is in lithium.</strong> There are no public surveys in Salta or Jujuy, the provinces with the most communities in the salt flats. Until there are, the national index rests mainly on copper and gold. Covering those provinces is the priority for the OMA survey.',
                     '<strong>Transparency is the lever.</strong> The EITI asks for contracts (now 25/100) and environmental impact assessments to be published, and the IGF adds public, verifiable water data. That is the most direct way to build trust in oversight.'
                 ],
-                method: 'Method: simple average of the seven components. Provincial surveys are averaged without weighting by province. Revision of 01/10/2026: (1) the Poliarquía survey in San Juan and two new components, environment and water and perceived local benefits, were added; (2) trust and public conversation use scales that give value to the midpoint; (3) the Catamarca trust figure was corrected: 29.7% is "little" trust, not "some"; (4) Fraser was added with its community and land questions. For Q3 2025 only the EITI changes (2022 Validation); the San Juan survey is from July 2025 and the rest is held constant because there are no comparable earlier data. Taking only San Juan and Santa Cruz, the Fraser component would be 5.4 and the index 5.8.',
+                method: 'Method: simple average of the six components; provincial surveys are averaged without weighting by province. Graded scales give value to each intermediate answer (for trust and environment, "fair" or "little" do not count as zero) and exclude non-responses. Audit of 01/10/2026: Catamarca\'s trust figure (29.7% is "little", not "some") and San Juan\'s (5.2, not 5.1) were corrected, and Fraser was removed until its province figures are verified. For Q3 2025 only the EITI changes (2022 Validation); the San Juan survey is from July 2025 and the rest is held constant, so the year-on-year comparison is weak.',
                 src: 'Sources: Poliarquía (Diario de Cuyo, July 2025); Zuban Córdoba (Letra P, 23/09/2026); IOPPS (Editorial RN, June 2026); Enter Comunicación (El Esquiú, 07/09/2026); LLYC (Infobae, 31/08/2025); EITI, Argentina 2026 Validation; Fraser Institute, Annual Survey of Mining Companies 2025 (Ámbito and Dinamicarg); Mining Secretariat, employment by province (November 2023); mining employment in Catamarca (El Ancasti, 2026); Vicuña (Ámbito, 07/07/2026); IGF, recent work and technical assistance to Argentina (igfmining.org, IISD). Data as of '
             }
         };
@@ -3407,7 +3444,7 @@
             const rows = d.comps.map(c => `<tr><td><strong>${t.comps[c.k].t}</strong><div class="ls-f">${t.comps[c.k].f}</div></td><td class="n"><span class="ls-score ls-${st(c.v)}">${f1(c.v)}</span><div class="eiti-bar"><span class="eiti-bar-${st(c.v)}" style="width:${c.v * 10}%"></span></div></td><td class="ls-s">${t.comps[c.k].s}</td></tr>`).join('');
             const pct = v => lang === 'es' ? `${v} %` : `${v}%`;
             const pct1 = v => lang === 'es' ? `${v.toFixed(1).replace('.', ',')} %` : `${v.toFixed(1)}%`;
-            const fr = `<table class="ls-fraser"><thead><tr>${t.fraserHead.map((h, i) => `<th${i ? ' class="n"' : ''}>${h}</th>`).join('')}</tr></thead><tbody>${d.fraser.map(r => `<tr><td>${r.j}</td><td class="n">${pct(r.socio)}</td><td class="n">${pct(r.land)}</td></tr>`).join('')}</tbody></table><p class="rp-note">${t.fraserNote}</p>`;
+            const fr = `<ul class="rp-agencies">${t.fraserFacts.map(x => `<li>${x}</li>`).join('')}</ul><p class="rp-note">${t.fraserNote}</p>`;
             const cell = v => v === null ? '<td class="n ls-na">—</td>' : `<td class="n"><span class="ls-score ls-${st(v)}">${f1(v)}</span></td>`;
             const provRows = d.prov.map(r => {
                 const idx = lsProvIndex(r);
@@ -3432,6 +3469,15 @@
                     <thead><tr><th>${t.colC}</th><th class="n">${t.colV}</th><th>${t.colS}</th></tr></thead>
                     <tbody>${rows}</tbody>
                 </table></div>
+                <div class="rp-card ls-rob">
+                    <h4>${t.robT}</h4>
+                    <p class="rp-note">${t.robIntro}</p>
+                    <p class="ls-rob-range">${t.robRange}</p>
+                    <div class="ls-rob-cols">
+                        <div><h5 class="eiti-h5">${t.robSays}</h5><ul class="rp-agencies">${t.says.map(x => `<li>${x}</li>`).join('')}</ul></div>
+                        <div><h5 class="eiti-h5">${t.robLim}</h5><ul class="rp-agencies">${t.lims.map(x => `<li>${x}</li>`).join('')}</ul></div>
+                    </div>
+                </div>
                 <h3 class="rp-h3">${t.provT}</h3>
                 <p>${t.provIntro}</p>
                 <div class="table-scroll"><table class="eiti-table ls-prov">
@@ -3460,7 +3506,7 @@
         const barometerAxes = [
             { es: { label: 'Exportaciones Mineras', desc: 'Evolución de las exportaciones mineras argentinas — la primera prioridad de la política del gobierno actual, en tendencia marcadamente creciente.' }, en: { label: 'Mining Exports', desc: "Evolution of Argentine mining exports — the current government's top policy priority, on a markedly rising trend." }, v2025: 6.3, v2026: 9.0, priority: true },
             { es: { label: 'Marco Normativo', desc: 'Estabilidad y previsibilidad de las reglas mineras y fiscales (incluido RIGI).' }, en: { label: 'Regulatory Framework', desc: 'Stability and predictability of mining and tax rules (including RIGI).' }, v2025: 5.5, v2026: 7.2 },
-            { es: { label: 'Licencia Social', desc: 'Aceptación, confianza en los controles, ambiente y agua, beneficios locales, conversación pública, EITI y Fraser. Calculado con datos externos, también por provincia: ver el detalle más abajo.' }, en: { label: 'Social License', desc: 'Acceptance, trust in oversight, environment and water, local benefits, public conversation, EITI and Fraser. Calculated from external data, also by province: see details below.' }, v2025: lsIndex('v25'), v2026: lsIndex('v'), external: true },
+            { es: { label: 'Licencia Social', desc: 'Aceptación, confianza en los controles, ambiente y agua, beneficios locales, conversación pública y EITI. Calculado con datos externos, también por provincia: ver el detalle más abajo.' }, en: { label: 'Social License', desc: 'Acceptance, trust in oversight, environment and water, local benefits, public conversation and EITI. Calculated from external data, also by province: see details below.' }, v2025: lsIndex('v25'), v2026: lsIndex('v'), external: true },
             { es: { label: 'Clima Político', desc: 'Consenso Nación-provincias y continuidad de política minera.' }, en: { label: 'Political Climate', desc: 'Nation-provinces consensus and continuity of mining policy.' }, v2025: 5.2, v2026: 6.5 },
             { es: { label: 'Mining-Friendly Attitude', desc: 'Disposición del Estado a facilitar permisos, incentivos y trámites.' }, en: { label: 'Mining-Friendly Attitude', desc: "Government's willingness to facilitate permits, incentives and procedures." }, v2025: 5.8, v2026: 7.0 },
             { es: { label: 'Financiamiento', desc: 'Disponibilidad de capital (local e internacional) para proyectos.' }, en: { label: 'Funding', desc: 'Availability of capital (local and international) for projects.' }, v2025: 4.8, v2026: 6.1 },
