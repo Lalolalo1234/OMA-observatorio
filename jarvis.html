@@ -374,7 +374,16 @@ const PREF = ['es-AR', 'es-419', 'es-US', 'es-MX', 'es-ES', 'es'];
 function loadVoices() {
   if (!('speechSynthesis' in window)) return;
   voices = speechSynthesis.getVoices().filter(v => /^es(-|_|$)/i.test(v.lang));
-  const score = v => { const p = PREF.findIndex(x => v.lang.replace('_', '-').toLowerCase().startsWith(x.toLowerCase())); return (p < 0 ? 9 : p) - (/google|natural|neural|online/i.test(v.name) ? 5 : 0) + (/male|hombre|jorge|diego|pablo|tomas|enrique|alvaro|raul/i.test(v.name) ? -1 : 0); };
+  // Preferencia: voz argentina (Diego en Mac), luego voces de alta calidad, luego voces masculinas, y al final las voces de fantasía.
+  const score = v => {
+    const p = PREF.findIndex(x => v.lang.replace('_', '-').toLowerCase().startsWith(x.toLowerCase()));
+    let s = (p < 0 ? 9 : p);
+    if (/enhanced|premium|mejorad|google|natural|neural|online/i.test(v.name)) s -= 6;
+    if (/diego|jorge|juan|tom[aá]s|pablo|enrique|[aá]lvaro|ra[uú]l|dario|hombre|male/i.test(v.name)) s -= 4;
+    if (/^(reed|eddy)/i.test(v.name)) s -= 2;
+    if (/^(grandma|grandpa|rocko|sandy|shelley|flo|bad news|bahh|bells|boing|bubbles|cellos|jester|organ|superstar|trinoids|whisper|wobble|zarvox|albert|fred|junior|kathy|ralph)/i.test(v.name)) s += 12;
+    return s;
+  };
   voices.sort((a, b) => score(a) - score(b));
   const sel = $('voice'); const prev = sel.value;
   sel.innerHTML = voices.map((v, k) => `<option value="${k}">${v.name.replace(/Microsoft |Google /, '')} (${v.lang})</option>`).join('') + '<option value="silent">Sin voz (solo subtítulos)</option>';
