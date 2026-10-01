@@ -793,6 +793,14 @@
         .ext-badge { display: inline-block; font-size: 0.7rem; font-weight: 700; background: #dcfce7; color: #14532d; padding: 0.1rem 0.5rem; border-radius: 999px; margin-bottom: 0.2rem; }
         .barometer-legend-item.external { border-left-color: #15803d; }
         .ls-f { font-size: 0.75rem; color: #666; margin-top: 0.2rem; }
+        .macro-card { margin: 1rem 0 0.5rem; }
+        .macro-head { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+        .macro-parts .eiti-comp:first-child { margin-top: 0; }
+        .macro-prev { color: #888; font-weight: 400; font-size: 0.78rem; }
+        .ls-fraser { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.4rem; }
+        .ls-fraser th, .ls-fraser td { padding: 0.35rem 0.4rem; border-bottom: 1px solid #e5e7eb; text-align: left; }
+        .ls-fraser .n { text-align: right; font-variant-numeric: tabular-nums; }
+        @media (max-width: 600px) { .macro-head { grid-template-columns: 1fr; gap: 0.8rem; } }
         .ls-s { font-size: 0.8rem; color: #444; line-height: 1.45; max-width: 46ch; }
         .ls-score { font-weight: 700; font-size: 1.05rem; }
         .ls-ok { color: #15803d; } .ls-warn { color: #b45309; } .ls-bad { color: #b91c1c; }
@@ -1684,7 +1692,7 @@
             <div class="barometer-grid">
                 <div class="barometer-chart-wrap">
                     <canvas id="barometerChart" height="320"></canvas>
-                    <p id="barometerCaption" style="text-align:center; font-size:0.8rem; color:#888; margin-top:0.8rem;">Comparación 3T 2025 vs. 3T 2026 · Licencia Social: índice con datos externos · Resto de los ejes: encuesta OMA a empresas mineras (ilustrativo, primer corte)</p>
+                    <p id="barometerCaption" style="text-align:center; font-size:0.8rem; color:#888; margin-top:0.8rem;">Comparación 3T 2025 vs. 3T 2026 · Licencia Social y Estabilidad Macro: índices con datos externos · Resto de los ejes: encuesta OMA a empresas mineras (ilustrativo, primer corte)</p>
                 </div>
                 <div class="barometer-legend" id="barometerLegend"></div>
             </div>
@@ -1749,9 +1757,9 @@
                 <tbody>
                     <tr>
                         <td>Licencia Social</td>
-                        <td>5.3</td>
-                        <td>+0.3 (2025: 5.0)</td>
-                        <td>Ahora medido con datos externos. La mayoría apoya los proyectos en las provincias mineras, pero solo un tercio confía en los controles del Estado: la brecha es de credibilidad institucional.</td>
+                        <td>5.4</td>
+                        <td>+0.2 (2025: 5.2)</td>
+                        <td>Medido con datos externos. La mayoría apoya los proyectos en las provincias mineras, pero solo uno de cada cinco confía en los controles del Estado, y para los inversores (Fraser) los acuerdos con comunidades siguen siendo un freno: la brecha es de credibilidad institucional.</td>
                         <td>Mesas de diálogo comunidad-empresa-Estado, protocolos estandarizados de consulta previa, monitoreo ambiental participativo y publicado. Cumplir las acciones correctivas del EITI sobre contratos (25/100) y estudios de impacto ambiental: ver la evaluación de gobernanza en el <a href="#" onclick="navigateTo('barometro'); return false;">Barómetro</a>.</td>
                     </tr>
                     <tr>
@@ -1763,9 +1771,9 @@
                     </tr>
                     <tr>
                         <td>Estabilidad Macro</td>
-                        <td>5.8</td>
-                        <td>+1.9 (2025: 3.9)</td>
-                        <td>La mayor mejora absoluta de los 9 ejes, pero todavía entre los más bajos: arranca de una base muy exigente.</td>
+                        <td>5.0</td>
+                        <td>+2.3 (2025: 2.7)</td>
+                        <td>Medido con datos externos. La segunda mayor mejora de los 9 ejes (calificaciones fuera de la zona CCC y riesgo país a la mitad), pero arranca de una base muy baja y la deuda de 2027 sigue en estado crítico.</td>
                         <td>Comunicar de forma explícita y comparada los mecanismos de cobertura ya disponibles (RIGI, contratos en dólares, acceso a divisas para minería). Seguir los cuatro fundamentos del riesgo país del <a href="#" onclick="navigateTo('barometro'); return false;">Barómetro</a>: hoy el servicio de la deuda externa de 2027 es el punto crítico.</td>
                     </tr>
                     <tr>
@@ -2494,9 +2502,9 @@
                 <tbody>
                     <tr>
                         <td>Social License</td>
-                        <td>5.3</td>
-                        <td>+0.3 (2025: 5.0)</td>
-                        <td>Now measured with external data. Most people in mining provinces support projects, but only a third trust government oversight: the gap is one of institutional credibility.</td>
+                        <td>5.4</td>
+                        <td>+0.2 (2025: 5.2)</td>
+                        <td>Measured with external data. Most people in mining provinces support projects, but only one in five trusts government oversight, and investors (Fraser) still see community agreements as a deterrent: the gap is one of institutional credibility.</td>
                         <td>Community-company-State dialogue tables, standardized prior-consultation protocols, published participatory environmental monitoring. Deliver the EITI corrective actions on contracts (25/100) and environmental impact assessments: see the governance assessment in the <a href="#" onclick="navigateTo('barometro'); return false;">Barometer</a>.</td>
                     </tr>
                     <tr>
@@ -2508,9 +2516,9 @@
                     </tr>
                     <tr>
                         <td>Macro Stability</td>
-                        <td>5.8</td>
-                        <td>+1.9 (2025: 3.9)</td>
-                        <td>The largest absolute improvement of the 9 axes, but still among the lowest: it starts from a very demanding baseline.</td>
+                        <td>5.0</td>
+                        <td>+2.3 (2025: 2.7)</td>
+                        <td>Measured with external data. The second-largest improvement of the 9 axes (ratings out of the CCC range and country risk halved), but from a very low base, and 2027 debt remains critical.</td>
                         <td>Explicitly and comparatively communicate the coverage mechanisms already available (RIGI, dollar-denominated contracts, foreign-currency access for mining). Track the four country-risk fundamentals in the <a href="#" onclick="navigateTo('barometro'); return false;">Barometer</a>: today 2027 external debt service is the critical point.</td>
                     </tr>
                     <tr>
@@ -2937,7 +2945,7 @@
             es: {
                 h1: 'Barómetro OMA — Clima de Inversión Minera',
                 p: 'El Barómetro resume, en un solo vistazo tipo <em>spider chart</em>, la evolución de las variables no estrictamente productivas que más pesan en la decisión de un inversor minero: marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, disponibilidad de financiamiento, infraestructura y estabilidad macroeconómica. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), a partir de encuestas a empresas del Consejo Rector y análisis del equipo OMA.',
-                caption: 'Comparación 3T 2025 vs. 3T 2026 · Licencia Social: índice con datos externos · Resto de los ejes: encuesta OMA a empresas mineras (ilustrativo, primer corte)',
+                caption: 'Comparación 3T 2025 vs. 3T 2026 · Licencia Social y Estabilidad Macro: índices con datos externos · Resto de los ejes: encuesta OMA a empresas mineras (ilustrativo, primer corte)',
                 monitor: '<strong>Se complementa con el Monitor de Ingeniería de Minas (MIMA):</strong> el Barómetro mide el clima de inversión; el Monitor mide si el país cuenta con la formación y el talento para ejecutarla.',
                 monitorLink: 'Ver el Monitor',
                 pulsometro: '<strong>Se confronta con el Pulsómetro:</strong> mientras el Pulsómetro (Universidad de Toronto y Resources for the Future) no tenga datos propios, el Análisis de Brechas usa lo que el propio Barómetro revela sobre sus ejes más débiles.',
@@ -2946,7 +2954,7 @@
             en: {
                 h1: 'OMA Barometer — Mining Investment Climate',
                 p: 'The Barometer summarizes, in a single <em>spider chart</em> view, the evolution of the non-strictly-productive variables that weigh most heavily on a mining investor\'s decision: regulatory framework, social license, political climate, the State\'s "mining-friendly" attitude, funding availability, infrastructure and macroeconomic stability. Each axis is scored from 0 (very unfavorable) to 10 (very favorable), based on surveys of Governing Council companies and analysis by the OMA team.',
-                caption: 'Q3 2025 vs. Q3 2026 comparison · Social Licence: index built from external data · Other axes: OMA survey of mining companies (illustrative, first cut)',
+                caption: 'Q3 2025 vs. Q3 2026 comparison · Social Licence and Macro Stability: indices built from external data · Other axes: OMA survey of mining companies (illustrative, first cut)',
                 monitor: '<strong>Complemented by the Mining Engineering Monitor (MIMA):</strong> the Barometer measures the investment climate; the Monitor measures whether the country has the training and talent to deliver on it.',
                 monitorLink: 'View the Monitor',
                 pulsometro: '<strong>Checked against the Pulsometer:</strong> until the Pulsometer (University of Toronto and Resources for the Future) has its own data, the Gap Analysis uses what the Barometer itself reveals about its weakest axes.',
@@ -3254,14 +3262,25 @@
 
 
         // --- Barómetro: Licencia Social con datos externos ---
-        // Índice OMA = promedio simple de cuatro componentes (0–10). Actualizar solo LS_DATA.
+        // Índice OMA = promedio simple de cinco componentes (0–10). Actualizar solo LS_DATA.
+        // Revisión 01/10/2026: escalas que valoran el punto medio (neutros y "poca confianza"),
+        // corrección del dato de confianza de Catamarca y nuevo componente Fraser (comunidades y territorio).
         const LS_DATA = {
             asOf: '01/10/2026',
             comps: [
                 { k: 'accept', v: 6.0, v25: 6.0 },
-                { k: 'trust', v: 3.4, v25: 3.4 },
-                { k: 'talk', v: 4.8, v25: 4.7 },
-                { k: 'eiti', v: 7.0, v25: 6.0 }
+                { k: 'trust', v: 2.6, v25: 2.6 },
+                { k: 'talk', v: 7.0, v25: 7.0 },
+                { k: 'eiti', v: 7.0, v25: 6.0 },
+                { k: 'fraser', v: 4.3, v25: 4.3 }
+            ],
+            // Fraser 2025: % de empresas para las que cada factor desalienta la inversión
+            fraser: [
+                { j: 'San Juan', socio: 57, land: 29 },
+                { j: 'Santa Cruz', socio: 60, land: 40 },
+                { j: 'Neuquén', socio: 63, land: 50 },
+                { j: 'Mendoza', socio: 78, land: 44 },
+                { j: 'Chubut', socio: 88, land: 63 }
             ]
         };
         const lsIndex = key => Math.round(LS_DATA.comps.reduce((s, c) => s + c[key], 0) / LS_DATA.comps.length * 10) / 10;
@@ -3269,58 +3288,54 @@
         const LS_I18N = {
             es: {
                 h2: 'Licencia social: qué dicen los datos externos',
-                intro: 'Mientras la encuesta propia del OMA no esté disponible, el eje <strong>Licencia Social</strong> del Barómetro se calcula con datos externos y verificables. El índice es el promedio simple de cuatro componentes, cada uno en una escala de 0 a 10.',
+                intro: 'Mientras la encuesta propia del OMA no esté disponible, el eje <strong>Licencia Social</strong> del Barómetro se calcula con datos externos y verificables. El índice es el promedio simple de cinco componentes, cada uno en una escala de 0 a 10: tres miden a la sociedad (aceptación, confianza y conversación pública) y dos a las instituciones y los inversores (EITI y Fraser).',
                 idxT: 'Índice de licencia social',
-                idxSub: (a, b) => `3T 2026 · ${b.replace('.', ',')} en 3T 2025`,
-                colC: 'Componente', colV: 'Puntaje', colF: 'Cómo se calcula', colS: 'Fuente',
+                idxSub: (a, b) => `3T 2026 · ${b} en 3T 2025`,
+                colC: 'Componente', colV: 'Puntaje', colS: 'Dato y fuente',
                 comps: {
-                    accept: { t: 'Aceptación de proyectos en provincias mineras', f: '% que apoya un proyecto minero en su provincia ÷ 10', s: 'Zuban Córdoba, Catamarca (sep. 2026, 640 casos): 60,7 % apoya un proyecto en la provincia y 75,9 % la minería sustentable. IOPPS, La Rioja (jun. 2026, 500 casos): 60 % de acuerdo.' },
-                    trust: { t: 'Confianza en los controles del Estado', f: '% que confía algo o mucho en los controles ÷ 10', s: 'Zuban Córdoba, Catamarca (sep. 2026): 29,7 % confía algo y 4,1 % mucho en los controles provinciales; 45,7 % no confía nada.' },
-                    talk: { t: 'Clima de la conversación pública', f: '% de publicaciones favorables a la minería ÷ 10', s: 'Enter Comunicación (2026): 48,2 % positivo y 7,6 % negativo. LLYC: la conversación favorable pasó de 35 % (dic. 2023) a 47,4 % (feb. 2025).' },
-                    eiti: { t: 'Canales institucionales de participación (EITI)', f: 'Promedio de los requisitos 1.3, 6.1 y 6.4 del EITI ÷ 10', s: 'Validación EITI 2026: participación de la sociedad civil 90, impacto ambiental 70, gasto social y ambiental de las empresas 50. En 2022: 90 y 30 (el 6.4 no se evaluó).' }
+                    accept: { t: 'Aceptación de proyectos en provincias mineras', f: '% que apoya un proyecto minero en su provincia ÷ 10', s: 'Zuban Córdoba, Catamarca (sep. 2026, 640 casos): 60,7 % apoya un proyecto en la provincia, 75,9 % la minería sustentable y 69 % rechaza oponerse a toda explotación. IOPPS, La Rioja (jun. 2026, 500 casos): 60 % a favor.' },
+                    trust: { t: 'Confianza en los controles del Estado', f: 'Mucha = 10, algo = 6,7, poca = 3,3, ninguna = 0 (promedio ponderado)', s: 'Zuban Córdoba, Catamarca (sep. 2026): 4,1 % mucha confianza, 16,9 % algo, 29,7 % poca y 45,7 % ninguna en los controles provinciales.' },
+                    talk: { t: 'Clima de la conversación pública', f: 'Balance favorables − desfavorables, llevado a 0–10 (neutral = 5)', s: 'Enter Comunicación (2026): 48,2 % positivo, 44,2 % neutral o informativo y 7,6 % negativo. LLYC: las comunidades favorables pasaron de 35 % (dic. 2023) a 47,4 % (feb. 2025) del volumen.' },
+                    eiti: { t: 'Canales institucionales de participación (EITI)', f: 'Promedio de los requisitos 1.3, 6.1 y 6.4 del EITI ÷ 10', s: 'Validación EITI 2026 (puntaje global 80/100): participación de la sociedad civil 90, impacto ambiental 70, gasto social y ambiental de las empresas 50. En 2022: 90 y 30 (el 6.4 no se evaluó).' },
+                    fraser: { t: 'Comunidades y territorio según los inversores (Fraser)', f: '% de empresas que no ven un freno en los acuerdos con comunidades ni en los reclamos territoriales ÷ 10', s: 'Fraser Institute, encuesta 2025: promedio de las cinco jurisdicciones argentinas evaluadas (ver detalle por provincia).' }
                 },
-                fraserT: 'Señales de los inversores (encuesta Fraser 2025)',
-                fraser: [
-                    '<strong>San Juan</strong> cayó 6 puntos en percepción de políticas y los inversores mencionan conflictos por reclamos territoriales.',
-                    '<strong>Mendoza:</strong> el 78 % considera que los acuerdos socioeconómicos con las comunidades desalientan la inversión.',
-                    '<strong>Chubut:</strong> el 89 % señala la incertidumbre ambiental y el 88 % la definición de áreas protegidas.',
-                    'Salta, Jujuy y Catamarca no figuran por falta de respuestas suficientes, por eso Fraser no entra en el índice.'
-                ],
+                fraserT: 'Fraser 2025: comunidades y territorio, por provincia',
+                fraserHead: ['Jurisdicción', 'Acuerdos con comunidades', 'Reclamos territoriales'],
+                fraserNote: '% de empresas para las que el factor desalienta la inversión. Ninguna empresa lo señala como un incentivo. Salta, Jujuy, Catamarca y La Rioja no se publican por falta de respuestas.',
                 readT: 'Lectura del OMA',
                 read: [
-                    '<strong>Aceptación sí, confianza no.</strong> En las provincias mineras una mayoría clara apoya los proyectos, pero solo un tercio confía en que el Estado los controle. La brecha de la licencia social es de credibilidad institucional, no de rechazo a la actividad.',
-                    '<strong>Coincide con el EITI.</strong> Los canales de participación funcionan (90), pero la publicación de contratos (25) y de estudios ambientales sigue pendiente. Publicar esa información es la palanca más directa para subir la confianza.',
-                    '<strong>Un mapa dividido.</strong> El Noroeste y Cuyo concentran la conversación favorable; la Patagonia, sobre todo Chubut, sigue siendo zona de conflicto.'
+                    '<strong>Por qué el índice no sube más, aunque Fraser y el EITI sean favorables.</strong> Su lectura favorable viene de otros factores. En Fraser, San Juan vuelve a ser la jurisdicción más atractiva de América Latina por su geología y por el marco de inversiones; en las preguntas sobre comunidades, en cambio, la mayoría de las empresas ve un freno en todas las provincias. En el EITI, el 80/100 premia sobre todo la transparencia fiscal; los requisitos de participación e impacto suman 7 sobre 10 y ya están en el índice.',
+                    '<strong>Aceptación sí, confianza no.</strong> En las provincias mineras una mayoría clara apoya los proyectos y la conversación pública es mucho más favorable que desfavorable (48 % frente a 8 %). Pero solo uno de cada cinco catamarqueños confía algo o mucho en los controles del Estado. La brecha es de credibilidad institucional, no de rechazo a la actividad.',
+                    '<strong>La palanca está en la transparencia.</strong> El EITI pide publicar contratos (hoy 25/100) y estudios de impacto ambiental. Es la forma más directa de subir la confianza en los controles, que es el componente que más pesa hacia abajo.',
+                    '<strong>Un mapa dividido.</strong> El Noroeste y Cuyo concentran la conversación favorable; la Patagonia, sobre todo Chubut, sigue siendo zona de conflicto para los inversores.'
                 ],
-                method: 'Método: promedio simple de los cuatro componentes. Para 3T 2025 se usan los valores disponibles a esa fecha (conversación de febrero de 2025 y validación EITI 2022); aceptación y confianza se mantienen porque no hay encuestas comparables anteriores. Cuando la encuesta del OMA esté lista, el índice combinará percepción de empresas y datos externos.',
+                method: 'Método: promedio simple de los cinco componentes. Revisión del 01/10/2026: (1) la confianza y la conversación pública usan ahora escalas que dan valor al punto medio (antes "poca confianza" y los mensajes neutrales contaban como cero); (2) se corrigió el dato de confianza: el 29,7 % corresponde a "poca" confianza, no a "algo"; (3) se agregó Fraser con las preguntas sobre comunidades y territorio. Para 3T 2025 cambia solo el EITI (validación 2022); el resto se mantiene porque no hay datos comparables anteriores. Si se toman solo San Juan y Santa Cruz, el componente Fraser sería 5,4 y el índice 5,6.',
                 src: 'Fuentes: Zuban Córdoba (Letra P, 23/09/2026); IOPPS (Editorial RN, junio de 2026); Enter Comunicación (El Esquiú, 07/09/2026); LLYC (Infobae, 31/08/2025); EITI, validación de Argentina 2026; Fraser Institute, Annual Survey of Mining Companies 2025 (Ámbito y Dinamicarg). Datos al '
             },
             en: {
                 h2: 'Social licence: what external data say',
-                intro: 'Until OMA\'s own survey is available, the Barometer\'s <strong>Social Licence</strong> axis is calculated from external, verifiable data. The index is the simple average of four components, each on a 0 to 10 scale.',
+                intro: 'Until OMA\'s own survey is available, the Barometer\'s <strong>Social Licence</strong> axis is calculated from external, verifiable data. The index is the simple average of five components, each on a 0 to 10 scale: three measure society (acceptance, trust and public conversation) and two measure institutions and investors (EITI and Fraser).',
                 idxT: 'Social licence index',
                 idxSub: (a, b) => `Q3 2026 · ${b} in Q3 2025`,
-                colC: 'Component', colV: 'Score', colF: 'How it is calculated', colS: 'Source',
+                colC: 'Component', colV: 'Score', colS: 'Data and source',
                 comps: {
-                    accept: { t: 'Acceptance of projects in mining provinces', f: '% supporting a mining project in their province ÷ 10', s: 'Zuban Córdoba, Catamarca (Sep 2026, 640 respondents): 60.7% support a project in the province and 75.9% support sustainable mining. IOPPS, La Rioja (Jun 2026, 500 respondents): 60% in favour.' },
-                    trust: { t: 'Trust in government oversight', f: '% with some or a lot of trust in oversight ÷ 10', s: 'Zuban Córdoba, Catamarca (Sep 2026): 29.7% have some and 4.1% a lot of trust in provincial oversight; 45.7% have none.' },
-                    talk: { t: 'Tone of public conversation', f: '% of posts favourable to mining ÷ 10', s: 'Enter Comunicación (2026): 48.2% positive and 7.6% negative. LLYC: favourable conversation rose from 35% (Dec 2023) to 47.4% (Feb 2025).' },
-                    eiti: { t: 'Institutional participation channels (EITI)', f: 'Average of EITI requirements 1.3, 6.1 and 6.4 ÷ 10', s: '2026 EITI Validation: civil society engagement 90, environmental impact 70, companies\' social and environmental spending 50. In 2022: 90 and 30 (6.4 not assessed).' }
+                    accept: { t: 'Acceptance of projects in mining provinces', f: '% supporting a mining project in their province ÷ 10', s: 'Zuban Córdoba, Catamarca (Sep 2026, 640 respondents): 60.7% support a project in the province, 75.9% support sustainable mining and 69% reject opposing all mining. IOPPS, La Rioja (Jun 2026, 500 respondents): 60% in favour.' },
+                    trust: { t: 'Trust in government oversight', f: 'A lot = 10, some = 6.7, little = 3.3, none = 0 (weighted average)', s: 'Zuban Córdoba, Catamarca (Sep 2026): 4.1% a lot of trust, 16.9% some, 29.7% little and 45.7% none in provincial oversight.' },
+                    talk: { t: 'Tone of public conversation', f: 'Favourable minus unfavourable balance, mapped to 0–10 (neutral = 5)', s: 'Enter Comunicación (2026): 48.2% positive, 44.2% neutral or informative and 7.6% negative. LLYC: favourable communities rose from 35% (Dec 2023) to 47.4% (Feb 2025) of volume.' },
+                    eiti: { t: 'Institutional participation channels (EITI)', f: 'Average of EITI requirements 1.3, 6.1 and 6.4 ÷ 10', s: '2026 EITI Validation (overall score 80/100): civil society engagement 90, environmental impact 70, companies\' social and environmental spending 50. In 2022: 90 and 30 (6.4 not assessed).' },
+                    fraser: { t: 'Communities and land according to investors (Fraser)', f: '% of companies that see no deterrent in community agreements or land claims ÷ 10', s: 'Fraser Institute, 2025 survey: average of the five Argentine jurisdictions assessed (see province detail).' }
                 },
-                fraserT: 'Investor signals (Fraser survey 2025)',
-                fraser: [
-                    '<strong>San Juan</strong> fell 6 points on policy perception and investors cite conflicts over territorial claims.',
-                    '<strong>Mendoza:</strong> 78% say socioeconomic agreements with communities deter investment.',
-                    '<strong>Chubut:</strong> 89% cite environmental uncertainty and 88% the definition of protected areas.',
-                    'Salta, Jujuy and Catamarca are not ranked for lack of enough responses, so Fraser is not part of the index.'
-                ],
+                fraserT: 'Fraser 2025: communities and land, by province',
+                fraserHead: ['Jurisdiction', 'Community agreements', 'Land claims'],
+                fraserNote: '% of companies for which the factor deters investment. No company cites it as an encouragement. Salta, Jujuy, Catamarca and La Rioja are not published for lack of responses.',
                 readT: 'OMA reading',
                 read: [
-                    '<strong>Acceptance yes, trust no.</strong> In mining provinces a clear majority supports projects, but only a third trust the government to oversee them. The social licence gap is one of institutional credibility, not rejection of the activity.',
-                    '<strong>Consistent with the EITI.</strong> Participation channels work (90), but disclosure of contracts (25) and environmental studies is still pending. Publishing that information is the most direct lever to build trust.',
-                    '<strong>A divided map.</strong> The Northwest and Cuyo concentrate favourable conversation; Patagonia, especially Chubut, remains a conflict zone.'
+                    '<strong>Why the index does not rise further, even though Fraser and the EITI are favourable.</strong> Their favourable reading comes from other factors. In Fraser, San Juan is again the most attractive jurisdiction in Latin America thanks to its geology and investment framework; on the community questions, however, most companies see a deterrent in every province. In the EITI, the 80/100 mainly rewards fiscal transparency; the participation and impact requirements score 7 out of 10 and are already in the index.',
+                    '<strong>Acceptance yes, trust no.</strong> In mining provinces a clear majority supports projects and public conversation is far more favourable than unfavourable (48% vs 8%). But only one in five people in Catamarca has some or a lot of trust in government oversight. The gap is one of institutional credibility, not rejection of the activity.',
+                    '<strong>Transparency is the lever.</strong> The EITI asks for contracts (now 25/100) and environmental impact assessments to be published. That is the most direct way to build trust in oversight, the component that pulls the index down the most.',
+                    '<strong>A divided map.</strong> The Northwest and Cuyo concentrate favourable conversation; Patagonia, especially Chubut, remains a conflict zone for investors.'
                 ],
-                method: 'Method: simple average of the four components. For Q3 2025 the values available at that date are used (February 2025 conversation and 2022 EITI Validation); acceptance and trust are held constant because there are no comparable earlier surveys. Once OMA\'s survey is ready, the index will combine company perception and external data.',
+                method: 'Method: simple average of the five components. Revision of 01/10/2026: (1) trust and public conversation now use scales that give value to the midpoint (previously "little trust" and neutral posts counted as zero); (2) the trust figure was corrected: 29.7% is "little" trust, not "some"; (3) Fraser was added with its community and land questions. For Q3 2025 only the EITI changes (2022 Validation); the rest is held constant because there are no comparable earlier data. Taking only San Juan and Santa Cruz, the Fraser component would be 5.4 and the index 5.6.',
                 src: 'Sources: Zuban Córdoba (Letra P, 23/09/2026); IOPPS (Editorial RN, June 2026); Enter Comunicación (El Esquiú, 07/09/2026); LLYC (Infobae, 31/08/2025); EITI, Argentina 2026 Validation; Fraser Institute, Annual Survey of Mining Companies 2025 (Ámbito and Dinamicarg). Data as of '
             }
         };
@@ -3332,6 +3347,8 @@
             const f1 = x => lang === 'es' ? x.toFixed(1).replace('.', ',') : x.toFixed(1);
             const st = v => v >= 6.5 ? 'ok' : v >= 4.5 ? 'warn' : 'bad';
             const rows = d.comps.map(c => `<tr><td><strong>${t.comps[c.k].t}</strong><div class="ls-f">${t.comps[c.k].f}</div></td><td class="n"><span class="ls-score ls-${st(c.v)}">${f1(c.v)}</span><div class="eiti-bar"><span class="eiti-bar-${st(c.v)}" style="width:${c.v * 10}%"></span></div></td><td class="ls-s">${t.comps[c.k].s}</td></tr>`).join('');
+            const pct = v => lang === 'es' ? `${v} %` : `${v}%`;
+            const fr = `<table class="ls-fraser"><thead><tr>${t.fraserHead.map((h, i) => `<th${i ? ' class="n"' : ''}>${h}</th>`).join('')}</tr></thead><tbody>${d.fraser.map(r => `<tr><td>${r.j}</td><td class="n">${pct(r.socio)}</td><td class="n">${pct(r.land)}</td></tr>`).join('')}</tbody></table><p class="rp-note">${t.fraserNote}</p>`;
             el.innerHTML = `
                 <h2 id="licenciaSocialH2">${t.h2}</h2>
                 <p>${t.intro}</p>
@@ -3344,7 +3361,7 @@
                     </div>
                     <div class="rp-card">
                         <h4>${t.fraserT}</h4>
-                        <ul class="rp-agencies">${t.fraser.map(x => `<li>${x}</li>`).join('')}</ul>
+                        ${fr}
                     </div>
                 </div>
                 <div class="table-scroll"><table class="eiti-table ls-table">
@@ -3398,7 +3415,7 @@
         const RP_I18N = {
             es: {
                 h2: 'Riesgo país: mercado y fundamentos',
-                intro: 'El eje <strong>Estabilidad Macro</strong> del Barómetro refleja la percepción de las empresas. Esta sección la contrasta con datos duros: lo que dice el mercado (calificaciones y diferencial de los bonos) y lo que dicen los fundamentos locales que más pesan en el riesgo soberano. Para un proyecto minero, el riesgo país es el piso de su costo de capital en dólares.',
+                intro: 'El eje <strong>Estabilidad Macro</strong> del Barómetro se calcula con los datos de esta sección: lo que dice el mercado (calificaciones y diferencial de los bonos) y lo que dicen los fundamentos locales que más pesan en el riesgo soberano. El índice se actualiza cada semana junto con los datos. Para un proyecto minero, el riesgo país es el piso de su costo de capital en dólares.',
                 market: 'Lo que dice el mercado',
                 spreadT: 'Riesgo país (EMBI, puntos básicos)',
                 spreadMin: 'mínimo del año', spreadNow: 'actual', spreadMax: 'máximo del año',
@@ -3439,7 +3456,7 @@
             },
             en: {
                 h2: 'Country risk: market and fundamentals',
-                intro: 'The Barometer\'s <strong>Macro Stability</strong> axis reflects companies\' perception. This section checks it against hard data: what the market says (ratings and bond spreads) and what the local fundamentals that weigh most on sovereign risk say. For a mining project, country risk is the floor of its dollar cost of capital.',
+                intro: 'The Barometer\'s <strong>Macro Stability</strong> axis is calculated from the data in this section: what the market says (ratings and bond spreads) and what the local fundamentals that weigh most on sovereign risk say. The index is updated every week along with the data. For a mining project, country risk is the floor of its dollar cost of capital.',
                 market: 'What the market says',
                 spreadT: 'Country risk (EMBI, basis points)',
                 spreadMin: 'year low', spreadNow: 'current', spreadMax: 'year high',
@@ -3480,6 +3497,63 @@
             }
         };
 
+        // --- Barómetro: Estabilidad Macro con datos externos ---
+        // Índice OMA = promedio simple de tres bloques (0–10), calculado con RP_DATA y los estados de RP_I18N.
+        // Se actualiza solo cuando la tarea semanal cambia el riesgo país, las calificaciones o el semáforo.
+        const MACRO_SCALE = { spreadBest: 200, spreadWorst: 1500, status: { ok: 8, warn: 5, bad: 2 } };
+        // Valores de 3T 2025 (fijos): riesgo país al 30/09/2025 y calificaciones vigentes en esa fecha.
+        const MACRO_2025 = {
+            spread: 1230,
+            agencies: [{ name: 'Fitch', rating: 'CCC+', idx: 2 }, { name: 'S&P', rating: 'CCC', idx: 1 }, { name: "Moody's", rating: 'Caa1', idx: 2 }],
+            status: { fiscal: 'ok', infl: 'warn', rate: 'bad', debt: 'bad' }
+        };
+        function macroParts(year) {
+            const clamp = x => Math.max(0, Math.min(10, x));
+            const ag = year === 2025 ? MACRO_2025.agencies : RP_DATA.agencies;
+            const spread = year === 2025 ? MACRO_2025.spread : RP_DATA.spread.now;
+            const st = year === 2025 ? Object.values(MACRO_2025.status) : RP_I18N.es.ind.map(i => i.s);
+            const ratings = clamp(ag.reduce((s, a) => s + a.idx, 0) / ag.length / (RP_DATA.scale.length - 1) * 10);
+            const market = clamp((MACRO_SCALE.spreadWorst - spread) / (MACRO_SCALE.spreadWorst - MACRO_SCALE.spreadBest) * 10);
+            const fund = st.reduce((s, x) => s + MACRO_SCALE.status[x], 0) / st.length;
+            const r1 = x => Math.round(x * 10) / 10;
+            return { ratings: r1(ratings), market: r1(market), fund: r1(fund), index: r1((ratings + market + fund) / 3), spread };
+        }
+        (function () {
+            const a = barometerAxes.find(x => x.es.label === 'Estabilidad Macro');
+            if (!a) return;
+            a.survey = { v2025: a.v2025, v2026: a.v2026 };
+            a.v2025 = macroParts(2025).index;
+            a.v2026 = macroParts(2026).index;
+            a.external = true;
+            a.es.desc = 'Calificaciones soberanas, riesgo país y cuatro fundamentos (fiscal, inflación, tasa real y deuda externa). Calculado con datos externos: ver la sección Riesgo país, más abajo.';
+            a.en.desc = 'Sovereign ratings, country risk and four fundamentals (fiscal, inflation, real rate and external debt). Calculated from external data: see the Country risk section below.';
+        })();
+
+        const MACRO_I18N = {
+            es: {
+                idxT: 'Índice de estabilidad macro',
+                idxSub: (b) => `3T 2026 · ${b} en 3T 2025`,
+                parts: {
+                    ratings: ['Calificaciones soberanas', 'Promedio de las tres agencias; 10 = grado de inversión (BBB-)'],
+                    market: ['Riesgo país', '10 = 200 pb o menos (grado de inversión); 0 = 1.500 pb o más'],
+                    fund: ['Fundamentos locales', 'Favorable = 8, en vigilancia = 5, crítico = 2 (promedio de los cuatro)']
+                },
+                y25: (p) => `3T 2025: calificaciones CCC+ / CCC / Caa1, riesgo país ${p.spread.toLocaleString('es-AR')} pb (30/09/2025), un fundamento favorable (fiscal), uno en vigilancia (inflación) y dos críticos (tasas reales muy altas antes de las elecciones y deuda de 2026 con reservas netas negativas).`,
+                vs: (a, p) => `Datos frente a percepción: con datos externos el eje Estabilidad Macro queda en ${a.v2026.toFixed(1).replace('.', ',')} sobre 10 (${a.v2025.toFixed(1).replace('.', ',')} en 3T 2025). La primera encuesta ilustrativa a empresas lo ubicaba en ${a.survey.v2026.toFixed(1).replace('.', ',')} (${a.survey.v2025.toFixed(1).replace('.', ',')} en 2025). Los datos muestran una mejora más grande, pero un nivel más bajo: las tres agencias siguen en la categoría B- y el servicio de la deuda de 2027 está en estado crítico.`
+            },
+            en: {
+                idxT: 'Macro stability index',
+                idxSub: (b) => `Q3 2026 · ${b} in Q3 2025`,
+                parts: {
+                    ratings: ['Sovereign ratings', 'Average of the three agencies; 10 = investment grade (BBB-)'],
+                    market: ['Country risk', '10 = 200 bp or less (investment grade); 0 = 1,500 bp or more'],
+                    fund: ['Local fundamentals', 'Favourable = 8, under watch = 5, critical = 2 (average of the four)']
+                },
+                y25: (p) => `Q3 2025: ratings CCC+ / CCC / Caa1, country risk ${p.spread.toLocaleString('en-US')} bp (30/09/2025), one favourable fundamental (fiscal), one under watch (inflation) and two critical (very high real rates before the elections and 2026 debt with negative net reserves).`,
+                vs: (a, p) => `Data vs perception: with external data the Macro Stability axis scores ${a.v2026.toFixed(1)} out of 10 (${a.v2025.toFixed(1)} in Q3 2025). The first illustrative company survey put it at ${a.survey.v2026.toFixed(1)} (${a.survey.v2025.toFixed(1)} in 2025). The data show a larger improvement but a lower level: all three agencies remain at B- and 2027 debt service is critical.`
+            }
+        };
+
         function renderRiesgoPais() {
             const el = document.getElementById('riesgoPais');
             if (!el) return;
@@ -3516,9 +3590,27 @@
                     <p>${i.txt(d)}</p>
                 </div>`).join('');
             const macroAxis = barometerAxes.find(a => a.es.label === 'Estabilidad Macro');
+            const mt = MACRO_I18N[lang], p26 = macroParts(2026), p25 = macroParts(2025);
+            const f1 = x => lang === 'es' ? x.toFixed(1).replace('.', ',') : x.toFixed(1);
+            const mst = v => v >= 6.5 ? 'ok' : v >= 4.5 ? 'warn' : 'bad';
+            const macroCard = `
+                <div class="rp-card macro-card">
+                    <div class="macro-head">
+                        <div>
+                            <h4>${mt.idxT}</h4>
+                            <div class="rp-big">${f1(p26.index)}<small> / 10</small></div>
+                            <div class="rp-sub">${mt.idxSub(f1(p25.index))}</div>
+                        </div>
+                        <div class="macro-parts">
+                            ${['ratings', 'market', 'fund'].map(k => `<div class="eiti-comp"><div class="eiti-comp-h"><span>${mt.parts[k][0]}</span><strong>${f1(p26[k])} <span class="macro-prev">(${f1(p25[k])})</span></strong></div><div class="eiti-bar"><span class="eiti-bar-${mst(p26[k])}" style="width:${p26[k] * 10}%"></span></div><div class="ls-f">${mt.parts[k][1]}</div></div>`).join('')}
+                        </div>
+                    </div>
+                    <p class="rp-note">${mt.y25(p25)}</p>
+                </div>`;
             el.innerHTML = `
                 <h2 id="riesgoPaisH2">${t.h2}</h2>
                 <p>${t.intro}</p>
+                ${macroCard}
                 <h3 class="rp-h3">${t.market}</h3>
                 <div class="rp-market">
                     <div class="rp-card">
@@ -3540,7 +3632,7 @@
                 <div class="rp-read">
                     <h3 class="rp-h3">${t.readT}</h3>
                     ${t.read.map(p => `<p>${p}</p>`).join('')}
-                    ${macroAxis ? `<p class="rp-vs">${t.vs(macroAxis)}</p>` : ''}
+                    ${macroAxis ? `<p class="rp-vs">${mt.vs(macroAxis, p26)}</p>` : ''}
                 </div>
                 <p class="table-note">${t.src}${d.asOf}.</p>`;
         }
@@ -4304,7 +4396,7 @@
                 sys: [['Barómetro', 'EN LÍNEA'], ['Prospectiva (Convergencias 2050)', 'EN LÍNEA'], ['Análisis de Brechas', 'FASE 1'], ['Monitor MIMA (CAI)', 'EN DISEÑO'], ['Pulsómetro', 'CALIBRANDO']],
                 short: ['Exportaciones', 'Marco normativo', 'Licencia social', 'Clima político', 'Mining-friendly', 'Financiamiento', 'Infraestructura', 'Estab. macro', 'Capital humano'],
                 tipGo: 'Clic → ', tabs: { barometro: 'Barómetro', brechas: 'Brechas', monitor: 'Monitor MIMA', prospectiva: 'Prospectiva', argentina: 'Argentina hoy', pulsometro: 'Pulsómetro', oferta: 'Oferta' },
-                foot: 'Datos reales: exportaciones mineras 1S 2026 (INDEC / Secretaría de Minería) y proyección anual; capacidad de litio y cartera de cobre (CeProMin, pestaña Argentina hoy). Índice de Performance Minera: exportaciones 1S 2026 vs. proyección anual US$ 9.000 M, producción de litio 2025 (116 kt) / capacidad (186 kt), RIGI minero aprobado US$ 21.000 M / presentado ~US$ 39.000 M (CAEM, 09/2026). El Barómetro es un primer corte ilustrativo de la encuesta OMA.',
+                foot: 'Datos reales: exportaciones mineras 1S 2026 (INDEC / Secretaría de Minería) y proyección anual; capacidad de litio y cartera de cobre (CeProMin, pestaña Argentina hoy). Índice de Performance Minera: exportaciones 1S 2026 vs. proyección anual US$ 9.000 M, producción de litio 2025 (116 kt) / capacidad (186 kt), RIGI minero aprobado US$ 21.000 M / presentado ~US$ 39.000 M (CAEM, 09/2026). Licencia Social y Estabilidad Macro se calculan con datos externos; el resto del Barómetro es un primer corte ilustrativo de la encuesta OMA.',
                 locale: 'es-AR'
             },
             en: {
@@ -4327,7 +4419,7 @@
                 sys: [['Barometer', 'ONLINE'], ['Foresight (Convergences 2050)', 'ONLINE'], ['Gap Analysis', 'PHASE 1'], ['MIMA Monitor (CAI)', 'IN DESIGN'], ['Pulsometer', 'CALIBRATING']],
                 short: ['Exports', 'Regulatory', 'Social license', 'Political climate', 'Mining-friendly', 'Funding', 'Infrastructure', 'Macro stability', 'Human capital'],
                 tipGo: 'Click → ', tabs: { barometro: 'Barometer', brechas: 'Gap Analysis', monitor: 'MIMA Monitor', prospectiva: 'Foresight', argentina: 'Argentina today', pulsometro: 'Pulsometer', oferta: 'Supply' },
-                foot: 'Real data: H1 2026 mining exports (INDEC / Mining Secretariat) and annual projection; lithium capacity and copper pipeline (CeProMin, Argentina today tab). Mining Performance Index: H1 2026 exports vs. US$ 9.0 bn annual projection, 2025 lithium output (116 kt) / capacity (186 kt), RIGI mining approved US$ 21.0 bn / submitted ~US$ 39.0 bn (CAEM, 09/2026). The Barometer is an illustrative first cut of the OMA survey.',
+                foot: 'Real data: H1 2026 mining exports (INDEC / Mining Secretariat) and annual projection; lithium capacity and copper pipeline (CeProMin, Argentina today tab). Mining Performance Index: H1 2026 exports vs. US$ 9.0 bn annual projection, 2025 lithium output (116 kt) / capacity (186 kt), RIGI mining approved US$ 21.0 bn / submitted ~US$ 39.0 bn (CAEM, 09/2026). Social Licence and Macro Stability are calculated from external data; the rest of the Barometer is an illustrative first cut of the OMA survey.',
                 locale: 'en-GB'
             }
         };
