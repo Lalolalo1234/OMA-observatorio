@@ -572,17 +572,17 @@ const TIERS = {
 const AR_PROJECTS = {
   cu: [
     { id: 'vicuna', name: 'Vicuña (Josemaría + Filo del Sol)', prov: 'San Juan', tier: 'A', p: 0.85, stages: [[2030, 250], [2038, 395]],
-      src: 'RIGI aprobado (etapa 1, US$ 9.712 M). Evaluación económica preliminar, feb. 2026: inicio 2030, 2,5 Mt de cobre en los primeros 10 años y 395 kt/año de media en 25 años.', sup: 'Año de las etapas 2 y 3 (2038): supuesto OMA.' },
+      src: 'RIGI aprobado (etapa 1, US$ 9.712 M). Evaluación económica preliminar, feb. 2026: inicio 2030, 2,5 Mt de cobre en los primeros 10 años y 395 kt/año de media en 25 años.', sup: 'Año de las etapas 2 y 3 (2038): supuesto SIEMA.' },
     { id: 'azules', name: 'Los Azules', prov: 'San Juan', tier: 'A', p: 0.8, stages: [[2030, 205], [2035, 150]],
       src: 'RIGI aprobado (sep. 2025, US$ 2.672 M). Factibilidad 2025: primera producción prevista hacia 2030, 205 kt/año de cátodos en los primeros cinco años.', sup: '150 kt/año desde 2035: media de CeProMin.' },
     { id: 'taca', name: 'Taca Taca', prov: 'Salta', tier: 'A', p: 0.75, stages: [[2032, 200], [2037, 320]],
-      src: 'RIGI aprobado (US$ 5.250 M). First Quantum, NI 43-101 (feb. 2026): construcción desde 2028, inicio a comienzos de la década de 2030, >200 kt/año y >320 kt/año con la expansión.', sup: 'Inicio en 2032 y expansión en 2037: supuesto OMA.' },
+      src: 'RIGI aprobado (US$ 5.250 M). First Quantum, NI 43-101 (feb. 2026): construcción desde 2028, inicio a comienzos de la década de 2030, >200 kt/año y >320 kt/año con la expansión.', sup: 'Inicio en 2032 y expansión en 2037: supuesto SIEMA.' },
     { id: 'sanjorge', name: 'San Jorge', prov: 'Mendoza', tier: 'A', p: 0.8, stages: [[2029, 40]],
       src: 'RIGI aprobado (may. 2026): inicio de operaciones previsto en enero de 2029, unas 40 kt/año de cobre.', sup: '' },
     { id: 'alumbrera', name: 'Alumbrera (reactivación)', prov: 'Catamarca', tier: 'R', p: 0.85, ramp: 1, stages: [[2027, 17.5], [2031, 0]],
-      src: 'Glencore (ago. 2026): unas 70 kt de cobre en cuatro años desde 2027, como fase puente hacia MARA.', sup: 'Reparto uniforme de 17,5 kt/año: supuesto OMA.' },
+      src: 'Glencore (ago. 2026): unas 70 kt de cobre en cuatro años desde 2027, como fase puente hacia MARA.', sup: 'Reparto uniforme de 17,5 kt/año: supuesto SIEMA.' },
     { id: 'mara', name: 'MARA (Agua Rica)', prov: 'Catamarca', tier: 'B', p: 0.55, stages: [[2032, 200]],
-      src: 'RIGI presentado (ago. 2025, US$ 4.000 M). Glencore (sep. 2026): más de 200 kt/año en los primeros diez años; grandes proyectos desde 2032.', sup: 'Inicio en 2032: supuesto OMA a partir de declaraciones de Glencore.' },
+      src: 'RIGI presentado (ago. 2025, US$ 4.000 M). Glencore (sep. 2026): más de 200 kt/año en los primeros diez años; grandes proyectos desde 2032.', sup: 'Inicio en 2032: supuesto SIEMA a partir de declaraciones de Glencore.' },
     { id: 'pachon', name: 'El Pachón', prov: 'San Juan', tier: 'B', p: 0.5, stages: [[2034, 280]],
       src: 'RIGI solicitado (US$ 9.500 M), sin fecha de producción anunciada. CeProMin: ~280 kt/año hacia 2034.', sup: '' },
   ],
@@ -1124,7 +1124,7 @@ function drawArgentina() {
     const cap = pr.linear ? pr.add : Math.max(...pr.stages.map(s => s[1]));
     tb += `<tr><td><span class="mn">${pr.name}</span><span class="un">${pr.prov}</span><span class="st ${pr.tier === 'A' || pr.tier === 'R' ? 'ok' : 'est'}">${TIERS[pr.tier].name}</span></td><td class="n">${start}</td><td class="n">${fmtN(cap, cap < 20 ? 1 : 0)} ${M.unit}</td><td class="n">${fmtN(p * 100, 0)} %</td><td>${pr.src}${pr.sup ? ` <i>${pr.sup}</i>` : ''}</td></tr>`;
   });
-  tb += `<tr><td><span class="mn">Nuevos proyectos</span><span class="un">después de la cartera actual</span><span class="st est">Proyección OMA</span></td><td class="n">desde ${AR_CAPTURE[mid].start}</td><td class="n">—</td><td class="n">—</td><td>Argentina capta hasta el ${fmtN(AR_CAPTURE[mid].max * 100, 1)} % del crecimiento de la demanda mundial posterior a 2035, según la exploración y el clima regulatorio y social.</td></tr>`;
+  tb += `<tr><td><span class="mn">Nuevos proyectos</span><span class="un">después de la cartera actual</span><span class="st est">Proyección SIEMA</span></td><td class="n">desde ${AR_CAPTURE[mid].start}</td><td class="n">—</td><td class="n">—</td><td>Argentina capta hasta el ${fmtN(AR_CAPTURE[mid].max * 100, 1)} % del crecimiento de la demanda mundial posterior a 2035, según la exploración y el clima regulatorio y social.</td></tr>`;
   document.getElementById('argTable').innerHTML = tb + '</tbody>';
   document.getElementById('argNote').innerHTML = mid === 'li' ? 'Referencia externa: BNAmericas estima que Argentina podría superar las 450 kt LCE de producción en 2030; el modelo usa el estudio UIA–CAEM, más conservador. La producción se compara con la demanda primaria, la que cubre la minería.' : 'La producción minera se compara con la demanda primaria mundial, la que debe cubrir la minería una vez descontado el reciclaje.';
 }
