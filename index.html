@@ -750,6 +750,12 @@
             color: white;
         }
 
+        /* Pulsómetro: consola + fichas de ejes */
+        #barometro .oc { margin: 1.2rem 0 0.6rem; }
+        .pulso-caption { text-align: center; font-size: 0.8rem; color: #777; margin: 0 0 2rem; }
+        .pulso-axes-h { margin-top: 0.5rem; }
+        .barometer-legend.pulso-axes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+        @media (max-width: 760px) { .barometer-legend.pulso-axes { grid-template-columns: 1fr; } }
         /* Pulsómetro */
         .barometer-grid {
             display: grid;
@@ -1458,7 +1464,7 @@
                 </div>
             </section>
             <!-- Consola de mando SIEMA (dashboard) -->
-            <div id="omaConsole" class="oc" aria-label="Consola de mando SIEMA"></div>
+            <div id="omaConsole" class="oc" data-console="inicio" aria-label="Consola de mando SIEMA"></div>
 
             <div class="stat-row hero-stats">
                 <div class="stat-card"><span class="stat-num" data-count="3">3</span><span class="stat-label">productos: Observatorio, Pulsómetro y Prospectiva</span></div>
@@ -1699,15 +1705,13 @@
         <!-- Pulsómetro -->
         <div id="barometro" class="tab-content">
             <h1 id="barometroH1">Pulsómetro SIEMA — Clima de Inversión Minera</h1>
-            <p id="barometroP">El Pulsómetro mide cómo está hoy el sector, con indicadores que se actualizan a medida que llegan los datos. Esta vista resume, en un solo <em>spider chart</em>, las variables que más pesan en la decisión de un inversor minero: exportaciones, marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, financiamiento, infraestructura, estabilidad macroeconómica, capital humano y el RIGI minero. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), con datos externos donde existen y una encuesta a empresas mineras que operan en el país. Se completa con la percepción externa, el seguimiento del RIGI minero y el Monitor MIMA de talento.</p>
+            <p id="barometroP">El Pulsómetro mide cómo está hoy el sector, con indicadores que se actualizan a medida que llegan los datos. La consola resume, en un radar de 10 ejes y un conjunto de relojes, las variables que más pesan en la decisión de un inversor minero: exportaciones, marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, financiamiento, infraestructura, estabilidad macroeconómica, capital humano y el RIGI minero. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), con datos externos donde existen y una encuesta a empresas mineras que operan en el país. Se completa con la percepción externa, el seguimiento del RIGI minero y el Monitor MIMA de talento.</p>
 
-            <div class="barometer-grid">
-                <div class="barometer-chart-wrap">
-                    <canvas id="barometerChart" height="320"></canvas>
-                    <p id="barometerCaption" style="text-align:center; font-size:0.8rem; color:#888; margin-top:0.8rem;">Comparación 3T 2025 vs. 3T 2026 · Licencia Social, Estabilidad Macro y RIGI: índices con datos externos · Resto de los ejes: encuesta SIEMA a empresas mineras (ilustrativo, primer corte)</p>
-                </div>
-                <div class="barometer-legend" id="barometerLegend"></div>
-            </div>
+            <div id="pulsoConsole" class="oc" data-console="pulso" aria-label="Consola del Pulsómetro SIEMA"></div>
+            <p id="barometerCaption" class="pulso-caption">Comparación 3T 2025 vs. 3T 2026 · Licencia Social, Estabilidad Macro y RIGI: índices con datos externos · Resto de los ejes: encuesta SIEMA a empresas mineras (ilustrativo, primer corte)</p>
+
+            <h2 id="barometerAxesH2" class="pulso-axes-h">Los 10 ejes, uno por uno</h2>
+            <div class="barometer-legend pulso-axes" id="barometerLegend"></div>
 
             <section class="rp" id="licenciaSocial" aria-labelledby="licenciaSocialH2"></section>
             <section class="rp" id="riesgoPais" aria-labelledby="riesgoPaisH2"></section>
@@ -2021,7 +2025,6 @@
     </footer>
 
     <script src="eventos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
     <script>
         // ============================================================
         // i18n — toggle ES/EN
@@ -2081,7 +2084,7 @@
                 </div>
             </section>
             <!-- SIEMA command console (dashboard) -->
-            <div id="omaConsole" class="oc" aria-label="SIEMA command console"></div>
+            <div id="omaConsole" class="oc" data-console="inicio" aria-label="SIEMA command console"></div>
 
             <div class="stat-row hero-stats">
                 <div class="stat-card"><span class="stat-num" data-count="3">3</span><span class="stat-label">products: Observatory, Pulsometer and Foresight</span></div>
@@ -2610,7 +2613,7 @@
         const PULSOMETER_INTRO = {
             es: {
                 h1: 'Pulsómetro SIEMA — Clima de inversión minera',
-                p: 'El Pulsómetro mide cómo está hoy el sector, con indicadores que se actualizan a medida que llegan los datos. Esta vista resume, en un solo <em>spider chart</em>, las variables que más pesan en la decisión de un inversor minero: exportaciones, marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, financiamiento, infraestructura, estabilidad macroeconómica, capital humano y el RIGI minero. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), con datos externos donde existen y una encuesta a empresas mineras que operan en el país. Se completa con la percepción externa, el seguimiento del RIGI minero y el Monitor MIMA de talento.',
+                p: 'El Pulsómetro mide cómo está hoy el sector, con indicadores que se actualizan a medida que llegan los datos. La consola resume, en un radar de 10 ejes y un conjunto de relojes, las variables que más pesan en la decisión de un inversor minero: exportaciones, marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, financiamiento, infraestructura, estabilidad macroeconómica, capital humano y el RIGI minero. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), con datos externos donde existen y una encuesta a empresas mineras que operan en el país. Se completa con la percepción externa, el seguimiento del RIGI minero y el Monitor MIMA de talento.',
                 caption: 'Comparación 3T 2025 vs. 3T 2026 · Licencia Social, Estabilidad Macro y RIGI: índices con datos externos · Resto de los ejes: encuesta SIEMA a empresas mineras (ilustrativo, primer corte)',
                 monitor: '<strong>Se complementa con el Monitor de Ingeniería de Minas (MIMA):</strong> el clima de inversión dice si conviene invertir; el Monitor mide si el país cuenta con la formación y el talento para ejecutarla.',
                 monitorLink: 'Ver el Monitor',
@@ -2619,7 +2622,7 @@
             },
             en: {
                 h1: 'SIEMA Pulsometer — Mining investment climate',
-                p: 'The Pulsometer measures how the sector is doing today, with indicators updated as data arrives. This view sums up, in a single <em>spider chart</em>, the variables that weigh most on a mining investor\'s decision: exports, regulatory framework, social license, political climate, the State\'s "mining-friendly" attitude, funding, infrastructure, macroeconomic stability, human capital and the mining RIGI. Each axis is scored from 0 (very unfavorable) to 10 (very favorable), using external data where it exists and a survey of mining companies operating in the country. It is complemented by external perception, mining RIGI tracking and the MIMA talent Monitor.',
+                p: 'The Pulsometer measures how the sector is doing today, with indicators updated as data arrives. The console sums up, in a 10-axis radar and a set of gauges, the variables that weigh most on a mining investor\'s decision: exports, regulatory framework, social license, political climate, the State\'s "mining-friendly" attitude, funding, infrastructure, macroeconomic stability, human capital and the mining RIGI. Each axis is scored from 0 (very unfavorable) to 10 (very favorable), using external data where it exists and a survey of mining companies operating in the country. It is complemented by external perception, mining RIGI tracking and the MIMA talent Monitor.',
                 caption: 'Q3 2025 vs. Q3 2026 comparison · Social Licence, Macro Stability and RIGI: indices built from external data · Other axes: SIEMA survey of mining companies (illustrative, first cut)',
                 monitor: '<strong>Complemented by the Mining Engineering Monitor (MIMA):</strong> the investment climate says whether to invest; the Monitor measures whether the country has the training and talent to deliver on it.',
                 monitorLink: 'View the Monitor',
@@ -2698,6 +2701,7 @@
             document.getElementById('barometroH1').textContent = PULSOMETER_INTRO[lang].h1;
             document.getElementById('barometroP').innerHTML = PULSOMETER_INTRO[lang].p;
             document.getElementById('barometerCaption').textContent = PULSOMETER_INTRO[lang].caption;
+            document.getElementById('barometerAxesH2').textContent = lang === 'es' ? 'Los 10 ejes, uno por uno' : 'The 10 axes, one by one';
             document.getElementById('barometroMonitor').innerHTML = PULSOMETER_INTRO[lang].monitor +
                 ' <a href="#" onclick="navigateTo(\'monitor\'); return false;">' + PULSOMETER_INTRO[lang].monitorLink + ' →</a>';
             document.getElementById('barometroPulsometro').innerHTML = PULSOMETER_INTRO[lang].pulsometro +
@@ -2718,7 +2722,6 @@
             document.getElementById('opinionReadMoreBtn').textContent = wasExpanded ? OPINION_I18N[lang].showLess : OPINION_I18N[lang].readMore;
 
             renderPulsometerLegend();
-            renderPulsometerChart();
             renderLicencia();
             renderRiesgoPais();
             renderEiti();
@@ -4619,14 +4622,14 @@
             tipEl.style.left = Math.min(e.clientX + 12, window.innerWidth - 260) + 'px'; tipEl.style.top = (e.clientY + 12) + 'px';
         }
 
-        function radar(ax, t, lang) {
+        function radar(ax, t, lang, k = '') {
             const c = 300, R = 210, n = ax.length;
             const P = (i, v) => pol(c, c, R * v / 10, -90 + 360 * i / n);
             const avg = k => ax.reduce((s, a) => s + a[k], 0) / n;
             let s = `<svg viewBox="-80 -6 760 612" role="img" aria-label="${t.pRad}"><defs>
-                <radialGradient id="ocSw" cx="0" cy="0" r="1"><stop offset="0" stop-color="#35e0ff" stop-opacity=".45"/><stop offset="1" stop-color="#35e0ff" stop-opacity="0"/></radialGradient>
-                <radialGradient id="ocBg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#062232"/><stop offset="1" stop-color="#020b12"/></radialGradient></defs>`;
-            s += `<circle cx="${c}" cy="${c}" r="${R + 26}" fill="url(#ocBg)" stroke="#1b6f82" stroke-width="2"/>`;
+                <radialGradient id="ocSw${k}" cx="0" cy="0" r="1"><stop offset="0" stop-color="#35e0ff" stop-opacity=".45"/><stop offset="1" stop-color="#35e0ff" stop-opacity="0"/></radialGradient>
+                <radialGradient id="ocBg${k}" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#062232"/><stop offset="1" stop-color="#020b12"/></radialGradient></defs>`;
+            s += `<circle cx="${c}" cy="${c}" r="${R + 26}" fill="url(#ocBg${k})" stroke="#1b6f82" stroke-width="2"/>`;
             for (let k = 0; k < 72; k++) { const a = k * 5, [x0, y0] = pol(c, c, R + 18, a), [x1, y1] = pol(c, c, R + (k % 6 ? 22 : 26), a); s += `<line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="#1b6f82" stroke-width="${k % 6 ? 1 : 2}"/>`; }
             [2, 4, 6, 8, 10].forEach(k => {
                 s += `<circle cx="${c}" cy="${c}" r="${R * k / 10}" fill="none" ${k === 6 ? 'stroke="#ffb020" stroke-dasharray="4 4" opacity=".55"' : 'stroke="#1f3347"'}/>`;
@@ -4638,7 +4641,7 @@
                 s += `<text x="${lx}" y="${ly + 5}" fill="#9fb8cc" font-size="15" text-anchor="${anc}" font-family="Rajdhani, sans-serif" font-weight="600" class="oc-hit" data-i="${i}">${ax[i].label}</text>`;
             }
             const [ex, ey] = pol(c, c, R, -45);
-            s += `<g class="oc-sweep" style="transform-origin:${c}px ${c}px"><path d="M${c} ${c} L${c} ${c - R} A${R} ${R} 0 0 1 ${ex} ${ey} Z" fill="url(#ocSw)"/><line x1="${c}" y1="${c}" x2="${c}" y2="${c - R}" stroke="#35e0ff" stroke-width="1.5" opacity=".8"/></g>`;
+            s += `<g class="oc-sweep" style="transform-origin:${c}px ${c}px"><path d="M${c} ${c} L${c} ${c - R} A${R} ${R} 0 0 1 ${ex} ${ey} Z" fill="url(#ocSw${k})"/><line x1="${c}" y1="${c}" x2="${c}" y2="${c - R}" stroke="#35e0ff" stroke-width="1.5" opacity=".8"/></g>`;
             const poly = k => ax.map((a, i) => P(i, a[k]).join(',')).join(' ');
             s += `<polygon points="${poly('v2025')}" fill="none" stroke="#6f8aa0" stroke-width="2" stroke-dasharray="5 4"/>`;
             s += `<polygon points="${poly('v2026')}" fill="rgba(53,224,255,.13)" stroke="#35e0ff" stroke-width="2.5" style="filter:drop-shadow(0 0 8px #35e0ff)"/>`;
@@ -4656,8 +4659,17 @@
         function axisTab(i, v) { if (i === 8) return 'monitor'; if (i === 9) return 'rigi'; return v < 6 ? 'brechas' : 'barometro'; }
 
         window.renderOmaConsole = function (lang) {
-            const root = document.getElementById('omaConsole');
+            document.querySelectorAll('.oc[data-console]').forEach(root => renderConsoleInto(root, lang));
+            // reloj (Buenos Aires), compartido por todas las consolas
+            const t = T[lang] || T.es;
+            const tick = () => { const txt = new Date().toLocaleString(t.locale, { timeZone: 'America/Argentina/Buenos_Aires', hour12: false, day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' ART'; document.querySelectorAll('.oc-clock').forEach(el => el.textContent = txt); };
+            tick();
+            clearInterval(window._ocClock); window._ocClock = setInterval(tick, 1000);
+        };
+
+        function renderConsoleInto(root, lang) {
             if (!root || typeof barometerAxes === 'undefined') return;
+            const key = root.dataset.console || '';
             const t = T[lang] || T.es;
             const ax = barometerAxes.map((a, i) => ({ label: t.short[i], full: a[lang].label, v2025: a.v2025, v2026: a.v2026 }));
             const avg26 = ax.reduce((s, a) => s + a.v2026, 0) / ax.length, avg25 = ax.reduce((s, a) => s + a.v2025, 0) / ax.length;
@@ -4682,13 +4694,13 @@
                 <div class="oc-brand"><div class="oc-logo">SIEMA</div><div><h2>${t.title}</h2><small>${t.subtitle}</small></div></div>
                 <div class="oc-right">
                   ${alerts ? `<span class="oc-caution" role="button" tabindex="0" data-go="brechas" title="${t.cautionTitle}">${t.caution(alerts)}</span>` : ''}
-                  <span class="oc-clock" id="ocClock"></span>
+                  <span class="oc-clock"></span>
                 </div>
               </div>
               <div class="oc-grid">
                 ${P('oc-ipm', t.pIpm, 'PFD-1', inst(I.ipm, t))}
                 ${P('oc-exp', t.pExp, 'PFD-2', inst(I.exp, t))}
-                ${P('oc-rad', t.pRad, t.pRadB, `<div class="oc-radar">${radar(ax, t, lang)}</div>
+                ${P('oc-rad', t.pRad, t.pRadB, `<div class="oc-radar">${radar(ax, t, lang, key)}</div>
                     <div class="oc-legend"><span style="color:var(--oc-muted)">${t.legend[0]}</span><span style="color:var(--oc-cyan)">${t.legend[1]}</span><span style="color:var(--oc-warn);opacity:.7">${t.legend[2]}</span></div>
                     <div class="oc-annun">${ax.map((a, i) => { const k = a.v2026 < 6 ? 'crit' : a.v2026 < 7 ? 'warn' : 'good', ic = a.v2026 < 6 ? '■' : a.v2026 < 7 ? '▲' : '●';
                         return `<button type="button" class="oc-lamp ${k}" data-i="${i}" title="${a.full}: ${nf(a.v2025, 1, lang)} → ${nf(a.v2026, 1, lang)}">${ic} ${a.label.toUpperCase()}<b>${nf(a.v2026, 1, lang)}</b></button>`; }).join('')}</div>
@@ -4728,11 +4740,7 @@
                 root.querySelectorAll('.oc-needle').forEach(nd => nd.style.transform = `rotate(${+nd.dataset.a + 90}deg)`);
             }));
 
-            // clock (Buenos Aires)
-            const tick = () => { const el = document.getElementById('ocClock'); if (el) el.textContent = new Date().toLocaleString(t.locale, { timeZone: 'America/Argentina/Buenos_Aires', hour12: false, day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' ART'; };
-            tick();
-            clearInterval(window._ocClock); window._ocClock = setInterval(tick, 1000);
-        };
+        }
 
         renderOmaConsole(typeof currentLang !== 'undefined' ? currentLang : 'es');
     })();
