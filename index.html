@@ -941,6 +941,10 @@
         .rigi-st { font-size: 0.82rem; max-width: 18rem; }
         .rigi-disb p { margin: 0 0 0.8rem; line-height: 1.55; font-size: 0.92rem; }
         .rigi-empty { background: repeating-linear-gradient(135deg, #eef1f5 0 6px, #e2e7ee 6px 12px); }
+        .rigi-tag { display: inline-block; font-size: 0.66rem; font-weight: 700; padding: 0.05rem 0.4rem; border-radius: 999px; margin-top: 0.15rem; white-space: nowrap; }
+        .rigi-tag.rep { background: #dcfce7; color: #166534; }
+        .rigi-tag.est { background: #fef3c7; color: #92400e; }
+        .rigi-src { font-size: 0.74rem; white-space: nowrap; }
         .rigi-con { padding-left: 1.2rem; display: grid; gap: 0.6rem; }
         .rigi-con li { line-height: 1.55; }
         .of-kpi strong small { font-size: 0.9rem; color: #667; font-weight: 600; }
@@ -3551,19 +3555,20 @@
             // Proyectos mineros de producción aprobados y publicados (US$ M).
             // ann = inversión anunciada (padrón); com = activos computables (resolución);
             // disb = desembolso ejecutado a la fecha (null = sin dato publicado); stage = estado según fuente pública
+            // disb = desembolso a la fecha (US$ M); dt: 'rep' = reportado por la empresa, 'est' = estimación OMA, null = sin dato
             projects: [
-                { n: 'Vicuña', m: 'cu', p: 'San Juan', ann: 9737, com: 9024.7, disb: null, stage: { es: 'Obras principales previstas desde 2027 (DF, 17/06/2026)', en: 'Main works planned from 2027 (DF, 17/06/2026)' } },
-                { n: 'Los Azules', m: 'cu', p: 'San Juan', ann: 2672, com: 2353.6, disb: null },
-                { n: 'PSJ Cobre Mendocino', m: 'cu', p: 'Mendoza', ann: 891, com: 613.4, disb: null },
-                { n: 'Rincón', m: 'li', p: 'Salta', ann: 2744, com: 2299.0, disb: null },
-                { n: 'Ampliación Cauchari-Olaroz', m: 'li', p: 'Jujuy', ann: 1241, com: 1166.7, disb: null },
-                { n: 'Liex S.A.', m: 'li', p: 'Catamarca', ann: 710, com: 594.1, disb: null },
-                { n: 'Sal de Oro II', m: 'li', p: 'Salta / Catamarca', ann: 547, com: 207.9, disb: null },
-                { n: 'Expansión Fase 1B', m: 'li', p: null, ann: 531, com: 251.3, disb: null },
-                { n: 'Hombre Muerto Oeste (HMW)', m: 'li', p: 'Catamarca', ann: 292, com: 217.1, disb: null },
-                { n: 'Diablillos', m: 'ag', p: 'Salta', ann: 764, com: 481.7, disb: null },
-                { n: 'Carbonatos Profundos (DCP)', m: 'au', p: 'San Juan', ann: 665, com: 519.6, disb: null },
-                { n: 'Veladero, fases 8 y 9', m: 'au', p: 'San Juan', ann: 436, com: 380.1, disb: null }
+                { n: 'Vicuña', m: 'cu', p: 'San Juan', ann: 9737, com: 9024.7, disb: 126.6, dt: 'rep', stage: { es: 'Obras tempranas (movimiento de suelos). Decisión de construcción de la Etapa 1 posible a fin de 2026; obras principales desde 2027. Dato: capex del 1S 2026, 100 % del JV.', en: 'Early works (earthmoving). Stage 1 construction decision possibly at end-2026; main works from 2027. Figure: H1 2026 capex, 100 % of the JV.' }, src: { l: 'Lundin Mining, 2T 2026', u: 'https://thelundingroup.com/lundin-group-of-companies/lundin-mining-corporation/news-releases/lundin-mining-reports-second-quarter-2026-results-123258/' } },
+                { n: 'Los Azules', m: 'cu', p: 'San Juan', ann: 2672, com: 2353.6, disb: 0, dt: 'est', stage: { es: 'Pre-construcción: decisión final de inversión prevista para el 4T 2026; obras desde inicios de 2027.', en: 'Pre-construction: final investment decision targeted for Q4 2026; works from early 2027.' }, src: { l: 'Mining Reporters, 10/08/2026', u: 'https://www.miningreporters.com/noticia/news/2026/08/mcewen-copper-los-azules-argentina-investment-decision' } },
+                { n: 'PSJ Cobre Mendocino', m: 'cu', p: 'Mendoza', ann: 891, com: 613.4, disb: null, dt: null, stage: { es: 'Ingeniería y preparación tras la aprobación ambiental (12/2025); construcción de 18 a 24 meses, operación prevista para 2028.', en: 'Engineering and preparation after environmental approval (12/2025); 18–24-month build, operation planned for 2028.' }, src: { l: 'Sitio Andino, 12/2025', u: 'https://www.sitioandino.com.ar/hebe-casado-psj-cobre-mendocino-nueva-etapa-mineria-mendoza' } },
+                { n: 'Rincón', m: 'li', p: 'Salta', ann: 2744, com: 2299.0, disb: null, dt: null, stage: { es: 'En construcción, etapa temprana: campamento, infraestructura y obras habilitantes. Primera producción en 2028. Probablemente el mayor desembolso sin dato.', en: 'Under construction, early stage: camp, infrastructure and enabling works. First production in 2028. Probably the largest undisclosed disbursement.' }, src: { l: 'Rio Tinto, 15/07/2026', u: 'https://www.sec.gov/Archives/edgar/data/0000863064/000086306426000035/ex991results.htm' } },
+                { n: 'Ampliación Cauchari-Olaroz', m: 'li', p: 'Jujuy', ann: 1241, com: 1166.7, disb: null, dt: null, stage: { es: 'RIGI aprobado en 06/2026; operación prevista para 12/2028. Sin datos públicos de avance.', en: 'RIGI approved 06/2026; operation planned for 12/2028. No public progress data.' }, src: { l: 'Ámbito, 06/2026', u: 'https://www.ambito.com/energia/bajo-el-rigi-un-proyecto-litio-invertira-us1166-millones-duplicar-su-produccion-n6285373' } },
+                { n: 'Liex S.A. (Tres Quebradas)', m: 'li', p: 'Catamarca', ann: 710, com: 594.1, disb: null, dt: null, stage: { es: 'Ampliación de 40 kt/año aprobada en 07/2026; sin cronograma público. La primera planta opera desde 09/2025.', en: '40 kt/yr expansion approved 07/2026; no public schedule. The first plant has operated since 09/2025.' }, src: { l: 'El Ancasti, 15/07/2026', u: 'https://www.elancasti.com.ar/edicion-impresa/luz-verde-al-rigi-la-litifera-china-que-invertira-709-millones-dolares-n617208' } },
+                { n: 'Sal de Oro II', m: 'li', p: 'Salta / Catamarca', ann: 547, com: 207.9, disb: null, dt: null, stage: { es: 'Construcción avanzada: planta de carbonato en el salar con inauguración prevista para fin de 2026 (capex total ~US$ 633 M).', en: 'Advanced construction: carbonate plant at the salar due to open by end-2026 (total capex ~US$ 633 M).' }, src: { l: 'Panorama Minero, 08/06/2026', u: 'https://www.panorama-minero.com/en/news/posco-approved-to-join-rigi-with-a-us-547-million-investment' } },
+                { n: 'Fénix, expansión Fase 1B', m: 'li', p: 'Catamarca', ann: 531, com: 251.3, disb: 251.3, dt: 'est', stage: { es: 'Construida: primera producción en el 2T 2026, en puesta en marcha. Se asume ejecutado el total computable.', en: 'Built: first production in Q2 2026, commissioning. The full eligible amount is assumed spent.' }, src: { l: 'Rio Tinto, 15/07/2026', u: 'https://www.sec.gov/Archives/edgar/data/0000863064/000086306426000035/ex991results.htm' } },
+                { n: 'Hombre Muerto Oeste (HMW)', m: 'li', p: 'Catamarca', ann: 292, com: 217.1, disb: 217.1, dt: 'est', stage: { es: 'Fase 1 construida: puesta en marcha en el 2T 2026, primeras ventas en el 2S 2026. Se asume ejecutado el total computable.', en: 'Phase 1 built: commissioning in Q2 2026, first sales in H2 2026. The full eligible amount is assumed spent.' }, src: { l: 'Galan Lithium, informe 06/2026', u: 'https://www.accessnewswire.com/newsroom/en/metals-and-mining/quarterly-activities-report-june-2026-1199380' } },
+                { n: 'Diablillos', m: 'ag', p: 'Salta', ann: 764, com: 481.7, disb: null, dt: null, stage: { es: 'Obras tempranas desde el 3T 2026; decisión final de inversión en el 2T 2027; producción antes de fin de 2029.', en: 'Early works from Q3 2026; final investment decision Q2 2027; production before end-2029.' }, src: { l: 'Mining Weekly, 25/09/2026', u: 'https://www.miningweekly.com/article/diablillos-silvergold-project-argentina-2026-09-25' } },
+                { n: 'Carbonatos Profundos (DCP)', m: 'au', p: 'San Juan', ann: 665, com: 519.6, disb: 30, dt: 'est', stage: { es: 'Factibilidad, ingeniería y pruebas piloto (plan 2026: US$ 40 M); construcción desde fines de 2027. Estimación: 9 meses del plan anual.', en: 'Feasibility, engineering and pilot tests (2026 plan: US$ 40 M); construction from late 2027. Estimate: 9 months of the annual plan.' }, src: { l: 'Diario de Cuyo, 16/02/2026', u: 'https://www.diariodecuyo.com.ar/cuyominero/gualcamayo-trabaja-en-3-frentes-con-un-plan-de-inversion-de-usd-40-millones-para-2026-1830873.html' } },
+                { n: 'Veladero, fases 8 y 9', m: 'au', p: 'San Juan', ann: 436, com: 380.1, disb: 0, dt: 'est', stage: { es: 'Licitación en 07/2026; la obra de la fase 8 empieza en 10/2026 y termina en 05/2027.', en: 'Tender in 07/2026; phase 8 works start 10/2026 and finish 05/2027.' }, src: { l: 'Tiempo de San Juan, 2026', u: 'https://www.tiempodesanjuan.com/politica-y-economia/veladero-contratara-800-trabajadores-para-una-ampliacion-y-el-gobierno-mira-con-expectativa-el-impacto-del-rigi_1782348185' } }
             ],
             minerals: { cu: '#b45309', li: '#0e7490', au: '#ca8a04', ag: '#94a3b8' },
             evo: [
@@ -3606,20 +3611,21 @@
                 k1: 'Índice RIGI minero', k1s: v25 => `10.º eje del Barómetro · ${v25} en oct 2025`,
                 k2: 'Proyectos mineros aprobados', k2s: (n, s) => `${n} proyectos · ${s} % de la inversión anunciada del RIGI`,
                 k3: 'Comprometido con fecha cierta', k3s: p => `Obligación exigible en los dos primeros años · ${p} % de lo comprometido`,
-                k4: 'Desembolso ejecutado', k4v: 'Sin dato oficial', k4s: 'El portal RIGI informa compromisos, no ejecución. Ver más abajo.',
+                k4: 'Desembolso identificado', k4s: (p, n, N) => `Piso: ${p} % de lo comprometido · ${n} de ${N} proyectos con dato o estimación`,
+                dt: { rep: 'Reportado', est: 'Estimación OMA' }, totNote: (n, N) => `Piso: suma de ${n} de ${N} proyectos`,
                 evoH: 'Cartera minera aprobada', evoNote: 'Inversión anunciada de los proyectos mineros aprobados, en miles de millones de US$, y cantidad de proyectos. En un año se multiplicó casi por cuatro.',
                 projects: 'proyectos',
                 minH: 'Por mineral',
                 min: { cu: 'Cobre', li: 'Litio', au: 'Oro', ag: 'Plata y oro', auag: 'Oro y plata' },
                 projH: 'Los 12 proyectos aprobados',
-                projCols: ['Proyecto', 'Mineral', 'Provincia', 'Anunciada', 'Comprometida', 'Desembolso ejecutado', 'Estado'],
+                projCols: ['Proyecto', 'Mineral', 'Provincia', 'Anunciada', 'Comprometida', 'Desembolso a la fecha', 'Estado y fuente'],
                 total: 'Total', na: 's/d', toSurvey: 'A relevar',
-                projNote: 'US$ M. Anunciada: lo que declara el titular en el padrón (incluye etapas futuras). Comprometida: activos computables que reconoce la resolución, base de los beneficios. Mineral y provincia: elaboración OMA. Vicuña es cobre con oro y plata.',
+                projNote: 'US$ M. Anunciada: lo que declara el titular en el padrón (incluye etapas futuras). Comprometida: activos computables que reconoce la resolución, base de los beneficios. Mineral y provincia: elaboración OMA. Vicuña es cobre con oro y plata. Desembolso: “Reportado” es la cifra publicada por la empresa; “Estimación OMA” se deduce del estado de obra o del plan anual informado (un proyecto ya construido se toma como ejecutado; uno en pre-construcción, como cero); “s/d”: no hay base pública para estimarlo.',
                 disbH: 'Nivel de desembolso',
-                disb: (m, c, p, g) => [
+                disb: (m, c, p, g, ds, dp) => [
                     `<strong>Lo que es obligación:</strong> los 12 proyectos se comprometieron a invertir US$ ${m} M en sus dos primeros años, el ${p} % de lo comprometido (US$ ${c} M). Es la única cifra con fecha cierta: cada resolución la vuelve exigible.`,
-                    `<strong>Lo que se desembolsó:</strong> no hay dato oficial por proyecto. El portal del Ministerio de Economía informa montos aprobados, no ejecutados. La única referencia pública es una estimación oficial de abril de 2026: unos US$ ${g} M en dos años para los primeros 12 proyectos aprobados de todos los sectores, muy por debajo de lo comprometido.`,
-                    '<strong>Cómo completarlo:</strong> la columna “Desembolso ejecutado” se carga a medida que haya datos de los reportes trimestrales de las empresas, la Secretaría de Minería y los informes de avance ante la autoridad de aplicación. Ese dato pasará a ser un componente del índice.'
+                    `<strong>Lo que se desembolsó:</strong> no hay dato oficial; el portal del Ministerio de Economía informa montos aprobados, no ejecutados. A partir de los reportes de las empresas, OMA identifica al menos US$ ${ds} M, el ${dp} % de lo comprometido: dos proyectos de litio ya construidos (Fénix 1B y Hombre Muerto Oeste), las obras tempranas de Vicuña y los estudios de Carbonatos Profundos. Es un piso: Rincón y Sal de Oro II están en obra y no publican cuánto llevan gastado. Como referencia, una estimación oficial de abril de 2026 preveía unos US$ ${g} M en dos años para los primeros 12 proyectos aprobados de todos los sectores.`,
+                    '<strong>Lectura:</strong> el 71 % de la inversión minera comprometida (Vicuña, Los Azules, PSJ Cobre Mendocino, Diablillos y Veladero) todavía no empezó la construcción principal. El grueso del desembolso del RIGI minero cae en 2027-2029. La tabla se actualiza con cada reporte trimestral; cuando la cobertura alcance a la mayoría de los proyectos, el desembolso pasará a ser un componente del índice.'
                 ],
                 profH: 'Cuánto vale el RIGI para la minería',
                 prof: (d, f) => `A precios normalizados y una tasa de descuento de ${f(d.wacc, 2)} %, el VAN de los proyectos mineros pasa de US$ ${f(d.npv0)} M con el régimen general a US$ ${f(d.npv1)} M con el RIGI: el régimen agrega US$ ${f(d.uplift)} M, el ${f(d.upPct, 1)} % de su inversión, y la TIR sube de ${f(d.irr0, 1)} % a ${f(d.irr1, 1)} %. La minería se queda con más de dos tercios de la mejora de toda la cartera RIGI. Con los precios spot de agosto de 2026 el efecto es mayor: la mejora llega al ${f(d.spotUpPct, 1)} % de la inversión y la TIR pasa de ${f(d.spotIrr0, 1)} % a ${f(d.spotIrr1, 1)} %.`,
@@ -3646,7 +3652,7 @@
                 con: [
                     '<strong>El RIGI funciona sobre todo como política minera.</strong> Los 12 proyectos mineros son el 43 % de la inversión anunciada del régimen, pero reciben más de dos tercios de su beneficio: el VAN sube un tercio de su inversión.',
                     '<strong>El cobre manda en monto; el litio, en dependencia del régimen.</strong> Tres proyectos de cobre concentran más del 60 % de la inversión minera. En el litio, en cambio, el RIGI decide si el proyecto da VAN positivo.',
-                    '<strong>Aprobado no es desembolsado.</strong> Solo el 29 % de lo comprometido tiene fecha cierta y no hay dato público de ejecución. El proyecto más grande, Vicuña, prevé obras principales recién desde 2027. Medir el desembolso real es la prioridad de la próxima actualización.',
+                    '<strong>Aprobado no es desembolsado.</strong> Solo el 29 % de lo comprometido tiene fecha cierta y lo desembolsado que se puede identificar no llega al 4 %. Lo que ya está construido es litio de escala media; los grandes proyectos de cobre arrancan en 2027.',
                     '<strong>Las provincias mineras ganan más que la Nación.</strong> Las regalías quedan enteras en la provincia productora; la Nación paga la mayor parte del costo fiscal. Es una tensión federal a seguir en los ejes Clima Político y Licencia Social.',
                     '<strong>Falta la infraestructura habilitante.</strong> Sin energía, transporte y agua, el ritmo de desembolso de estos proyectos depende de obras que hoy no se miden en esta pestaña.'
                 ],
@@ -3658,20 +3664,21 @@
                 k1: 'Mining RIGI index', k1s: v25 => `Barometer 10th axis · ${v25} in Oct 2025`,
                 k2: 'Approved mining projects', k2s: (n, s) => `${n} projects · ${s} % of RIGI announced investment`,
                 k3: 'Committed with firm dates', k3s: p => `Enforceable two-year obligation · ${p} % of committed`,
-                k4: 'Disbursed to date', k4v: 'No official data', k4s: 'The RIGI portal reports commitments, not execution. See below.',
+                k4: 'Identified disbursement', k4s: (p, n, N) => `Floor: ${p} % of committed · ${n} of ${N} projects with data or estimate`,
+                dt: { rep: 'Reported', est: 'OMA estimate' }, totNote: (n, N) => `Floor: sum of ${n} of ${N} projects`,
                 evoH: 'Approved mining portfolio', evoNote: 'Announced investment of approved mining projects, US$ bn, and number of projects. It almost quadrupled in one year.',
                 projects: 'projects',
                 minH: 'By mineral',
                 min: { cu: 'Copper', li: 'Lithium', au: 'Gold', ag: 'Silver and gold', auag: 'Gold and silver' },
                 projH: 'The 12 approved projects',
-                projCols: ['Project', 'Mineral', 'Province', 'Announced', 'Committed', 'Disbursed', 'Status'],
+                projCols: ['Project', 'Mineral', 'Province', 'Announced', 'Committed', 'Disbursed to date', 'Status and source'],
                 total: 'Total', na: 'n/a', toSurvey: 'To be surveyed',
-                projNote: 'US$ M. Announced: what the holder declares in the register (includes future stages). Committed: eligible assets recognised by the resolution, the basis of the benefits. Mineral and province: OMA. Vicuña is copper with gold and silver.',
+                projNote: 'US$ M. Announced: what the holder declares in the register (includes future stages). Committed: eligible assets recognised by the resolution, the basis of the benefits. Mineral and province: OMA. Vicuña is copper with gold and silver. Disbursement: "Reported" is the company\'s published figure; "OMA estimate" is deduced from construction status or the reported annual plan (a built project is taken as spent; a pre-construction one as zero); "n/a": no public basis to estimate it.',
                 disbH: 'Disbursement level',
-                disb: (m, c, p, g) => [
+                disb: (m, c, p, g, ds, dp) => [
                     `<strong>What is an obligation:</strong> the 12 projects committed to invest US$ ${m} M in their first two years, ${p} % of committed investment (US$ ${c} M). It is the only figure with a firm date: each resolution makes it enforceable.`,
-                    `<strong>What has been disbursed:</strong> there is no official figure per project. The Ministry of Economy portal reports approved amounts, not execution. The only public reference is an official April 2026 estimate: about US$ ${g} M over two years for the first 12 approved projects across all sectors, far below what was committed.`,
-                    '<strong>How to complete it:</strong> the "Disbursed" column will be filled as data arrives from company quarterly reports, the Mining Secretariat and progress reports to the enforcement authority. That figure will become a component of the index.'
+                    `<strong>What has been disbursed:</strong> there is no official figure; the Ministry of Economy portal reports approved amounts, not execution. From company reports, OMA identifies at least US$ ${ds} M, ${dp} % of committed investment: two lithium projects already built (Fénix 1B and Hombre Muerto West), Vicuña's early works and the Deep Carbonates studies. It is a floor: Rincón and Sal de Oro II are under construction and do not publish how much they have spent. For reference, an official April 2026 estimate expected about US$ ${g} M over two years for the first 12 approved projects across all sectors.`,
+                    '<strong>Reading:</strong> 71 % of committed mining investment (Vicuña, Los Azules, PSJ Cobre Mendocino, Diablillos and Veladero) has not yet started main construction. The bulk of mining RIGI disbursement falls in 2027–2029. The table is updated with each quarterly report; when coverage reaches most projects, disbursement will become a component of the index.'
                 ],
                 profH: 'What RIGI is worth to mining',
                 prof: (d, f) => `At normalised prices and a ${f(d.wacc, 2)} % discount rate, the NPV of mining projects rises from US$ ${f(d.npv0)} M under the general regime to US$ ${f(d.npv1)} M under RIGI: the regime adds US$ ${f(d.uplift)} M, ${f(d.upPct, 1)} % of their investment, and IRR rises from ${f(d.irr0, 1)} % to ${f(d.irr1, 1)} %. Mining captures more than two thirds of the gain of the whole RIGI portfolio. At August 2026 spot prices the effect is larger: the gain reaches ${f(d.spotUpPct, 1)} % of investment and IRR goes from ${f(d.spotIrr0, 1)} % to ${f(d.spotIrr1, 1)} %.`,
@@ -3698,7 +3705,7 @@
                 con: [
                     '<strong>RIGI works above all as a mining policy.</strong> The 12 mining projects are 43 % of the regime\'s announced investment but receive more than two thirds of its benefit: NPV rises by a third of their investment.',
                     '<strong>Copper leads in size; lithium in dependence on the regime.</strong> Three copper projects hold over 60 % of mining investment. In lithium, by contrast, RIGI decides whether the project has a positive NPV.',
-                    '<strong>Approved is not disbursed.</strong> Only 29 % of committed investment has a firm date and there is no public execution data. The largest project, Vicuña, plans main works only from 2027. Measuring actual disbursement is the priority of the next update.',
+                    '<strong>Approved is not disbursed.</strong> Only 29 % of committed investment has a firm date and identifiable disbursement is below 4 %. What is already built is mid-sized lithium; the large copper projects start in 2027.',
                     '<strong>Mining provinces gain more than the nation.</strong> Royalties stay entirely in the producing province; the national government pays most of the fiscal cost. A federal tension to follow in the Political Climate and Social License axes.',
                     '<strong>Enabling infrastructure is missing.</strong> Without energy, transport and water, the pace of disbursement depends on works this tab does not yet measure.'
                 ],
@@ -3718,6 +3725,7 @@
             const ann = sum('ann'), com = sum('com');
             const execPct = Math.round(d.min2y / com * 100);
             const disbKnown = P.filter(r => r.disb != null);
+            const disbSum = disbKnown.reduce((s, r) => s + r.disb, 0), disbPct = disbSum / com * 100;
 
             // Evolución
             const maxU = 25000, W = 420, H = 200, bw = 110, gap = (W - 60 - d.evo.length * bw) / d.evo.length;
@@ -3737,8 +3745,8 @@
             const byM = mk.map(k => ({ k, usd: P.filter(r => r.m === k).reduce((s, r) => s + r.ann, 0), n: P.filter(r => r.m === k).length })).filter(x => x.n);
             const minBars = byM.map(x => `<div class="of-path-row rigi-ben"><span><i class="rigi-dot" style="background:${d.minerals[x.k]}"></i>${t.min[x.k]} (${x.n})</span><div class="of-path-bar"><span style="width:${x.usd / byM[0].usd * 100}%;background:${d.minerals[x.k]}"></span></div><strong>${f(x.usd)}</strong><small>${f(x.usd / ann * 100)} %</small></div>`).join('');
 
-            const projRows = P.map(r => `<tr><td>${r.n}</td><td><i class="rigi-dot" style="background:${d.minerals[r.m]}"></i>${t.min[r.m]}</td><td>${r.p || '—'}</td><td class="n">${f(r.ann)}</td><td class="n">${f(r.com, 1)}</td><td class="n">${r.disb == null ? `<span class="rigi-na">${t.na}</span>` : f(r.disb)}</td><td class="rigi-st">${r.stage ? r.stage[lang] : `<span class="rigi-na">${t.toSurvey}</span>`}</td></tr>`).join('')
-                + `<tr class="of-grp"><td>${t.total}</td><td></td><td></td><td class="n">${f(ann)}</td><td class="n">${f(com, 1)}</td><td class="n">${disbKnown.length ? f(disbKnown.reduce((s, r) => s + r.disb, 0)) : t.na}</td><td></td></tr>`;
+            const projRows = P.map(r => `<tr><td>${r.n}</td><td><i class="rigi-dot" style="background:${d.minerals[r.m]}"></i>${t.min[r.m]}</td><td>${r.p || '—'}</td><td class="n">${f(r.ann)}</td><td class="n">${f(r.com, 1)}</td><td class="n">${r.disb == null ? `<span class="rigi-na">${t.na}</span>` : (r.dt === 'est' ? '≈ ' : '') + f(r.disb, r.disb % 1 ? 1 : 0) + `<br><span class="rigi-tag ${r.dt}">${t.dt[r.dt]}</span>`}</td><td class="rigi-st">${r.stage ? r.stage[lang] : `<span class="rigi-na">${t.toSurvey}</span>`}${r.src ? ` <a href="${r.src.u}" target="_blank" rel="noopener" class="rigi-src">${r.src.l} ↗</a>` : ''}</td></tr>`).join('')
+                + `<tr class="of-grp"><td>${t.total}</td><td></td><td></td><td class="n">${f(ann)}</td><td class="n">${f(com, 1)}</td><td class="n">≥ ${f(disbSum)}</td><td>${t.totNote(disbKnown.length, P.length)}</td></tr>`;
 
             const bmRows = d.byMineral.map(r => `<tr><td>${t.min[r.k]}</td><td class="n">${pct(r.irr0)}</td><td class="n"><strong>${pct(r.irr1)}</strong></td><td class="n">${r.npv0 == null ? '—' : f(r.npv0) + ' → ' + f(r.npv1)}</td></tr>`).join('');
             const fisRows = d.fiscal.map(r => `<tr${r.k === 'tot' ? ' class="of-grp"' : r.k === 'host' ? ' class="rigi-hl"' : ''}><td>${t.fis[r.k]}</td><td class="n">${f(r.rev)}</td><td class="n">${f(r.cost)}</td><td class="n">${f(r.rev / r.cost, 1)}×</td><td class="n"><strong>${pct(r.be)}</strong></td></tr>`).join('');
@@ -3753,7 +3761,7 @@
                     ${kpi(t.k1, `${f(rigiIndex('v'), 1)}<small> / 10</small>`, t.k1s(f(rigiIndex('v25'), 1)))}
                     ${kpi(t.k2, `US$ ${f(ann)} M`, t.k2s(P.length, f(d.sharePortfolio.mining / d.sharePortfolio.total * 100)))}
                     ${kpi(t.k3, `US$ ${f(d.min2y)} M`, t.k3s(execPct))}
-                    ${kpi(t.k4, disbKnown.length ? `US$ ${f(disbKnown.reduce((s, r) => s + r.disb, 0))} M` : `<span class="rigi-na-big">${t.k4v}</span>`, t.k4s)}
+                    ${kpi(t.k4, `≥ US$ ${f(disbSum)} M`, t.k4s(f(disbPct, 1), disbKnown.length, P.length))}
                 </div>
 
                 <div class="rigi-two">
@@ -3766,13 +3774,13 @@
                 <p class="table-note">${t.projNote}</p>
 
                 <h3 class="rp-h3">${t.disbH}</h3>
-                <div class="rp-card rigi-disb">${t.disb(f(d.min2y), f(com), execPct, f(d.govDisb)).map(x => `<p>${x}</p>`).join('')}
+                <div class="rp-card rigi-disb">${t.disb(f(d.min2y), f(com), execPct, f(d.govDisb), f(disbSum), f(disbPct, 1)).map(x => `<p>${x}</p>`).join('')}
                     <div class="rigi-inv-h"><strong>${lang === 'es' ? 'Comprometido' : 'Committed'}</strong><span>US$ ${f(com)} M</span></div>
                     <div class="of-path-bar"><span style="width:100%;background:#94a3b8"></span></div>
                     <div class="rigi-inv-h" style="margin-top:.6rem"><strong>${lang === 'es' ? 'Obligación en los dos primeros años' : 'Two-year obligation'}</strong><span>US$ ${f(d.min2y)} M · ${execPct} %</span></div>
                     <div class="of-path-bar"><span style="width:${execPct}%"></span></div>
-                    <div class="rigi-inv-h" style="margin-top:.6rem"><strong>${t.k4}</strong><span>${disbKnown.length ? 'US$ ' + f(disbKnown.reduce((s, r) => s + r.disb, 0)) + ' M' : t.k4v}</span></div>
-                    <div class="of-path-bar rigi-empty"><span style="width:0"></span></div>
+                    <div class="rigi-inv-h" style="margin-top:.6rem"><strong>${t.k4}</strong><span>≥ US$ ${f(disbSum)} M · ${f(disbPct, 1)} %</span></div>
+                    <div class="of-path-bar rigi-empty"><span style="width:${disbPct}%;background:#3ddc84"></span></div>
                 </div>
 
                 <h3 class="rp-h3">${t.profH}</h3>
