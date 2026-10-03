@@ -921,6 +921,23 @@
         .of-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin-top: 0.9rem; font-size: 0.8rem; color: #444; font-variant-numeric: tabular-nums; }
         .of-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 0.35rem; vertical-align: -1px; }
         .of-table { width: 100%; background: white; font-size: 0.88rem; }
+        /* RIGI */
+        .rigi-two { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 1rem 0; }
+        @media (max-width: 900px) { .rigi-two { grid-template-columns: 1fr; } }
+        .rigi-two.rigi-wide { grid-template-columns: 3fr 2fr; }
+        @media (max-width: 900px) { .rigi-two.rigi-wide { grid-template-columns: 1fr; } }
+        .rigi-evo { width: 100%; height: auto; margin-top: 0.6rem; }
+        .rigi-t td, .rigi-t th { font-variant-numeric: tabular-nums; }
+        .rigi-t tr.rigi-hl td { background: #fff7ed; }
+        .rigi-inv { margin: 0.4rem 0 1rem; }
+        .rigi-inv-h { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.9rem; margin-bottom: 0.3rem; }
+        .rigi-inv-h span { font-variant-numeric: tabular-nums; font-weight: 600; }
+        .rigi-inv small { display: block; color: #666; font-size: 0.78rem; margin-top: 0.3rem; line-height: 1.4; }
+        .of-path-row.rigi-ben { grid-template-columns: minmax(9rem, 13rem) 1fr 3.6rem 3.4rem; }
+        .rigi-callout { background: #f1f5fb; border-left: 3px solid #1e3c72; padding: 0.7rem 1rem; font-size: 0.9rem; margin: 0.8rem 0 0; border-radius: 0 4px 4px 0; }
+        .rigi-con { padding-left: 1.2rem; display: grid; gap: 0.6rem; }
+        .rigi-con li { line-height: 1.55; }
+        .of-kpi strong small { font-size: 0.9rem; color: #667; font-weight: 600; }
         .of-table td.n, .of-table th.n { text-align: right; white-space: nowrap; }
         .of-table tr.of-grp td { background: #f1f5fb; font-weight: 600; color: #1e3c72; }
         .of-chip { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.5rem; border-radius: 999px; color: white; background: var(--c); white-space: nowrap; }
@@ -1244,7 +1261,8 @@
         .oc-hit{cursor:pointer}
         .oc-legend{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;font-size:.8rem;color:var(--oc-muted);margin-top:2px}
         .oc-legend span::before{content:"";display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle;background:currentColor}
-        .oc-annun{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+        .oc-annun{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:12px}
+        @media (max-width: 1000px){.oc-annun{grid-template-columns:repeat(5,1fr)}} @media (max-width: 760px){.oc-annun{grid-template-columns:repeat(2,1fr)}}
         .oc-lamp{border-radius:6px;padding:7px 6px;text-align:center;font-family:'Orbitron',sans-serif;font-size:.52rem;letter-spacing:.08em;line-height:1.3;border:1px solid;cursor:pointer;transition:transform .15s,filter .15s;background:none}
         .oc-lamp:hover,.oc-lamp:focus-visible{transform:translateY(-1px);filter:brightness(1.3);outline:none}
         .oc-lamp b{display:block;font-family:'Share Tech Mono',monospace;font-size:1rem;letter-spacing:0;margin-top:2px}
@@ -1333,6 +1351,7 @@
                 <li><button class="nav-btn" data-tab="prospectiva">Prospectiva</button></li>
                 <li><button class="nav-btn" data-tab="argentina">Argentina hoy</button></li>
                 <li><button class="nav-btn" data-tab="oferta">Oferta</button></li>
+                <li><button class="nav-btn" data-tab="rigi">RIGI</button></li>
                 <li><button class="nav-btn" data-tab="capital-humano">Capital Humano</button></li>
                 <li><button class="nav-btn" data-tab="indicadores">Indicadores</button></li>
                 <li><button class="nav-btn" data-tab="infografias">Infografías</button></li>
@@ -1594,6 +1613,11 @@
 
         </div>
 
+        <!-- RIGI -->
+        <div id="rigi" class="tab-content">
+            <div id="rigiDyn"></div>
+        </div>
+
         <!-- Capital Humano y Política (Guide) -->
         <div id="capital-humano" class="tab-content">
             <h1>Capital Humano &amp; Política Minera</h1>
@@ -1697,12 +1721,12 @@
         <!-- Barómetro -->
         <div id="barometro" class="tab-content">
             <h1 id="barometroH1">Barómetro OMA — Clima de Inversión Minera</h1>
-            <p id="barometroP">El Barómetro resume, en un solo vistazo tipo <em>spider chart</em>, la evolución de las variables no estrictamente productivas que más pesan en la decisión de un inversor minero: marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, disponibilidad de financiamiento, infraestructura y estabilidad macroeconómica. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), a partir de encuestas a empresas del Consejo Rector y análisis del equipo OMA.</p>
+            <p id="barometroP">El Barómetro resume, en un solo vistazo tipo <em>spider chart</em>, la evolución de las variables no estrictamente productivas que más pesan en la decisión de un inversor minero: marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, disponibilidad de financiamiento, infraestructura, estabilidad macroeconómica y la evolución del RIGI. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), a partir de encuestas a empresas del Consejo Rector y análisis del equipo OMA.</p>
 
             <div class="barometer-grid">
                 <div class="barometer-chart-wrap">
                     <canvas id="barometerChart" height="320"></canvas>
-                    <p id="barometerCaption" style="text-align:center; font-size:0.8rem; color:#888; margin-top:0.8rem;">Comparación 3T 2025 vs. 3T 2026 · Licencia Social y Estabilidad Macro: índices con datos externos · Resto de los ejes: encuesta OMA a empresas mineras (ilustrativo, primer corte)</p>
+                    <p id="barometerCaption" style="text-align:center; font-size:0.8rem; color:#888; margin-top:0.8rem;">Comparación 3T 2025 vs. 3T 2026 · Licencia Social, Estabilidad Macro y RIGI: índices con datos externos · Resto de los ejes: encuesta OMA a empresas mineras (ilustrativo, primer corte)</p>
                 </div>
                 <div class="barometer-legend" id="barometerLegend"></div>
             </div>
@@ -1783,7 +1807,7 @@
                         <td>Estabilidad Macro</td>
                         <td>5.0</td>
                         <td>+2.3 (2025: 2.7)</td>
-                        <td>Medido con datos externos. La segunda mayor mejora de los 9 ejes (calificaciones fuera de la zona CCC y riesgo país a la mitad), pero arranca de una base muy baja y la deuda de 2027 sigue en estado crítico.</td>
+                        <td>Medido con datos externos. La segunda mayor mejora de los 10 ejes (calificaciones fuera de la zona CCC y riesgo país a la mitad), pero arranca de una base muy baja y la deuda de 2027 sigue en estado crítico.</td>
                         <td>Comunicar de forma explícita y comparada los mecanismos de cobertura ya disponibles (RIGI, contratos en dólares, acceso a divisas para minería). Seguir los cuatro fundamentos del riesgo país del <a href="#" onclick="navigateTo('barometro'); return false;">Barómetro</a>: hoy el servicio de la deuda externa de 2027 es el punto crítico.</td>
                     </tr>
                     <tr>
@@ -2528,7 +2552,7 @@
                         <td>Macro Stability</td>
                         <td>5.0</td>
                         <td>+2.3 (2025: 2.7)</td>
-                        <td>Measured with external data. The second-largest improvement of the 9 axes (ratings out of the CCC range and country risk halved), but from a very low base, and 2027 debt remains critical.</td>
+                        <td>Measured with external data. The second-largest improvement of the 10 axes (ratings out of the CCC range and country risk halved), but from a very low base, and 2027 debt remains critical.</td>
                         <td>Explicitly and comparatively communicate the coverage mechanisms already available (RIGI, dollar-denominated contracts, foreign-currency access for mining). Track the four country-risk fundamentals in the <a href="#" onclick="navigateTo('barometro'); return false;">Barometer</a>: today 2027 external debt service is the critical point.</td>
                     </tr>
                     <tr>
@@ -2934,8 +2958,8 @@
         };
 
         const NAV_LABELS = {
-            es: { inicio: 'Inicio', demanda: 'Demanda', prospectiva: 'Prospectiva', argentina: 'Argentina hoy', oferta: 'Oferta', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', infografias: 'Infografías', barometro: 'Barómetro', pulsometro: 'Pulsómetro', brechas: 'Brechas', monitor: 'Monitor MIMA', noticias: 'Noticias', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de' },
-            en: { inicio: 'Home', demanda: 'Demand', prospectiva: 'Foresight', argentina: 'Argentina today', oferta: 'Supply', 'capital-humano': 'Human Capital', indicadores: 'Indicators', infografias: 'Infographics', barometro: 'Barometer', pulsometro: 'Pulsometer', brechas: 'Gaps', monitor: 'MIMA Monitor', noticias: 'News', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About' }
+            es: { inicio: 'Inicio', demanda: 'Demanda', prospectiva: 'Prospectiva', argentina: 'Argentina hoy', oferta: 'Oferta', rigi: 'RIGI', 'capital-humano': 'Capital Humano', indicadores: 'Indicadores', infografias: 'Infografías', barometro: 'Barómetro', pulsometro: 'Pulsómetro', brechas: 'Brechas', monitor: 'Monitor MIMA', noticias: 'Noticias', gobernanza: 'Gobernanza', 'hoja-de-ruta': 'Hoja de Ruta', acerca: 'Acerca de' },
+            en: { inicio: 'Home', demanda: 'Demand', prospectiva: 'Foresight', argentina: 'Argentina today', oferta: 'Supply', rigi: 'RIGI', 'capital-humano': 'Human Capital', indicadores: 'Indicators', infografias: 'Infographics', barometro: 'Barometer', pulsometro: 'Pulsometer', brechas: 'Gaps', monitor: 'MIMA Monitor', noticias: 'News', gobernanza: 'Governance', 'hoja-de-ruta': 'Roadmap', acerca: 'About' }
         };
 
         const TICKER_LABEL = { es: '💹 Cotizaciones', en: '💹 Market Prices' };
@@ -2954,8 +2978,8 @@
         const BAROMETER_INTRO = {
             es: {
                 h1: 'Barómetro OMA — Clima de Inversión Minera',
-                p: 'El Barómetro resume, en un solo vistazo tipo <em>spider chart</em>, la evolución de las variables no estrictamente productivas que más pesan en la decisión de un inversor minero: marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, disponibilidad de financiamiento, infraestructura y estabilidad macroeconómica. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), a partir de encuestas a empresas del Consejo Rector y análisis del equipo OMA.',
-                caption: 'Comparación 3T 2025 vs. 3T 2026 · Licencia Social y Estabilidad Macro: índices con datos externos · Resto de los ejes: encuesta OMA a empresas mineras (ilustrativo, primer corte)',
+                p: 'El Barómetro resume, en un solo vistazo tipo <em>spider chart</em>, la evolución de las variables no estrictamente productivas que más pesan en la decisión de un inversor minero: marco normativo, licencia social, clima político, actitud "mining friendly" del Estado, disponibilidad de financiamiento, infraestructura, estabilidad macroeconómica y la evolución del RIGI. Cada eje se puntúa de 0 (muy desfavorable) a 10 (muy favorable), a partir de encuestas a empresas del Consejo Rector y análisis del equipo OMA.',
+                caption: 'Comparación 3T 2025 vs. 3T 2026 · Licencia Social, Estabilidad Macro y RIGI: índices con datos externos · Resto de los ejes: encuesta OMA a empresas mineras (ilustrativo, primer corte)',
                 monitor: '<strong>Se complementa con el Monitor de Ingeniería de Minas (MIMA):</strong> el Barómetro mide el clima de inversión; el Monitor mide si el país cuenta con la formación y el talento para ejecutarla.',
                 monitorLink: 'Ver el Monitor',
                 pulsometro: '<strong>Se confronta con el Pulsómetro:</strong> mientras el Pulsómetro (Universidad de Toronto y Resources for the Future) no tenga datos propios, el Análisis de Brechas usa lo que el propio Barómetro revela sobre sus ejes más débiles.',
@@ -2963,8 +2987,8 @@
             },
             en: {
                 h1: 'OMA Barometer — Mining Investment Climate',
-                p: 'The Barometer summarizes, in a single <em>spider chart</em> view, the evolution of the non-strictly-productive variables that weigh most heavily on a mining investor\'s decision: regulatory framework, social license, political climate, the State\'s "mining-friendly" attitude, funding availability, infrastructure and macroeconomic stability. Each axis is scored from 0 (very unfavorable) to 10 (very favorable), based on surveys of Governing Council companies and analysis by the OMA team.',
-                caption: 'Q3 2025 vs. Q3 2026 comparison · Social Licence and Macro Stability: indices built from external data · Other axes: OMA survey of mining companies (illustrative, first cut)',
+                p: 'The Barometer summarizes, in a single <em>spider chart</em> view, the evolution of the non-strictly-productive variables that weigh most heavily on a mining investor\'s decision: regulatory framework, social license, political climate, the State\'s "mining-friendly" attitude, funding availability, infrastructure, macroeconomic stability and the evolution of RIGI. Each axis is scored from 0 (very unfavorable) to 10 (very favorable), based on surveys of Governing Council companies and analysis by the OMA team.',
+                caption: 'Q3 2025 vs. Q3 2026 comparison · Social Licence, Macro Stability and RIGI: indices built from external data · Other axes: OMA survey of mining companies (illustrative, first cut)',
                 monitor: '<strong>Complemented by the Mining Engineering Monitor (MIMA):</strong> the Barometer measures the investment climate; the Monitor measures whether the country has the training and talent to deliver on it.',
                 monitorLink: 'View the Monitor',
                 pulsometro: '<strong>Checked against the Pulsometer:</strong> until the Pulsometer (University of Toronto and Resources for the Future) has its own data, the Gap Analysis uses what the Barometer itself reveals about its weakest axes.',
@@ -3067,6 +3091,7 @@
             renderRiesgoPais();
             renderEiti();
             renderOferta();
+            renderRigi();
             renderAmvestSidebar();
             initHomeAnimations();
             if (window.renderOmaConsole) renderOmaConsole(lang);
@@ -3508,6 +3533,351 @@
         // --- Barómetro (spider chart) ---
         const PRIORITY_BADGE = { es: 'Prioridad #1 del Gobierno', en: "Government's #1 Priority" };
 
+        // --- RIGI: Régimen de Incentivo para Grandes Inversiones ---
+        // Datos al 01/10/2026. Fuente principal: análisis independiente de terceros sobre las resoluciones
+        // del Boletín Oficial y el portal RIGI del Ministerio de Economía (uso autorizado, sin atribución).
+        // Contraste: Ministerio de Economía, Ámbito (14/10/2025), Perfil (11/06/2026), El Litoral (31/07/2026).
+        // Para actualizar, editar solo RIGI_DATA. El índice RIGI alimenta el 10.º eje del Barómetro.
+        const RIGI_DATA = {
+            asOf: '01/10/2026',
+            // Evolución de la cartera aprobada (proyectos, US$ M)
+            evo: [
+                { d: { es: 'Oct 2025', en: 'Oct 2025' }, n: 8, usd: 15739, src: 'Ámbito, 14/10/2025' },
+                { d: { es: 'Jun 2026', en: 'Jun 2026' }, n: 16, usd: 29892, src: 'Ministerio de Economía / Perfil, 11/06/2026' },
+                { d: { es: 'Oct 2026', en: 'Oct 2026' }, n: 23, usd: 39429, src: 'Boletín Oficial, 01/10/2026' }
+            ],
+            pipeline: [
+                { k: 'pub', n: 23, usd: 39429 },
+                { k: 'pend', n: 4, usd: 23981 },
+                { k: 'revId', n: 12, usd: 63428 },
+                { k: 'revNoId', n: 6, usd: 72071 }
+            ],
+            pipeDiff: 10347, pipeTotal: 209256,
+            inv: { announced: 49766, committed: 33837, min2y: 13474, plan2528: 22792 },
+            // Inversión por destino (US$ M, cartera aprobada)
+            dest: [
+                { k: 'cu', usd: 13300, c: '#b45309' }, { k: 'mid', usd: 5864, c: '#475569' }, { k: 'li', usd: 5787, c: '#0e7490' },
+                { k: 'up', usd: 4524, c: '#64748b' }, { k: 'fert', usd: 2693, c: '#65a30d' }, { k: 'au', usd: 1871, c: '#ca8a04' }, { k: 'oth', usd: 1050, c: '#94a3b8' }
+            ],
+            sectors: [
+                { k: 'og', n: 7, ann: 27486, com: 14698, min: 7319, jobs: 28993, irr0: 4.8, irr1: 7.9, up: 15.6 },
+                { k: 'min', n: 12, ann: 21230, com: 18109, min: 5298, jobs: 65408, irr0: 13.1, irr1: 16.0, up: 33.4 },
+                { k: 'ele', n: 2, ann: 487, com: 467, min: 421, jobs: 549, irr0: 4.0, irr1: 5.5, up: 10.1 },
+                { k: 'ste', n: 1, ann: 286, com: 286, min: 270, jobs: 3800, irr0: 7.9, irr1: 10.5, up: 21.2 },
+                { k: 'inf', n: 1, ann: 277, com: 277, min: 166, jobs: 9700, irr0: 4.1, irr1: 5.7, up: 13.1 }
+            ],
+            mining: [
+                { k: 'cu', irr0: 13.9, irr1: 16.4, npv0: 5817, npv1: 9656 },
+                { k: 'li', irr0: 9.5, irr1: 12.8, npv0: -78, npv1: 1512 },
+                { k: 'au', irr0: 19.4, irr1: 24.9, npv0: null, npv1: null }
+            ],
+            portfolio: { npv0: 2706, npv1: 11235, uplift: 8493, upliftPct: 25.1, irr0: 10.6, irr1: 13.4, wacc: 9.82 },
+            benefits: [
+                { k: 'gan', usd: 3180 }, { k: 'dex', usd: 1263 }, { k: 'imp', usd: 969 }, { k: 'chq', usd: 956 },
+                { k: 'iva', usd: 876 }, { k: 'div', usd: 671 }, { k: 'amo', usd: 578 }
+            ],
+            // Cuenta fiscal a valor presente (US$ M): recauda / resigna / adicionalidad de equilibrio (%)
+            fiscal: [
+                { k: 'nac', rev: 9936, cost: 6231, be: 38.5 },
+                { k: 'host', rev: 5113, cost: 1102, be: 17.7 },
+                { k: 'nohost', rev: 2450, cost: 1160, be: 32.1 },
+                { k: 'tot', rev: 17499, cost: 8493, be: 32.7 }
+            ],
+            peak: { year: 2035, usd: 1600, gdp: 0.25, gdpAll: 0.65 },
+            sens: [
+                { k: 'central', cost: 8493, rev: 17499, be: [38.5, 17.7, 32.1, 32.7], npv: [2706, 11235] },
+                { k: 'spot', cost: 12362, rev: 26056, be: [38.3, 18.3, 30.0, 32.2], npv: [18710, 31071] },
+                { k: 'r8', cost: 10068, rev: 22205, be: [37.1, 16.7, 29.9, 31.2], npv: [9760, 19828] },
+                { k: 'r12', cost: 7097, rev: 13559, be: [40.1, 19.0, 34.9, 34.4], npv: [-3210, 3887] }
+            ],
+            extra: {
+                cols: ['a23', 'r16', 't39'],
+                inv: [33837, 87409, 121246], upl: [25.1, 17.9, 19.9], irr: [[10.6, 13.4], [11.0, 14.3], [10.8, 14.0]],
+                cost: [8493, 15682, 24175], rev: [17499, 33043, 50542],
+                be: [[32.7, 38.5, 17.7, 32.1], [32.2, 48.1, 11.5, 30.5], [32.4, 44.4, 13.7, 31.1]]
+            },
+            jobs: 108450,
+            // Componentes del índice RIGI (0–10). v = oct 2026; v25 = oct 2025.
+            // Los componentes estructurales (rentabilidad y cuenta fiscal) dependen de las reglas del régimen,
+            // que no cambiaron en lo sustancial entre ambas fechas: se repiten en 2025.
+            comps: [
+                { k: 'scale', v: 7.9, v25: 3.1 },   // US$ aprobados / 5.000 M (10 = US$ 50.000 M): 39.429 vs 15.739
+                { k: 'exec', v: 5.9, v25: 5.9 },    // 59 % de la inversión planeada 2025-2028 con obligación de fecha cierta
+                { k: 'attr', v: 7.2, v25: 7.2 },    // TIR con RIGI 13,4 % vs costo de capital 9,82 %: 10 = 5 p.p. por encima
+                { k: 'fisc', v: 5.1, v25: 5.1 },    // adicionalidad de equilibrio 32,7 %: 0 = dos tercios o más
+                { k: 'nac', v: 4.2, v25: 4.2 }      // ídem, cuenta de la Nación: 38,5 %
+            ]
+        };
+        const rigiIndex = key => Math.round(RIGI_DATA.comps.reduce((s, c) => s + c[key], 0) / RIGI_DATA.comps.length * 10) / 10;
+
+        const RIGI_I18N = {
+            es: {
+                h1: 'RIGI — Régimen de Incentivo para Grandes Inversiones',
+                intro: 'El RIGI (Título VII de la Ley 27.742) es la principal herramienta de política minera de la Argentina para atraer inversión de gran escala: Ganancias al 25 %, amortización acelerada, IVA de la inversión con certificados de crédito fiscal, exención de aranceles de importación y, desde el tercer año, de derechos de exportación, y 30 años de estabilidad tributaria, aduanera y cambiaria. Esta pestaña sigue su evolución, qué cambia en la rentabilidad de los proyectos, cuánto le cuesta al fisco y quién paga ese costo. Sus conclusiones forman el 10.º eje del <a href="#" onclick="navigateTo(\'barometro\'); return false;">Barómetro</a>.',
+                k1: 'Índice RIGI', k1s: (v, v25) => `10.º eje del Barómetro · ${v25} en oct 2025`,
+                k2: 'Aprobados y publicados', k2s: n => `${n} proyectos en el Boletín Oficial`,
+                k3: 'Universo informado', k3s: n => `${n} proyectos aprobados, pendientes o en revisión`,
+                k4: 'Adicionalidad de equilibrio', k4s: 'Parte de la inversión que debe deberse al RIGI para que se pague solo',
+                evoH: 'Evolución de la cartera aprobada', evoNote: 'Inversión de los proyectos aprobados, en miles de millones de US$, y cantidad de proyectos. En un año la cartera aprobada casi se triplicó.',
+                projects: 'proyectos',
+                pipeH: 'Estado de la cartera al 1/10/2026',
+                pipe: { pub: 'Aprobados y publicados en el Boletín Oficial', pend: 'Aprobados, pendientes de publicación', revId: 'En revisión, identificados', revNoId: 'En revisión, sin identificar (Ministerio de Economía)' },
+                pipeDiff: 'Diferencia entre monto aprobado y activos computables (23 publicados)', pipeTot: 'Total informado por el Ministerio de Economía',
+                colN: 'Proyectos', colUsd: 'US$ M',
+                invH: 'Tres cifras de inversión que no deben mezclarse',
+                inv: [
+                    ['Inversión anunciada', 'Lo que declara cada titular en el padrón. Incluye etapas futuras y, en el caso del GNL, el alquiler de los buques licuefactores (no son activos del proyecto).'],
+                    ['Inversión comprometida', 'Los activos computables que reconoce cada resolución (art. 172 inc. a). Es la base de los beneficios.'],
+                    ['Mínimo de los dos primeros años', 'La única con fecha cierta: cada resolución la vuelve una obligación exigible.']
+                ],
+                invNote: (p, a, b) => `Solo el ${p} % de la inversión que el plan público ubica entre 2025 y 2028 (US$ ${b} M) está respaldado por una obligación con fecha (US$ ${a} M). La cifra “anunciada” que suele citarse sobrestima la inversión real: un cuarto es alquiler o gasto no computable.`,
+                destH: 'Hacia dónde va la inversión',
+                dest: { cu: 'Cobre', mid: 'Midstream (ductos y GNL)', li: 'Litio', up: 'Petróleo y gas upstream', fert: 'Fertilizantes', au: 'Oro y plata', oth: 'Electricidad, siderurgia y puerto' },
+                destNote: (m, h) => `La minería concentra seis de cada diez dólares (US$ ${m} M) y los hidrocarburos otros tres (US$ ${h} M). El cobre es el primer destino.`,
+                secH: 'Por sector: inversión, empleo y rentabilidad',
+                sec: { og: 'Petróleo y gas', min: 'Minería', ele: 'Energía eléctrica', ste: 'Siderurgia', inf: 'Infraestructura' },
+                secCols: ['Sector', 'Proy.', 'Anunciada', 'Comprometida', 'Mín. 2 años', 'Empleos', 'TIR sin → con RIGI', 'Mejora VAN / inversión'],
+                total: 'Total',
+                jobsNote: j => `Los ${j} empleos los declara cada empresa al pedir la adhesión: nadie los verifica y mezclan el pico de obra con la dotación permanente. Leer con cautela.`,
+                minH: 'Dentro de la minería',
+                minRows: { cu: 'Cobre', li: 'Litio', au: 'Oro y plata' },
+                minCols: ['Mineral', 'TIR sin RIGI', 'TIR con RIGI', 'VAN sin → con (US$ M)'],
+                minNote: 'El litio es donde el régimen pesa más: su VAN pasa de negativo a positivo, en buena parte por la exención de derechos de exportación. La minería explica más de dos tercios de la mejora total de la cartera.',
+                profH: 'Cuánto vale el RIGI para el inversor',
+                prof: (p, f) => `A precios normalizados y una tasa de descuento de ${f(p.wacc, 2)} %, el VAN de los 23 proyectos pasa de US$ ${f(p.npv0, 0)} M con el régimen general a US$ ${f(p.npv1, 0)} M con el RIGI: el régimen agrega US$ ${f(p.uplift, 0)} M, el ${f(p.upliftPct, 1)} % de la inversión comprometida, y la TIR sube de ${f(p.irr0, 1)} % a ${f(p.irr1, 1)} %. Cerca del 83 % de esa mejora es impuesto que no se paga; el resto (amortización acelerada y devolución rápida del IVA) es un beneficio financiero que depende de la tasa.`,
+                benH: 'De dónde sale la mejora (US$ M a valor presente)',
+                ben: { gan: 'Ganancias al 25 %', dex: 'Derechos de exportación', imp: 'Aranceles de importación', chq: 'Impuesto al cheque', iva: 'Financiamiento del IVA', div: 'Retención sobre dividendos', amo: 'Amortización acelerada' },
+                fisH: 'Quién paga: la cuenta fiscal por nivel de gobierno',
+                fisIntro: 'El gasto tributario (lo que se deja de cobrar frente al régimen general) no es el costo neto: si una inversión ocurre solo gracias al RIGI, también trae una recaudación que sin él no existiría. La pregunta clave es cuánta inversión debe ser <em>adicional</em> para que el régimen se pague solo.',
+                fis: { nac: 'Nación', host: 'Provincias que alojan proyectos', nohost: 'Provincias que no alojan', tot: 'Total' },
+                fisCols: ['Nivel', 'Recauda', 'Resigna', 'Recauda / resigna', 'Adicionalidad de equilibrio'],
+                fisNote: (pk, f) => `La Nación paga el 73 % del costo, porque derechos de exportación, aranceles e impuesto al cheque son recursos solo nacionales. Las provincias productoras cobran regalías, que el RIGI no toca. El gasto tributario crece con la puesta en marcha y llega a su máximo en ${pk.year}, unos US$ ${f(pk.usd, 0)} M (${f(pk.gdp, 2)} % del PIB); extrapolado a todo el universo anunciado, rondaría el ${f(pk.gdpAll, 2)} % del PIB.`,
+                sensH: 'Sensibilidad',
+                sens: { central: 'Central (precios normalizados, 9,82 %)', spot: 'Precios spot agosto 2026', r8: 'Tasa de descuento 8 %', r12: 'Tasa de descuento 12 %' },
+                sensCols: ['Escenario', 'VAN sin → con (US$ M)', 'Costo', 'Recaudación', 'Umbral Nación', 'Prov. que alojan', 'Prov. que no', 'Total'],
+                sensNote: 'Los precios cambian mucho el tamaño del beneficio y de la recaudación, pero casi nada el umbral. La tasa de descuento sí lo mueve, porque el costo fiscal llega antes que la recaudación. Con tasa del 12 %, la cartera solo tiene VAN positivo gracias al RIGI.',
+                extH: 'Si se suma toda la cartera en evaluación',
+                ext: { a23: 'Aprobados (23)', r16: 'Relevados en evaluación (16)', t39: 'Total (39)' },
+                extRows: ['Inversión (US$ M)', 'Mejora del VAN / inversión', 'TIR sin → con', 'Costo fiscal (US$ M VP)', 'Recaudación (US$ M VP)', 'Umbral total', 'Umbral Nación', 'Umbral prov. que alojan', 'Umbral prov. que no alojan'],
+                extNote: 'Estimación por extrapolación sectorial: los proyectos en evaluación no tienen resolución. El umbral consolidado casi no cambia, pero el mayor peso de los hidrocarburos carga más costo sobre la Nación (44 %) y alivia a las provincias productoras (14 %).',
+                idxH: 'Cómo se calcula el índice RIGI del Barómetro',
+                idxIntro: 'Cinco componentes de 0 a 10, con igual peso. Escala y ejecución miden avance; rentabilidad y cuenta fiscal miden la calidad del régimen. Estos dos últimos dependen de reglas que no cambiaron en lo sustancial en el año, por lo que se repiten en 2025.',
+                comps: {
+                    scale: ['Escala de la cartera aprobada', 'US$ aprobados y publicados; 10 = US$ 50.000 M'],
+                    exec: ['Ejecución con fecha cierta', 'Inversión 2025-2028 con obligación exigible / plan público'],
+                    attr: ['Atractivo para el inversor', 'TIR de la cartera con RIGI vs. costo de capital; 10 = 5 p.p. por encima'],
+                    fisc: ['Sostenibilidad fiscal', 'Adicionalidad de equilibrio consolidada; 0 = dos tercios o más'],
+                    nac: ['Cuenta de la Nación', 'Ídem, para el Tesoro nacional, que paga la mayor parte']
+                },
+                idxCols: ['Componente', 'Método', 'Oct 2025', 'Oct 2026'],
+                idxRow: 'Índice RIGI',
+                conH: 'Conclusiones para el OMA',
+                con: [
+                    '<strong>El RIGI funciona sobre todo como política minera.</strong> La minería recibe la mayor mejora relativa (el VAN sube un tercio de su inversión) y explica más de dos tercios del beneficio total. Sin el régimen, buena parte del litio no tendría VAN positivo.',
+                    '<strong>Puede pagarse solo.</strong> Alcanza con que alrededor de un tercio de la inversión no hubiera ocurrido sin el régimen para que la recaudación que genera compense lo que se resigna.',
+                    '<strong>Pero el reparto es asimétrico.</strong> La Nación carga casi tres cuartos del costo y necesita más adicionalidad (38,5 %); las provincias que alojan proyectos cobran 4,6 veces lo que resignan. Es una tensión federal a seguir en los ejes Clima Político y Licencia Social.',
+                    '<strong>Anunciado no es invertido.</strong> De los US$ 49.766 M anunciados, solo US$ 13.474 M tienen fecha cierta. La brecha entre anuncio y ejecución es el indicador a vigilar.',
+                    '<strong>El desafío es la adicionalidad y el derrame.</strong> El régimen mejora la rentabilidad; el paso siguiente es maximizar la inversión que de verdad depende de él y su efecto sobre proveedores, empleo e infraestructura, que el <a href="#" onclick="navigateTo(\'monitor\'); return false;">Monitor MIMA</a> sigue del lado del talento.'
+                ],
+                src: 'Fuente principal: análisis independiente de terceros, con autorización de uso, sobre las resoluciones del Boletín Oficial y el <a href="https://www.argentina.gob.ar/economia/rigi" target="_blank" rel="noopener">portal RIGI del Ministerio de Economía</a>; valuación a precios normalizados con tasa de descuento de 9,82 %. Serie histórica contrastada con <a href="https://www.ambito.com/energia/gobierno-aprobo-proyectos-rigi-us15739-millones-quedan-12-pendientes-evaluacion-n6201605" target="_blank" rel="noopener">Ámbito (14/10/2025)</a>, <a href="https://www.perfil.com/noticias/economia/el-gobierno-lanzo-un-portal-del-rigi-y-revelo-inversiones-por-mas-de-us-140000-millones-a40.phtml" target="_blank" rel="noopener">Perfil (11/06/2026)</a> y <a href="https://www.ellitoral.com/economia/luiscaputo-rigi-pampaenergia-vacamuerta-fertilizantes-ahora-hoy-argentina_0_V1KpOh3Y6e.amp.html" target="_blank" rel="noopener">El Litoral (31/07/2026)</a>. Índice RIGI: elaboración OMA. Datos al '
+            },
+            en: {
+                h1: 'RIGI — Large Investment Incentive Regime',
+                intro: 'The RIGI (Title VII of Law 27,742) is Argentina\'s main mining-policy tool for attracting large-scale investment: 25 % income tax, accelerated depreciation, investment VAT settled with tax credit certificates, exemption from import duties and, from the third year, from export duties, plus 30 years of tax, customs and FX stability. This tab tracks how it is evolving, what it changes in project returns, what it costs the treasury and who bears that cost. Its conclusions form the 10th axis of the <a href="#" onclick="navigateTo(\'barometro\'); return false;">Barometer</a>.',
+                k1: 'RIGI index', k1s: (v, v25) => `Barometer 10th axis · ${v25} in Oct 2025`,
+                k2: 'Approved and published', k2s: n => `${n} projects in the Official Gazette`,
+                k3: 'Reported universe', k3s: n => `${n} projects approved, pending or under review`,
+                k4: 'Break-even additionality', k4s: 'Share of investment that must be due to RIGI for it to pay for itself',
+                evoH: 'Approved portfolio over time', evoNote: 'Investment in approved projects, US$ bn, and number of projects. The approved portfolio almost tripled in one year.',
+                projects: 'projects',
+                pipeH: 'Portfolio status at 1/10/2026',
+                pipe: { pub: 'Approved and published in the Official Gazette', pend: 'Approved, pending publication', revId: 'Under review, identified', revNoId: 'Under review, unidentified (Ministry of Economy)' },
+                pipeDiff: 'Gap between approved amount and eligible assets (23 published)', pipeTot: 'Total reported by the Ministry of Economy',
+                colN: 'Projects', colUsd: 'US$ M',
+                invH: 'Three investment figures that should not be mixed',
+                inv: [
+                    ['Announced investment', 'What each holder declares in the register. Includes future stages and, for LNG, the lease of the liquefaction vessels (not project assets).'],
+                    ['Committed investment', 'The eligible assets recognised by each resolution (art. 172(a)). It is the basis of the benefits.'],
+                    ['Two-year minimum', 'The only figure with a firm date: each resolution makes it an enforceable obligation.']
+                ],
+                invNote: (p, a, b) => `Only ${p} % of the investment the public plan places in 2025–2028 (US$ ${b} M) is backed by a dated obligation (US$ ${a} M). The "announced" figure usually quoted overstates real investment: a quarter of it is leases or non-eligible spending.`,
+                destH: 'Where the investment goes',
+                dest: { cu: 'Copper', mid: 'Midstream (pipelines and LNG)', li: 'Lithium', up: 'Oil and gas upstream', fert: 'Fertilisers', au: 'Gold and silver', oth: 'Power, steel and port' },
+                destNote: (m, h) => `Mining takes six of every ten dollars (US$ ${m} M) and hydrocarbons another three (US$ ${h} M). Copper is the first destination.`,
+                secH: 'By sector: investment, jobs and returns',
+                sec: { og: 'Oil and gas', min: 'Mining', ele: 'Power', ste: 'Steel', inf: 'Infrastructure' },
+                secCols: ['Sector', 'Proj.', 'Announced', 'Committed', '2-yr min.', 'Jobs', 'IRR without → with RIGI', 'NPV gain / investment'],
+                total: 'Total',
+                jobsNote: j => `The ${j} jobs are declared by each company when applying: nobody verifies them and they mix the construction peak with permanent staffing. Read with caution.`,
+                minH: 'Within mining',
+                minRows: { cu: 'Copper', li: 'Lithium', au: 'Gold and silver' },
+                minCols: ['Mineral', 'IRR without RIGI', 'IRR with RIGI', 'NPV without → with (US$ M)'],
+                minNote: 'Lithium is where the regime matters most: its NPV turns from negative to positive, largely because of the export-duty exemption. Mining accounts for more than two thirds of the portfolio\'s total gain.',
+                profH: 'What RIGI is worth to the investor',
+                prof: (p, f) => `At normalised prices and a ${f(p.wacc, 2)} % discount rate, the NPV of the 23 projects rises from US$ ${f(p.npv0, 0)} M under the general regime to US$ ${f(p.npv1, 0)} M under RIGI: the regime adds US$ ${f(p.uplift, 0)} M, ${f(p.upliftPct, 1)} % of committed investment, and IRR rises from ${f(p.irr0, 1)} % to ${f(p.irr1, 1)} %. About 83 % of that gain is tax not paid; the rest (accelerated depreciation and fast VAT refunds) is a financial benefit that depends on the discount rate.`,
+                benH: 'Where the gain comes from (US$ M, present value)',
+                ben: { gan: 'Income tax at 25 %', dex: 'Export duties', imp: 'Import duties', chq: 'Bank-transaction tax', iva: 'VAT financing', div: 'Dividend withholding', amo: 'Accelerated depreciation' },
+                fisH: 'Who pays: the fiscal account by level of government',
+                fisIntro: 'Tax expenditure (what is forgone versus the general regime) is not the net cost: if an investment happens only because of RIGI, it also brings revenue that would not exist otherwise. The key question is how much investment must be <em>additional</em> for the regime to pay for itself.',
+                fis: { nac: 'National government', host: 'Host provinces', nohost: 'Non-host provinces', tot: 'Total' },
+                fisCols: ['Level', 'Collects', 'Forgoes', 'Collects / forgoes', 'Break-even additionality'],
+                fisNote: (pk, f) => `The national government bears 73 % of the cost, because export duties, import duties and the bank-transaction tax are national-only revenues. Producing provinces collect royalties, which RIGI does not touch. Tax expenditure grows as projects start up and peaks in ${pk.year} at about US$ ${f(pk.usd, 0)} M (${f(pk.gdp, 2)} % of GDP); extrapolated to the whole announced universe it would be around ${f(pk.gdpAll, 2)} % of GDP.`,
+                sensH: 'Sensitivity',
+                sens: { central: 'Central (normalised prices, 9.82 %)', spot: 'Spot prices August 2026', r8: 'Discount rate 8 %', r12: 'Discount rate 12 %' },
+                sensCols: ['Scenario', 'NPV without → with (US$ M)', 'Cost', 'Revenue', 'National threshold', 'Host prov.', 'Non-host', 'Total'],
+                sensNote: 'Prices change the size of the benefit and the revenue a lot, but barely move the threshold. The discount rate does move it, because the fiscal cost arrives before the revenue. At 12 %, the portfolio only has a positive NPV thanks to RIGI.',
+                extH: 'Adding the whole portfolio under review',
+                ext: { a23: 'Approved (23)', r16: 'Surveyed under review (16)', t39: 'Total (39)' },
+                extRows: ['Investment (US$ M)', 'NPV gain / investment', 'IRR without → with', 'Fiscal cost (US$ M PV)', 'Revenue (US$ M PV)', 'Total threshold', 'National threshold', 'Host-province threshold', 'Non-host threshold'],
+                extNote: 'Estimate by sector extrapolation: projects under review have no resolution yet. The consolidated threshold barely changes, but the greater weight of hydrocarbons shifts more cost onto the national government (44 %) and eases it for producing provinces (14 %).',
+                idxH: 'How the Barometer RIGI index is calculated',
+                idxIntro: 'Five components scored 0 to 10, equally weighted. Scale and execution measure progress; returns and the fiscal account measure the quality of the regime. The latter two depend on rules that did not change substantially during the year, so they are repeated for 2025.',
+                comps: {
+                    scale: ['Approved portfolio scale', 'US$ approved and published; 10 = US$ 50 bn'],
+                    exec: ['Execution with firm dates', '2025–2028 investment with enforceable obligation / public plan'],
+                    attr: ['Investor attractiveness', 'Portfolio IRR with RIGI vs. cost of capital; 10 = 5 pp above'],
+                    fisc: ['Fiscal sustainability', 'Consolidated break-even additionality; 0 = two thirds or more'],
+                    nac: ['National account', 'Same, for the national treasury, which pays most of the cost']
+                },
+                idxCols: ['Component', 'Method', 'Oct 2025', 'Oct 2026'],
+                idxRow: 'RIGI index',
+                conH: 'Conclusions for OMA',
+                con: [
+                    '<strong>RIGI works above all as a mining policy.</strong> Mining gets the largest relative gain (NPV rises by a third of its investment) and accounts for more than two thirds of the total benefit. Without the regime, much of the lithium would not have a positive NPV.',
+                    '<strong>It can pay for itself.</strong> It is enough for about a third of the investment not to have happened without the regime for the revenue it generates to offset what is forgone.',
+                    '<strong>But the split is asymmetric.</strong> The national government bears almost three quarters of the cost and needs more additionality (38.5 %); host provinces collect 4.6 times what they forgo. A federal tension to follow in the Political Climate and Social License axes.',
+                    '<strong>Announced is not invested.</strong> Of the US$ 49,766 M announced, only US$ 13,474 M has a firm date. The gap between announcement and execution is the indicator to watch.',
+                    '<strong>The challenge is additionality and spillover.</strong> The regime improves returns; the next step is to maximise the investment that truly depends on it and its effect on suppliers, jobs and infrastructure, which the <a href="#" onclick="navigateTo(\'monitor\'); return false;">MIMA Monitor</a> tracks on the talent side.'
+                ],
+                src: 'Main source: independent third-party analysis, used with permission, of the Official Gazette resolutions and the <a href="https://www.argentina.gob.ar/economia/rigi" target="_blank" rel="noopener">Ministry of Economy RIGI portal</a>; valuation at normalised prices with a 9.82 % discount rate. Historical series checked against <a href="https://www.ambito.com/energia/gobierno-aprobo-proyectos-rigi-us15739-millones-quedan-12-pendientes-evaluacion-n6201605" target="_blank" rel="noopener">Ámbito (14/10/2025)</a>, <a href="https://www.perfil.com/noticias/economia/el-gobierno-lanzo-un-portal-del-rigi-y-revelo-inversiones-por-mas-de-us-140000-millones-a40.phtml" target="_blank" rel="noopener">Perfil (11/06/2026)</a> and <a href="https://www.ellitoral.com/economia/luiscaputo-rigi-pampaenergia-vacamuerta-fertilizantes-ahora-hoy-argentina_0_V1KpOh3Y6e.amp.html" target="_blank" rel="noopener">El Litoral (31/07/2026)</a>. RIGI index: OMA. Data as of '
+            }
+        };
+
+        function renderRigi() {
+            const el = document.getElementById('rigiDyn');
+            if (!el) return;
+            const lang = currentLang, t = RIGI_I18N[lang], d = RIGI_DATA;
+            const loc = lang === 'es' ? 'es-AR' : 'en-US';
+            const f = (x, n = 0) => Number(x).toLocaleString(loc, { minimumFractionDigits: n, maximumFractionDigits: n });
+            const pct = x => f(x, 1) + ' %';
+            const kpi = (label, big, sub, cls = '') => `<div class="of-kpi${cls}"><span class="of-kpi-l">${label}</span><strong>${big}</strong><span class="of-kpi-s">${sub}</span></div>`;
+            const universeN = d.pipeline.reduce((s, r) => s + r.n, 0);
+            const tot = d.fiscal.find(r => r.k === 'tot');
+
+            // Evolución: barras SVG
+            const maxU = 50000, W = 520, H = 200, bw = 90, gap = (W - 60 - d.evo.length * bw) / (d.evo.length);
+            let evo = `<svg viewBox="0 0 ${W} ${H + 40}" class="rigi-evo" role="img" aria-label="${t.evoH}">`;
+            [0, 10000, 20000, 30000, 40000, 50000].forEach(v => { const y = H - v / maxU * (H - 20); evo += `<line x1="40" x2="${W}" y1="${y}" y2="${y}" stroke="#e5e9ef"/><text x="34" y="${y + 4}" text-anchor="end" font-size="11" fill="#667">${v / 1000}</text>`; });
+            d.evo.forEach((p, i) => {
+                const x = 50 + gap / 2 + i * (bw + gap), h = p.usd / maxU * (H - 20), y = H - h;
+                evo += `<rect x="${x}" y="${y}" width="${bw}" height="${h}" rx="3" fill="${i === d.evo.length - 1 ? '#1e3c72' : '#94a3b8'}"><title>${p.src}</title></rect>`;
+                evo += `<text x="${x + bw / 2}" y="${y - 22}" text-anchor="middle" font-size="14" font-weight="700" fill="#1b2430">${f(p.usd / 1000, 1)}</text>`;
+                evo += `<text x="${x + bw / 2}" y="${y - 7}" text-anchor="middle" font-size="11" fill="#555">${p.n} ${t.projects}</text>`;
+                evo += `<text x="${x + bw / 2}" y="${H + 18}" text-anchor="middle" font-size="12" fill="#444">${p.d[lang]}</text>`;
+            });
+            evo += `</svg>`;
+
+            const pipeRows = d.pipeline.map(r => `<tr><td>${t.pipe[r.k]}</td><td class="n">${r.n}</td><td class="n">${f(r.usd)}</td></tr>`).join('')
+                + `<tr><td>${t.pipeDiff}</td><td class="n"></td><td class="n">${f(d.pipeDiff)}</td></tr>`
+                + `<tr class="of-grp"><td>${t.pipeTot}</td><td class="n">${universeN}</td><td class="n">${f(d.pipeTotal)}</td></tr>`;
+
+            const invVals = [d.inv.announced, d.inv.committed, d.inv.min2y];
+            const invBars = t.inv.map((r, i) => `<div class="rigi-inv"><div class="rigi-inv-h"><strong>${r[0]}</strong><span>US$ ${f(invVals[i])} M</span></div>
+                <div class="of-path-bar"><span style="width:${invVals[i] / d.inv.announced * 100}%;${i === 2 ? 'background:#3ddc84' : i === 1 ? '' : 'background:#94a3b8'}"></span></div><small>${r[1]}</small></div>`).join('');
+
+            const destSum = d.dest.reduce((s, r) => s + r.usd, 0);
+            const destStack = `<div class="of-stack">${d.dest.map(r => `<span style="flex:${r.usd};background:${r.c}" title="${t.dest[r.k]}: US$ ${f(r.usd)} M"></span>`).join('')}</div>
+                <div class="of-legend">${d.dest.map(r => `<span><i style="background:${r.c}"></i>${t.dest[r.k]} ${f(r.usd / destSum * 100)} %</span>`).join('')}</div>`;
+            const mining = d.dest.filter(r => ['cu', 'li', 'au'].includes(r.k)).reduce((s, r) => s + r.usd, 0);
+            const hydro = d.dest.filter(r => ['mid', 'up'].includes(r.k)).reduce((s, r) => s + r.usd, 0);
+
+            const sum = k => d.sectors.reduce((s, r) => s + r[k], 0);
+            const secRows = d.sectors.map(r => `<tr${r.k === 'min' ? ' class="rigi-hl"' : ''}><td>${t.sec[r.k]}</td><td class="n">${r.n}</td><td class="n">${f(r.ann)}</td><td class="n">${f(r.com)}</td><td class="n">${f(r.min)}</td><td class="n">${f(r.jobs)}</td><td class="n">${pct(r.irr0)} → <strong>${pct(r.irr1)}</strong></td><td class="n">${pct(r.up)}</td></tr>`).join('')
+                + `<tr class="of-grp"><td>${t.total}</td><td class="n">${sum('n')}</td><td class="n">${f(sum('ann'))}</td><td class="n">${f(sum('com'))}</td><td class="n">${f(sum('min'))}</td><td class="n">${f(sum('jobs'))}</td><td class="n">${pct(d.portfolio.irr0)} → <strong>${pct(d.portfolio.irr1)}</strong></td><td class="n">${pct(d.portfolio.upliftPct)}</td></tr>`;
+            const minRows = d.mining.map(r => `<tr><td>${t.minRows[r.k]}</td><td class="n">${pct(r.irr0)}</td><td class="n"><strong>${pct(r.irr1)}</strong></td><td class="n">${r.npv0 == null ? '—' : f(r.npv0) + ' → ' + f(r.npv1)}</td></tr>`).join('');
+
+            const benMax = Math.max(...d.benefits.map(b => b.usd));
+            const benRows = d.benefits.map(b => `<div class="of-path-row rigi-ben"><span>${t.ben[b.k]}</span><div class="of-path-bar"><span style="width:${b.usd / benMax * 100}%"></span></div><strong>${f(b.usd)}</strong><small>${f(b.usd / d.portfolio.uplift * 100, 1)} %</small></div>`).join('');
+
+            const fisRows = d.fiscal.map(r => `<tr${r.k === 'tot' ? ' class="of-grp"' : ''}><td>${t.fis[r.k]}</td><td class="n">${f(r.rev)}</td><td class="n">${f(r.cost)}</td><td class="n">${f(r.rev / r.cost, 1)}×</td><td class="n"><strong>${pct(r.be)}</strong></td></tr>`).join('');
+            const beBars = d.fiscal.map(r => `<div class="of-path-row rigi-ben"><span>${t.fis[r.k]}</span><div class="of-path-bar"><span style="width:${r.be / 50 * 100}%;${r.k === 'tot' ? 'background:#1b2430' : ''}"></span></div><strong>${pct(r.be)}</strong><small></small></div>`).join('');
+
+            const sensRows = d.sens.map(r => `<tr><td>${t.sens[r.k]}</td><td class="n">${f(r.npv[0])} → ${f(r.npv[1])}</td><td class="n">${f(r.cost)}</td><td class="n">${f(r.rev)}</td>${r.be.map((b, i) => `<td class="n">${i === 3 ? '<strong>' + pct(b) + '</strong>' : pct(b)}</td>`).join('')}</tr>`).join('');
+
+            const x = d.extra;
+            const extVals = [
+                x.inv.map(v => f(v)), x.upl.map(pct), x.irr.map(p => `${pct(p[0])} → ${pct(p[1])}`), x.cost.map(v => f(v)), x.rev.map(v => f(v)),
+                x.be.map(b => pct(b[0])), x.be.map(b => pct(b[1])), x.be.map(b => pct(b[2])), x.be.map(b => pct(b[3]))
+            ];
+            const extRows = t.extRows.map((lbl, i) => `<tr><td>${lbl}</td>${extVals[i].map(v => `<td class="n">${v}</td>`).join('')}</tr>`).join('');
+
+            const idxRows = d.comps.map(c => `<tr><td><strong>${t.comps[c.k][0]}</strong></td><td>${t.comps[c.k][1]}</td><td class="n">${f(c.v25, 1)}</td><td class="n"><strong>${f(c.v, 1)}</strong></td></tr>`).join('')
+                + `<tr class="of-grp"><td>${t.idxRow}</td><td></td><td class="n">${f(rigiIndex('v25'), 1)}</td><td class="n">${f(rigiIndex('v'), 1)}</td></tr>`;
+
+            el.innerHTML = `
+                <h1>${t.h1}</h1>
+                <p>${t.intro}</p>
+                <div class="of-kpis">
+                    ${kpi(t.k1, `${f(rigiIndex('v'), 1)}<small> / 10</small>`, t.k1s(f(rigiIndex('v'), 1), f(rigiIndex('v25'), 1)))}
+                    ${kpi(t.k2, `US$ ${f(d.pipeline[0].usd)} M`, t.k2s(d.pipeline[0].n))}
+                    ${kpi(t.k3, `US$ ${f(d.pipeTotal)} M`, t.k3s(universeN))}
+                    ${kpi(t.k4, pct(tot.be), t.k4s)}
+                </div>
+
+                <div class="rigi-two">
+                    <div class="rp-card"><h4>${t.evoH}</h4>${evo}<p class="table-note">${t.evoNote}</p></div>
+                    <div class="rp-card"><h4>${t.pipeH}</h4>
+                        <div class="table-scroll"><table class="of-table rigi-t"><thead><tr><th></th><th class="n">${t.colN}</th><th class="n">${t.colUsd}</th></tr></thead><tbody>${pipeRows}</tbody></table></div>
+                    </div>
+                </div>
+
+                <h3 class="rp-h3">${t.invH}</h3>
+                <div class="rp-card">${invBars}<p class="rigi-callout">${t.invNote(Math.round(d.inv.min2y / d.inv.plan2528 * 100), f(d.inv.min2y), f(d.inv.plan2528))}</p></div>
+
+                <h3 class="rp-h3">${t.destH}</h3>
+                <div class="rp-card">${destStack}<p class="table-note">${t.destNote(f(mining), f(hydro))}</p></div>
+
+                <h3 class="rp-h3">${t.secH}</h3>
+                <div class="table-scroll"><table class="of-table rigi-t"><thead><tr>${t.secCols.map((c, i) => `<th${i ? ' class="n"' : ''}>${c}</th>`).join('')}</tr></thead><tbody>${secRows}</tbody></table></div>
+                <p class="table-note">US$ M. ${t.jobsNote(f(d.jobs))}</p>
+
+                <h3 class="rp-h3">${t.profH}</h3>
+                <p>${t.prof(d.portfolio, f)}</p>
+                <div class="rigi-two">
+                    <div class="rp-card"><h4>${t.benH}</h4>${benRows}</div>
+                    <div class="rp-card"><h4>${t.minH}</h4>
+                        <div class="table-scroll"><table class="of-table rigi-t"><thead><tr>${t.minCols.map((c, i) => `<th${i ? ' class="n"' : ''}>${c}</th>`).join('')}</tr></thead><tbody>${minRows}</tbody></table></div>
+                        <p class="table-note">${t.minNote}</p>
+                    </div>
+                </div>
+
+                <h3 class="rp-h3">${t.fisH}</h3>
+                <p>${t.fisIntro}</p>
+                <div class="rigi-two rigi-wide">
+                    <div class="rp-card"><div class="table-scroll"><table class="of-table rigi-t"><thead><tr>${t.fisCols.map((c, i) => `<th${i ? ' class="n"' : ''}>${c}</th>`).join('')}</tr></thead><tbody>${fisRows}</tbody></table></div>
+                        <p class="table-note">US$ M, ${lang === 'es' ? 'valor presente' : 'present value'}.</p></div>
+                    <div class="rp-card"><h4>${t.fisCols[4]}</h4>${beBars}</div>
+                </div>
+                <p class="rigi-callout">${t.fisNote(d.peak, f)}</p>
+
+                <h3 class="rp-h3">${t.sensH}</h3>
+                <div class="table-scroll"><table class="of-table rigi-t"><thead><tr>${t.sensCols.map((c, i) => `<th${i ? ' class="n"' : ''}>${c}</th>`).join('')}</tr></thead><tbody>${sensRows}</tbody></table></div>
+                <p class="table-note">${t.sensNote}</p>
+
+                <h3 class="rp-h3">${t.extH}</h3>
+                <div class="table-scroll"><table class="of-table rigi-t"><thead><tr><th></th>${x.cols.map(c => `<th class="n">${t.ext[c]}</th>`).join('')}</tr></thead><tbody>${extRows}</tbody></table></div>
+                <p class="table-note">${t.extNote}</p>
+
+                <h3 class="rp-h3">${t.idxH}</h3>
+                <p>${t.idxIntro}</p>
+                <div class="table-scroll"><table class="of-table rigi-t"><thead><tr>${t.idxCols.map((c, i) => `<th${i > 1 ? ' class="n"' : ''}>${c}</th>`).join('')}</tr></thead><tbody>${idxRows}</tbody></table></div>
+
+                <h3 class="rp-h3">${t.conH}</h3>
+                <ul class="rigi-con">${t.con.map(c => `<li>${c}</li>`).join('')}</ul>
+
+                <p class="table-note">${t.src}${d.asOf}.</p>`;
+        }
+
         const barometerAxes = [
             { es: { label: 'Exportaciones Mineras', desc: 'Evolución de las exportaciones mineras argentinas — la primera prioridad de la política del gobierno actual, en tendencia marcadamente creciente.' }, en: { label: 'Mining Exports', desc: "Evolution of Argentine mining exports — the current government's top policy priority, on a markedly rising trend." }, v2025: 6.3, v2026: 9.0, priority: true },
             { es: { label: 'Marco Normativo', desc: 'Estabilidad y previsibilidad de las reglas mineras y fiscales (incluido RIGI).' }, en: { label: 'Regulatory Framework', desc: 'Stability and predictability of mining and tax rules (including RIGI).' }, v2025: 5.5, v2026: 7.2 },
@@ -3517,7 +3887,8 @@
             { es: { label: 'Financiamiento', desc: 'Disponibilidad de capital (local e internacional) para proyectos.' }, en: { label: 'Funding', desc: 'Availability of capital (local and international) for projects.' }, v2025: 4.8, v2026: 6.1 },
             { es: { label: 'Infraestructura', desc: 'Energía, rutas, agua y logística disponibles para operar y exportar.' }, en: { label: 'Infrastructure', desc: 'Energy, roads, water and logistics available to operate and export.' }, v2025: 4.5, v2026: 5.3 },
             { es: { label: 'Estabilidad Macro', desc: 'Previsibilidad cambiaria, inflacionaria y de acceso a divisas. Contrastado con datos de mercado y fundamentos en la sección Riesgo país, más abajo.' }, en: { label: 'Macro Stability', desc: 'Predictability of exchange rate, inflation and access to foreign currency. Checked against market data and fundamentals in the Country risk section below.' }, v2025: 3.9, v2026: 5.8 },
-            { es: { label: 'Capital Humano', desc: 'Disponibilidad de talento técnico especializado en la región.' }, en: { label: 'Human Capital', desc: 'Availability of specialized technical talent in the region.' }, v2025: 5.6, v2026: 5.9 }
+            { es: { label: 'Capital Humano', desc: 'Disponibilidad de talento técnico especializado en la región.' }, en: { label: 'Human Capital', desc: 'Availability of specialized technical talent in the region.' }, v2025: 5.6, v2026: 5.9 },
+            { es: { label: 'RIGI', desc: 'Evolución y calidad del Régimen de Incentivo para Grandes Inversiones, principal política para atraer inversión minera: escala de la cartera aprobada, ejecución con fecha cierta, rentabilidad para el inversor y sostenibilidad fiscal. Calculado con datos externos: ver la pestaña RIGI.' }, en: { label: 'RIGI', desc: 'Evolution and quality of the Large Investment Incentive Regime, the main policy to attract mining investment: approved portfolio scale, execution with firm dates, investor returns and fiscal sustainability. Calculated from external data: see the RIGI tab.' }, v2025: rigiIndex('v25'), v2026: rigiIndex('v'), external: true }
         ];
 
 
@@ -4510,22 +4881,22 @@
                 caution: n => `▲ MASTER CAUTION · ${n} EJES`, cautionTitle: 'Ejes del Barómetro por debajo de 6/10 — ver Análisis de Brechas',
                 pIpm: 'PERFORMANCE', pExp: 'EXPORTACIONES', pRad: 'BARÓMETRO OMA · RADAR DE CLIMA DE INVERSIÓN', pRadB: '● SEÑAL ACTIVA',
                 pBar: 'CLIMA INTERNO', pPul: 'CLIMA EXTERNO', pLi: 'LITIO · CAPACIDAD', pCu: 'COBRE · CARTERA', pHr: 'TALENTO · MIMA',
-                pSys: 'ESTADO DE SISTEMAS OMA', pSysB: n => `${n}/5 EN LÍNEA`,
+                pSys: 'ESTADO DE SISTEMAS OMA', pSysB: n => `${n}/6 EN LÍNEA`,
                 legend: ['3T 2025', '3T 2026', 'anillo 6/10: umbral de alerta'],
                 key: ['● ≥ 7 nominal', '▲ 6–7 vigilar', '■ < 6 alerta', 'Tocá un eje o una luz para abrir su pestaña'],
                 real: 'DATO REAL', ill: 'ILUSTRATIVO', noSignal: 'SIN SEÑAL',
                 ipm: ['ÍNDICE DE PERFORMANCE MINERA', '0,40 × Exportaciones + 0,35 × Producción + 0,25 × Inversión', (e, p, i) => `E ${e} · P ${p} · I ${i}`,
                     ['Exportaciones: ritmo vs. proyección anual', 'Producción: litio producido / capacidad instalada', 'Inversión: RIGI minero aprobado / presentado']],
                 exp: ['EXPORTACIONES MINERAS 2026', '1S acumulado vs. proyección anual US$ 9.000 M', '▲ +74,4 % interanual', 'mil M US$'],
-                bar: ['ÍNDICE BARÓMETRO', 'Promedio 9 ejes · percepción interna', d => `▲ +${d} vs 2025`],
+                bar: ['ÍNDICE BARÓMETRO', 'Promedio 10 ejes · percepción interna', d => `▲ +${d} vs 2025`],
                 pul: ['ÍNDICE PULSÓMETRO', 'Percepción externa · 1.ª edición en preparación'],
                 li: ['CAPACIDAD INSTALADA', 'Meta oficial 2036: más de 600 kt/año', '33 % de la meta · 4.º productor mundial', 'kt LCE'],
                 cu: ['CUOTA DE LA DEMANDA 2040', '~1,05 Mt/año de cartera (Vicuña, El Pachón, Taca Taca, Los Azules)', 'Hoy: escala artesanal'],
-                hr: ['EJE CAPITAL HUMANO', 'La mejora más chica de los 9 ejes', d => `▲ +${d} vs 2025`],
-                sys: [['Barómetro', 'EN LÍNEA'], ['Prospectiva (Convergencias 2050)', 'EN LÍNEA'], ['Análisis de Brechas', 'FASE 1'], ['Monitor MIMA (CAI)', 'EN DISEÑO'], ['Pulsómetro', 'CALIBRANDO']],
-                short: ['Exportaciones', 'Marco normativo', 'Licencia social', 'Clima político', 'Mining-friendly', 'Financiamiento', 'Infraestructura', 'Estab. macro', 'Capital humano'],
-                tipGo: 'Clic → ', tabs: { barometro: 'Barómetro', brechas: 'Brechas', monitor: 'Monitor MIMA', prospectiva: 'Prospectiva', argentina: 'Argentina hoy', pulsometro: 'Pulsómetro', oferta: 'Oferta' },
-                foot: 'Datos reales: exportaciones mineras 1S 2026 (INDEC / Secretaría de Minería) y proyección anual; capacidad de litio (Secretaría de Minería, pestaña Oferta) y cartera de cobre (CeProMin, pestaña Argentina hoy). Índice de Performance Minera: exportaciones 1S 2026 vs. proyección anual US$ 9.000 M, producción de litio 2025 (116,6 kt) / capacidad (200,8 kt), RIGI minero aprobado US$ 21.000 M / presentado ~US$ 39.000 M (CAEM, 09/2026). Licencia Social y Estabilidad Macro se calculan con datos externos; el resto del Barómetro es un primer corte ilustrativo de la encuesta OMA.',
+                hr: ['EJE CAPITAL HUMANO', 'La mejora más chica de los 10 ejes', d => `▲ +${d} vs 2025`],
+                sys: [['Barómetro', 'EN LÍNEA'], ['Prospectiva (Convergencias 2050)', 'EN LÍNEA'], ['Análisis de Brechas', 'FASE 1'], ['Monitor MIMA (CAI)', 'EN DISEÑO'], ['Pulsómetro', 'CALIBRANDO'], ['RIGI', 'EN LÍNEA']],
+                short: ['Exportaciones', 'Marco normativo', 'Licencia social', 'Clima político', 'Mining-friendly', 'Financiamiento', 'Infraestructura', 'Estab. macro', 'Capital humano', 'RIGI'],
+                tipGo: 'Clic → ', tabs: { barometro: 'Barómetro', brechas: 'Brechas', monitor: 'Monitor MIMA', prospectiva: 'Prospectiva', argentina: 'Argentina hoy', pulsometro: 'Pulsómetro', oferta: 'Oferta', rigi: 'RIGI' },
+                foot: 'Datos reales: exportaciones mineras 1S 2026 (INDEC / Secretaría de Minería) y proyección anual; capacidad de litio (Secretaría de Minería, pestaña Oferta) y cartera de cobre (CeProMin, pestaña Argentina hoy). Índice de Performance Minera: exportaciones 1S 2026 vs. proyección anual US$ 9.000 M, producción de litio 2025 (116,6 kt) / capacidad (200,8 kt), RIGI minero aprobado US$ 21.000 M / presentado ~US$ 39.000 M (CAEM, 09/2026). Licencia Social, Estabilidad Macro y RIGI se calculan con datos externos (RIGI: escala, ejecución, rentabilidad y cuenta fiscal del régimen, pestaña RIGI); el resto del Barómetro es un primer corte ilustrativo de la encuesta OMA.',
                 locale: 'es-AR'
             },
             en: {
@@ -4533,22 +4904,22 @@
                 caution: n => `▲ MASTER CAUTION · ${n} AXES`, cautionTitle: 'Barometer axes below 6/10 — see Gap Analysis',
                 pIpm: 'PERFORMANCE', pExp: 'EXPORTS', pRad: 'OMA BAROMETER · INVESTMENT CLIMATE RADAR', pRadB: '● SIGNAL ACTIVE',
                 pBar: 'INTERNAL CLIMATE', pPul: 'EXTERNAL CLIMATE', pLi: 'LITHIUM · CAPACITY', pCu: 'COPPER · PIPELINE', pHr: 'TALENT · MIMA',
-                pSys: 'OMA SYSTEMS STATUS', pSysB: n => `${n}/5 ONLINE`,
+                pSys: 'OMA SYSTEMS STATUS', pSysB: n => `${n}/6 ONLINE`,
                 legend: ['Q3 2025', 'Q3 2026', '6/10 ring: alert threshold'],
                 key: ['● ≥ 7 nominal', '▲ 6–7 watch', '■ < 6 alert', 'Click an axis or a light to open its tab'],
                 real: 'REAL DATA', ill: 'ILLUSTRATIVE', noSignal: 'NO SIGNAL',
                 ipm: ['MINING PERFORMANCE INDEX', '0.40 × Exports + 0.35 × Production + 0.25 × Investment', (e, p, i) => `E ${e} · P ${p} · I ${i}`,
                     ['Exports: pace vs. annual projection', 'Production: lithium output / installed capacity', 'Investment: RIGI mining approved / submitted']],
                 exp: ['MINING EXPORTS 2026', 'H1 cumulative vs. US$ 9.0 bn annual projection', '▲ +74.4 % year-on-year', 'US$ bn'],
-                bar: ['BAROMETER INDEX', '9-axis average · internal perception', d => `▲ +${d} vs 2025`],
+                bar: ['BAROMETER INDEX', '10-axis average · internal perception', d => `▲ +${d} vs 2025`],
                 pul: ['PULSOMETER INDEX', 'External perception · 1st edition in preparation'],
                 li: ['INSTALLED CAPACITY', 'Official 2036 target: over 600 kt/yr', '33 % of target · world #4 producer', 'kt LCE'],
                 cu: ['SHARE OF 2040 DEMAND', '~1.05 Mt/yr pipeline (Vicuña, El Pachón, Taca Taca, Los Azules)', 'Today: artisanal scale'],
-                hr: ['HUMAN CAPITAL AXIS', 'Smallest improvement of the 9 axes', d => `▲ +${d} vs 2025`],
-                sys: [['Barometer', 'ONLINE'], ['Foresight (Convergences 2050)', 'ONLINE'], ['Gap Analysis', 'PHASE 1'], ['MIMA Monitor (CAI)', 'IN DESIGN'], ['Pulsometer', 'CALIBRATING']],
-                short: ['Exports', 'Regulatory', 'Social license', 'Political climate', 'Mining-friendly', 'Funding', 'Infrastructure', 'Macro stability', 'Human capital'],
-                tipGo: 'Click → ', tabs: { barometro: 'Barometer', brechas: 'Gap Analysis', monitor: 'MIMA Monitor', prospectiva: 'Foresight', argentina: 'Argentina today', pulsometro: 'Pulsometer', oferta: 'Supply' },
-                foot: 'Real data: H1 2026 mining exports (INDEC / Mining Secretariat) and annual projection; lithium capacity (Mining Secretariat, Supply tab) and copper pipeline (CeProMin, Argentina today tab). Mining Performance Index: H1 2026 exports vs. US$ 9.0 bn annual projection, 2025 lithium output (116.6 kt) / capacity (200.8 kt), RIGI mining approved US$ 21.0 bn / submitted ~US$ 39.0 bn (CAEM, 09/2026). Social Licence and Macro Stability are calculated from external data; the rest of the Barometer is an illustrative first cut of the OMA survey.',
+                hr: ['HUMAN CAPITAL AXIS', 'Smallest improvement of the 10 axes', d => `▲ +${d} vs 2025`],
+                sys: [['Barometer', 'ONLINE'], ['Foresight (Convergences 2050)', 'ONLINE'], ['Gap Analysis', 'PHASE 1'], ['MIMA Monitor (CAI)', 'IN DESIGN'], ['Pulsometer', 'CALIBRATING'], ['RIGI', 'ONLINE']],
+                short: ['Exports', 'Regulatory', 'Social license', 'Political climate', 'Mining-friendly', 'Funding', 'Infrastructure', 'Macro stability', 'Human capital', 'RIGI'],
+                tipGo: 'Click → ', tabs: { barometro: 'Barometer', brechas: 'Gap Analysis', monitor: 'MIMA Monitor', prospectiva: 'Foresight', argentina: 'Argentina today', pulsometro: 'Pulsometer', oferta: 'Supply', rigi: 'RIGI' },
+                foot: 'Real data: H1 2026 mining exports (INDEC / Mining Secretariat) and annual projection; lithium capacity (Mining Secretariat, Supply tab) and copper pipeline (CeProMin, Argentina today tab). Mining Performance Index: H1 2026 exports vs. US$ 9.0 bn annual projection, 2025 lithium output (116.6 kt) / capacity (200.8 kt), RIGI mining approved US$ 21.0 bn / submitted ~US$ 39.0 bn (CAEM, 09/2026). Social Licence, Macro Stability and RIGI are calculated from external data (RIGI: scale, execution, returns and fiscal account of the regime, RIGI tab); the rest of the Barometer is an illustrative first cut of the OMA survey.',
                 locale: 'en-GB'
             }
         };
@@ -4573,8 +4944,8 @@
             return { E: Math.round(E), P: Math.round(P), I: Math.round(I), total: Math.round(d.weights.E * E + d.weights.P * P + d.weights.I * I) };
         }
 
-        const SYS_STATE = ['on', 'on', 'on', 'mid', 'off'];
-        const SYS_TAB = ['barometro', 'prospectiva', 'brechas', 'monitor', 'pulsometro'];
+        const SYS_STATE = ['on', 'on', 'on', 'mid', 'off', 'on'];
+        const SYS_TAB = ['barometro', 'prospectiva', 'brechas', 'monitor', 'pulsometro', 'rigi'];
 
         // ---------- geometry helpers ----------
         const A0 = -225, A1 = 45;
@@ -4658,7 +5029,7 @@
             return s + `</svg>`;
         }
 
-        function axisTab(i, v) { if (i === 8) return 'monitor'; return v < 6 ? 'brechas' : 'barometro'; }
+        function axisTab(i, v) { if (i === 8) return 'monitor'; if (i === 9) return 'rigi'; return v < 6 ? 'brechas' : 'barometro'; }
 
         window.renderOmaConsole = function (lang) {
             const root = document.getElementById('omaConsole');
