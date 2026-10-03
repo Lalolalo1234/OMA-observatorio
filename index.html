@@ -4886,7 +4886,7 @@
                 key: ['● ≥ 7 nominal', '▲ 6–7 vigilar', '■ < 6 alerta', 'Tocá un eje o una luz para abrir su pestaña'],
                 real: 'DATO REAL', ill: 'ILUSTRATIVO', noSignal: 'SIN SEÑAL',
                 ipm: ['ÍNDICE DE PERFORMANCE MINERA', '0,40 × Exportaciones + 0,35 × Producción + 0,25 × Inversión', (e, p, i) => `E ${e} · P ${p} · I ${i}`,
-                    ['Exportaciones: ritmo vs. proyección anual', 'Producción: litio producido / capacidad instalada', 'Inversión: RIGI minero aprobado / presentado']],
+                    ['Exportaciones: ritmo vs. proyección anual', 'Producción: litio producido / capacidad instalada', 'Inversión: avance del RIGI (escala de la cartera aprobada y ejecución con fecha cierta, pestaña RIGI)']],
                 exp: ['EXPORTACIONES MINERAS 2026', '1S acumulado vs. proyección anual US$ 9.000 M', '▲ +74,4 % interanual', 'mil M US$'],
                 bar: ['ÍNDICE BARÓMETRO', 'Promedio 10 ejes · percepción interna', d => `▲ +${d} vs 2025`],
                 pul: ['ÍNDICE PULSÓMETRO', 'Percepción externa · 1.ª edición en preparación'],
@@ -4896,7 +4896,7 @@
                 sys: [['Barómetro', 'EN LÍNEA'], ['Prospectiva (Convergencias 2050)', 'EN LÍNEA'], ['Análisis de Brechas', 'FASE 1'], ['Monitor MIMA (CAI)', 'EN DISEÑO'], ['Pulsómetro', 'CALIBRANDO'], ['RIGI', 'EN LÍNEA']],
                 short: ['Exportaciones', 'Marco normativo', 'Licencia social', 'Clima político', 'Mining-friendly', 'Financiamiento', 'Infraestructura', 'Estab. macro', 'Capital humano', 'RIGI'],
                 tipGo: 'Clic → ', tabs: { barometro: 'Barómetro', brechas: 'Brechas', monitor: 'Monitor MIMA', prospectiva: 'Prospectiva', argentina: 'Argentina hoy', pulsometro: 'Pulsómetro', oferta: 'Oferta', rigi: 'RIGI' },
-                foot: 'Datos reales: exportaciones mineras 1S 2026 (INDEC / Secretaría de Minería) y proyección anual; capacidad de litio (Secretaría de Minería, pestaña Oferta) y cartera de cobre (CeProMin, pestaña Argentina hoy). Índice de Performance Minera: exportaciones 1S 2026 vs. proyección anual US$ 9.000 M, producción de litio 2025 (116,6 kt) / capacidad (200,8 kt), RIGI minero aprobado US$ 21.000 M / presentado ~US$ 39.000 M (CAEM, 09/2026). Licencia Social, Estabilidad Macro y RIGI se calculan con datos externos (RIGI: escala, ejecución, rentabilidad y cuenta fiscal del régimen, pestaña RIGI); el resto del Barómetro es un primer corte ilustrativo de la encuesta OMA.',
+                foot: 'Datos reales: exportaciones mineras 1S 2026 (INDEC / Secretaría de Minería) y proyección anual; capacidad de litio (Secretaría de Minería, pestaña Oferta) y cartera de cobre (CeProMin, pestaña Argentina hoy). Índice de Performance Minera: exportaciones 1S 2026 vs. proyección anual US$ 9.000 M, producción de litio 2025 (116,6 kt) / capacidad (200,8 kt), avance del RIGI: promedio de los componentes Escala y Ejecución del índice RIGI (pestaña RIGI, 01/10/2026). Licencia Social, Estabilidad Macro y RIGI se calculan con datos externos (RIGI: escala, ejecución, rentabilidad y cuenta fiscal del régimen, pestaña RIGI); el resto del Barómetro es un primer corte ilustrativo de la encuesta OMA.',
                 locale: 'es-AR'
             },
             en: {
@@ -4909,7 +4909,7 @@
                 key: ['● ≥ 7 nominal', '▲ 6–7 watch', '■ < 6 alert', 'Click an axis or a light to open its tab'],
                 real: 'REAL DATA', ill: 'ILLUSTRATIVE', noSignal: 'NO SIGNAL',
                 ipm: ['MINING PERFORMANCE INDEX', '0.40 × Exports + 0.35 × Production + 0.25 × Investment', (e, p, i) => `E ${e} · P ${p} · I ${i}`,
-                    ['Exports: pace vs. annual projection', 'Production: lithium output / installed capacity', 'Investment: RIGI mining approved / submitted']],
+                    ['Exports: pace vs. annual projection', 'Production: lithium output / installed capacity', 'Investment: RIGI progress (approved portfolio scale and execution with firm dates, RIGI tab)']],
                 exp: ['MINING EXPORTS 2026', 'H1 cumulative vs. US$ 9.0 bn annual projection', '▲ +74.4 % year-on-year', 'US$ bn'],
                 bar: ['BAROMETER INDEX', '10-axis average · internal perception', d => `▲ +${d} vs 2025`],
                 pul: ['PULSOMETER INDEX', 'External perception · 1st edition in preparation'],
@@ -4919,7 +4919,7 @@
                 sys: [['Barometer', 'ONLINE'], ['Foresight (Convergences 2050)', 'ONLINE'], ['Gap Analysis', 'PHASE 1'], ['MIMA Monitor (CAI)', 'IN DESIGN'], ['Pulsometer', 'CALIBRATING'], ['RIGI', 'ONLINE']],
                 short: ['Exports', 'Regulatory', 'Social license', 'Political climate', 'Mining-friendly', 'Funding', 'Infrastructure', 'Macro stability', 'Human capital', 'RIGI'],
                 tipGo: 'Click → ', tabs: { barometro: 'Barometer', brechas: 'Gap Analysis', monitor: 'MIMA Monitor', prospectiva: 'Foresight', argentina: 'Argentina today', pulsometro: 'Pulsometer', oferta: 'Supply', rigi: 'RIGI' },
-                foot: 'Real data: H1 2026 mining exports (INDEC / Mining Secretariat) and annual projection; lithium capacity (Mining Secretariat, Supply tab) and copper pipeline (CeProMin, Argentina today tab). Mining Performance Index: H1 2026 exports vs. US$ 9.0 bn annual projection, 2025 lithium output (116.6 kt) / capacity (200.8 kt), RIGI mining approved US$ 21.0 bn / submitted ~US$ 39.0 bn (CAEM, 09/2026). Social Licence, Macro Stability and RIGI are calculated from external data (RIGI: scale, execution, returns and fiscal account of the regime, RIGI tab); the rest of the Barometer is an illustrative first cut of the OMA survey.',
+                foot: 'Real data: H1 2026 mining exports (INDEC / Mining Secretariat) and annual projection; lithium capacity (Mining Secretariat, Supply tab) and copper pipeline (CeProMin, Argentina today tab). Mining Performance Index: H1 2026 exports vs. US$ 9.0 bn annual projection, 2025 lithium output (116.6 kt) / capacity (200.8 kt), RIGI progress: average of the Scale and Execution components of the RIGI index (RIGI tab, 01/10/2026). Social Licence, Macro Stability and RIGI are calculated from external data (RIGI: scale, execution, returns and fiscal account of the regime, RIGI tab); the rest of the Barometer is an illustrative first cut of the OMA survey.',
                 locale: 'en-GB'
             }
         };
@@ -4932,15 +4932,16 @@
             yearFraction: 0.5,      // parte del año cubierta por exportYTD
             lithiumOutput: 116.6,   // kt LCE producidas (2025, Secretaría de Minería)
             lithiumCapacity: 200.8, // kt LCE capacidad instalada (Portfolio 2026)
-            rigiApproved: 21000,    // US$ M RIGI minero aprobado (CAEM, 03/09/2026)
-            rigiSubmitted: 39000,   // US$ M RIGI minero presentado
+            // Inversión: se lee de RIGI_DATA (pestaña RIGI), única fuente del RIGI en OMA
+            rigiProgressComps: ['scale', 'exec'],
             weights: { E: 0.40, P: 0.35, I: 0.25 }
         };
         function computeIPM(d) {
             const cap = v => Math.max(0, Math.min(100, v));
             const E = cap(100 * d.exportYTD / (d.exportTarget * d.yearFraction));
             const P = cap(100 * d.lithiumOutput / d.lithiumCapacity);
-            const I = cap(100 * d.rigiApproved / d.rigiSubmitted);
+            const rc = (typeof RIGI_DATA !== 'undefined') ? RIGI_DATA.comps.filter(c => d.rigiProgressComps.includes(c.k)) : [];
+            const I = rc.length ? cap(10 * rc.reduce((s, c) => s + c.v, 0) / rc.length) : 0;
             return { E: Math.round(E), P: Math.round(P), I: Math.round(I), total: Math.round(d.weights.E * E + d.weights.P * P + d.weights.I * I) };
         }
 
