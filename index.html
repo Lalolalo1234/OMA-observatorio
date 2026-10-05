@@ -3821,11 +3821,11 @@
 
 
         // --- Barómetro: riesgo país (mercado + fundamentos macro) ---
-        // Datos al 28/09/2026. Para actualizar, editar solo RP_DATA.
+        // Datos al 02/10/2026. Para actualizar, editar solo RP_DATA.
         const RP_DATA = {
-            asOf: '28/09/2026',
-            spread: { now: 628, nowDate: '28/09', min: 403, minDate: '07/07', max: 641, maxDate: '28/09 (intradiario)', igRef: 200 },
-            ust: 5.0,
+            asOf: '02/10/2026',
+            spread: { now: 646, nowDate: '02/10', min: 403, minDate: '07/07', max: 655, maxDate: '02/10 (intradiario)', igRef: 200 },
+            ust: 5.3,
             // Escala de largo plazo en moneda extranjera. Índice 0 = CCC-/Caa3 … 9 = BBB-/Baa3 (grado de inversión)
             scale: ['CCC-', 'CCC', 'CCC+', 'B-', 'B', 'B+', 'BB-', 'BB', 'BB+', 'BBB-'],
             agencies: [
@@ -3836,8 +3836,8 @@
             debt2027: { total: 21, bonds: 12, imf: 7.5, bopreal: 2, grossRes: 49 },
             netRes: { jun: -7, target: -4.1 },
             fiscal: { primary: 1.1, financial: 0.2, imfTarget: 1.4, proj: 1.3 },
-            infl: { m: 1.7, yoy: 33.5, ytd: 21.3, peakM: 3.4, rem2026: '20–21' },
-            rate: { tamarTNA: 24.1, tamarM: 1.98, expInflM: 1.7 }
+            infl: { m: 1.7, yoy: 33.5, ytd: 21.3, peakM: 3.4, rem2026: '30' },
+            rate: { tamarTNA: 24.4, tamarM: 2.01, expInflM: 1.7 }
         };
 
         const RP_I18N = {
@@ -3847,7 +3847,7 @@
                 market: 'Lo que dice el mercado',
                 spreadT: 'Riesgo país (EMBI, puntos básicos)',
                 spreadMin: 'mínimo del año', spreadNow: 'actual', spreadMax: 'máximo del año',
-                spreadNote: s => `Subió ${s.now - s.min} puntos desde el mínimo de julio (+${Math.round((s.now / s.min - 1) * 100)} %), con once ruedas seguidas de alza, y tocó ${s.max} en el día. La franja gris marca el nivel típico de un país con grado de inversión (hasta ${s.igRef} puntos).`,
+                spreadNote: s => `Subió ${s.now - s.min} puntos desde el mínimo de julio (+${Math.round((s.now / s.min - 1) * 100)} %), cerró en el nivel más alto del año y tocó ${s.max} en el día. La franja gris marca el nivel típico de un país con grado de inversión (hasta ${s.igRef} puntos).`,
                 capT: 'Piso del costo de capital en dólares',
                 capNote: (u, s) => `Rendimiento de los bonos del Tesoro de EE. UU. (≈ ${u.toFixed(1).replace('.', ',')} %) más el riesgo país (${(s / 100).toFixed(2).replace('.', ',')} puntos). Un proyecto minero sin cobertura multilateral difícilmente se financia por debajo de este nivel.`,
                 ratingsT: 'Calificaciones soberanas',
@@ -3875,12 +3875,12 @@
                 readT: 'Lectura combinada del OMA',
                 read: [
                     '<strong>Solvencia mejor, liquidez en duda.</strong> Las calificadoras premian la mejora de fondo (superávit fiscal, balanza energética, compra de reservas). El diferencial de los bonos, en cambio, se ensanchó desde julio porque el mercado mira otra cosa: cómo se pagan los vencimientos de 2027 con reservas netas todavía negativas y en un año electoral.',
-                    '<strong>Una parte de la suba es externa.</strong> Rendimientos del Tesoro de EE. UU. cerca del 5 %, subas de tasas de la Reserva Federal y petróleo por encima de US$ 100 afectan a todos los emergentes. La parte propia es la acumulación de reservas, que se desaceleró en agosto y septiembre.',
+                    '<strong>Una parte de la suba es externa.</strong> Rendimientos del Tesoro de EE. UU. por encima del 5,2 %, máximos desde 2007, subas de tasas de la Reserva Federal y petróleo por encima de US$ 100 afectan a todos los emergentes. La parte propia es la acumulación de reservas, que se desaceleró en agosto y septiembre.',
                     '<strong>Qué significa para la minería.</strong> El RIGI protege frente a cambios fiscales, cambiarios y aduaneros, pero no baja el techo soberano: el costo de capital de un proyecto sigue anclado al riesgo país. Por eso los proyectos grandes buscan financiamiento multilateral o de agencias de crédito a la exportación, como Rincón con IFC, BID Invest, Export Finance Australia y JBIC.',
                     '<strong>Señales a vigilar.</strong> Reservas netas frente a la meta del FMI, plan de financiamiento de 2027, inflación mensual por debajo del 2 % y perspectiva de las calificadoras. Una suba a B por parte de dos agencias y un riesgo país sostenido por debajo de 500 puntos marcarían el paso a la siguiente etapa.'
                 ],
                 vs: (a) => `Percepción frente a datos: el eje Estabilidad Macro del Barómetro puntúa ${a.v2026.toFixed(1).replace('.', ',')} sobre 10 (${a.v2025.toFixed(1).replace('.', ',')} en 2025). Los datos confirman la mejora, pero la señalan más frágil de lo que sugiere la encuesta: dos de los cuatro fundamentos están en vigilancia y uno en estado crítico.`,
-                src: 'Fuentes: Fitch Ratings (05/05/2026), S&P Global Ratings (10/06/2026), Moody\'s Ratings (21/07/2026); JP Morgan EMBI según prensa financiera (Infobae, 28/09/2026); INDEC, IPC agosto 2026; Ministerio de Economía, resultado fiscal agosto 2026; BCRA, Relevamiento de Expectativas de Mercado (agosto 2026); vencimientos 2027 y reservas: Infobae (22 y 28/09/2026). Datos al '
+                src: 'Fuentes: Fitch Ratings (05/05/2026), S&P Global Ratings (10/06/2026), Moody\'s Ratings (21/07/2026); JP Morgan EMBI y bono del Tesoro de EE. UU. según prensa financiera (Infobae, 03/10/2026; La Nación y El Cronista, 02-03/10/2026); INDEC, IPC agosto 2026; Ministerio de Economía, resultado fiscal agosto 2026; BCRA, Relevamiento de Expectativas de Mercado (agosto 2026, publicado el 05/09/2026) y TAMAR (01/10/2026); vencimientos 2027 y reservas: Infobae (22 y 28/09/2026). Datos al '
             },
             en: {
                 h2: 'Country risk: market and fundamentals',
@@ -3888,7 +3888,7 @@
                 market: 'What the market says',
                 spreadT: 'Country risk (EMBI, basis points)',
                 spreadMin: 'year low', spreadNow: 'current', spreadMax: 'year high',
-                spreadNote: s => `Up ${s.now - s.min} points from the July low (+${Math.round((s.now / s.min - 1) * 100)}%), after eleven straight sessions of increases, touching ${s.max} intraday. The grey band marks the typical level for an investment-grade country (up to ${s.igRef} points).`,
+                spreadNote: s => `Up ${s.now - s.min} points from the July low (+${Math.round((s.now / s.min - 1) * 100)}%), closing at the highest level of the year and touching ${s.max} intraday. The grey band marks the typical level for an investment-grade country (up to ${s.igRef} points).`,
                 capT: 'Floor of the dollar cost of capital',
                 capNote: (u, s) => `US Treasury yield (≈ ${u.toFixed(1)}%) plus country risk (${(s / 100).toFixed(2)} points). A mining project without multilateral cover can hardly be financed below this level.`,
                 ratingsT: 'Sovereign ratings',
@@ -3916,12 +3916,12 @@
                 readT: 'OMA combined reading',
                 read: [
                     '<strong>Better solvency, doubtful liquidity.</strong> Rating agencies reward the underlying improvement (fiscal surplus, energy trade balance, reserve purchases). Bond spreads, however, have widened since July because the market is looking at something else: how the 2027 maturities will be paid with net reserves still negative and in an election year.',
-                    '<strong>Part of the rise is external.</strong> US Treasury yields near 5%, Federal Reserve rate hikes and oil above US$ 100 hit all emerging markets. The home-grown part is reserve accumulation, which slowed in August and September.',
+                    '<strong>Part of the rise is external.</strong> US Treasury yields above 5.2%, the highest since 2007, Federal Reserve rate hikes and oil above US$ 100 hit all emerging markets. The home-grown part is reserve accumulation, which slowed in August and September.',
                     '<strong>What it means for mining.</strong> RIGI protects against tax, foreign-exchange and customs changes, but it does not lift the sovereign ceiling: a project\'s cost of capital remains anchored to country risk. That is why large projects seek multilateral or export-credit-agency financing, as Rincón did with IFC, IDB Invest, Export Finance Australia and JBIC.',
                     '<strong>Signals to watch.</strong> Net reserves against the IMF target, the 2027 financing plan, monthly inflation below 2% and rating outlooks. An upgrade to B by two agencies and country risk sustained below 500 points would mark the next stage.'
                 ],
                 vs: (a) => `Perception vs data: the Barometer's Macro Stability axis scores ${a.v2026.toFixed(1)} out of 10 (${a.v2025.toFixed(1)} in 2025). The data confirm the improvement but show it to be more fragile than the survey suggests: two of the four fundamentals are under watch and one is critical.`,
-                src: 'Sources: Fitch Ratings (05/05/2026), S&P Global Ratings (10/06/2026), Moody\'s Ratings (21/07/2026); JP Morgan EMBI as reported by the financial press (Infobae, 28/09/2026); INDEC, CPI August 2026; Ministry of Economy, fiscal result August 2026; BCRA Market Expectations Survey (August 2026); 2027 maturities and reserves: Infobae (22 and 28/09/2026). Data as of '
+                src: 'Sources: Fitch Ratings (05/05/2026), S&P Global Ratings (10/06/2026), Moody\'s Ratings (21/07/2026); JP Morgan EMBI and US Treasury yield as reported by the financial press (Infobae, 03/10/2026; La Nación and El Cronista, 02-03/10/2026); INDEC, CPI August 2026; Ministry of Economy, fiscal result August 2026; BCRA Market Expectations Survey (August 2026, published 05/09/2026) and TAMAR (01/10/2026); 2027 maturities and reserves: Infobae (22 and 28/09/2026). Data as of '
             }
         };
 
